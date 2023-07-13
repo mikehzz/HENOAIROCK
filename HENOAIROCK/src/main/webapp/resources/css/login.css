@@ -1,170 +1,281 @@
+/* -------로그인-------- */
 body {
-    background-color: #F3F4F9;
-    margin: 0;
-    padding: 0;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+	background-color: #000000;
 }
 
-#form-container {
-    height: 100vh;
+a {
+	text-decoration: none;
+	color: #333;
+}
+
+h2 {
+  text-align: left; /* Align the heading to the left */
+  margin-left: 0; /* Remove the default margin */
+}
+
+#con {
+	width: 100%;
+	height: 100vh;
+	background-color: #808000;
+	padding: 0;
+}
+
+#login {
+	width: 600px;
+	height: 600px;
+	margin: 0 auto;
+	/* position: relative; */
+	/* background:#ddd; */
+}
+
+
+
+
+#login_form {
+	/* text-align:center; */
+	border-radius: 10px;
+	padding: 30px 50px;
+	background: #fff;
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.hr-sect {
     display: flex;
-    justify-content: center;
+    flex-basis: 100%;
     align-items: center;
+    color: rgba(0, 0, 0, 0.35);
+    font-size: 12px;
+    margin: 50px -14px;
+}
+.hr-sect::before,
+.hr-sect::after {
+  content: "";
+  flex-grow: 1;
+  background: rgba(0, 0, 0, 0.35);
+  height: 1px;
+  font-size: 0px;
+  line-height: 0px;
+  margin: 0px 16px;
 }
 
-#form-inner-container {
-    background-color: white;
-    max-width: 70%;
-    border-radius: 8px;
-    box-shadow: 0 0 20px gainsboro;
+.hr-secter {
+  display: flex;
+  flex-basis: 100%;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.35);
+  font-size: 12px;
+  margin: 50px -14px;
+}
+.hr-secter::before,
+.hr-secter::after {
+  content: "";
+  flex-grow: 1;
+  background: rgba(0, 0, 0, 0.35);
+  height: 1px;
+  font-size: 0px;
+  line-height: 0px;
+  margin: 0px 16px;
 }
 
-#sign-up-container, #sign-in-container {
-    padding: 60px 80px;
-    width: 320px;
-    display: inline-block;
+.login {
+	font-size: 25px;
+	font-weight: 900;
+	color: #333;
 }
 
-form input:not(:last-of-type) {
-    display: block;
-    margin-bottom: 20px;
-    border: 1px solid #E5E9F5;
-    background-color: #F6F7FA;
-    padding: 20px;
-    margin-top: 10px;
-    border-radius: 10px;
-    width: 100%;
+.input-title {
+	text-align: left;
+	font-size: 12px;
+	color: black;
+	font-weight: 600;
 }
 
-#form-controls {
-    margin-bottom: 20px;
+.input-chek {
+	text-align: left;
+	font-size: 12px;
+	color: #808080;
+	font-weight: lighter;
 }
 
+.size {
+	width: 300px;
+	height: 30px;
+	background-color: #eeeff5;
+	/* margin-left:10px; */
+	border: none;
+	border-radius: 5px;
+}
 
-h3 {
-    color: red;
-    font-size: 150%;
-    font-weight: 500;
+.btn {
+    width: 80px;
+    height: 30px;
+    font-size: 13px;
+    background-color: #9599af;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: 0.5s;
+    float: right;
+    margin: 8px;
+}
+
+.btn01 {
+	width: 250px;
+	height: 40px;
+	font-size: 13px;
+	background-color: #9599af;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+	border-radius: 5px;
+	font-weight: 600;
+	transition: 0.5s;
+}
+
+.btn.w100 {
+	width: 100%
+}
+
+.btn:hover {
+	background: #948cb3;
+}
+
+hr {
+	margin-top: 20px;
+	background: #eee;
+}
+
+.find {
+	text-align: right;
+	color: #ddd;	
+	font-size: 12px;
+}
+
+.find span {
+	padding-left: 10px;
+}
+
+.find span::before {
+	content: '|';
+	color: #333;
+	padding-right: 10px;
+}
+
+.find span:nth-child(1):before {
+	content: none;
+}
+
+.find span:nth-child(1) {
+	padding-left: 0px;
+}
+
+.find a:hover {
+	color: #707070;
+}
+
+.num1 {
+	width: 60px;
+	text-align: left;
+}
+
+.num2 {
+	width: 235px;
+}
+
+.wide {
+	width: 420px;
 }
 
 label {
-    color: #7369AB;
+	width: 300px;
+	height: 10px;
+	margin: 0;
 }
 
-::placeholder {
-    color: #C0C7DB;
-    font-size: larger;
-    letter-spacing: 1.2px;
+
+/* -------회원가입-------- */
+.h-zero {
+	margin: 0;
+	padding-top: 20px;
 }
 
-#form-controls button {
-    border: none;
-    font-size: 120%;
+.h-zero span{
+  font-weight: normal;
+	color: #808080;
 }
 
-#form-controls button:hover {
-    cursor: pointer;
+/* -------비밀번호 찾기-------- */
+.error-message {
+	display: block;
 }
 
-button[type="submit"] {
-    padding: 16px 75px;
-    background-color: #ED4B5E;
-    border-radius: 10px;
-    color: white;
+.find_pw #login_form {
+	width: 400px;
+	height: 550px;
+	border-radius: 10px;
+	padding: 30px 50px;
+	background: #fff;
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	margin: auto 0;
 }
 
-button[type="submit"]:hover {
-    background-color: #ff6678;
+.find_pw .login {
+	font-size: 25px;
+	font-weight: 900;
+	color: #333;
 }
 
-button[type="button"] {
-    padding: 16px 0 16px 35px;
-    background-color: transparent;
-    color: #ED4B5E;
+.find_pw .size {
+	width: 280px;
+	height: 30px;
+	background-color: ##eeeff5;
+	border: none;
+	border-radius: 5px;
 }
 
-#terms {
-    width: 30px;
-    height: 30px;
-    appearance: none;
-    border: 2px solid #7369AB;
-    border-radius: 4px;
-    position: relative;
+
+.find_pw .wide {
+	width: 100%;
 }
 
-#terms:checked:after {
-    content: '\2713';
-    color: #7369AB;
-    font-size: 24px;
-    position: absolute;
-    top: 0;
-    left: 3px;
+/* -------이용약관-------- */
+#agree-con {
+	width: 100vw;
+	height: 100%
 }
 
-label[for="terms"] {
-    display: inline-block;
-    width: 80%;
-    margin-left: 10px;
+#agree-con p {
+	text-align: center;
 }
 
-.termsLink {
-    color: #EF7886;
-    text-decoration: none;
+.agree {
+	width: 50%;
+	height: 35vh;
+	margin: 10px auto;
+	overflow: scroll;
+	background-color: #fff;
 }
 
-.hide {
-    display: none!important;
+#agree-con .back-btn {
+	text-align: center;
+	margin: 30px 0;
 }
 
-#animation-container {
-    display: inline-block;
-}
-
-/* responsive display */
-
-@media(max-width:1438px) {
-    lottie-player {
-        width: 300px!important;
-    }
-}
-
-@media(max-width:1124px) {
-    #animation-container {
-        display: none;
-    }
-
-    #form-inner-container{
-        display: flex;
-        justify-content: center;
-    }
-}
-
-@media(max-width: 684px) {
-    #form-controls {
-        text-align: center;
-        margin: 0;
-        padding: 0;
-    }
-
-    button {
-        width: 100%;
-    }
-
-    form input:not(:last-of-type) {
-        width: 85%;
-    }
-
-    #toggleSignIn, #toggleSignUp {
-        padding: 16px 75px;
-    }
-
-    #terms {
-        width: 20px;
-        height: 20px;
-    }
-    
-    label[for="terms"] {
-        display: inline-block;
-        font-size: smaller;
-    }
+#agree-con a {
+	font-weight: 600;
+	text-decoration: none;
+	background-color: #9599af;
+	color: #ffffff;
+	padding: 10px 20px;
+	border-radius: 20px;
 }
