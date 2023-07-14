@@ -22,15 +22,20 @@
 						</p>
 						
 						<!--이메일-->
-						<p class="input-title"">E-mail</p>
-						<label> <input type="text" class="size"> <input
-							type="button" value="중복확인 " class="btn">
+						<input type="button" value="중복확인" class="btn">
+						<p class="input-title">E-mail</p>
+						<div class="input-wrapper">
+						  <label> <input type="text" class="size wide"> 
+						
 						</label>
+						  
+						</div>
 
 						<!--이메일 인증번호 입력-->
+						<input type="button" value="인증번호 전송 " class="btn">
 						<p class="input-title">E-mail 인증번호 입력</p>
-						<label> <input type="text" class="size"> <input
-							type="button" value="인증번호 전송 " class="btn">
+						<label> <input type="text" class="size wide"> 
+						
 						</label>
 
 						<!--비밀번호-->
@@ -53,6 +58,11 @@
 						<p class="input-title">이름</p>
 						<label> <input type="text" class="size wide" required>
 						</label>
+						
+						<!--생년월일-->
+						<p class="input-title">생년월일</p>
+						<label> <input type="date" class="size wide" required>
+						</label>
 
 
 						<!--이용약관동의-->
@@ -63,17 +73,12 @@
 
 						<!-- 메일수신 -->
 						<p class="input-chek">
-							<input checked="checked" type="radio" name="mail" value="Y"
-								id="m_y" required> <label for="m_y">약관내용을 확인하였으며
-								동의합니다</label>
+							<input checked="checked" type="radio" name="agree" value="Y"
+								id="m_y" required> <label for="m_y">동의</label>
 						</p>
 						<p class="input-chek">
-							<input checked="checked" type="radio" name="mail" value="Y"
-								id="m_y" required> <label for="m_y">메일 수신</label>
-						</p>
-						<p class="input-chek">
-							<input type="radio" name="mail" value="N" id="m_n" required>
-							<label for="m_n">메일 수신 안 함</label>
+							<input type="radio" name="disagree" value="N" id="m_n" required>
+							<label for="m_n">비동의 (이용 불가)</label>
 						</p>
 
 						<!-- 버튼 -->
