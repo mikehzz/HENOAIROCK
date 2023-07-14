@@ -127,6 +127,27 @@ hr:not(.hr-sect) {
   transition: 0.5s;
 }
 
+.btnRe {
+  width: 100px;
+  height: 30px;
+  font-size: 13px;
+  background-color: #9599af;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: 0.5s;
+  float: right;
+/*       margin: -5; */
+  margin-top: -7px; /* 위로 10px만큼 이동 */
+  margin-left: 10px; /* 왼쪽으로 20px만큼 이동 */
+}
+
+.btnRe.w100 {
+  width: 100%
+}
+
 .btn.w100 {
   width: 100%
 }

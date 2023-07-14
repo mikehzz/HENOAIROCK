@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="author" content="User">
 <link rel="stylesheet" type="text/css" href="../css/login.css">
-
 <title>회원가입</title>
 </head>
 
@@ -17,12 +16,15 @@
 					<form>
 						<h2>회원가입</h2>
 						
+						<p class="top">싸그리싺싺으로 음악을 이용해보시기 바랍니다.</p>
+						
 						<p class="find">
 						<span><a href="login.html">로그인 페이지로 이동</a></span>
 						</p>
 						
+						
 						<!--이메일-->
-						<input type="button" value="중복확인" class="btn">
+						<input type="button" value="중복확인" class="btnRe">
 						<p class="input-title">E-mail</p>
 						<div class="input-wrapper">
 						  <label> <input type="text" class="size wide"> 
@@ -32,7 +34,8 @@
 						</div>
 
 						<!--이메일 인증번호 입력-->
-						<input type="button" value="인증번호 전송 " class="btn">
+						<input type="button" value="인증번호 전송 " class="btnRe">
+						            <input type="button" value="인증번호 확인 " class="btnRe">
 						<p class="input-title">E-mail 인증번호 입력</p>
 						<label> <input type="text" class="size wide"> 
 						
@@ -64,12 +67,10 @@
 						<label> <input type="date" class="size wide" required>
 						</label>
 
-
 						<!--이용약관동의-->
 						<p class="h-zero input-title">
 							이용약관동의 <span><a href="agree.html">[이용약관 자세히 읽기]</a></span>
 						</p>
-
 
 						<!-- 메일수신 -->
 						<p class="input-chek">
@@ -77,13 +78,13 @@
 								id="m_y" required> <label for="m_y">동의</label>
 						</p>
 						<p class="input-chek">
-							<input type="radio" name="disagree" value="N" id="m_n" required>
+							<input type="radio" name="agree" value="N" id="m_n" required>
 							<label for="m_n">비동의 (이용 불가)</label>
 						</p>
 
 						<!-- 버튼 -->
 						<p>
-							<input type="submit" value="Create Account" class="btn w100">
+							<input type="submit" value="Create Account" class="btnRe w100">
 						</p>
 					</form>
 
