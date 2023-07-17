@@ -1,4 +1,3 @@
-/* -------�α���-------- */
 body {
   background-color: #000000;
 }
@@ -311,4 +310,9 @@ label {
   color: #ffffff;
   padding: 10px 20px;
   border-radius: 20px;
+}
+
+.top{
+  text-align: left;
+  font-size: 13px;
 }
