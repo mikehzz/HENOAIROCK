@@ -1,0 +1,262 @@
+/* -------�α���-------- */
+body {
+  background-color: #000000;
+}
+
+a {
+  text-decoration: none;
+  color: #3e9fe7e8;
+}
+
+h2 {
+  text-align: left; /* Align the heading to the left */
+  margin-left: 0; /* Remove the default margin */
+}
+
+#con {
+  width: 100%;
+  height: 100vh;
+  background-color: #808000;
+  padding: 0;
+}
+
+#login {
+  width: 600px;
+  height: 600px;
+  margin: 0 auto;
+  /* position: relative; */
+  /* background:#ddd; */
+}
+
+
+
+
+#login_form {
+  /* text-align:center; */
+  border-radius: 10px;
+  padding: 20px 25px;
+  background: #fff;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hr-sect {
+    display: flex;
+    flex-basis: 100%;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.35);
+    font-size: 12px;
+    margin: 50px -14px;
+}
+.hr-sect::before,
+.hr-sect::after {
+  content: "";
+  flex-grow: 1;
+  background: rgba(0, 0, 0, 0.35);
+  height: 1px;
+  font-size: 0px;
+  line-height: 0px;
+  margin: 0px 16px;
+}
+
+.hr-secter {
+  display: flex;
+  flex-basis: 100%;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.35);
+  font-size: 12px;
+  margin: 50px -14px;
+}
+.hr-secter::before,
+.hr-secter::after {
+  content: "";
+  flex-grow: 1;
+  background: rgba(0, 0, 0, 0.35);
+  height: 1px;
+  font-size: 0px;
+  line-height: 0px;
+  margin: 0px 16px;
+}
+
+.login {
+  font-size: 25px;
+  font-weight: 900;
+  color: #333;
+}
+
+.input-title {
+    text-align: left;
+    font-size: 12px;
+    color: black;
+    font-weight: 600;
+    margin-top: 10px; /* Add margin-top value to adjust the position */
+}
+
+.input-chek {
+  text-align: left;
+  font-size: 12px;
+  color: #808080;
+  font-weight: lighter;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+    margin-bottom: 40px;
+}
+
+.size {
+  width: 300px;
+  height: 30px;
+  background-color: #eeeff5;
+  /* margin-left:10px; */
+  border: none;
+  border-radius: 5px;
+}
+
+.btnRe {
+  width: 100px;
+  height: 30px;
+  font-size: 13px;
+  background-color: #9599af;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: 0.5s;
+  float: right;
+/*       margin: -5; */
+  margin-top: -7px; /* 위로 10px만큼 이동 */
+  margin-left: 10px; /* 왼쪽으로 20px만큼 이동 */
+}
+
+.btn01 {
+  width: 250px;
+  height: 40px;
+  font-size: 13px;
+  background-color: #9599af;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: 0.5s;
+}
+
+.btnRe.w100 {
+  width: 100%
+}
+
+.btn:hover {
+  background: #948cb3;
+}
+
+hr {
+  margin-top: 20px;
+  background: #eee;
+}
+
+.find {
+  text-align: right;
+  color: #ddd;  
+  font-size: 12px;
+}
+
+.find span {
+  padding-left: 10px;
+}
+
+.find span::before {
+  content: '|';
+  color: #333;
+  padding-right: 10px;
+}
+
+.find span:nth-child(1):before {
+  content: none;
+}
+
+.find span:nth-child(1) {
+  padding-left: 0px;
+}
+
+.find a:hover {
+  color: #707070;
+}
+
+.num1 {
+  width: 60px;
+  text-align: left;
+}
+
+.num2 {
+  width: 235px;
+}
+
+.wide {
+  width: 420px;
+}
+
+label {
+  width: 300px;
+  height: 10px;
+  margin: 0;
+}
+
+
+/* -------ȸ������-------- */
+.h-zero {
+  margin: 0;
+  padding-top: 20px;
+}
+
+.h-zero span{
+  font-weight: normal;
+  color: #808080;
+}
+
+/* -------��й�ȣ ã��-------- */
+.error-message {
+  display: block;
+}
+
+.find_pw #login_form {
+  width: 400px;
+  height: 550px;
+  border-radius: 10px;
+  padding: 30px 50px;
+  background: #fff;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: auto 0;
+}
+
+.find_pw .login {
+  font-size: 25px;
+  font-weight: 900;
+  color: #333;
+}
+
+.find_pw .size {
+  width: 280px;
+  height: 30px;
+  background-color: ##eeeff5;
+  border: none;
+  border-radius: 5px;
+}
+
+.find_pw .wide {
+  width: 100%;
+}
+
+.top{
+  text-align: left;
+  font-size: 13px;
+}

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+    <title>음악 사이트</title>
+<link rel="stylesheet" type="text/css" href="../css/main.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="음악 사이트 로고">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">홈</a></li>
+                <li><a href="#">음악</a></li>
+                <li><a href="#">아티스트</a></li>
+                <li><a href="#">플레이리스트</a></li>
+                <li><a href="#">커뮤니티</a></li>
+            </ul>
+        </nav>
+        <div class="search">
+            <input type="text" placeholder="검색">
+            <button type="submit">검색</button>
+        </div>
+    </header>
+
+    <section id="banner">
+        <div class="banner-image">
+            <img src="banner-image.jpg" alt="배너 이미지">
+        </div>
+        <div class="banner-text">
+            <h1>새로운 음악을 발견하세요</h1>
+            <p>다양한 장르의 음악과 아티스트를 만나보세요.</p>
+            <a href="#" class="btn">지금 듣기</a>
+        </div>
+    </section>
+
+    <section id="features">
+        <h2>장르 스테이션</h2>
+        <div class="categories">
+            <div class="category">
+                <img src="genre1.jpg" alt="장르 1 이미지">
+                <h3>장르 1</h3>
+            </div>
+            <div class="category">
+                <img src="genre2.jpg" alt="장르 2 이미지">
+                <h3>장르 2</h3>
+            </div>
+            <!-- 다른 장르 카테고리 -->
+        </div>
+    </section>
+
+    <section id="emotions">
+        <h2>감정 스테이션</h2>
+        <div class="emotions-tabs">
+            <button class="emotion-tab active" data-emotion="신나요" >신나요</button>
+            <button class="emotion-tab" data-emotion="편안해요">편안해요</button>
+            <button class="emotion-tab" data-emotion="행복해요">행복해요</button>
+            <button class="emotion-tab" data-emotion="불안해요">불안해요</button>
+            <button class="emotion-tab" data-emotion="졸려요">졸려요</button>
+            <button class="emotion-tab" data-emotion="설레요">설레요</button>
+            <button class="emotion-tab" data-emotion="그리워요">그리워요</button>
+            <button class="emotion-tab" data-emotion="슬퍼요">슬퍼요</button>
+            <button class="emotion-tab" data-emotion="싱숭생숭">싱숭생숭</button>
+            <button class="emotion-tab" data-emotion="화나요">화나요</button>
+        </div>
+    </section>
+
+    <section id="recommended">
+        <h2 class="selected-emotion"></h2>
+        <div class="recommended-content">
+            <!-- 선택된 감정에 따른 추천 음악 -->
+        </div>
+    </section>
+
+    <section id="music-player">
+        <h2>재생 목록</h2>
+        <div class="player-controls">
+            <button class="previous-btn"></button>
+            <button class="play-btn"></button>
+            <button class="next-btn"></button>
+        </div>
+        <div class="current-song">
+            <img src="current-song.jpg" alt="현재 곡 이미지">
+            <div class="song-info">
+                <h3>현재 곡</h3>
+                <p>아티스트</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-links">
+            <ul>
+                <li><a href="#">이용 약관</a></li>
+                <li><a href="#">개인 정보 처리 방침</a></li>
+                <li><a href="#">고객 지원</a></li>
+                <li><a href="#">문의하기</a></li>
+            </ul>
+        </div>
+        <div class="social-media-links">
+            <a href="#" class="social-link">Facebook</a>
+            <a href="#" class="social-link">Twitter</a>
+            <a href="#" class="social-link">Instagram</a>
+        </div>
+        <p>&copy; HeNo_Ai_RoCk. All rights reserved.</p>
+    </footer>
+    <script>
+ // JavaScript 코드
+
+ // 감정 스테이션 탭 요소들을 선택합니다.
+ const emotionTabs = document.querySelectorAll('.emotion-tab');
+
+ // 추천 음악을 표시하는 요소를 선택합니다.
+ const recommendedContent = document.querySelector('.recommended-content');
+
+ // 감정 스테이션 탭 클릭 이벤트 핸들러를 추가합니다.
+ emotionTabs.forEach((tab) => {
+     tab.addEventListener('click', () => {
+         // 모든 감정 스테이션 탭에서 'active' 클래스를 제거합니다.
+         emotionTabs.forEach((tab) => tab.classList.remove('active'));
+
+         // 클릭한 탭에 'active' 클래스를 추가합니다.
+         tab.classList.add('active');
+
+         // 선택된 감정을 가져옵니다.
+         const selectedEmotion = tab.getAttribute('data-emotion');
+
+         // 선택된 감정에 따라 추천 음악을 업데이트합니다.
+         updateRecommendedContent(selectedEmotion);
+     });
+ });
+
+ // 추천 음악을 업데이트하는 함수
+ function updateRecommendedContent(emotion) {
+     // 선택된 감정에 맞는 음악을 가져와서 추천 음악 영역에 표시합니다.
+     const songs = getRecommendedSongsByEmotion(emotion); // 선택된 감정에 맞는 음악 데이터를 가져오는 함수 (사용자 정의)
+
+     // 추천 음악을 초기화합니다.
+     recommendedContent.innerHTML = '';
+
+     // 추천 음악을 하나씩 생성하여 표시합니다.
+     songs.forEach((song) => {
+         const songElement = createSongElement(song); // 음악 요소를 생성하는 함수 (사용자 정의)
+         recommendedContent.appendChild(songElement);
+     });
+ }
+
+ // 선택된 감정에 따라 추천 음악 데이터를 가져오는 함수 (예시)
+ function getRecommendedSongsByEmotion(emotion) {
+     // 여기에서 해당 감정에 맞는 음악 데이터를 가져와 반환합니다.
+     // 예를 들어, API 요청 또는 미리 정의된 데이터를 사용할 수 있습니다.
+     // 반환되는 데이터는 선택된 감정에 따라 다를 수 있습니다.
+     // 이 예시에서는 미리 정의된 데이터를 사용하도록 가정합니다.
+     switch (emotion) {
+         case '신나요':
+             return [
+                 { title: '신나는 노래 1', artist: '아티스트 1', image: 'song1.jpg' },
+                 { title: '신나는 노래 2', artist: '아티스트 2', image: 'song2.jpg' },
+                 { title: '신나는 노래 2', artist: '아티스트 2', image: 'song2.jpg' },
+                 // 추가적인 신나는 노래 데이터
+             ];
+         case '편안해요':
+             return [
+                 { title: '편안한 노래 1', artist: '아티스트 3', image: 'song3.jpg' },
+                 { title: '편안한 노래 2', artist: '아티스트 4', image: 'song4.jpg' },
+                 // 추가적인 편안한 노래 데이터
+             ];
+         case '행복해요':
+             return [
+                 { title: '행복한 노래 1', artist: '아티스트 3', image: 'song3.jpg' },
+                 { title: '행복한 노래 2', artist: '아티스트 4', image: 'song4.jpg' },
+                 // 추가적인 편안한 노래 데이터
+             ];
+         case '불안해요':
+             return [
+                 { title: '편안한 노래 1', artist: '아티스트 3', image: 'song3.jpg' },
+                 { title: '편안한 노래 2', artist: '아티스트 4', image: 'song4.jpg' },
+                 // 추가적인 편안한 노래 데이터
+             ];
+         case '졸려요':
+             return [
+                 { title: '편안한 노래 1', artist: '아티스트 3', image: 'song3.jpg' },
+                 { title: '편안한 노래 2', artist: '아티스트 4', image: 'song4.jpg' },
+                 // 추가적인 편안한 노래 데이터
+             ];
+         case '설레요':
+             return [
+                 { title: '편안한 노래 1', artist: '아티스트 3', image: 'song3.jpg' },
+                 { title: '편안한 노래 2', artist: '아티스트 4', image: 'song4.jpg' },
+                 // 추가적인 편안한 노래 데이터
+             ];
+         case '그리워요':
+             return [
+                 { title: '편안한 노래 1', artist: '아티스트 3', image: 'song3.jpg' },
+                 { title: '편안한 노래 2', artist: '아티스트 4', image: 'song4.jpg' },
+                 // 추가적인 편안한 노래 데이터
+             ];
+         case '슬퍼요':
+             return [
+                 { title: '편안한 노래 1', artist: '아티스트 3', image: 'song3.jpg' },
+                 { title: '편안한 노래 2', artist: '아티스트 4', image: 'song4.jpg' },
+                 // 추가적인 편안한 노래 데이터
+             ];
+         case '싱숭생숭':
+             return [
+                 { title: '편안한 노래 1', artist: '아티스트 3', image: 'song3.jpg' },
+                 { title: '편안한 노래 2', artist: '아티스트 4', image: 'song4.jpg' },
+                 // 추가적인 편안한 노래 데이터
+             ];
+         case '화나요':
+             return [
+                 { title: '편안한 노래 1', artist: '아티스트 3', image: 'song3.jpg' },
+                 { title: '편안한 노래 2', artist: '아티스트 4', image: 'song4.jpg' },
+                 // 추가적인 편안한 노래 데이터
+             ];
+         default:
+             return [];
+     }
+ }
+
+ // 음악 요소를 생성하는 함수 (예시)
+ function createSongElement(song) {
+     const songElement = document.createElement('div');
+     songElement.classList.add('song');
+
+     const imageElement = document.createElement('img');
+     imageElement.src = song.image;
+     imageElement.alt = `${song.title} 이미지`;
+     songElement.appendChild(imageElement);
+
+     const titleElement = document.createElement('h3');
+     titleElement.textContent = song.title;
+     songElement.appendChild(titleElement);
+
+     const artistElement = document.createElement('p');
+     artistElement.textContent = song.artist;
+     songElement.appendChild(artistElement);
+
+     return songElement;
+ }
+
+ // 초기 로드 시 '신나요' 감정에 따른 추천 음악을 표시합니다.
+ updateRecommendedContent('신나요');
+    </script>
+</body>
+</html>
