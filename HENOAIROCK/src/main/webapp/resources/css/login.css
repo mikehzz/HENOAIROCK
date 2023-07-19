@@ -25,13 +25,9 @@ h2 {
 #login {
   width: 600px;
   height: 600px;
-  margin-right: 5%;
-  /* position: relative; */
-  /* background:#ddd; */
+  transform: translateX(-255px); /* 로그인 폼을 오른쪽으로 30px만큼 이동 */
+/* transform: translateY(-500px); */
 }
-
-
-
 
 #login_form {
   /* text-align:center; */
