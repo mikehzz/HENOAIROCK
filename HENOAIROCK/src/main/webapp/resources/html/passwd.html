@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="author" content="User">
 <title>비밀번호 찾기</title>
-<link rel="stylesheet" type="text/css" href="../css/login.css">
+<link rel="stylesheet" type="text/css" href="../css/passwd.css">
 </head>
 
 <body>
@@ -19,30 +19,40 @@
 					<span><a href="login.html">로그인 페이지로 이동</a></span>
 					</p>
 					
-					<!--이메일-->
-					<p class="input-title">E-mail</p>
-					<label> <input type="text" class="size"> <input
-						type="button" value=" 인증번호 전송 " class="btn">
-					</label>
+            <p class="input-title">E-mail</p>
+            <div class="input-wrapper">
+              <label> <input type="text" class="size line-input"> 
 
-					<!--이메일 인증번호 입력-->
-					<p class="input-title">E-mail 인증번호 입력</p>
-					<label> <input type="text" class="size"> <input
-						type="button" value=" 인증번호 확인 " class="btn">
-					</label>
+            </label>
 
-					<!--비밀번호-->
-					<p class="input-title">New Password</p>
-					<label> <input type="password" class="size line-input">
-					</label>
+            </div>
 
-					<!--비밀번호 확인-->
-					<p class="input-title">Password 확인</p>
-					<label> <input type="password" class="size line-input">
-					</label>
+            <!--이메일 인증번호 입력-->
+            <input type="button" value="인증번호 전송 " class="btnRe">
+                        <input type="button" value="인증번호 확인 " class="btnRe">
+            <p class="input-title">E-mail 인증번호 입력</p>
+            <label> <input type="text" class="size line-input"> 
+            
+            </label>
+
+            <!--비밀번호-->
+            <p class="input-title">Password</p>
+            <label for="password"> <input
+              placeholder="비밀번호는 8이상 12자 이하로 설정바랍니다." type="password"
+              class="size line-input" id="password" name="password" required>
+              <span class="error-message" id="password_error"></span>
+            </label>
+
+            <!--비밀번호 확인-->
+            <p class="input-title">Password확인</p>
+            <label for="confirm_password"> <input type="password"
+              class="size line-input" id="confirm_password" name="confirm_password"
+              required oninput="validateForm()"> <span
+              class="error-message" id="confirm_password_error"></span>
+            </label>
 
 					<p>
-						<input type="submit" value="비밀번호 변경" class="btn w100">
+						<input type="submit" value="비밀번호 변경" class="btnRe w100">
 					</p>
 				</form>
 
