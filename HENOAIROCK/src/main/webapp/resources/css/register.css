@@ -229,7 +229,11 @@ label {
 
 /* -------��й�ȣ ã��-------- */
 .error-message {
-  display: block;
+    display: block;
+    font-size: 11px;
+    text-align: left;
+    color: red;
+    margin: 5px;
 }
 
 .find_pw #login_form {

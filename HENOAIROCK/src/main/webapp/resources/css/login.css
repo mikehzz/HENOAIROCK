@@ -320,12 +320,13 @@ label {
 
 /**/
 #google-connect {
-    background: rgb(255, 255, 255) url('https://raw.githubusercontent.com/eswarasai/social-login/master/img/google-plus.png') no-repeat scroll 5px 0px / 50px 50px padding-box border-box;
-    border: 1px solid rgb(220, 74, 61);
+    border: 1px solid gray;
+    background: #eee url('https://raw.githubusercontent.com/eswarasai/social-login/master/img/google-plus.png') no-repeat scroll 5px 0px / 50px 50px padding-box border-box;
 }
 
 #google-connect:hover {
-    border-color: rgb(220, 74, 61);
+  	border-color: gray;
+  	color: gray;
     background: rgb(220, 74, 61) url('https://raw.githubusercontent.com/eswarasai/social-login/master/img/google-plus-white.png') no-repeat scroll 5px 0px / 50px 50px padding-box border-box;
     -webkit-transition: all .8s ease-out;
     -moz-transition: all .3s ease;
@@ -336,11 +337,11 @@ label {
 
 #google-connect span {
     box-sizing: border-box;
-    color: rgb(220, 74, 61);
+    color: #c0c0c02207461;
     cursor: pointer;
     text-align: center;
     text-transform: uppercase;
-    border: 0px none rgb(220, 74, 61);
+    border: 1px none #8080802207461;
     outline: rgb(255, 255, 255) none 0px;
     -webkit-transition: all .3s ease;
     -moz-transition: all .3s ease;
@@ -381,7 +382,7 @@ label {
 .social-button {
     background-position: 25px 0px;
     box-sizing: border-box;
-    color: rgb(255, 255, 255);
+    color: #c0c0c0255255255;
     cursor: pointer;
     display: inline-block;
     height: 50px;
