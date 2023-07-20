@@ -52,7 +52,7 @@
             </label>
 
 					<p>
-						<input type="submit" value="비밀번호 변경" class="btnRe w100">
+						<input type="submit" value="비밀번호 변경" class="Creative">
 					</p>
 				</form>
 
@@ -60,5 +60,48 @@
 			</div>
 		</div>
 	</div>
+	
+	<script>
+			function validateForm() {
+				var password = document.getElementById("password").value;
+				var confirm_password = document
+						.getElementById("confirm_password").value;
+				var password_error = document.getElementById("password_error");
+				var confirm_password_error = document
+						.getElementById("confirm_password_error");
+
+				/*     if (password.trim().length === 0) {
+				 password_error.innerHTML = "";
+				 } else if (password.length < 8 || password.length > 12) {
+				 password_error.innerHTML = "비밀번호는 8이상 12자 이하로 설정바랍니다.";
+				 } else {
+				 password_error.innerHTML = "";
+				 } */
+
+				if (confirm_password.trim().length === 0) {
+					confirm_password_error.innerHTML = "";
+				} else if (password !== confirm_password) {
+					confirm_password_error.innerHTML = "비밀번호가 일치하지 않습니다.";
+				} else {
+					confirm_password_error.innerHTML = "";
+				}
+
+				if (password_error.innerHTML === ""
+						&& confirm_password_error.innerHTML === "") {
+					return true;
+				} else {
+					return false;
+				}
+			}
+
+			function clearPasswordError() {
+				var password_error = document.getElementById("password_error");
+				var confirm_password_error = document
+						.getElementById("confirm_password_error");
+
+				password_error.innerHTML = "";
+				confirm_password_error.innerHTML = "";
+			}
+		</script>
 </body>
 </html>

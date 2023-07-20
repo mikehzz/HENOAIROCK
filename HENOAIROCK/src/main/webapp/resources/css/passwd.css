@@ -1,11 +1,11 @@
-/* -------�α���-------- */
+/* -------占싸깍옙占쏙옙-------- */
 body {
   background-color: #000000;
 }
 
 a {
   text-decoration: none;
-  color: #3e9fe7e8;
+  color: #000012;
 }
 
 h2 {
@@ -140,12 +140,12 @@ h2 {
   border: none;
   cursor: pointer;
   border-radius: 5px;
-  font-weight: 100; /* 이게 굵기 조절 */
+  font-weight: 100; /* �씠寃� 援듦린 議곗젅 */
   transition: 0.5s;
   float: right;
 /*       margin: -5; */
-  margin-top: -7px; /* 위로 10px만큼 이동 */
-  margin-left: 1px; /* 왼쪽으로 20px만큼 이동 */
+  margin-top: -7px; /* �쐞濡� 10px留뚰겮 �씠�룞 */
+  margin-left: 1px; /* �쇊履쎌쑝濡� 20px留뚰겮 �씠�룞 */
 }
 
 .btn01 {
@@ -220,7 +220,7 @@ label {
 }
 
 
-/* -------ȸ������-------- */
+/* -------회占쏙옙占쏙옙占쏙옙-------- */
 .h-zero {
   margin: 0;
   padding-top: 20px;
@@ -231,7 +231,7 @@ label {
   color: #808080;
 }
 
-/* -------��й�ȣ ã��-------- */
+/* -------占쏙옙橘占싫� 찾占쏙옙-------- */
 .error-message {
     display: block;
     font-size: 11px;
@@ -286,14 +286,26 @@ label {
   border: none;
   cursor: pointer;
   border-radius: 5px;
-  font-weight: 100; /* 이게 굵기 조절 */
+  font-weight: 100; /* �씠寃� 援듦린 議곗젅 */
   transition: 0.5s;
   float: right;
 /*       margin: -5; */
-  margin-top: -7px; /* 위로 10px만큼 이동 */
-  margin-left: 1px; /* 왼쪽으로 20px만큼 이동 */
+  margin-top: -7px; /* �쐞濡� 10px留뚰겮 �씠�룞 */
+  margin-left: 1px; /* �쇊履쎌쑝濡� 20px留뚰겮 �씠�룞 */
 }
 
-.btnRe.w100 {
+.Creative {
   width: 100%
+  color: #000012;
+  width: 100px;
+  height: 30px;
+  font-size: 13px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: 100; /* 이게 굵기 조절 */
+  transition: 0.5s;
+  margin-top: -7px; /* 위로 10px만큼 이동 */
+  margin-left: 1px; /* 왼쪽으로 20px만큼 이동 */
 }
