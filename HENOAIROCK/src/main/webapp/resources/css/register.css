@@ -5,7 +5,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #3e9fe7e8;
+  color: #000012;
 }
 
 h2 {
@@ -155,12 +155,26 @@ h2 {
   transition: 0.5s;
 }
 
-.btnRe.w100 {
-  width: 100%
-}
+
 
 .btn:hover {
   background: #948cb3;
+}
+
+.Creative {
+  width: 100%
+  color: #000012;
+  width: 100px;
+  height: 30px;
+  font-size: 13px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: 100; /* 이게 굵기 조절 */
+  transition: 0.5s;
+  margin-top: -7px; /* 위로 10px만큼 이동 */
+  margin-left: 1px; /* 왼쪽으로 20px만큼 이동 */
 }
 
 hr {
