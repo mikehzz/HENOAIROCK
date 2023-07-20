@@ -263,6 +263,7 @@ nav ul li a {
   padding: 20px;
   text-align: center;
   z-index: 100;
+  transform: translateY(218px);
 }
 
 .player-controls {
@@ -345,16 +346,17 @@ nav ul li a {
 
 /* 푸터 스타일 */
 footer {
-  background-color: #333;
+  background-color: #1c1c1c;
   color: #fff;
   padding: 92px;
-  text-align: center;
+  text-align: left;
+  font-size : 12px;
 }
 
 .footer-links ul {
   list-style-type: none;
   padding: 0;
-  margin-top: -68px;
+  margin-top: -100px;
 }
 
 .footer-links ul li {
@@ -432,6 +434,31 @@ footer {
 .emotions-tabs button:hover {
   transform: scale(1.2);
 }
+.wrapper
+{
+  padding-bottom: 90px;
+}
+
+.divider
+{
+  position: relative;
+  margin-top: 90px;
+  height: 1px;
+}
+
+.div-transparent:before
+{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 5%;
+  right: 5%;
+  width: 90%;
+  height: 3px;
+  margin-top : 67px;
+  background-image: linear-gradient(to right, #00b8ff, rgb(255,255,255), #00b8ff);
+}
+
 
     </style>
 <link rel="stylesheet" type="text/css" href="/css/main.css">
@@ -550,19 +577,24 @@ footer {
   </div>
 </section>
 
+<div class="wrapper">
+  <div class="divider div-transparent"></div>
+  </div>
+  
     <footer>
         <div class="footer-links">
             <ul>
-                <li><a href="#">이용 약관</a></li>
+                <li><a href="#">회사소개</a></li>
+                <li><a href="#">이용약관</a></li>
+                <li><a href="#">위치정보 이용약관</a></li>
+                <li><a href="#">청소년보호정책</a></li>
                 <li><a href="#">개인 정보 처리 방침</a></li>
-                <li><a href="#">고객 지원</a></li>
-                <li><a href="#">문의하기</a></li>
             </ul>
         </div>
         <div class="social-media-links">
-            <a href="#" class="social-link">Facebook</a>
-            <a href="#" class="social-link">Twitter</a>
-            <a href="#" class="social-link">Instagram</a>
+            <a href="#" class="social-link">상호명 : (주)싸그리싺싺 | 대표 : 구자민 | 개인정보보호책임자 : 구자민 | 사업자등록번호 490-81-01351</a></br>
+            <a href="#" class="social-link">통신판매신고업번호 : 2022-광주동구-0338 사업자정보 확인 > | 호스팅서비스사업자 : AWS</a></br>
+            <a href="#" class="social-link">주소 : 서울 마포구 서교동 122 4F / 서울 강남구 역삼동 823 삼원타워 5F | 제휴 문의 : benjamin9jamin@gmail.com</a>
         </div>
         <p>&copy; HeNo_Ai_RoCk. All rights reserved.</p>
     </footer>
