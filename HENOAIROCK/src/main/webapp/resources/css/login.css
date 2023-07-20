@@ -16,6 +16,7 @@ h2 {
   width: 100%;
   height: 100vh;
   background-color: #ebebdf;
+  background-image: url('https://cdn.class101.net/images/42c9cf0f-97aa-4a07-8833-8ee146daa2a0/1920xauto.webp');
   padding: 0;
   display: flex; /**/
   justify-content: flex-end; /**/
