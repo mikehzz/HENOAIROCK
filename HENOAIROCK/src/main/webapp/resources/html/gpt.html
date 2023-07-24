@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>싸그리싺싺AI 페이지</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .chat-container {
+            display: flex;
+        }
+
+        .chat-logs {
+            flex: 1;
+            border: 1px solid #ccc;
+            padding: 10px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .user-message {
+            text-align: right;
+            color: #007bff;
+        }
+
+        .bot-message {
+            text-align: left;
+            color: #28a745;
+        }
+
+        .user-input {
+            display: flex;
+            margin-top: 10px;
+        }
+
+        .user-input input {
+            flex: 1;
+            padding: 5px;
+        }
+
+        .user-input button {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>싸그리싺싺AI 페이지</h1>
+    <div class="chat-container">
+        <div class="chat-logs" id="chatLogs">
+            <div class="bot-message">싸그리싺싺AI: 안녕하세요! 무엇을 도와드릴까요?</div>
+        </div>
+    </div>
+    <div class="user-input">
+        <input type="text" id="userInput" placeholder="메시지를 입력하세요...">
+        <button onclick="sendMessage()">전송</button>
+    </div>
+
+    <script>
+        function appendMessage(sender, message) {
+            const chatLogs = document.getElementById('chatLogs');
+            const messageElement = document.createElement('div');
+            messageElement.textContent = sender + ': ' + message;
+            if (sender === 'ChatGPT') {
+                messageElement.className = 'bot-message';
+            } else {
+                messageElement.className = 'user-message';
+            }
+            chatLogs.appendChild(messageElement);
+            chatLogs.scrollTop = chatLogs.scrollHeight;
+        }
+
+        function sendMessage() {
+            const userInput = document.getElementById('userInput');
+            const userMessage = userInput.value;
+            if (userMessage.trim() !== '') {
+                appendMessage('사용자', userMessage);
+                userInput.value = '';
+                // 여기에 ChatGPT와 상호작용하는 로직을 추가할 수 있습니다.
+                // 예를 들면, fetch 또는 XMLHttpRequest를 사용하여 서버로 사용자 입력을 보내고 응답을 받을 수 있습니다.
+                // 이 예제에서는 단순히 미리 정의된 응답을 보여줍니다.
+                setTimeout(() => {
+                    appendMessage('ChatGPT', '사용자가 입력한 메시지에 대한 응답입니다.');
+                }, 1000);
+            }
+        }
+    </script>
+</body>
+
+</html>
