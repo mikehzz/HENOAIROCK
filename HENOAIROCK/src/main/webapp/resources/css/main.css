@@ -1,13 +1,13 @@
-
+/* -------main-------- */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #1c1c1c; /* 배경색 변경 */
+  background-color: #1c1c1c; /* 諛곌꼍�깋 蹂�寃� */
   color: #fff;
 }
 
-/* 헤더 스타일 */
+/* �뿤�뜑 �뒪���씪 */
 header {
   display: flex;
   justify-content: space-between;
@@ -143,9 +143,9 @@ nav ul li a {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* 배너 스타일 */
+/* 諛곕꼫 �뒪���씪 */
 #banner {
-  background-color: #252525; /* 배경색 변경 */
+  background-color: #252525; /* 諛곌꼍�깋 蹂�寃� */
   padding: 50px;
   text-align: center;
 }
@@ -165,7 +165,7 @@ nav ul li a {
   display: inline-block;
   padding: 10px 20px;
   background-color: #333;
-  background-color: #555; /* 배경색 변경 */
+  background-color: #555; /* 諛곌꼍�깋 蹂�寃� */
   text-decoration: none;
   border-radius: 20px;
   letter-spacing: 1px;
@@ -173,10 +173,10 @@ nav ul li a {
 }
 
 .banner-text .btn:hover {
-  background-color: #777; /* 배경색 변경 */
+  background-color: #777; /* 諛곌꼍�깋 蹂�寃� */
 }
 
-/* 카테고리 스타일 */
+/* 移댄뀒怨좊━ �뒪���씪 */
 #features {
   padding: 50px;
   text-align: center;
@@ -205,7 +205,7 @@ nav ul li a {
   transform: scale(1.1);
 }
 
-/* 추천 음악 스타일 */
+/* 異붿쿇 �쓬�븙 �뒪���씪 */
 #recommended {
   padding: 50px;
   text-align: center;
@@ -219,7 +219,7 @@ nav ul li a {
 }
 
 .song {
-  background-color: #252525; /* 배경색 변경 */
+  background-color: #252525; /* 諛곌꼍�깋 蹂�寃� */
   padding: 10px;
   border-radius: 10px;
   transition: transform 0.3s ease;
@@ -247,7 +247,7 @@ nav ul li a {
   color: #888;
 }
 
-/* 음악 플레이어 스타일 */
+/* �쓬�븙 �뵆�젅�씠�뼱 �뒪���씪 */
 #music-player {
   position: fixed;
   bottom: 0;
@@ -339,7 +339,7 @@ nav ul li a {
   cursor: pointer;
 }
 
-/* 푸터 스타일 */
+/* �뫖�꽣 �뒪���씪 */
 footer {
   background-color: #1c1c1c;
   color: #fff;
@@ -385,7 +385,7 @@ footer {
 
 .emotion-tab {
   padding: 10px 20px;
-  background-color: #333; /* 배경색 변경 */
+  background-color: #333; /* 諛곌꼍�깋 蹂�寃� */
   border: none;
   border-radius: 20px;
   cursor: pointer;
@@ -393,7 +393,7 @@ footer {
 }
 
 .emotion-tab.active {
-  background-color: #777; /* 배경색 변경 */
+  background-color: #777; /* 諛곌꼍�깋 蹂�寃� */
   color: #fff;
 }
 
@@ -401,11 +401,11 @@ footer {
   padding: 0;
   background: none;
   border: none;
-  width: 70px; /* 버튼의 너비 조정 */
-  height: 70px; /* 버튼의 높이 조정 */
-  background-size: cover; /* 배경 이미지 크기를 버튼에 맞게 조정 */
-  background-position: center; /* 배경 이미지 중앙 정렬 */
-  background-repeat: no-repeat; /* 배경 이미지 반복 없음 */
+  width: 70px; /* 踰꾪듉�쓽 �꼫鍮� 議곗젙 */
+  height: 70px; /* 踰꾪듉�쓽 �넂�씠 議곗젙 */
+  background-size: cover; /* 諛곌꼍 �씠誘몄� �겕湲곕�� 踰꾪듉�뿉 留욊쾶 議곗젙 */
+  background-position: center; /* 諛곌꼍 �씠誘몄� 以묒븰 �젙�젹 */
+  background-repeat: no-repeat; /* 諛곌꼍 �씠誘몄� 諛섎났 �뾾�쓬 */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -414,16 +414,16 @@ footer {
   color: #fff;
 }
 
-.emotions-tabs button[data-emotion="신나요"] {
+.emotions-tabs button[data-emotion="�떊�굹�슂"] {
   background-image: url("");
 }
 
-.emotions-tabs button[data-emotion="편안해요"] {
-  background-image: url("편안해요.jpg");
+.emotions-tabs button[data-emotion="�렪�븞�빐�슂"] {
+  background-image: url("�렪�븞�빐�슂.jpg");
 }
 
-.emotions-tabs button[data-emotion="행복해요"] {
-  background-image: url("행복해요.jpg");
+.emotions-tabs button[data-emotion="�뻾蹂듯빐�슂"] {
+  background-image: url("�뻾蹂듯빐�슂.jpg");
 }
 
 .emotions-tabs button:hover {
