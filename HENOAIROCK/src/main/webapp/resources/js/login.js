@@ -12,7 +12,7 @@ $('#fn_email').on("click",function() {
 					let paredJSON = JSON.parse(data)
 					if ("1" == paredJSON.msgId) {
 						alert(paredJSON.msgContents);
-						window.location.href = '/';
+						window.location.href = '/music/main';
 					} else if("2" == paredJSON.msgId){
 						alert(paredJSON.msgContents);
 						window.location.href = '/member/login';

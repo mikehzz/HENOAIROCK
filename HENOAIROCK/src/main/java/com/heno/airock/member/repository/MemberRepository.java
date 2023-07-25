@@ -10,11 +10,22 @@ import com.heno.airock.dto.MemberDTO;
 public class MemberRepository {
 	
 	private final SqlSessionTemplate sql;
+	//**Mapper.xml 과 일치해야함 namespace.id
 	
 	public MemberRepository(SqlSessionTemplate sql) {
 		this.sql = sql;
 	}
+	
 	public MemberDTO login(MemberDTO memberDTO) {
     	return sql.selectOne("Member.login", memberDTO);
     }
+	
+	public int save(MemberDTO memberDTO) {
+        return sql.insert("Member.save", memberDTO); 
+    }
+    
+    public int idChk(MemberDTO memberDTO) {
+    	return sql.selectOne("Member.idChk", memberDTO);
+    }
+	
 }

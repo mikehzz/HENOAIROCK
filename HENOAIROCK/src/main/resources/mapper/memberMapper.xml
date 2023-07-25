@@ -7,6 +7,16 @@
 	<select id="login" parameterType="member" resultType="member">
 		select * from member where Email=#{email} and passwd=#{passwd}
 	</select>
-
-
+  
+  <!-- 회원가입 DB -->
+  <insert id="save" parameterType="member">
+        INSERT INTO MEMBER (email, password, name)
+        VALUES (#{email}, #{password}, #{name})
+  </insert>
+  
+  <!-- 아이디 중복 체크 여부 -->
+  <select id = "idChk" parameterType="String" resultType="int">
+    SELECT COUNT(*) FROM member
+    WHERE email = #{email}
+  </select>
 </mapper>

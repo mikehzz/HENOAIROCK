@@ -22,5 +22,13 @@ public class MemberService {
 			return false;
 		}
 	}
+	
+	public int save(MemberDTO memberDTO) {
+        return memberRepository.save(memberDTO);
+    }
+	
+	public int idChk(MemberDTO memberDTO) {
+    	return memberRepository.idChk(memberDTO);
+    }
 
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,6 +30,30 @@ public class MemberController {
 	public String loginForm() {
 		return "login";
 	}
+	
+	// 이용약관 동의 페이지
+	@GetMapping("/agree")
+	public String agreeForm() {
+		return "agree";
+	}
+
+	// 회원 가입 페이지 이동
+	@GetMapping("/register")
+	public String saveForm() {
+		return "register";
+	}
+
+	// 비밀번호변경 페이지 이동
+	@GetMapping("/passwd")
+	public String findForm() {
+		return "passwd";
+	}
+	
+	@GetMapping("/delete")
+	public String delete() {
+		return "delete";
+	}
+	
 
 	// 로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -49,6 +74,22 @@ public class MemberController {
 			jsonString = new Gson().toJson(message);
 			return jsonString;
 		}
+	}
+	
+	// 회원가입 post
+	@PostMapping("/**/register")
+	public String postRegister(MemberDTO memberDTO) throws Exception {
+		int result = memberService.idChk(memberDTO);
+		try {
+			if (result == 1) {
+				return "/register";
+			} else if (result == 0) {
+				memberService.save(memberDTO);
+			}
+		} catch (Exception e) {
+			throw new RuntimeException();
+		}
+		return "redirect:/";
 	}
 
 }
