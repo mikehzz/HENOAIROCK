@@ -6,7 +6,7 @@ $('#fn_email').on("click",function() {
 				dataType : "html",
 				data : {
 					email : $('#email').val(),
-					passwd : $('#passwd').val()
+					password : $('#password').val()
 				},
 				success : function(data) {// 통신 성공
 					let paredJSON = JSON.parse(data)

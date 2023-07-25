@@ -2,21 +2,23 @@ package com.heno.airock.dto;
 
 public class MemberDTO {
 	private String email;
-	private String passwd;
+	private String password;
 	private String name;
-	private String reg_dt;
-	private String gender;
+	private String nickname;
+	private String memberdt;
+	private String birth;
+	private String profileimg;
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getPasswd() {
-		return passwd;
+	public String getPassword() {
+		return password;
 	}
-	public void setPasswd(String passwd) {
-		this.passwd = passwd;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public String getName() {
 		return name;
@@ -24,31 +26,47 @@ public class MemberDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getReg_dt() {
-		return reg_dt;
+	public String getNickname() {
+		return nickname;
 	}
-	public void setReg_dt(String reg_dt) {
-		this.reg_dt = reg_dt;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
-	public String getGender() {
-		return gender;
+	public String getMemberdt() {
+		return memberdt;
 	}
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setMemberdt(String memberdt) {
+		this.memberdt = memberdt;
 	}
-	public MemberDTO(String email, String passwd, String name, String reg_dt, String gender) {
+	public String getBirth() {
+		return birth;
+	}
+	public void setBirth(String birth) {
+		this.birth = birth;
+	}
+	public String getProfileimg() {
+		return profileimg;
+	}
+	public void setProfileimg(String profileimg) {
+		this.profileimg = profileimg;
+	}
+	public MemberDTO(String email, String password, String name, String nickname, String memberdt, String birth,
+			String profileimg) {
 		super();
 		this.email = email;
-		this.passwd = passwd;
+		this.password = password;
 		this.name = name;
-		this.reg_dt = reg_dt;
-		this.gender = gender;
+		this.nickname = nickname;
+		this.memberdt = memberdt;
+		this.birth = birth;
+		this.profileimg = profileimg;
 	}
 	@Override
 	public String toString() {
-		return "memberDTO [email=" + email + ", passwd=" + passwd + ", name=" + name + ", reg_dt=" + reg_dt
-				+ ", gender=" + gender + "]";
+		return "MemberDTO [email=" + email + ", password=" + password + ", name=" + name + ", nickname=" + nickname
+				+ ", memberdt=" + memberdt + ", birth=" + birth + ", profileimg=" + profileimg + "]";
 	}
+	
 	
 	
 }

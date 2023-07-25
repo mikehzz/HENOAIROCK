@@ -12,7 +12,7 @@
     <div id="login">
         <div id="login_form">
             <!--로그인 폼-->
-            <form onsubmit="return validateForm()"> <!-- Added onsubmit to call JavaScript function -->
+            <form action="/member/login" method="post">
                 <h2>로그인</h2>
 
                 <p class="find">

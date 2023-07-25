@@ -3,7 +3,11 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
-  <typeAliases>
-    <typeAlias type="com.heno.airock.dto.MemberDTO" alias="member"/>
-  </typeAliases>
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+	<typeAliases>
+		<typeAlias type="com.heno.airock.dto.MemberDTO"
+			alias="member" />
+	</typeAliases>
 </configuration>

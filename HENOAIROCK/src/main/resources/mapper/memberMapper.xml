@@ -5,7 +5,7 @@
 
 	<!-- 로그인시 DB조회 -->
 	<select id="login" parameterType="member" resultType="member">
-		select * from member where Email=#{email} and passwd=#{passwd}
+		select * from member where EMAIL=#{email} and PASSWORD=#{password}
 	</select>
   
   <!-- 회원가입 DB -->
