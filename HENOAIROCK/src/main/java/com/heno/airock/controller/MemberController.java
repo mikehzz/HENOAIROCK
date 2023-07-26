@@ -14,11 +14,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.heno.airock.dto.MemberDTO;
 import com.heno.airock.dto.MessageDTO;
+import com.heno.airock.service.MailSendService;
 import com.heno.airock.service.MemberService;
 
 @Controller
 @RequestMapping("/member") // 공통 주소 처리
 public class MemberController {
+	
+	@Autowired
+	MailSendService mailService;
 
 	private final MemberService memberService;
 
@@ -52,6 +56,32 @@ public class MemberController {
 	@GetMapping("/delete")
 	public String delete() {
 		return "delete";
+	}
+	
+	// 회원가입 이메일 인증
+	@GetMapping("/**/mailCheck")
+	@ResponseBody
+	public String mailCheck(String email) {
+		return mailService.joinEmail(email);
+	}
+
+	// 비밀번호찾기 이메일 인증
+	@GetMapping("/**/findCheck")
+	@ResponseBody
+	public String findCheck(String email) {
+		return mailService.findEmail(email);
+	}
+	
+	// 비밀번호변경 페이지 에서 로그인 페이지로 이동
+	@PostMapping("/find")
+	public String find(@ModelAttribute MemberDTO memberDTO) {
+		int saveResult = memberService.find(memberDTO);
+		System.out.println("saveResult" + saveResult);
+		if (saveResult > 0) {
+			return "login";
+		} else {
+			return "save";
+		}
 	}
 	
 
@@ -90,6 +120,14 @@ public class MemberController {
 			throw new RuntimeException();
 		}
 		return "redirect:/";
+	}
+	
+	// 아이디 중복 체크
+	@GetMapping("/**/idChk")
+	@ResponseBody
+	public int idChk(MemberDTO memberDTO) throws Exception {
+		int result = memberService.idChk(memberDTO);
+		return result;
 	}
 
 }

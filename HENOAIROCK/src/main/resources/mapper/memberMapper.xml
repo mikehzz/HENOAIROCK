@@ -10,8 +10,8 @@
   
   <!-- 회원가입 DB -->
   <insert id="save" parameterType="member">
-        INSERT INTO MEMBER (email, password, name)
-        VALUES (#{email}, #{password}, #{name})
+        INSERT INTO MEMBER (email, password, name, birth, nickname, memberdt, profileimg)
+        VALUES (#{email}, #{password}, #{name}, #{birth}, '새나라 어린이', SYSDATE, '이미지경로')
   </insert>
   
   <!-- 아이디 중복 체크 여부 -->
@@ -19,4 +19,10 @@
     SELECT COUNT(*) FROM member
     WHERE email = #{email}
   </select>
+  
+  <!-- 비밀번호 변경 --> 
+    <update id="find" parameterType="member">
+      UPDATE MEMBER SET PASSWORD = #{password} WHERE EMAIL = #{email} 
+    </update>
+  
 </mapper>

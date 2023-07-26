@@ -30,5 +30,9 @@ public class MemberService {
 	public int idChk(MemberDTO memberDTO) {
     	return memberRepository.idChk(memberDTO);
     }
+	
+	public int find(MemberDTO memberDTO) {
+		return memberRepository.find(memberDTO);
+	}
 
 }

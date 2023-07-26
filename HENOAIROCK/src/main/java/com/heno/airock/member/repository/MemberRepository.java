@@ -27,5 +27,8 @@ public class MemberRepository {
     public int idChk(MemberDTO memberDTO) {
     	return sql.selectOne("Member.idChk", memberDTO);
     }
+    public int find(MemberDTO memberDTO) {
+    	return sql.update("Member.find", memberDTO);
+    }
 	
 }

@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="author" content="User">
 <link rel="stylesheet" type="text/css" href="../resources/css/register.css">
+<script src="/resources/js/jquery-3.7.0.js"></script>
 <title>회원가입</title>
 </head>
 <body>
@@ -12,7 +13,7 @@
 		<div id="login">
 			<div id="login_form">
 				<!--로그인 폼-->
-				<form action="" method="post" onsubmit="return validateForm()">
+				<form action="/member/register" method="post" id="register-form">
 					<h2>회원가입</h2>
 					
 					<p class="find">
@@ -20,20 +21,20 @@
 					</p>
 					
 					<!--이메일-->
-					<!-- <input type="button" value="중복확인" class="btnRe"> -->
+					<input type="button" value="중복확인" class="btnRe" onclick = "fn_idChk();" >
 					<p class="input-title">E-mail</p>
 					<div class="input-wrapper">
 						<label>
-							<input type="text" class="size line-input"> 
+							<input type="email" name="email" id="email" class="size line-input" required="required"> 
 						</label>
 					</div>
 
 					<!--이메일 인증번호 입력-->
-					<input type="button" value="인증번호 전송 " class="btnRe">
-					<input type="button" value="인증번호 확인 " class="btnRe">
+					<input type="button" value="인증번호 전송 " class="btnRe" id="mail-Check-Btn">
+					<input type="button" value="인증번호 확인 " class="btnRe" id="mail-Confirm-Btn">
 					<p class="input-title">E-mail 인증번호 입력</p>
 					<label>
-						<input type="text" class="size line-input"> 
+						<input type="text" class="size line-input numberOnly" name="checkInput" id="checkInput" maxlength="6" required> 
 					</label>
 					
 					<!--비밀번호-->
@@ -53,13 +54,13 @@
 					<!--이름-->
 					<p class="input-title">이름</p>
 					<label>
-						<input type="text" class="size line-input" required>
+						<input type="text" class="size line-input" id="name" name="name" required>
 					</label>
 					
 					<!--생년월일-->
 					<p class="input-title">생년월일</p>
 					<label>
-						<input type="date" class="size line-input" required>
+						<input type="date" class="size line-input" id="birth" name="birth" required>
 					</label>
 
 					<!--이용약관동의-->
@@ -77,50 +78,12 @@
 
 					<!-- 버튼 -->
 					<p>
-						<input type="submit" value="Create Account" class="Creative">
+						<input id="register" type="submit" value="Create Account" class="Creative">
 					</p>
 				</form>
 			</div>
 		</div>
 	</div>
-
-	<script>
-		function validateForm() {
-			var password = document.getElementById("password").value;
-			var confirm_password = document.getElementById("confirm_password").value;
-			var password_error = document.getElementById("password_error");
-			var confirm_password_error = document.getElementById("confirm_password_error");
-
-			/* if (password.trim().length === 0) {
-				password_error.innerHTML = "";
-			} else if (password.length < 8 || password.length > 12) {
-				password_error.innerHTML = "비밀번호는 8이상 12자 이하로 설정바랍니다.";
-			} else {
-				password_error.innerHTML = "";
-			} */
-
-			if (confirm_password.trim().length === 0) {
-				confirm_password_error.innerHTML = "";
-			} else if (password !== confirm_password) {
-				confirm_password_error.innerHTML = "비밀번호가 일치하지 않습니다.";
-			} else {
-				confirm_password_error.innerHTML = "";
-			}
-
-			if (password_error.innerHTML === "" && confirm_password_error.innerHTML === "") {
-				return true;
-			} else {
-				return false;
-			}
-		}
-
-		function clearPasswordError() {
-			var password_error = document.getElementById("password_error");
-			var confirm_password_error = document.getElementById("confirm_password_error");
-
-			password_error.innerHTML = "";
-			confirm_password_error.innerHTML = "";
-		}
-	</script>
+	<script src="${CP}/resources/js/register.js"></script>
 </body>
 </html>
