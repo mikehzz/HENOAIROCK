@@ -47,9 +47,11 @@
     </div>
     <div class="section" id="section4">
       <div class="sec04_btn_wrap">
-      
+              <div class="button intro-button intro-now">
+          <a href="/music/gpt"><p>사그리상상gpt</p></a>
+        </div>
         <div class="button intro-button intro-now">
-          <a href="/music/recommend"><p>바로시작하기</p></a>
+          <a href="/music/main"><p>인트로페이지</p></a>
         </div>
         <div class="button intro-button intro-login">
           <a href="/member/login"><p>로그인 후 시작하기</p></a>

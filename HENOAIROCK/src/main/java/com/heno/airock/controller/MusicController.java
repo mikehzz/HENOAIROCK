@@ -9,16 +9,20 @@ import com.heno.airock.service.MusicService;
 @Controller
 @RequestMapping("/music")
 public class MusicController {
-	
+
 	private final MusicService musicService;
-	
+
 	public MusicController(MusicService musicService) {
 		this.musicService = musicService;
 	}
-	
+
 	@GetMapping("/main")
 	public String main() {
 		return "main";
 	}
-	
+
+	@GetMapping("/gpt")
+	public String gpt() {
+		return "gpt";
+	}
 }
