@@ -1,18 +1,18 @@
 package com.heno.airock.dto;
 
 public class MemberDTO {
-	private String email;
+	private String user_id;
 	private String password;
 	private String name;
 	private String nickname;
-	private String memberdt;
+	private String member_dt;
 	private String birth;
-	private String profileimg;
-	public String getEmail() {
-		return email;
+	private String profile_img;
+	public String getUser_id() {
+		return user_id;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 	public String getPassword() {
 		return password;
@@ -32,11 +32,11 @@ public class MemberDTO {
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-	public String getMemberdt() {
-		return memberdt;
+	public String getMember_dt() {
+		return member_dt;
 	}
-	public void setMemberdt(String memberdt) {
-		this.memberdt = memberdt;
+	public void setMember_dt(String member_dt) {
+		this.member_dt = member_dt;
 	}
 	public String getBirth() {
 		return birth;
@@ -44,27 +44,27 @@ public class MemberDTO {
 	public void setBirth(String birth) {
 		this.birth = birth;
 	}
-	public String getProfileimg() {
-		return profileimg;
+	public String getProfile_img() {
+		return profile_img;
 	}
-	public void setProfileimg(String profileimg) {
-		this.profileimg = profileimg;
+	public void setProfile_img(String profile_img) {
+		this.profile_img = profile_img;
 	}
-	public MemberDTO(String email, String password, String name, String nickname, String memberdt, String birth,
-			String profileimg) {
+	public MemberDTO(String user_id, String password, String name, String nickname, String member_dt, String birth,
+			String profile_img) {
 		super();
-		this.email = email;
+		this.user_id = user_id;
 		this.password = password;
 		this.name = name;
 		this.nickname = nickname;
-		this.memberdt = memberdt;
+		this.member_dt = member_dt;
 		this.birth = birth;
-		this.profileimg = profileimg;
+		this.profile_img = profile_img;
 	}
 	@Override
 	public String toString() {
-		return "MemberDTO [email=" + email + ", password=" + password + ", name=" + name + ", nickname=" + nickname
-				+ ", memberdt=" + memberdt + ", birth=" + birth + ", profileimg=" + profileimg + "]";
+		return "MemberDTO [user_id=" + user_id + ", password=" + password + ", name=" + name + ", nickname=" + nickname
+				+ ", member_dt=" + member_dt + ", birth=" + birth + ", profile_img=" + profile_img + "]";
 	}
 	
 	

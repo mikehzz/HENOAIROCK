@@ -24,7 +24,7 @@
 	                <!-- Email -->
 	                <p class="input-title">Email</p>
 	                <label>
-	                    <input type="text" placeholder="아이디" class="size line-input" id="email">
+	                    <input type="text" placeholder="아이디" class="size line-input" id="user_id" name="user_id">
 	                </label>
 	
 	                <!-- Password -->

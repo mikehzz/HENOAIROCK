@@ -25,7 +25,7 @@
 					<p class="input-title">E-mail</p>
 					<div class="input-wrapper">
 						<label>
-							<input type="email" name="email" id="email" class="size line-input" required="required"> 
+							<input type="email" name="user_id" id="user_id" class="size line-input" required="required"> 
 						</label>
 					</div>
 
