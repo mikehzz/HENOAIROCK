@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class AppController {
     @GetMapping("/")
     public String index() {
-        return "index";
+        return "gpt";
     }
     @GetMapping("/intro")
     public String intro() {
