@@ -9,5 +9,8 @@
 	<typeAliases>
 		<typeAlias type="com.heno.airock.dto.MemberDTO"
 			alias="member" />
+    <typeAlias type="com.heno.airock.dto.PostDTO"
+      alias="post" />
 	</typeAliases>
+	
 </configuration>
