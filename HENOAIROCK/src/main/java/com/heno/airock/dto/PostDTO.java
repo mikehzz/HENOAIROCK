@@ -9,6 +9,7 @@ public class PostDTO {
 	private int like_cnt;
 	private String update_dt;
 	private String post_dt;
+	private int post_div;
 	
 	public String getPost_seq() {
 		return post_seq;
@@ -58,8 +59,20 @@ public class PostDTO {
 	public void setPost_dt(String post_dt) {
 		this.post_dt = post_dt;
 	}
+	public int getPost_div() {
+		return post_div;
+	}
+	public void setPost_div(int post_div) {
+		this.post_div = post_div;
+	}
+	@Override
+	public String toString() {
+		return "PostDTO [post_seq=" + post_seq + ", user_id=" + user_id + ", post_title=" + post_title
+				+ ", post_contents=" + post_contents + ", read_cnt=" + read_cnt + ", like_cnt=" + like_cnt
+				+ ", update_dt=" + update_dt + ", post_dt=" + post_dt + ", post_div=" + post_div + "]";
+	}
 	public PostDTO(String post_seq, String user_id, String post_title, String post_contents, int read_cnt, int like_cnt,
-			String update_dt, String post_dt) {
+			String update_dt, String post_dt, int post_div) {
 		super();
 		this.post_seq = post_seq;
 		this.user_id = user_id;
@@ -69,13 +82,9 @@ public class PostDTO {
 		this.like_cnt = like_cnt;
 		this.update_dt = update_dt;
 		this.post_dt = post_dt;
+		this.post_div = post_div;
 	}
-	@Override
-	public String toString() {
-		return "PostDTO [post_seq=" + post_seq + ", user_id=" + user_id + ", post_title=" + post_title
-				+ ", post_contents=" + post_contents + ", read_cnt=" + read_cnt + ", like_cnt=" + like_cnt
-				+ ", update_dt=" + update_dt + ", post_dt=" + post_dt + "]";
-	}
+	
 	
 	
 }
