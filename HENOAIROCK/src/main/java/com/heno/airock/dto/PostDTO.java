@@ -5,12 +5,11 @@ public class PostDTO {
 	private String user_id;
 	private String post_title;
 	private String post_contents;
-	private int read_cnt;
-	private int like_cnt;
+	private Integer read_cnt;
+	private Integer like_cnt;
 	private String update_dt;
 	private String post_dt;
-	private int post_div;
-	
+	private Integer post_div;
 	public String getPost_seq() {
 		return post_seq;
 	}
@@ -35,16 +34,16 @@ public class PostDTO {
 	public void setPost_contents(String post_contents) {
 		this.post_contents = post_contents;
 	}
-	public int getRead_cnt() {
+	public Integer getRead_cnt() {
 		return read_cnt;
 	}
-	public void setRead_cnt(int read_cnt) {
+	public void setRead_cnt(Integer read_cnt) {
 		this.read_cnt = read_cnt;
 	}
-	public int getLike_cnt() {
+	public Integer getLike_cnt() {
 		return like_cnt;
 	}
-	public void setLike_cnt(int like_cnt) {
+	public void setLike_cnt(Integer like_cnt) {
 		this.like_cnt = like_cnt;
 	}
 	public String getUpdate_dt() {
@@ -59,20 +58,14 @@ public class PostDTO {
 	public void setPost_dt(String post_dt) {
 		this.post_dt = post_dt;
 	}
-	public int getPost_div() {
+	public Integer getPost_div() {
 		return post_div;
 	}
-	public void setPost_div(int post_div) {
+	public void setPost_div(Integer post_div) {
 		this.post_div = post_div;
 	}
-	@Override
-	public String toString() {
-		return "PostDTO [post_seq=" + post_seq + ", user_id=" + user_id + ", post_title=" + post_title
-				+ ", post_contents=" + post_contents + ", read_cnt=" + read_cnt + ", like_cnt=" + like_cnt
-				+ ", update_dt=" + update_dt + ", post_dt=" + post_dt + ", post_div=" + post_div + "]";
-	}
-	public PostDTO(String post_seq, String user_id, String post_title, String post_contents, int read_cnt, int like_cnt,
-			String update_dt, String post_dt, int post_div) {
+	public PostDTO(String post_seq, String user_id, String post_title, String post_contents, Integer read_cnt,
+			Integer like_cnt, String update_dt, String post_dt, Integer post_div) {
 		super();
 		this.post_seq = post_seq;
 		this.user_id = user_id;
@@ -83,6 +76,12 @@ public class PostDTO {
 		this.update_dt = update_dt;
 		this.post_dt = post_dt;
 		this.post_div = post_div;
+	}
+	@Override
+	public String toString() {
+		return "PostDTO [post_seq=" + post_seq + ", user_id=" + user_id + ", post_title=" + post_title
+				+ ", post_contents=" + post_contents + ", read_cnt=" + read_cnt + ", like_cnt=" + like_cnt
+				+ ", update_dt=" + update_dt + ", post_dt=" + post_dt + ", post_div=" + post_div + "]";
 	}
 	
 	

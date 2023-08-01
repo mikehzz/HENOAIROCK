@@ -1,5 +1,7 @@
 package com.heno.airock.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.heno.airock.dto.PostDTO;
@@ -24,5 +26,9 @@ public class PostService {
     
     public int update(PostDTO postDTO) {
     	return postRepository.update(postDTO);
+    }
+    
+    public List<PostDTO> select(PostDTO postDTO) {
+    	return postRepository.select(postDTO);
     }
 }

@@ -1,5 +1,7 @@
 package com.heno.airock.member.repository;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -23,5 +25,8 @@ public class PostRepository {
 	
 	public int update(PostDTO postDTO) {
 		return sql.update("Post.update", postDTO);
+	}
+	public List<PostDTO> select(PostDTO postDTO) {
+		return sql.selectList("Post.select", postDTO);
 	}
 }

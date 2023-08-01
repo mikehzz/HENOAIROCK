@@ -2,60 +2,60 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Post">
 
-	<!-- 게시글 목록조회 -->
-	<select id='select' parameterType="post" resultType="post">
-		SELECT A.*,B.*
-		FROM (
-		SELECT TT1.rnum num,
-		TT1.post_seq,
-		TT1.post_title,
-		TT1.post_contents,
-		TT1.read_cnt,
-		TT1.like_cnt,
-		--당일 이면 : HH24:MI
-		--그렇지 않으면:YYYY-MM-DD
-		DECODE( TO_CHAR(TT1.post_dt,'YYYY-MM-DD'),TO_CHAR(SYSDATE,'YYYY-MM-DD')
-		,TO_CHAR(TT1.post_dt,'HH24:MI')
-		,TO_CHAR(SYSDATE,'YYYY-MM-DD')) post_dt,
-		DECODE ( TT1.post_div, 10, '자유게시판', '공지사항') post_div
-		FROM (
-		SELECT ROWNUM AS rnum, T1.*
-		FROM (
-		SELECT *
-		FROM posts
-		WHERE 1 = 1
-		ORDER BY post_dt DESC
-		)T1
-		<![CDATA[  WHERE ROWNUM <=10
-		)TT1
-		WHERE rnum >=1
-		)A
-		CROSS JOIN
-		(
-		SELECT COUNT(*) total_cnt
-		FROM posts
-		WHERE 1 = 1
-		)B
-    ]]> 
-	</select>
-	
-	<insert id='save' parameterType="post">
-	 INSERT INTO posts (
-		    post_seq,
-		    user_id,
-		    post_title,
-		    post_contents,
+  <!-- 게시글 목록조회 -->
+  <select id='select' parameterType="post" resultType="post">
+    SELECT A.*,B.*
+    FROM (
+    SELECT TT1.rnum num,
+    TT1.post_seq,
+    TT1.post_title,
+    TT1.post_contents,
+    TT1.read_cnt,
+    TT1.like_cnt,
+    DECODE( TO_CHAR(TT1.post_dt,'YYYY-MM-DD'),TO_CHAR(SYSDATE,'YYYY-MM-DD')
+    ,TO_CHAR(TT1.post_dt,'HH24:MI')
+    ,TO_CHAR(SYSDATE,'YYYY-MM-DD')) post_dt
+    FROM (
+    SELECT ROWNUM AS rnum, T1.*
+    FROM (
+    SELECT *
+    FROM posts
+    WHERE 1 = 1
+    ORDER BY post_dt DESC
+    )T1
+    <![CDATA[
+    WHERE ROWNUM <=10
+    ]]>
+    )TT1
+    WHERE rnum >=1
+    )A
+    CROSS JOIN
+    (
+    SELECT COUNT(*) total_cnt
+    FROM posts
+    WHERE 1 = 1
+    )B
+    
+
+  </select>
+  
+  <insert id='save' parameterType="post">
+   INSERT INTO posts (
+        post_seq,
+        user_id,
+        post_title,
+        post_contents,
         post_div
-		) VALUES (
-		    #{post_seq}, 
-		    #{user_id}, 
-		    #{post_title}, 
-		    #{post_contents},
-		    #{post_div}
-		
-		)
-	</insert>
-	<delete id="delete" parameterType="post">
+    ) VALUES (
+        #{post_seq}, 
+        #{user_id}, 
+        #{post_title}, 
+        #{post_contents},
+        #{post_div}
+    
+    )
+  </insert>
+  <delete id="delete" parameterType="post">
         DELETE FROM posts 
         WHERE post_seq = #{post_seq} 
   </delete> 
