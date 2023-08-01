@@ -12,7 +12,7 @@ public class PostController {
 	public String postForm() {
 		return "post";
 	}
-
+	
 
 }
 

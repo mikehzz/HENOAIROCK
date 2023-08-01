@@ -19,7 +19,7 @@
 	                <p class="find">
 						<span><a href="/member/passwd">비밀번호 찾기</a></span> 
 						<span><a href="/member/register">회원가입</a></span>
-					</p>
+					       </p>
 	
 	                <!-- Email -->
 	                <p class="input-title">Email</p>

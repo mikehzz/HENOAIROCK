@@ -26,7 +26,7 @@
 		WHERE 1 = 1
 		ORDER BY post_dt DESC
 		)T1
-		WHERE ROWNUM <=10
+		<![CDATA[  WHERE ROWNUM <=10
 		)TT1
 		WHERE rnum >=1
 		)A
@@ -36,7 +36,7 @@
 		FROM posts
 		WHERE 1 = 1
 		)B
-
+    ]]> 
 	</select>
 	
 	<insert id='save' parameterType="post">

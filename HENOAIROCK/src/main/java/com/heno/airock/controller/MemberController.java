@@ -129,5 +129,5 @@ public class MemberController {
 		int result = memberService.idChk(memberDTO);
 		return result;
 	}
-
+	
 }

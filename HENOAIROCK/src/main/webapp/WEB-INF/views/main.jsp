@@ -43,7 +43,7 @@
                 <span class="viewbox-close-btn">&#10060;</span>
         <ul>
             <li><a href="#">홈</a></li>
-            <li><a href="#">마이페이지</a></li>
+            <li><a id= "mypage">마이페이지</a></li>
             <li><a href="#">고객센터</a></li>
             <li><a href="#">설정</a></li>
             <li><a href="#">쿠폰등록</a></li>
