@@ -26,17 +26,22 @@
       <th>작성자</th>
       <th>날짜</th>
       <th>조회수</th>
+      <th>탈퇴</th><!-- 새로운 열(칼럼)에 탈퇴 버튼 추가 -->
     </tr> 
   </thead>
   <tbody>
     <c:forEach items="${postList}" var="post">
       <tr>
-        <td>${post.post_seq}</td>
-          <td>${post.user_id}</td>
+         <td>${post.post_seq}</td>
+         <td>${post.user_id}</td>
          <td>${post.post_title}</td>
          <td>${post.post_contents}</td>
          <td>${post.read_cnt}</td>
          <td>${post.like_cnt}</td>
+         <td>
+             <!-- 탈퇴 버튼 추가, 버튼을 클릭할 때 해당 게시물의 post_seq를 파라미터로 전달 -->
+             <button onclick="withdraw(${post.post_seq})">탈퇴</button>
+         </td>
       </tr>
     </c:forEach>
   </tbody>
