@@ -4,7 +4,7 @@
 
   <!-- 게시글 목록조회 -->
   <select id='select' parameterType="post" resultType="post">
-    SELECT A.*,B.*
+<!--     SELECT A.*,B.*
     FROM (
     SELECT TT1.rnum num,
     TT1.post_seq,
@@ -34,8 +34,9 @@
     SELECT COUNT(*) total_cnt
     FROM posts
     WHERE 1 = 1
-    )B
-    
+    )B -->
+    SELECT *
+    FROM posts
 
   </select>
   
