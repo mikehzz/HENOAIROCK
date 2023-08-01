@@ -1,6 +1,8 @@
 package com.heno.airock.dto;
 
-public class PostDTO {
+import com.heno.airock.cmn.DTO;
+
+public class PostVO extends DTO{
 	private String post_seq;
 	private String user_id;
 	private String post_title;
@@ -10,6 +12,9 @@ public class PostDTO {
 	private String update_dt;
 	private String post_dt;
 	private Integer post_div;
+	
+	public PostVO() {}
+	
 	public String getPost_seq() {
 		return post_seq;
 	}
@@ -64,7 +69,7 @@ public class PostDTO {
 	public void setPost_div(Integer post_div) {
 		this.post_div = post_div;
 	}
-	public PostDTO(String post_seq, String user_id, String post_title, String post_contents, Integer read_cnt,
+	public PostVO(String post_seq, String user_id, String post_title, String post_contents, Integer read_cnt,
 			Integer like_cnt, String update_dt, String post_dt, Integer post_div) {
 		super();
 		this.post_seq = post_seq;
@@ -83,6 +88,8 @@ public class PostDTO {
 				+ ", post_contents=" + post_contents + ", read_cnt=" + read_cnt + ", like_cnt=" + like_cnt
 				+ ", update_dt=" + update_dt + ", post_dt=" + post_dt + ", post_div=" + post_div + "]";
 	}
+	
+	
 	
 	
 	

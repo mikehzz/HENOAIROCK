@@ -30,8 +30,6 @@ import java.util.List;
 public interface WorkDiv<T> {
    //CRUD : doSave(),doDelete(),doUpdate(),doSelectOne(),doRetrieve()
 	
-	int doUpdateReadCnt(T inVO)throws SQLException;
-	
 	
 	/**
 	 * 등록
@@ -39,7 +37,7 @@ public interface WorkDiv<T> {
 	 * @return T
 	 * @throws SQLException
 	 */
-	public abstract int doSave(T inVO)throws SQLException;
+	public abstract int save(T inVO)throws SQLException;
 	
 	/**
 	 * 삭제
@@ -47,7 +45,7 @@ public interface WorkDiv<T> {
 	 * @return T
 	 * @throws SQLException
 	 */
-	int doDelete(T inVO)throws SQLException;
+	int delete(T inVO)throws SQLException;
 	
 	/**
 	 * 수정
@@ -55,7 +53,7 @@ public interface WorkDiv<T> {
 	 * @return T
 	 * @throws SQLException
 	 */
-	int doUpdate(T inVO)throws SQLException;
+	int update(T inVO)throws SQLException;
 	
 	/**
 	 * 단건 조회
@@ -63,7 +61,7 @@ public interface WorkDiv<T> {
 	 * @return T
 	 * @throws SQLException
 	 */
-	T doSelectOne(T inVO)throws SQLException;
+	T selectOne(T inVO)throws SQLException;
 	
 	
 	
@@ -73,7 +71,7 @@ public interface WorkDiv<T> {
 	 * @return List<T>
 	 * @throws SQLException
 	 */
-	List<T> doRetrieve(T inVO)throws SQLException;
+	List<T> select(T inVO)throws SQLException;
 	
 	
 	

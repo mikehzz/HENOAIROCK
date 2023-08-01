@@ -60,5 +60,9 @@
         DELETE FROM posts 
         WHERE post_seq = #{post_seq} 
   </delete> 
+  
+  <update id="">
+  
+  </update>
 
 </mapper>

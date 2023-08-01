@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.heno.airock">
+	<logger name="com.pcwk.ehr">
 		<level value="info" />
 	</logger>
 	
