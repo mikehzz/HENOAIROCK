@@ -16,7 +16,7 @@
 
   <!-- 게시글 목록조회 -->
   <select id='select' parameterType="com.heno.airock.cmn.DTO" resultType="post">
-<!-- SELECT A.*,B.*
+<!--   SELECT A.*,B.*
     FROM (
         SELECT TT1.rnum as num,
                TT1.post_title,
@@ -38,8 +38,7 @@
             )t1
           <![CDATA[     WHERE ROWNUM <= #{pageSize} * (#{pageNo}-1)+#{pageSize}   ]]>
         )TT1
-        WHERE rnum >=1
-       <![CDATA[    WHERE rnum >=#{pageSize} * (#{pageNo}-1)+ 1 ]]>
+        WHERE rnum >=#{pageSize} * (#{pageNo}-1)+ 1
     )A
     CROSS JOIN
     (
@@ -48,7 +47,7 @@
     WHERE post_div = #{post_div}
     <include refid="searchCondition"></include>
     )B -->
-    SELECT *
+     SELECT *
     FROM posts
   </select>
   

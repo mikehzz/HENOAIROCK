@@ -35,7 +35,7 @@ public class PostController implements PcwkLoger {
 	}
 	
 	@GetMapping("/select")
-	public String select(PostVO inVO, Model model, HttpSession httpSession) throws SQLException {
+	public String select(@ModelAttribute PostVO inVO, Model model, HttpSession httpSession) throws SQLException {
 		String view = "";
 		
 		return view;

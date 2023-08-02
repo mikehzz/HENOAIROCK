@@ -1,14 +1,9 @@
 package com.heno.airock.service;
 
-import org.springframework.stereotype.Service;
+import com.heno.airock.cmn.WorkDiv;
+import com.heno.airock.dto.MusicVO;
 
-import com.heno.airock.member.repository.MusicRepository;
-
-@Service
-public class MusicService {
-	private final MusicRepository musicRepository;
+public interface MusicService extends WorkDiv<MusicVO> {
 	
-	public MusicService(MusicRepository musicRepository) {
-		this.musicRepository = musicRepository;
-	}
-}	
+	
+}

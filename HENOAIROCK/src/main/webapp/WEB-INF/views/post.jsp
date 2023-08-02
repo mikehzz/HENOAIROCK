@@ -141,7 +141,7 @@
     <script src="/resources/js/post.js"></script>
 </div> 
 <script>
-   function do_Retrieve(url, pageNo){
+   function doRetrieve(url, pageNo){
      console.log("url:"+url);
      console.log("pageNo:"+pageNo);
      
@@ -154,8 +154,8 @@
 
 
    //table 목록 click시 seq값 찾기
-   $("#boardTable>tbody").on("click","tr",function(e){
-     console.log("#boardTable>tbody");
+   $("#boardTable tbody").on("click","tr",function(e){
+     console.log("#boardTable tbody");
      let tdArray = $(this).children();
      console.log('tdArray:'+tdArray);
      let seq = tdArray.eq(5).text();
