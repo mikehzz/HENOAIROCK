@@ -18,8 +18,7 @@ public class PostDaoImpl implements PostDao {
 
 	@Override
 	public int updateReadCnt(PostVO inVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSessionTemplate.update("Post.updateReadCnt", inVO);
 	}
 
 	@Override
@@ -39,8 +38,7 @@ public class PostDaoImpl implements PostDao {
 
 	@Override
 	public PostVO selectOne(PostVO inVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSessionTemplate.selectOne("Post.selectOne", inVO);
 	}
 
 	@Override

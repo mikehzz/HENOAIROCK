@@ -13,6 +13,8 @@
       alias="post" />
     <typeAlias type="com.heno.airock.dto.MusicVO"
       alias="music" />
+      <typeAlias type="com.heno.airock.dto.CodeVO"
+     alias="code"/>
 	</typeAliases>
 	
 </configuration>

@@ -28,8 +28,7 @@ public class PostServiceImpl implements PostService{
 
 	@Override
 	public int update(PostVO inVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.update(inVO);
 	}
 
 	@Override

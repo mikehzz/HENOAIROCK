@@ -1,8 +1,11 @@
 package com.heno.airock.board;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.sql.SQLException;
+
+import javax.crypto.AEADBadTagException;
 
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -34,12 +37,16 @@ public class PostServiceTest implements PcwkLoger{
 	PostVO board03;
 	PostVO board04;
 	PostVO board05;
+	
+	PostVO search;
 
 	@Before
 	public void setUp() throws Exception {
-		board01 = new PostVO("3", "kjmin1124@naver.com", "test_title3", "test_contents3", 0, 0, "등록일 x", "등록일 x", 10);
-		board02 = new PostVO("4", "kjmin1124@naver.com", "test_title4", "test_contents4", 0, 0, "등록일 x", "등록일 x", 20);
-		board03 = new PostVO("5", "kjmin1124@naver.com", "test_title5", "test_contents5", 0, 0, "등록일 x", "등록일 x", 20);
+		board01 = new PostVO("33", "kjmin1124@naver.com", "test_title3", "test_contents3", 0, 0, "등록일 x", "등록일 x", 10);
+		board02 = new PostVO("43", "kjmin1124@naver.com", "test_title4", "test_contents4", 0, 0, "등록일 x", "등록일 x", 20);
+		board03 = new PostVO("53", "kjmin1124@naver.com", "test_title5", "test_contents5", 0, 0, "등록일 x", "등록일 x", 20);
+		
+		search = new PostVO("3", "kjmin1124@naver.com", "test", "test", 0, 0, "등록일x", "수정일x", 10);
 	}
 
 	@Test
@@ -52,9 +59,15 @@ public class PostServiceTest implements PcwkLoger{
 		service.save(board02);
 		service.save(board03);
 		
-		service.delete(board01);
-		service.delete(board02);
-		service.delete(board03);
+		board01.setUser_id(board01.getUser_id()+ "변경");
+		service.selectOne(board01);
+		service.selectOne(board01);
+		service.selectOne(board01);
+		
+		PostVO vo = dao.selectOne(board01);
+		LOG.debug("│vo                          │"+vo);
+		assertEquals(3, vo.getRead_cnt());
+		
 	}
 	
 	@Test
