@@ -11,6 +11,8 @@
 			alias="member" />
     <typeAlias type="com.heno.airock.dto.PostVO"
       alias="post" />
+    <typeAlias type="com.heno.airock.dto.MusicVO"
+      alias="music" />
 	</typeAliases>
 	
 </configuration>
