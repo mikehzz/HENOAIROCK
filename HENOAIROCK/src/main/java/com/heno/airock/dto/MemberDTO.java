@@ -8,6 +8,9 @@ public class MemberDTO {
 	private String member_dt;
 	private String birth;
 	private String profile_img;
+	
+	public MemberDTO() {}
+	
 	public String getUser_id() {
 		return user_id;
 	}

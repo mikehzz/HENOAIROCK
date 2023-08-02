@@ -34,5 +34,5 @@ public class MemberService {
 	public int find(MemberDTO memberDTO) {
 		return memberRepository.find(memberDTO);
 	}
-
+	
 }
