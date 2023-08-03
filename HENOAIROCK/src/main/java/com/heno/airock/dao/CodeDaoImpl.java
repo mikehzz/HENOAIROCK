@@ -41,7 +41,10 @@ public class CodeDaoImpl implements CodeDao{
 
 	@Override
 	public List<CodeVO> select(CodeVO inVO) throws SQLException {
-		return sqlSessionTemplate.selectList("code.retrieve", inVO);
+		LOG.debug("┌──────────────────────────────┐");
+		LOG.debug("│doRetrieve                    │");
+		LOG.debug("│inVO                          │"+inVO);
+		return sqlSessionTemplate.selectList("code.select", inVO);
 	}
 
 }

@@ -16,12 +16,18 @@
 
   <!-- 게시글 목록조회 -->
   <select id='select' parameterType="com.heno.airock.cmn.DTO" resultType="post">
-<!--   SELECT A.*,B.*
+SELECT A.*,B.*
     FROM (
         SELECT TT1.rnum as num,
                TT1.post_title,
                TT1.post_div,
                TT1.read_cnt,
+               TT1.like_cnt,
+               TT1.post_contents,
+               DECODE( TO_CHAR(TT1.post_dt,'YYYYMMDD'),TO_CHAR(sysdate,'YYYYMMDD')
+                      ,TO_CHAR(TT1.post_dt,'HH24:MI')
+                      ,TO_CHAR(TT1.post_dt,'YYYY/MM/DD') )post_dt,
+               --당일 등록이면 : 16:26 그렇치 않으면 2023/06/28
                DECODE( TO_CHAR(TT1.update_dt,'YYYYMMDD'),TO_CHAR(sysdate,'YYYYMMDD')
                       ,TO_CHAR(TT1.update_dt,'HH24:MI')
                       ,TO_CHAR(TT1.update_dt,'YYYY/MM/DD') )update_dt,
@@ -38,7 +44,8 @@
             )t1
           <![CDATA[     WHERE ROWNUM <= #{pageSize} * (#{pageNo}-1)+#{pageSize}   ]]>
         )TT1
-        WHERE rnum >=#{pageSize} * (#{pageNo}-1)+ 1
+        --WHERE rnum >=1
+       <![CDATA[   WHERE rnum >=#{pageSize} * (#{pageNo}-1)+ 1 ]]>
     )A
     CROSS JOIN
     (
@@ -46,15 +53,13 @@
     FROM posts
     WHERE post_div = #{post_div}
     <include refid="searchCondition"></include>
-    )B -->
-     SELECT *
-    FROM posts
+    )B 
   </select>
   
   <select id="selectOne" parameterType="post" resultType="post">
     SELECT
       post_seq,
-      user_id
+      user_id,
       post_title,
       post_contents,
       read_cnt,

@@ -42,11 +42,11 @@ public class PostServiceTest implements PcwkLoger{
 
 	@Before
 	public void setUp() throws Exception {
-		board01 = new PostVO("33", "kjmin1124@naver.com", "test_title3", "test_contents3", 0, 0, "등록일 x", "등록일 x", 10);
-		board02 = new PostVO("43", "kjmin1124@naver.com", "test_title4", "test_contents4", 0, 0, "등록일 x", "등록일 x", 20);
-		board03 = new PostVO("53", "kjmin1124@naver.com", "test_title5", "test_contents5", 0, 0, "등록일 x", "등록일 x", 20);
+		board01 = new PostVO("33", "kjmin1124@naver.com", "test_title3", "test_contents3", 0, 0, "등록일 x", "등록일 x", "10");
+		board02 = new PostVO("43", "kjmin1124@naver.com", "test_title4", "test_contents4", 0, 0, "등록일 x", "등록일 x", "20");
+		board03 = new PostVO("53", "kjmin1124@naver.com", "test_title5", "test_contents5", 0, 0, "등록일 x", "등록일 x", "20");
 		
-		search = new PostVO("3", "kjmin1124@naver.com", "test", "test", 0, 0, "등록일x", "수정일x", 10);
+		search = new PostVO("3", "kjmin1124@naver.com", "test", "test", 0, 0, "등록일x", "수정일x", "10");
 	}
 
 	@Test
@@ -58,6 +58,8 @@ public class PostServiceTest implements PcwkLoger{
 		service.save(board01);
 		service.save(board02);
 		service.save(board03);
+		
+		service.select(board01);
 		
 		board01.setUser_id(board01.getUser_id()+ "변경");
 		service.selectOne(board01);

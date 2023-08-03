@@ -43,7 +43,7 @@ public class PostController implements PcwkLoger {
 	
 	
 	@GetMapping("")
-	public String select(@ModelAttribute PostVO inVO, Model model) throws SQLException {
+	public String select(PostVO inVO, Model model) throws SQLException {
 		String viewPage = "post";
 		// page번호
 		if (null != inVO && inVO.getPageNo() == 0) {

@@ -4,36 +4,36 @@
     pageEncoding="UTF-8"%>
 <%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%       
-         PostVO vo = (PostVO)request.getAttribute("inVO");
-         int divValue = vo.getPost_div();
-         String title    = "자유게시판";//10:자유게시판, 20:공지사항
-         
-         if("20".equals(divValue)){
-            title = "공지사항";
-         }
-         
-         request.setAttribute("title", title);
-         
-         //paging
-         int bottomCount = 10;
-         int pageSize    = 10;
-         int pageNo      =  1;
-         int totalCnt    =  0;
-         String searchWord = "";
-         String searchDiv  = "";
-           
-         if(null != vo){
-              pageSize   = vo.getPageSize();
-              pageNo     = vo.getPageNo();
-              searchDiv  = vo.getSearchDiv();
-              searchWord = vo.getSearchWord();
-         }
-         
-         if(null !=  request.getAttribute("totalCnt")){
-              totalCnt = Integer.parseInt(request.getAttribute("totalCnt").toString());
-         }
-         
-         String cPath  = request.getContextPath();
+				PostVO vo = (PostVO)request.getAttribute("inVO");
+				String divValue = vo.getPost_div();
+				String title    = "자유게시판";//10:자유게시판, 20:공지사항
+				
+				if("20".equals(divValue)){
+				   title = "공지사항";
+				}
+				
+				request.setAttribute("title", title);
+				
+				//paging
+				int bottomCount = 10;
+				int pageSize    = 10;
+				int pageNo      =  1;
+				int totalCnt    =  0;
+				String searchWord = "";
+				String searchDiv  = "";
+				  
+				if(null != vo){
+				     pageSize   = vo.getPageSize();
+				     pageNo     = vo.getPageNo();
+				     searchDiv  = vo.getSearchDiv();
+				     searchWord = vo.getSearchWord();
+				}
+				
+				if(null !=  request.getAttribute("totalCnt")){
+				     totalCnt = Integer.parseInt(request.getAttribute("totalCnt").toString());
+				}
+				
+				String cPath  = request.getContextPath();
          
 %>
 <c:set var="CP" value="${pageContext.request.contextPath }"/>  
@@ -53,6 +53,7 @@
 
 </head>
 <body>
+${postList}
 <div class="container">
   <!-- Content here -->
   <!-- 제목 -->
@@ -141,7 +142,7 @@
     <script src="/resources/js/post.js"></script>
 </div> 
 <script>
-   function doRetrieve(url, pageNo){
+   function do_Retrieve(url, pageNo){
      console.log("url:"+url);
      console.log("pageNo:"+pageNo);
      
@@ -154,8 +155,8 @@
 
 
    //table 목록 click시 seq값 찾기
-   $("#boardTable tbody").on("click","tr",function(e){
-     console.log("#boardTable tbody");
+   $("#boardTable>tbody").on("click","tr",function(e){
+     console.log("#boardTable>tbody");
      let tdArray = $(this).children();
      console.log('tdArray:'+tdArray);
      let seq = tdArray.eq(5).text();
