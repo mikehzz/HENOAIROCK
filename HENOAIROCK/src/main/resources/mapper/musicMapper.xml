@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Music">
+
+<select id="selectOne" parameterType="music" resultType="music">
+    SELECT
+      music_id,
+      title,
+      album,
+      artist,
+      lyrics,
+      genre,
+      feeling,
+      album_path,
+      yt_link,
+      public_dt
+    FROM MUSIC
+    WHERE feeling = #{feeling} 
+</select>
+
+<insert id="save" parameterType="music">
+    INSERT INTO MUSIC (
+	     music_id,
+	     title,
+	     album,
+	     artist,
+	     lyrics,
+	     genre,
+	     feeling,
+	     album_path,
+	     yt_link,
+	     public_dt   
+    ) VALUES (
+	    #{musicId},
+	    #{title},
+	    #{album},
+	    #{artist},
+	    #{lyrics},
+	    #{genre},
+	    #{feeling},
+	    #{albumPath},
+	    #{ytLink},
+	    #{publicDt}
+    )
+</insert>
+
+<delete id="delete" parameterType="music">
+    DELETE FROM MUSIC 
+    WHERE music_id = #{musicId}   
+</delete>
+
+</mapper>

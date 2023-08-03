@@ -11,38 +11,33 @@ import com.heno.airock.dto.MusicVO;
 
 @Repository
 public class MusicDaoImpl implements MusicDao {
-
+	
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 	
 	@Override
 	public int save(MusicVO inVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSessionTemplate.insert("Music.save", inVO);
 	}
 
 	@Override
 	public int delete(MusicVO inVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSessionTemplate.delete("Music.delete",inVO);
 	}
 
 	@Override
 	public int update(MusicVO inVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSessionTemplate.update("Music.update",inVO);
 	}
 
 	@Override
 	public MusicVO selectOne(MusicVO inVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSessionTemplate.selectOne("Music.selectOne", inVO);
 	}
 
 	@Override
 	public List<MusicVO> select(MusicVO inVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSessionTemplate.selectList("Music.doRetrieve", inVO);
 	}
 	
 	

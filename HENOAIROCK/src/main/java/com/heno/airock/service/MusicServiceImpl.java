@@ -17,32 +17,27 @@ public class MusicServiceImpl implements MusicService {
 	
 	@Override
 	public int save(MusicVO inVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.save(inVO);
 	}
 
 	@Override
 	public int delete(MusicVO inVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.delete(inVO);
 	}
 
 	@Override
 	public int update(MusicVO inVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.update(inVO);
 	}
 
 	@Override
 	public MusicVO selectOne(MusicVO inVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.selectOne(inVO);
 	}
 
 	@Override
 	public List<MusicVO> select(MusicVO inVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.select(inVO);
 	}
 
 }
