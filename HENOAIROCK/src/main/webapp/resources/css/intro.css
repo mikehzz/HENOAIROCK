@@ -23,7 +23,7 @@ body {
   height: 100%;
   top: 0;
   left: 0;
-  background: #92daa2;
+  background: #000000;
   overflow: hidden;
 }
 
@@ -54,6 +54,16 @@ body {
 .enter-button {
   display: block;
   text-align: center;
+  font-size: 1em;
+  text-decoration: none;
+  color: #adff2f;
+  opacity: 1;
+  transition: all 1s ease 3s;
+}
+
+.login-button {
+  display: block;
+  text-align: left;
   font-size: 1em;
   text-decoration: none;
   color: #adff2f;

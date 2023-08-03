@@ -16,13 +16,4 @@ public class MusicController {
 		this.musicService = musicService;
 	}
 
-	@GetMapping("/main")
-	public String main() {
-		return "main";
-	}
-
-	@GetMapping("/gpt")
-	public String gpt() {
-		return "gpt";
-	}
 }

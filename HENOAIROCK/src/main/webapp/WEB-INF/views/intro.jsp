@@ -32,7 +32,8 @@
         <li>RO</li>
         <li>CK</li>
       </ul>
-      <a href="#" class="enter-button">Enter</a>
+      <a href="#" class="enter-button">그냥 시작</a>
+      <a href="/member/login" class="login-button">로그인 후 시작하기</a>
     </div>
   </div>
       <h1>싸그리싺싺AI 페이지</h1>
