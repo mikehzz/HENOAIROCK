@@ -62,7 +62,7 @@
         </div>
         <ul>
             <li><a href="#">홈</a></li>
-            <li><a href="#">마이페이지</a></li>
+            <li><a href="/mypage">마이페이지</a></li>
             <li><a href="/post">게시판</a></li>
             <li><a href="#">설정&#128540;</a></li>
         </ul>

@@ -2,25 +2,20 @@ package com.heno.airock.dto;
 
 
 public class MyPlayListVO extends MemberDTO{
+
 	private String title;
 	private String artist;
 	private String albumImg;
 	private String feeling;
-
+	private String album;
+	private String ytLink;
+	
 	public MyPlayListVO() {}
-
-	public MyPlayListVO(String title, String artist, String albumImg, String feeling) {
-		super();
-		this.title = title;
-		this.artist = artist;
-		this.albumImg = albumImg;
-		this.feeling = feeling;
-	}
 
 	public String getTitle() {
 		return title;
 	}
-
+	
 	public void setTitle(String title) {
 		this.title = title;
 	}
@@ -49,19 +44,37 @@ public class MyPlayListVO extends MemberDTO{
 		this.feeling = feeling;
 	}
 
-    public void setUserId(String user_id) {
-        // MemberDTO 클래스로부터 상속받은 setUserId 메서드를 호출하여 설정
-        super.setUserId(user_id);
+	public String getAlbum() {
+		return album;
+	}
+
+	public void setAlbum(String album) {
+		this.album = album;
+	}
+
+
+
+    public void setUserId(String userId) {
+        super.setUserId(userId);
     }
-    
-	public String getUserId() {
-		return getUserId();
-	} 
-    
+
+    public String getUserId() {
+        return super.getUserId();
+    }
+
+
+	public String getYtLink() {
+		return ytLink;
+	}
+
+	public void setYtLink(String ytLink) {
+		this.ytLink = ytLink;
+	}
+
 	@Override
 	public String toString() {
 		return "MyPlayListVO [title=" + title + ", artist=" + artist + ", albumImg=" + albumImg + ", feeling=" + feeling
-				+ ", toString()=" + super.toString() + "]";
+				+ ", album=" + album + ", ytLink=" + ytLink + ", toString()=" + super.toString() + "]";
 	}
-	
+
 }

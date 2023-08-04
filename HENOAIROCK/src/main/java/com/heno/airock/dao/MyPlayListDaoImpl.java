@@ -51,5 +51,11 @@ public class MyPlayListDaoImpl implements MyPlaylistDao {
 		
 		return sqlSessionTemplate.selectList("MyPlayList.select", myPlayListVO);
 	}
+	
+	@Override
+	public List<MyPlayListVO> showPlayLists(MyPlayListVO myPlayListVO) throws SQLException {
+		
+		return sqlSessionTemplate.selectList("MyPlayList.selectList", myPlayListVO);
+	}	
 
 }
