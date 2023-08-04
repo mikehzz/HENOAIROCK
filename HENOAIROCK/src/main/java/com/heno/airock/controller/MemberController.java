@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.heno.airock.cmn.PcwkLoger;
 import com.heno.airock.dto.MemberDTO;
 import com.heno.airock.dto.MessageDTO;
 import com.heno.airock.service.MailSendService;
@@ -19,7 +20,7 @@ import com.heno.airock.service.MemberService;
 
 @Controller
 @RequestMapping("/member") // 공통 주소 처리
-public class MemberController {
+public class MemberController implements PcwkLoger {
 	
 	@Autowired
 	MailSendService mailService;
@@ -93,9 +94,10 @@ public class MemberController {
 		boolean loginResult = memberService.login(memberDTO);
 		MessageDTO message = new MessageDTO();
 		if (loginResult) {
-			session.setAttribute("loginEmail", memberDTO.getUserId());
+			session.setAttribute("user", memberDTO);
 			message.setMsgId("1");
 			message.setMsgContents(memberDTO.getUserId() + "님 환영합니다!");
+			LOG.debug("└session┘"+ session.getAttribute("user"));
 			jsonString = new Gson().toJson(message);
 			return jsonString;
 		} else {

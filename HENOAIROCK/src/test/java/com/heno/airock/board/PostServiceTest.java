@@ -59,7 +59,6 @@ public class PostServiceTest implements PcwkLoger{
 		
 		service.select(board01);
 		
-		board01.setUserId(board01.getUserId()+ "변경");
 		service.selectOne(board01);
 		service.selectOne(board01);
 		service.selectOne(board01);

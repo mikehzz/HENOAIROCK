@@ -68,7 +68,7 @@
       post_dt,
       update_dt
     FROM posts
-    WHERE post_seq = #{postSeq} 
+    WHERE post_seq = #{postSeq}
   </select>
   
   

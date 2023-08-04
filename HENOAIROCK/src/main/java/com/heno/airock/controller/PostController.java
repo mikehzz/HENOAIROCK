@@ -3,6 +3,7 @@ package com.heno.airock.controller;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,24 +36,31 @@ public class PostController implements PcwkLoger {
 	public PostController() {
 	}
 	
-	@RequestMapping("/select")
-	public String select(PostVO inVO, Model model, HttpSession httpSession) throws SQLException {
+	@GetMapping("/select")
+	public String select(@ModelAttribute PostVO inVO, Model model, HttpServletRequest reqeust, HttpSession session) throws SQLException {
 		String view = "post_mng";
 
 		LOG.debug("┌──────────────────────────────┐");
 		LOG.debug("│doSelectOne                   │");
 		LOG.debug("│inVO                          │" + inVO);
 		LOG.debug("└──────────────────────────────┘");
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("user");
 		
-//		MemberDTO memberDTO =(MemberDTO) httpSession.getAttribute("user");
-//		LOG.debug("│memberDTO                          │" + memberDTO);
-//		inVO.setUserId(memberDTO.getUserId());
+		if(memberDTO != null) {
+			LOG.debug("│userVO                          │" + memberDTO);
+			inVO.setPostSeq(reqeust.getParameter("seq"));
+			inVO.setUserId(memberDTO.getUserId());
+			PostVO outVO = postService.selectOne(inVO);
+			
+			model.addAttribute("outVO", outVO);
+			model.addAttribute("inVO", inVO);
+			
+			return view;
+		} else {
+			return "redirect:/member/login";
+		}
 		
-		PostVO outVO = postService.selectOne(inVO);
-		model.addAttribute("outVO", outVO);
-		model.addAttribute("inVO", inVO);
 		
-		return view;
 	}
 	
 	
@@ -83,6 +91,7 @@ public class PostController implements PcwkLoger {
 		if (null != inVO && null == inVO.getPostDiv()) {
 			inVO.setPostDiv("10");
 		}
+		
 		LOG.debug("inVO:" + inVO);
 		// 코드조회: 검색코드
 		CodeVO codeVO = new CodeVO();
@@ -110,7 +119,7 @@ public class PostController implements PcwkLoger {
 		return viewPage;
 	}
 	
-	@PostMapping("/save")
+	@PostMapping("/post_reg")
 	@ResponseBody
 	public String save(PostVO inVO) throws SQLException {
 		String jsonString = "";

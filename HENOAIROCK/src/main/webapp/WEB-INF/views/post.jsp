@@ -90,7 +90,7 @@ ${list}
       </div>  
       <div class="col-auto">  
         <a href="#" class="btn btn-primary" id="doRetrieve" >조회</a>
-        <a href="#" class="btn btn-primary" onclick="doMoveToReg();" >등록</a>  
+        <a href="/post/post_reg" class="btn btn-primary" >등록</a>  
       </div>      
     </div>  
   </form>
@@ -129,7 +129,7 @@ ${list}
          <%-- 조회 데이터가 없는 경우--%>
          <c:otherwise>
            <tr>
-              <td  class="text-center col-sm-12  col-md-12  col-lg-12" colspan="99">No data found.</td>
+              <td  class="text-center col-sm-12  col-md-12  col-lg-12" colspan="99">검색결과가 없습니다.</td>
            </tr>
          </c:otherwise>
        </c:choose>
@@ -142,7 +142,7 @@ ${list}
     <script src="/resources/js/post.js"></script>
 </div> 
 <script>
-   function do_Retrieve(url, pageNo){
+   function select(url, pageNo){
      console.log("url:"+url);
      console.log("pageNo:"+pageNo);
      
@@ -170,17 +170,6 @@ ${list}
      
    });
 
-   function doMoveToReg(){
-       console.log("doMoveToReg");
-       let frm = document.boardFrm;
-       //$("#pageNo").val(1); //jquery
-        console.log("frm.div.value:"+frm.div.value);
-       frm.pageNo.value=1;
-       frm.action = "${CP}/post/select";
-       frm.submit();//controller call   
-       
-   }
-   
    
    function doRetrieveCall(pageNo){
        let frm = document.boardFrm;
