@@ -90,7 +90,6 @@ public class BoardDaoTest implements PcwkLoger{
 	}
 	
 	@Test
-	@Ignore
 	public void addAndGet() throws SQLException {
 		//1. 삭제
 		//2. 등록
@@ -114,12 +113,12 @@ public class BoardDaoTest implements PcwkLoger{
 		
 	}
 	private void isSameData(PostVO outVO01, PostVO board01) {
-		assertEquals(outVO01.getPost_seq(), board01.getPost_seq());
-		assertEquals(outVO01.getPost_title(), board01.getPost_title());
-		assertEquals(outVO01.getPost_contents(), board01.getPost_contents());
-		assertEquals(outVO01.getPost_div(), board01.getPost_div());
-		assertEquals(outVO01.getRead_cnt(), board01.getRead_cnt());
-		assertEquals(outVO01.getUser_id(), board01.getUser_id());
+		assertEquals(outVO01.getPostSeq(), board01.getPostSeq());
+		assertEquals(outVO01.getPostTitle(), board01.getPostTitle());
+		assertEquals(outVO01.getPostContents(), board01.getPostContents());
+		assertEquals(outVO01.getPostDiv(), board01.getPostDiv());
+		assertEquals(outVO01.getReadCnt(), board01.getReadCnt());
+		assertEquals(outVO01.getUserId(), board01.getUserId());
 	}
 	
 	@Test

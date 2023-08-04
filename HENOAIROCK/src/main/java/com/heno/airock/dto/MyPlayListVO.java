@@ -51,11 +51,11 @@ public class MyPlayListVO extends MemberDTO{
 
     public void setUserId(String user_id) {
         // MemberDTO 클래스로부터 상속받은 setUserId 메서드를 호출하여 설정
-        super.setUser_id(user_id);
+        super.setUserId(user_id);
     }
     
 	public String getUserId() {
-		return getUser_id();
+		return getUserId();
 	} 
     
 	@Override

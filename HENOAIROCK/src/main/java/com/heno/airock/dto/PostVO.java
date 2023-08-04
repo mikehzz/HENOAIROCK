@@ -3,115 +3,111 @@ package com.heno.airock.dto;
 import com.heno.airock.cmn.DTO;
 
 public class PostVO extends DTO{
-	private String post_seq;
-	private String user_id;
-	private String post_title;
-	private String post_contents;
-	private int read_cnt;
-	private int like_cnt;
-	private String update_dt;
-	private String post_dt;
-	private String post_div;
+	private String postSeq;
+	private String userId;
+	private String postTitle;
+	private String postContents;
+	private int readCnt;
+	private int likeCnt;
+	private String updateDt;
+	private String postDt;
+	private String postDiv;
 	
 	public PostVO() {}
 
-	public String getPost_seq() {
-		return post_seq;
+	public String getPostSeq() {
+		return postSeq;
 	}
 
-	public void setPost_seq(String post_seq) {
-		this.post_seq = post_seq;
+	public void setPostSeq(String postSeq) {
+		this.postSeq = postSeq;
 	}
 
-	public String getUser_id() {
-		return user_id;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
-	public String getPost_title() {
-		return post_title;
+	public String getPostTitle() {
+		return postTitle;
 	}
 
-	public void setPost_title(String post_title) {
-		this.post_title = post_title;
+	public void setPostTitle(String postTitle) {
+		this.postTitle = postTitle;
 	}
 
-	public String getPost_contents() {
-		return post_contents;
+	public String getPostContents() {
+		return postContents;
 	}
 
-	public void setPost_contents(String post_contents) {
-		this.post_contents = post_contents;
+	public void setPostContents(String postContents) {
+		this.postContents = postContents;
 	}
 
-	public int getRead_cnt() {
-		return read_cnt;
+	public int getReadCnt() {
+		return readCnt;
 	}
 
-	public void setRead_cnt(int read_cnt) {
-		this.read_cnt = read_cnt;
+	public void setReadCnt(int readCnt) {
+		this.readCnt = readCnt;
 	}
 
-	public int getLike_cnt() {
-		return like_cnt;
+	public int getLikeCnt() {
+		return likeCnt;
 	}
 
-	public void setLike_cnt(int like_cnt) {
-		this.like_cnt = like_cnt;
+	public void setLikeCnt(int likeCnt) {
+		this.likeCnt = likeCnt;
 	}
 
-	public String getUpdate_dt() {
-		return update_dt;
+	public String getUpdateDt() {
+		return updateDt;
 	}
 
-	public void setUpdate_dt(String update_dt) {
-		this.update_dt = update_dt;
+	public void setUpdateDt(String updateDt) {
+		this.updateDt = updateDt;
 	}
 
-	public String getPost_dt() {
-		return post_dt;
+	public String getPostDt() {
+		return postDt;
 	}
 
-	public void setPost_dt(String post_dt) {
-		this.post_dt = post_dt;
+	public void setPostDt(String postDt) {
+		this.postDt = postDt;
 	}
 
-	public String getPost_div() {
-		return post_div;
+	public String getPostDiv() {
+		return postDiv;
 	}
 
-	public void setPost_div(String post_div) {
-		this.post_div = post_div;
+	public void setPostDiv(String postDiv) {
+		this.postDiv = postDiv;
 	}
 
-	public PostVO(String post_seq, String user_id, String post_title, String post_contents, int read_cnt, int like_cnt,
-			String update_dt, String post_dt, String post_div) {
+	public PostVO(String postSeq, String userId, String postTitle, String postContents, int readCnt, int likeCnt,
+			String updateDt, String postDt, String postDiv) {
 		super();
-		this.post_seq = post_seq;
-		this.user_id = user_id;
-		this.post_title = post_title;
-		this.post_contents = post_contents;
-		this.read_cnt = read_cnt;
-		this.like_cnt = like_cnt;
-		this.update_dt = update_dt;
-		this.post_dt = post_dt;
-		this.post_div = post_div;
+		this.postSeq = postSeq;
+		this.userId = userId;
+		this.postTitle = postTitle;
+		this.postContents = postContents;
+		this.readCnt = readCnt;
+		this.likeCnt = likeCnt;
+		this.updateDt = updateDt;
+		this.postDt = postDt;
+		this.postDiv = postDiv;
 	}
 
 	@Override
 	public String toString() {
-		return "PostVO [post_seq=" + post_seq + ", user_id=" + user_id + ", post_title=" + post_title
-				+ ", post_contents=" + post_contents + ", read_cnt=" + read_cnt + ", like_cnt=" + like_cnt
-				+ ", update_dt=" + update_dt + ", post_dt=" + post_dt + ", post_div=" + post_div + "]";
+		return "PostVO [postSeq=" + postSeq + ", userId=" + userId + ", postTitle=" + postTitle + ", postContents="
+				+ postContents + ", readCnt=" + readCnt + ", likeCnt=" + likeCnt + ", updateDt=" + updateDt
+				+ ", postDt=" + postDt + ", postDiv=" + postDiv + "]";
 	}
-	
-	
-	
-	
-	
+
 	
 }
 

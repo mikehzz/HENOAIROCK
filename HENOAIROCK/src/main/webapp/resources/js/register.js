@@ -36,7 +36,7 @@ eUtil.ISEmpty = function(str) {
 
 //이메일 중복 확인 체크
 function fn_idChk() {
-	const email = $('#user_id').val();
+	const email = $('#userId').val();
 	if (exptext.test(email) == false) {
 		// 이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우
 		alert("이메일 형식이 올바르지 않습니다.");
@@ -47,7 +47,7 @@ function fn_idChk() {
 			url : "/member/idChk",
 			type : "get",
 			dataType : "json",
-			data : 'user_id=' + email,
+			data : 'userId=' + email,
 
 			success : function(data) {
 				if (data == 1) {
@@ -57,7 +57,7 @@ function fn_idChk() {
 				} else if (data == 0) {
 					if (eUtil.ISEmpty($('#email').val()) == true) {
 						alert('아이디를 입력 하세요.');
-						$("#user_id").focus();
+						$("#userId").focus();
 						email_Check = false;
 						return;
 					} else {
@@ -73,9 +73,9 @@ function fn_idChk() {
 
 //이메일 인증 버튼
 $('#mail-Check-Btn').click(function() {
-	const email = $('#user_id').val(); // 이메일 주소값 얻어오기!
+	const email = $('#userId').val(); // 이메일 주소값 얻어오기!
 	const checkInput = $('#checkInput'); // 인증번호 입력하는곳
-	if (eUtil.ISEmpty($('#user_id').val()) == true) {
+	if (eUtil.ISEmpty($('#userId').val()) == true) {
 		alert('이메일 입력 후 중복확인을 진행해주세요.');
 		email_Check = false;
 		$("#user_id").focus();
@@ -84,7 +84,7 @@ $('#mail-Check-Btn').click(function() {
 		// 이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우
 		alert("이메일 형식이 올바르지 않습니다.");
 		email_Check = false;
-		$("#user_id").focus();
+		$("#userId").focus();
 	} else {
 		$.ajax({
 			type : 'get',

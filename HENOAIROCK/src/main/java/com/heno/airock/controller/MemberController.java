@@ -93,9 +93,9 @@ public class MemberController {
 		boolean loginResult = memberService.login(memberDTO);
 		MessageDTO message = new MessageDTO();
 		if (loginResult) {
-			session.setAttribute("loginEmail", memberDTO.getUser_id());
+			session.setAttribute("loginEmail", memberDTO.getUserId());
 			message.setMsgId("1");
-			message.setMsgContents(memberDTO.getUser_id() + "님 환영합니다!");
+			message.setMsgContents(memberDTO.getUserId() + "님 환영합니다!");
 			jsonString = new Gson().toJson(message);
 			return jsonString;
 		} else {

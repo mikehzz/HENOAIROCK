@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.heno.airock.cmn.PcwkLoger;
 import com.heno.airock.cmn.StringUtil;
 import com.heno.airock.dto.CodeVO;
+import com.heno.airock.dto.MemberDTO;
 import com.heno.airock.dto.PostVO;
 import com.heno.airock.service.CodeService;
 import com.heno.airock.service.PostService;
@@ -34,15 +35,28 @@ public class PostController implements PcwkLoger {
 	public PostController() {
 	}
 	
-	@GetMapping("/select")
-	public String select(@ModelAttribute PostVO inVO, Model model, HttpSession httpSession) throws SQLException {
-		String view = "";
+	@RequestMapping("/select")
+	public String select(PostVO inVO, Model model, HttpSession httpSession) throws SQLException {
+		String view = "post_mng";
+
+		LOG.debug("┌──────────────────────────────┐");
+		LOG.debug("│doSelectOne                   │");
+		LOG.debug("│inVO                          │" + inVO);
+		LOG.debug("└──────────────────────────────┘");
+		
+//		MemberDTO memberDTO =(MemberDTO) httpSession.getAttribute("user");
+//		LOG.debug("│memberDTO                          │" + memberDTO);
+//		inVO.setUserId(memberDTO.getUserId());
+		
+		PostVO outVO = postService.selectOne(inVO);
+		model.addAttribute("outVO", outVO);
+		model.addAttribute("inVO", inVO);
 		
 		return view;
 	}
 	
 	
-	@GetMapping("")
+	@RequestMapping(value="")
 	public String select(PostVO inVO, Model model) throws SQLException {
 		String viewPage = "post";
 		// page번호
@@ -64,6 +78,11 @@ public class PostController implements PcwkLoger {
 		if (null != inVO && null == inVO.getSearchDiv()) {
 			inVO.setSearchDiv("");
 		}
+		
+		// postDiv
+		if (null != inVO && null == inVO.getPostDiv()) {
+			inVO.setPostDiv("10");
+		}
 		LOG.debug("inVO:" + inVO);
 		// 코드조회: 검색코드
 		CodeVO codeVO = new CodeVO();
@@ -76,13 +95,14 @@ public class PostController implements PcwkLoger {
 		List<CodeVO> pageSizeList = codeService.select(codeVO);
 		model.addAttribute("pageSizeList", pageSizeList);
 		
-		List<PostVO> postList = this.postService.select(inVO);
-		model.addAttribute("postList", postList);
+		List<PostVO> list = postService.select(inVO);
+		LOG.debug("list:" + list);
+		model.addAttribute("list", list);
 		
 		//총글수
 		int totalCnt = 0;
-		if(null !=postList && postList.size() >0 ) {
-			totalCnt = postList.get(0).getTotalCnt();
+		if(null !=list && list.size() >0 ) {
+			totalCnt = list.get(0).getTotalCnt();
 		}
 		
 		model.addAttribute("totalCnt", totalCnt);
@@ -95,26 +115,26 @@ public class PostController implements PcwkLoger {
 	public String save(PostVO inVO) throws SQLException {
 		String jsonString = "";
 		// 제목 미입력 오류코드 10
-		if (null != inVO && inVO.getPost_title().equals("")) {
+		if (null != inVO && inVO.getPostTitle().equals("")) {
 			return StringUtil.validMessageTOJson("10", "제목을 입력 하세요.");
 		}
 		
 		// 등록자:20
-		if (null != inVO && inVO.getUser_id().equals("") && null == inVO.getUser_id()) {
+		if (null != inVO && inVO.getUserId().equals("") && null == inVO.getUserId()) {
 			return StringUtil.validMessageTOJson("20", "등록자를 입력 하세요");
 		}
 	
 		// 내용:30
-		if (null != inVO && inVO.getPost_contents().equals("")) {
+		if (null != inVO && inVO.getPostContents().equals("")) {
 			return StringUtil.validMessageTOJson("30", "내용을 입력 하세요");
 		}
 		// 서비스 호출
 		int flag = this.postService.save(inVO);
 		String message = "";
 		if (1 == flag) {// 등록 성공
-			message = inVO.getPost_title() + " 등록 성공";
+			message = inVO.getPostTitle() + " 등록 성공";
 		} else {// 등록실패
-			message = inVO.getPost_title() + " 등록실패";
+			message = inVO.getPostTitle() + " 등록실패";
 		}
 		
 		jsonString = StringUtil.validMessageTOJson(flag + "", message);

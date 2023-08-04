@@ -16,7 +16,7 @@
 
   <!-- 게시글 목록조회 -->
   <select id='select' parameterType="com.heno.airock.cmn.DTO" resultType="post">
-SELECT A.*,B.*
+    SELECT A.*,B.*
     FROM (
         SELECT TT1.rnum as num,
                TT1.post_title,
@@ -38,7 +38,7 @@ SELECT A.*,B.*
             FROM (
                 SELECT *
                 FROM posts
-                WHERE post_div = #{post_div}
+                WHERE post_div = #{postDiv}
                 <include refid="searchCondition"></include>
                 ORDER BY update_dt DESC
             )t1
@@ -51,7 +51,7 @@ SELECT A.*,B.*
     (
     SELECT COUNT(post_seq) totalCnt
     FROM posts
-    WHERE post_div = #{post_div}
+    WHERE post_div = #{postDiv}
     <include refid="searchCondition"></include>
     )B 
   </select>
@@ -68,7 +68,7 @@ SELECT A.*,B.*
       post_dt,
       update_dt
     FROM posts
-    WHERE post_seq = #{post_seq} 
+    WHERE post_seq = #{postSeq} 
   </select>
   
   
@@ -80,16 +80,16 @@ SELECT A.*,B.*
         post_contents,
         post_div
     ) VALUES (
-        #{post_seq}, 
-        #{user_id}, 
-        #{post_title}, 
-        #{post_contents},
-        #{post_div}
+        #{postSeq}, 
+        #{userId}, 
+        #{postTitle}, 
+        #{postContents},
+        #{postDiv}
     )
   </insert>
   <delete id="delete" parameterType="post">
         DELETE FROM posts 
-        WHERE post_seq = #{post_seq} 
+        WHERE post_seq = #{postSeq} 
   </delete>
   
   
@@ -97,8 +97,8 @@ SELECT A.*,B.*
     <![CDATA[
     UPDATE posts
       SET read_cnt = NVL(read_cnt,0) + 1
-    WHERE post_seq = #{post_seq}
-    AND user_id <> #{user_id}
+    WHERE post_seq = #{postSeq}
+    AND user_id <> #{userId}
     ]]> 
   </update>
 

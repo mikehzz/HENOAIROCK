@@ -5,24 +5,24 @@
 
 	<!-- 로그인시 DB조회 -->
 	<select id="login" parameterType="member" resultType="member">
-		select * from member where user_id=#{user_id} and password=#{password}
+		select * from member where user_id=#{userId} and password=#{password}
 	</select>
   
   <!-- 회원가입 DB -->
   <insert id="save" parameterType="member">
         INSERT INTO MEMBER (user_id, profile_img, name, password, nickname, birth, member_dt)
-        VALUES (#{user_id}, '이미지 경로', #{name}, #{password},'새나라 어린이', #{birth}, SYSDATE)
+        VALUES (#{userId}, '이미지 경로', #{name}, #{password},'새나라 어린이', #{birth}, SYSDATE)
   </insert>
   
   <!-- 아이디 중복 체크 여부 -->
   <select id = "idChk" parameterType="String" resultType="int">
     SELECT COUNT(*) FROM member
-    WHERE user_id = #{user_id}
+    WHERE user_id = #{userId}
   </select>
   
   <!-- 비밀번호 변경 --> 
     <update id="find" parameterType="member">
-      UPDATE MEMBER SET PASSWORD = #{password} WHERE user_id = #{user_id} 
+      UPDATE MEMBER SET PASSWORD = #{password} WHERE user_id = #{userId} 
     </update>
   
 </mapper>

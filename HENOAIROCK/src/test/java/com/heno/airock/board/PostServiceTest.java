@@ -5,8 +5,6 @@ import static org.junit.Assert.assertNotNull;
 
 import java.sql.SQLException;
 
-import javax.crypto.AEADBadTagException;
-
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -61,14 +59,14 @@ public class PostServiceTest implements PcwkLoger{
 		
 		service.select(board01);
 		
-		board01.setUser_id(board01.getUser_id()+ "변경");
+		board01.setUserId(board01.getUserId()+ "변경");
 		service.selectOne(board01);
 		service.selectOne(board01);
 		service.selectOne(board01);
 		
 		PostVO vo = dao.selectOne(board01);
 		LOG.debug("│vo                          │"+vo);
-		assertEquals(3, vo.getRead_cnt());
+		assertEquals(3, vo.getReadCnt());
 		
 	}
 	

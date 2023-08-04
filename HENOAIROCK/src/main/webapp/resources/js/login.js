@@ -5,14 +5,14 @@ $('#fn_email').on("click",function() {
 				url : "/member/login",
 				dataType : "html",
 				data : {
-					user_id : $('#user_id').val(),
+					userId : $('#userId').val(),
 					password : $('#password').val()
 				},
 				success : function(data) {// 통신 성공
 					let paredJSON = JSON.parse(data)
 					if ("1" == paredJSON.msgId) {
 						alert(paredJSON.msgContents);
-						window.location.href = '/';
+						window.location.href = '/post';
 					} else if("2" == paredJSON.msgId){
 						alert(paredJSON.msgContents);
 						window.location.href = '/member/login';

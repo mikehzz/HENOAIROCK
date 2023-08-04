@@ -5,7 +5,7 @@
 <%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%       
 				PostVO vo = (PostVO)request.getAttribute("inVO");
-				String divValue = vo.getPost_div();
+				String divValue = vo.getPostDiv();
 				String title    = "자유게시판";//10:자유게시판, 20:공지사항
 				
 				if("20".equals(divValue)){
@@ -53,7 +53,7 @@
 
 </head>
 <body>
-${postList}
+${list}
 <div class="container">
   <!-- Content here -->
   <!-- 제목 -->
@@ -62,9 +62,9 @@ ${postList}
   </div>
   <!--// 제목 ------------------------------------------------------------------->
   <!-- 검색 form -->
-  <form action="/post" method="get" name="boardFrm">
+  <form action="/post" name="boardFrm">
     <input type="hidden" name="pageNo" id="pageNo">
-    <input type="hidden" name="div"    id="div" value='${inVO.getPost_div()}'>
+    <input type="hidden" name="div"    id="div" value='${inVO.getPostDiv()}'>
     <div class="row g-1 d-flex justify-content-end ">
       <div class="col-auto">
         <select class="form-select" name="searchDiv" id="searchDiv"> <!-- code table -->
@@ -113,15 +113,15 @@ ${postList}
       <tbody>
        <c:choose>
          <%-- 조회 데이터가 있는 경우--%>
-         <c:when test="${not empty postList }">
-            <c:forEach var="vo" items="${postList}">
+         <c:when test="${not empty list }">
+            <c:forEach var="vo" items="${list}">
               <tr>
                 <td class="text-center  col-sm-2  col-md-1  col-lg-1"><c:out value="${vo.num}"/></td>
-                <td class="text-left    col-sm-6  col-md-6  col-lg-7"><a href="#"><c:out value="${vo.post_title}"/></a></td>
-                <td class="text-center  col-sm-2  col-md-2  col-lg-2"><c:out value="${vo.user_id}"/></td>
-                <td class="text-center  col-sm-2  col-md-2  col-lg-1"><c:out value="${vo.update_dt}"/></td>
-                <td class="text-end     col-sm-0  col-md-1  col-lg-1"><c:out value="${vo.read_cnt}"/></td>
-                <td style="display:none;"><c:out value="${vo.post_seq}"/></td>
+                <td class="text-left    col-sm-6  col-md-6  col-lg-7"><a href="#"><c:out value="${vo.postTitle}"/></a></td>
+                <td class="text-center  col-sm-2  col-md-2  col-lg-2"><c:out value="${vo.userId}"/></td>
+                <td class="text-center  col-sm-2  col-md-2  col-lg-1"><c:out value="${vo.updateDt}"/></td>
+                <td class="text-end     col-sm-0  col-md-1  col-lg-1"><c:out value="${vo.readCnt}"/></td>
+                <td style="display:none;"><c:out value="${vo.postSeq}"/></td>
               </tr>            
             </c:forEach>
          </c:when>
