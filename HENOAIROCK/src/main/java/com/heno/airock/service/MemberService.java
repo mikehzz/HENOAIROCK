@@ -22,7 +22,7 @@ public class MemberService {
             return false;
         }
     }
-    
+     
 	public boolean login(MemberDTO memberDTO) {
 		MemberDTO loginMember = memberRepository.login(memberDTO);
 		if(loginMember != null) {
