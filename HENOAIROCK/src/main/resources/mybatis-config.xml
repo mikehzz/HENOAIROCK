@@ -18,6 +18,8 @@
      alias="code"/>
      <typeAlias type="com.heno.airock.dto.MyPlayListVO"
     alias="MyPlayList"/>
+     <typeAlias type="com.heno.airock.dto.CommentVO"
+     alias="comment"/>
 	</typeAliases>
 	
 </configuration>
