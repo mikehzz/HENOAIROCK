@@ -16,6 +16,10 @@ public class MemberRepository {
 		this.sql = sql;
 	}
 	
+    public MemberDTO adminLogin(MemberDTO memberDTO) {
+        return sql.selectOne("Member.adminLogin", memberDTO);
+    }
+	
 	public MemberDTO login(MemberDTO memberDTO) {
     	return sql.selectOne("Member.login", memberDTO);
     }

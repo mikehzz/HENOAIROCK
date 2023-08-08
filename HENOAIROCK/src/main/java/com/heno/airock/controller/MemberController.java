@@ -31,6 +31,42 @@ public class MemberController implements PcwkLoger {
 		this.memberService = memberService;
 	}
 	
+    // Administrator login page
+    @GetMapping("/admin/login")
+    public String adminLoginForm() {
+        return "/member/admin_login";
+    }
+    
+    // Administrator login
+    @PostMapping("/admin/login")
+    @ResponseBody
+    public String adminLogin(@ModelAttribute MemberDTO adminDTO, HttpSession session) {
+        String jsonString = "";
+        boolean loginResult = memberService.login(adminDTO);
+        MessageDTO message = new MessageDTO();
+        if (loginResult && isAdmin(adminDTO)) {
+            session.setAttribute("admin", adminDTO);
+            message.setMsgId("1");
+            message.setMsgContents(adminDTO.getUserId() + "님 환영합니다! (관리자)");
+            LOG.debug("└session┘"+ session.getAttribute("admin"));
+            jsonString = new Gson().toJson(message);
+            return jsonString;
+        } else {
+            message.setMsgId("2");
+            message.setMsgContents("관리자 아이디 또는 비밀번호를 확인해주세요.");
+            jsonString = new Gson().toJson(message);
+            return jsonString;
+        }
+    }
+    
+    // Check if the user is an administrator
+    private boolean isAdmin(MemberDTO memberDTO) {
+        // Add your logic here to determine if the user is an administrator
+        // For example, you might check a role or privilege in the memberDTO
+        return memberDTO.isAdmin();
+    }
+
+	
 	@GetMapping("/login")
 	public String loginForm() {
 		return "/member/login";

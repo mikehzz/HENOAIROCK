@@ -84,6 +84,13 @@ public class MemberDTO {
 		return "MemberDTO [userId=" + userId + ", password=" + password + ", name=" + name + ", nickname=" + nickname
 				+ ", memberDt=" + memberDt + ", birth=" + birth + ", profileImg=" + profileImg + "]";
 	}
+
+    // 사용자가 관리자인지 확인하는 메소드
+    public boolean isAdmin() {
+        // 예: 특정 조건을 만족하는 경우에만 관리자로 간주
+        // 예를 들어, 사용자의 아이디가 "admin"인 경우에만 관리자로 간주
+        return "어드민".equalsIgnoreCase(userId);
+    }
 	
 	
 	

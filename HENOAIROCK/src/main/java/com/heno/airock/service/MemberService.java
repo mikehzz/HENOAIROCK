@@ -14,6 +14,15 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
     
+    public boolean adminLogin(MemberDTO memberDTO) {
+        MemberDTO adminMember = memberRepository.adminLogin(memberDTO);
+        if (adminMember != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
 	public boolean login(MemberDTO memberDTO) {
 		MemberDTO loginMember = memberRepository.login(memberDTO);
 		if(loginMember != null) {
