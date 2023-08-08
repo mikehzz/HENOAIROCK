@@ -116,13 +116,12 @@
         //ajax로 비동기 통신 
         $.ajax({
             type: "POST",
-            url:"/ehr/board/doUpdate.do",
+            url:"/post/update",
             asyn:"true",
             dataType:"html",
             data:{
               postTitle: $("#title").val(),
               postContents: $("#contents").val(),
-              postDiv: $("#div").val(),   
               userId: '${sessionScope.user.userId}',
               postSeq: $("#seq").val()  
             },
@@ -158,7 +157,7 @@
           
           $.ajax({
               type: "GET",
-              url:"/ehr/board/doDelete.do",
+              url:"/post/delete",
               asyn:"true",
               dataType:"html",
               data:{
@@ -184,10 +183,40 @@
           });
           
       });//--doDelete-----------------------------------------------------------
-  
-  
+      
+      // 추천하기
+      $("#doRecommend").on("click",function(){
+    	  console.log("doRecommend");  
+    	  $.ajax({
+              type: "GET",
+              url:"/post/recommend",
+              asyn:"true",
+              dataType:"html",
+              data:{
+                postDiv: $("#div").val(),
+                postSeq: $("#seq").val()  
+              },
+              success:function(data){//통신 성공
+                  console.log("success data:"+data);
+                  //성공, 실패
+                  //성공->board_list.jsp로 이동
+                  let parsedJson = JSON.parse(data);
+                  if("1" == parsedJson.msgId){
+                    alert(parsedJson.msgContents);
+                    moveToListView();
+                  }else{
+                    alert(parsedJson.msgContents);
+                  }
+                  
+              },
+              error:function(data){//실패시 처리
+                 console.log("error:"+data);
+              }
+          });
+      });
+      // 추천하기 끝
       function moveToListView(){
-        window.location.href ="${CP}/board/boardView.do?div="+$("#div").val();
+        window.location.href ="/post?div="+$("#div").val();
       }
       
   
@@ -200,16 +229,10 @@
       $("#doSave").on("click",function(){
           console.log("doSave");
           
-          //필수 값: title, contents
-          
-          //JS
-          //document.폼이름.input name.value
           let frmTitle = document.reg_frm.title.value;
           console.log("frmTitle:"+frmTitle);
           
-          //input id값으로 값 가지고 오기
-          //let sTitle = document.querySelector("#title").value;
-          
+ 
           //class로 선택
           let sTitle = document.querySelector(".title_cls").value;
           //class값으로 값 가지고 오기
@@ -217,12 +240,6 @@
           
           console.log("sTitle:"+sTitle);
           
-          //jquery
-/*          if(eUtil.ISEmpty($("#title").val()) == true){
-              alert("제목을 입력 하세요.");
-              $("#title").focus();
-              return;
-          } */
           
           if(eUtil.ISEmpty($("#regId").val()) == true){
               alert("등록자를 입력 하세요.");
@@ -245,7 +262,7 @@
           //ajax
             $.ajax({
                 type: "POST",
-                url:"/ehr/board/doSave.do",
+                url:"/post/save",
                 asyn:"true",
                 dataType:"html",
                 data:{

@@ -33,30 +33,30 @@ public class MemberController implements PcwkLoger {
 	
 	@GetMapping("/login")
 	public String loginForm() {
-		return "login";
+		return "/member/login";
 	}
 	
 	// 이용약관 동의 페이지
 	@GetMapping("/agree")
 	public String agreeForm() {
-		return "agree";
+		return "/member/agree";
 	}
 
 	// 회원 가입 페이지 이동
 	@GetMapping("/register")
 	public String saveForm() {
-		return "register";
+		return "/member/register";
 	}
 
 	// 비밀번호변경 페이지 이동
 	@GetMapping("/passwd")
 	public String findForm() {
-		return "passwd";
+		return "/member/passwd";
 	}
 	
 	@GetMapping("/delete")
 	public String delete() {
-		return "delete";
+		return "/member/delete";
 	}
 	
 	// 회원가입 이메일 인증
@@ -79,9 +79,9 @@ public class MemberController implements PcwkLoger {
 		int saveResult = memberService.find(memberDTO);
 		System.out.println("saveResult" + saveResult);
 		if (saveResult > 0) {
-			return "login";
+			return "/member/login";
 		} else {
-			return "save";
+			return "/member/save";
 		}
 	}
 	

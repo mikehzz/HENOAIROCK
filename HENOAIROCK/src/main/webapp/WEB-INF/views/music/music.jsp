@@ -6,11 +6,7 @@
 <%       
 				MusicVO vo = (MusicVO)request.getAttribute("inVO");
 				String divValue = vo.getFeeling();
-				String title    = "자유게시판";//10:자유게시판, 20:공지사항
-				
-				if("20".equals(divValue)){
-				   title = "공지사항";
-				}
+				String title    = "음악검색";
 				
 				request.setAttribute("title", title);
 				
@@ -21,14 +17,14 @@
 				int totalCnt    =  0;
 				String searchWord = "";
 				String searchDiv  = "";
-				  
-				if(null != vo){
-				     pageSize   = vo.getPageSize();
-				     pageNo     = vo.getPageNo();
-				     searchDiv  = vo.getSearchDiv();
-				     searchWord = vo.getSearchWord();
-				}
 				
+				if(null != vo){
+             pageSize   = vo.getPageSize();
+             pageNo     = vo.getPageNo();
+             searchDiv  = vo.getSearchDiv();
+             searchWord = vo.getSearchWord();
+        }
+				  
 				if(null !=  request.getAttribute("totalCnt")){
 				     totalCnt = Integer.parseInt(request.getAttribute("totalCnt").toString());
 				}
@@ -48,7 +44,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script src="${CP}/resources/js/jquery-3.7.0.js"></script>
 <script src="${CP}/resources/js/util.js"></script>
-
+<link rel="stylesheet" type="text/css" href="/resources/css/intro.css">
 <title>${title}</title>
 
 </head>
@@ -60,12 +56,43 @@
   <div class="page-header">
     <h2><c:out value='${title}' /></h2>
   </div>
+  <hr class="my-2">
+  <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <!-- New Chat Button -->
+            <button class="new-chat-btn" onclick="openNewChat()">New Chat</button>
+            <h2>GPT</h2>
+            <!-- Close Sidebar Button -->
+            <!-- <button class="close-btn" onclick="closeSidebar()">Close Sidebar</button> -->
+        </div>
+        <ul>
+            <li><a href="#">홈</a></li>
+            <li><a href="/mypage">마이페이지</a></li>
+            <li><a href="/post">게시판</a></li>
+            <li><a href="#">설정&#128540;</a></li>
+        </ul>
+
+    </aside>
+  
+  
+  
   <!--// 제목 ------------------------------------------------------------------->
   <!-- 검색 form -->
+  <div class="row g-1 d-flex justify-content-end ">
+    <div class="col-sm" onclick="location.href='music?genre=발라드';">발라드</div>
+    <div class="col-sm" onclick="location.href='music?genre=댄스';">댄스</div>
+    <div class="col-sm" onclick="location.href='music?genre=랩/힙합';">랩/힙합</div>
+    <div class="col-sm" onclick="location.href='music?genre=Soul';">R&B/Soul</div>
+    <div class="col-sm" onclick="location.href='music?genre=인디음악';">인디음악</div>
+    <div class="col-sm" onclick="location.href='music?genre=록/메탈';">록/메탈</div>
+    <div class="col-sm" onclick="location.href='music?genre=트로트';">트로트</div>
+    <div class="col-sm" onclick="location.href='music?genre=포크/블루스';">포크/블루스</div>
+  </div>
+  <hr class="my-2">
   <form action="/music" method="get" name="boardFrm">
     <input type="hidden" name="pageNo" id="pageNo">
-    <input type="hidden" name="div"    id="div" value='${inVO.getMusicId()}'>
-    <div class="row g-1 d-flex justify-content-end ">
+    <div class="row g-1 d-flex justify-content-left">
       <div class="col-auto">
         <select class="form-select" name="searchDiv" id="searchDiv"> <!-- code table -->
           <option value="">전체</option>
@@ -75,40 +102,28 @@
             </option>
           </c:forEach>  
         </select>
-      </div>  
-      <div class="col-auto">
+      </div>
+      
+      <div class="col-sm">
         <input type="text" name="searchWord" id="searchWord" value="<c:out value='${inVO.searchWord }'/>" placeholder="검색어를 입력 하세요" class="form-control">
       </div>
       <div class="col-auto">  
-        <select class="form-select" name="pageSize" id="pageSize">
-          <c:forEach var="vo" items="${pageSizeList }">
-            <option <c:if test="${vo.code == inVO.pageSize }">selected</c:if> value="<c:out value='${vo.code }'/>">
-               <c:out value='${vo.codeNm }'/>
-            </option>
-          </c:forEach>
-        </select>
-      </div>  
-      <div class="col-auto">  
-        <a href="#" class="btn btn-primary" id="doRetrieve" >조회</a>
-        <a href="#" class="btn btn-primary" onclick="doMoveToReg();" >등록</a>  
+        <a href="#" class="btn btn-primary" id="doRetrieve">검색</a>  
       </div>      
     </div>  
   </form>
   <div id="dyContainer">
-  
   </div>
-
-
+  <hr class="my-2">
    <table id="boardTable" class="table table-striped table-hover table-bordered  thead-dark thead-inverse">
       <thead>
         <tr  class="table-primary" >
-           <th class="text-center">번호</th>            
+          <th class="text-center">번호</th>  
            <th class="text-center">제목</th>
            <th class="text-center">아티스트</th>  
            <th class="text-center">앨범</th>
            <th class="text-center">장르</th> 
            <th class="text-center">감정</th>
-           <th class="text-center">유튜브 링크</th>
            <th style="display:none;">SEQ</th>    
         </tr>
       </thead>
@@ -118,13 +133,12 @@
          <c:when test="${not empty musicList }">
             <c:forEach var="vo" items="${musicList}">
               <tr>
-                <td class="text-center  col-sm-2  col-md-1  col-lg-1"><c:out value="${vo.num}"/></td>
-                <td class="text-left    col-sm-6  col-md-6  col-lg-7"><a href="#"><c:out value="${vo.title}"/></a></td>
-                <td class="text-center  col-sm-2  col-md-2  col-lg-2"><c:out value="${vo.artist}"/></td>
-                <td class="text-center  col-sm-2  col-md-2  col-lg-1"><c:out value="${vo.album}"/></td>
-                <td class="text-center  col-sm-2  col-md-2  col-lg-1"><c:out value="${vo.genre}"/></td>
-                <td class="text-end     col-sm-0  col-md-1  col-lg-1"><c:out value="${vo.feeling}"/></td>
-                <td class="text-end     col-sm-0  col-md-1  col-lg-1"><c:out value="${vo.ytLink}"/></td>
+                <td class="text-center    col-sm-0  col-md-0  col-lg-0"><img src="<c:out value="${vo.albumPath}"/>" width="60px" height="60px"></td>
+                <td class="text-center    col-sm-4  col-md-4  col-lg-4"><a href="#"><c:out value="${vo.title}"/></a></td>
+                <td class="text-center  col-sm-1  col-md-1  col-lg-1"><c:out value="${vo.artist}"/></td>
+                <td class="text-center  col-sm-4  col-md-4  col-lg-4"><c:out value="${vo.album}"/></td>
+                <td class="text-center col-sm-1  col-md-1 col-lg-1"><c:out value="${vo.genre}"/></td>
+                <td class="text-center     col-sm-1  col-md-1  col-lg-1"><c:out value="${vo.feeling}"/></td>
                 <td style="display:none;"><c:out value="${vo.musicId}"/></td>
               </tr>            
             </c:forEach>
@@ -144,9 +158,10 @@
       <%=StringUtil.renderPaging(totalCnt, pageNo, pageSize, bottomCount, cPath+"/music", "select") %>
     </div>
     <script src="/resources/js/music.js"></script>
-</div> 
+</div>
+
 <script>
-   function doRetrieve(url, pageNo){
+   function select(url, pageNo){
      console.log("url:"+url);
      console.log("pageNo:"+pageNo);
      
@@ -163,29 +178,13 @@
      console.log("#boardTable>tbody");
      let tdArray = $(this).children();
      console.log('tdArray:'+tdArray);
-     let seq = tdArray.eq(5).text();
-     console.log('seq:'+seq);
+     let musicId = tdArray.eq(6).text();
+     console.log('musicId:'+musicId);
      
-     if( confirm("상세 조회 하시겠어요?") == false ) return;
-     
-     //div,seq
-     //http://localhost:8080/ehr/board/doSelectOne.do?div=10&seq=393
-     window.location.href = "${CP}/post/select?div="+$("#div").val()+"&seq="+seq;
+     if( confirm("리스트에 추가하시겠어요?") == false ) return;
      
    });
-
-   function doMoveToReg(){
-       console.log("doMoveToReg");
-       let frm = document.boardFrm;
-       //$("#pageNo").val(1); //jquery
-        console.log("frm.div.value:"+frm.div.value);
-       frm.pageNo.value=1;
-       frm.action = "${CP}/music/select";
-       frm.submit();//controller call   
-       
-   }
-   
-   
+ 
    function doRetrieveCall(pageNo){
        let frm = document.boardFrm;
        //$("#pageNo").val(1); //jquery

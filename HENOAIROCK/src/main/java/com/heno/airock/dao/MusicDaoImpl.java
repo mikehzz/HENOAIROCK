@@ -39,7 +39,15 @@ public class MusicDaoImpl implements MusicDao {
 	public List<MusicVO> select(MusicVO inVO) throws SQLException {
 		return sqlSessionTemplate.selectList("Music.doRetrieve", inVO);
 	}
+
+	@Override
+	public List<MusicVO> selectRank(MusicVO inVO) throws SQLException {
+		return sqlSessionTemplate.selectList("Music.rank", inVO);
+	}
 	
-	
+	@Override
+	public List<MusicVO> selectGenre(MusicVO inVO) throws SQLException {
+		return sqlSessionTemplate.selectList("Music.genre", inVO);
+	}
 
 }

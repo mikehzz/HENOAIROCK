@@ -14,7 +14,7 @@ public class PostServiceImpl implements PostService{
 	
 	@Autowired
 	PostDao dao;
-
+	
 	
 	@Override
 	public int save(PostVO inVO) throws SQLException {

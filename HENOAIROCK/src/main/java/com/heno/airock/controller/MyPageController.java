@@ -10,7 +10,7 @@ public class MyPageController {
 	
 	@GetMapping("")
 	public String main() {
-		return "mypage";
+		return "/member/mypage";
 	}
 	
 	

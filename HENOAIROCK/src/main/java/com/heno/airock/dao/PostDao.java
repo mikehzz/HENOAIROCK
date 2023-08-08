@@ -8,5 +8,5 @@ import com.heno.airock.dto.PostVO;
 public interface PostDao extends WorkDiv<PostVO> {
 	
 	public int updateReadCnt (PostVO inVO) throws SQLException;
-
+	
 }

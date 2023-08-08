@@ -22,7 +22,6 @@
                TT1.post_title,
                TT1.post_div,
                TT1.read_cnt,
-               TT1.like_cnt,
                TT1.post_contents,
                DECODE( TO_CHAR(TT1.post_dt,'YYYYMMDD'),TO_CHAR(sysdate,'YYYYMMDD')
                       ,TO_CHAR(TT1.post_dt,'HH24:MI')
@@ -63,7 +62,6 @@
       post_title,
       post_contents,
       read_cnt,
-      like_cnt,
       post_div,
       post_dt,
       update_dt
@@ -71,8 +69,20 @@
     WHERE post_seq = #{postSeq}
   </select>
   
+  <update id="update" parameterType="post">
+    UPDATE posts
+    SET post_title = #{postTitle},
+        post_contents = #{postContents},
+        update_dt = SYSDATE,
+        user_id = #{userId}
+    WHERE post_seq = #{postSeq}
+  </update>
+  
   
   <insert id='save' parameterType="post">
+  <selectKey keyProperty="postSeq" resultType="string" order="BEFORE">
+         SELECT POST_SEQ.NEXTVAL FROM DUAL
+  </selectKey>
    INSERT INTO posts (
         post_seq,
         user_id,
@@ -84,7 +94,7 @@
         #{userId}, 
         #{postTitle}, 
         #{postContents},
-        #{postDiv}
+        10
     )
   </insert>
   <delete id="delete" parameterType="post">
@@ -101,5 +111,6 @@
     AND user_id <> #{userId}
     ]]> 
   </update>
+  
 
 </mapper>

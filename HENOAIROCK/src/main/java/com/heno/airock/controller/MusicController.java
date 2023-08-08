@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.heno.airock.cmn.PcwkLoger;
 import com.heno.airock.dto.CodeVO;
@@ -33,15 +34,15 @@ public class MusicController implements PcwkLoger{
 
 	@GetMapping("/select")
 	public String select(@ModelAttribute PostVO inVO, Model model, HttpSession httpSession) throws SQLException {
-		String view = "";
+		String view = "/music/music";
 		
 		return view;
 	}
 	
-	
-	@GetMapping("")
-	public String select(MusicVO inVO, Model model) throws SQLException {
-		String viewPage = "music";
+	//음악 순위 게시판
+	@GetMapping("/music_rank")
+	public String music_rank(MusicVO inVO, Model model) throws SQLException {
+		String viewPage = "/music/music_rank";
 		// page번호
 		if (null != inVO && inVO.getPageNo() == 0) {
 			inVO.setPageNo(1);
@@ -50,6 +51,30 @@ public class MusicController implements PcwkLoger{
 		// pageSize
 		if (null != inVO && inVO.getPageSize() == 0) {
 			inVO.setPageSize(10);
+		}
+
+		List<MusicVO> musicList = this.musicService.selectRank(inVO);
+		
+		model.addAttribute("musicList", musicList);
+		model.addAttribute("inVO", inVO);
+		
+		return viewPage;
+		
+	}
+	
+	
+	@GetMapping("")
+	public String select(@RequestParam(value = "genre", 
+		    required = false) String genre, MusicVO inVO, Model model) throws SQLException {
+		String viewPage = "/music/music";
+		// page번호
+		if (null != inVO && inVO.getPageNo() == 0) {
+			inVO.setPageNo(1);
+		}
+
+		// pageSize
+		if (null != inVO && inVO.getPageSize() == 0) {
+			inVO.setPageSize(50);
 		}
 
 		// searchWord
@@ -61,17 +86,18 @@ public class MusicController implements PcwkLoger{
 		if (null != inVO && null == inVO.getSearchDiv()) {
 			inVO.setSearchDiv("");
 		}
+		
+		// genre
+		if (null != inVO && null != genre) {
+			inVO.setGenre(genre);
+		}
 		LOG.debug("inVO:" + inVO);
 		// 코드조회: 검색코드
 		CodeVO codeVO = new CodeVO();
-		codeVO.setCodeId("BOARD_SEARCH");
+		codeVO.setCodeId("MUSIC_SEARCH");
 		List<CodeVO> searchList = codeService.select(codeVO);
 		model.addAttribute("searchList", searchList);
 		
-		//코드조회: 페이지 사이즈
-		codeVO.setCodeId("CMN_PAGE_SIZE");
-		List<CodeVO> pageSizeList = codeService.select(codeVO);
-		model.addAttribute("pageSizeList", pageSizeList);
 		
 		List<MusicVO> musicList = this.musicService.select(inVO);
 		model.addAttribute("musicList", musicList);
@@ -86,4 +112,5 @@ public class MusicController implements PcwkLoger{
 		model.addAttribute("inVO", inVO);
 		return viewPage;
 	}
+
 }
