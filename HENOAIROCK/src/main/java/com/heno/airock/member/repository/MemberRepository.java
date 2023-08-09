@@ -1,5 +1,7 @@
 package com.heno.airock.member.repository;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -16,10 +18,6 @@ public class MemberRepository {
 		this.sql = sql;
 	}
 	
-    public MemberDTO adminLogin(MemberDTO memberDTO) {
-        return sql.selectOne("Member.adminLogin", memberDTO);
-    }
-	
 	public MemberDTO login(MemberDTO memberDTO) {
     	return sql.selectOne("Member.login", memberDTO);
     }
@@ -33,6 +31,20 @@ public class MemberRepository {
     }
     public int find(MemberDTO memberDTO) {
     	return sql.update("Member.find", memberDTO);
+    }
+    
+ // 어드민--------------------------------------------------
+    public MemberDTO adminLogin(MemberDTO memberDTO) {
+        return sql.selectOne("Member.adminLogin", memberDTO);
+    }
+    public void deleteUser(String userId) {
+        sql.update("Member.deleteUser", userId);
+    }
+    public MemberDTO getUserById(String userId) {
+        return sql.selectOne("Member.getUserById", userId);
+    }
+    public List<MemberDTO> getAllUsers() {
+        return sql.selectList("Member.getAllUsers");
     }
 	
 }
