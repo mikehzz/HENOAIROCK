@@ -10,7 +10,7 @@ public class MemberDTO extends DTO{
 	private String memberDt;
 	private String birth;
 	private String profileImg;
-	
+
 	public MemberDTO() {}
 
 	public MemberDTO(String userId, String password, String name, String nickname, String memberDt, String birth,
@@ -24,7 +24,7 @@ public class MemberDTO extends DTO{
 		this.birth = birth;
 		this.profileImg = profileImg;
 	}
-
+	
 	public String getUserId() {
 		return userId;
 	}

@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.heno.airock.cmn.PcwkLoger;
 import com.heno.airock.dto.CodeVO;
 import com.heno.airock.dto.MusicVO;
-import com.heno.airock.dto.PostVO;
 import com.heno.airock.service.CodeService;
 import com.heno.airock.service.MusicService;
 
@@ -32,11 +31,29 @@ public class MusicController implements PcwkLoger{
 
 	public MusicController() {}
 
-	@GetMapping("/select")
-	public String select(@ModelAttribute PostVO inVO, Model model, HttpSession httpSession) throws SQLException {
-		String view = "/music/music";
+	
+	@GetMapping("/music_select")
+	public String selectOne(@RequestParam(value="musicId") String musicId,
+	@ModelAttribute MusicVO inVO, Model model, HttpSession httpSession) throws SQLException {
+		String view = "/music/music_select";
 		
-		return view;
+		if(null !=inVO && null != musicId) {
+			inVO.setMusicId(musicId);
+			
+			LOG.debug("inVO:" + inVO);
+			
+			MusicVO musicDetail = musicService.selectOne(inVO);
+			
+			model.addAttribute("musicDetail", musicDetail);
+			model.addAttribute("inVO", inVO);
+			
+			return view;
+			
+		} else {
+			
+			return "/music/music";
+		}
+			
 	}
 	
 	//음악 순위 게시판

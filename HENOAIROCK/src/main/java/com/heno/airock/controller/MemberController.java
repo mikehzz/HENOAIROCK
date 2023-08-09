@@ -21,7 +21,7 @@ import com.heno.airock.service.MemberService;
 @Controller
 @RequestMapping("/member") // 공통 주소 처리
 public class MemberController implements PcwkLoger {
-	
+
 	@Autowired
 	MailSendService mailService;
 
@@ -30,48 +30,12 @@ public class MemberController implements PcwkLoger {
 	public MemberController(MemberService memberService) {
 		this.memberService = memberService;
 	}
-	
-    // Administrator login page
-    @GetMapping("/admin/login")
-    public String adminLoginForm() {
-        return "/member/admin_login";
-    }
-    
-    // Administrator login
-    @PostMapping("/admin/login")
-    @ResponseBody
-    public String adminLogin(@ModelAttribute MemberDTO adminDTO, HttpSession session) {
-        String jsonString = "";
-        boolean loginResult = memberService.login(adminDTO);
-        MessageDTO message = new MessageDTO();
-        if (loginResult && isAdmin(adminDTO)) {
-            session.setAttribute("admin", adminDTO);
-            message.setMsgId("1");
-            message.setMsgContents(adminDTO.getUserId() + "님 환영합니다! (관리자)");
-            LOG.debug("└session┘"+ session.getAttribute("admin"));
-            jsonString = new Gson().toJson(message);
-            return jsonString;
-        } else {
-            message.setMsgId("2");
-            message.setMsgContents("관리자 아이디 또는 비밀번호를 확인해주세요.");
-            jsonString = new Gson().toJson(message);
-            return jsonString;
-        }
-    }
-    
-    // Check if the user is an administrator
-    private boolean isAdmin(MemberDTO memberDTO) {
-        // Add your logic here to determine if the user is an administrator
-        // For example, you might check a role or privilege in the memberDTO
-        return memberDTO.isAdmin();
-    }
 
-	
 	@GetMapping("/login")
 	public String loginForm() {
 		return "/member/login";
 	}
-	
+
 	// 이용약관 동의 페이지
 	@GetMapping("/agree")
 	public String agreeForm() {
@@ -89,12 +53,12 @@ public class MemberController implements PcwkLoger {
 	public String findForm() {
 		return "/member/passwd";
 	}
-	
+
 	@GetMapping("/delete")
 	public String delete() {
 		return "/member/delete";
 	}
-	
+
 	// 회원가입 이메일 인증
 	@GetMapping("/**/mailCheck")
 	@ResponseBody
@@ -108,7 +72,7 @@ public class MemberController implements PcwkLoger {
 	public String findCheck(String email) {
 		return mailService.findEmail(email);
 	}
-	
+
 	// 비밀번호변경 페이지 에서 로그인 페이지로 이동
 	@PostMapping("/find")
 	public String find(@ModelAttribute MemberDTO memberDTO) {
@@ -120,7 +84,6 @@ public class MemberController implements PcwkLoger {
 			return "/member/save";
 		}
 	}
-	
 
 	// 로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -133,7 +96,7 @@ public class MemberController implements PcwkLoger {
 			session.setAttribute("user", memberDTO);
 			message.setMsgId("1");
 			message.setMsgContents(memberDTO.getUserId() + "님 환영합니다!");
-			LOG.debug("└session┘"+ session.getAttribute("user"));
+			LOG.debug("└session┘" + session.getAttribute("user"));
 			jsonString = new Gson().toJson(message);
 			return jsonString;
 		} else {
@@ -143,7 +106,7 @@ public class MemberController implements PcwkLoger {
 			return jsonString;
 		}
 	}
-	
+
 	// 회원가입 post
 	@PostMapping("/**/register")
 	public String postRegister(MemberDTO memberDTO) throws Exception {
@@ -159,7 +122,7 @@ public class MemberController implements PcwkLoger {
 		}
 		return "redirect:/";
 	}
-	
+
 	// 아이디 중복 체크
 	@GetMapping("/**/idChk")
 	@ResponseBody
@@ -167,5 +130,5 @@ public class MemberController implements PcwkLoger {
 		int result = memberService.idChk(memberDTO);
 		return result;
 	}
-	
+
 }

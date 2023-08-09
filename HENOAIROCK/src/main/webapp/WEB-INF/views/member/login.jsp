@@ -9,7 +9,7 @@
  <script src="/resources/js/jquery-3.7.0.js"></script>
 </head>
 <body>
-    <a href="/member/admin/login" class="background-link">
+    <a href="/admin/login" class="background-link">
         <span>??</span>
     </a>
 	<div id="con">

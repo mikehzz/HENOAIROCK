@@ -75,7 +75,8 @@
 
     </aside>
   
-  
+  <!-- 음악 상세 조회 -->
+
   
   <!--// 제목 ------------------------------------------------------------------->
   <!-- 검색 form -->
@@ -181,7 +182,7 @@
      let musicId = tdArray.eq(6).text();
      console.log('musicId:'+musicId);
      
-     if( confirm("리스트에 추가하시겠어요?") == false ) return;
+     window.open("music/music_select/?musicId="+musicId);
      
    });
  
