@@ -8,6 +8,6 @@ import com.heno.airock.dto.MyPlayListVO;
 
 public interface MyPlayListService extends WorkDiv<MyPlayListVO>{
 
-	public List<MyPlayListVO> showPlayList(MyPlayListVO inVO) throws SQLException;
+	public List<MyPlayListVO> showPlayLists(MyPlayListVO inVO) throws SQLException;
 	
 }

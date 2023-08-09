@@ -1,7 +1,7 @@
 package com.heno.airock.cmn;
 
 public class DTO {
-
+	
 	private int num;     //글번호
 	private int totalCnt;//총글수
 	

@@ -17,32 +17,32 @@ public class CommentDaoImpl implements CommentDao{
 
 	@Override
 	public int save(CommentVO inVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSessionTemplate.insert("Comment.save", inVO);
 	}
 
 	@Override
 	public int delete(CommentVO inVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSessionTemplate.delete("Comment.delete", inVO);
 	}
 
 	@Override
 	public int update(CommentVO inVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSessionTemplate.update("Comment.update", inVO);
 	}
 
 	@Override
 	public CommentVO selectOne(CommentVO inVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSessionTemplate.selectOne("Comment.selectOne", inVO);
 	}
 
 	@Override
 	public List<CommentVO> select(CommentVO inVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		LOG.debug("┌──────────────────────────────┐");
+		LOG.debug("│doRetrieve                    │");
+		LOG.debug("│inVO                          │"+inVO);
+		LOG.debug("│statement                     │ select");
+		LOG.debug("└──────────────────────────────┘");	
+		return sqlSessionTemplate.selectList("Comment.select", inVO);
 	}
 
 }

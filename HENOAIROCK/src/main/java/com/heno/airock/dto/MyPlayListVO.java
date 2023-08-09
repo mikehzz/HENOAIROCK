@@ -9,8 +9,17 @@ public class MyPlayListVO extends MemberDTO{
 	private String feeling;
 	private String album;
 	private String ytLink;
+	private int myListDiv;
 	
 	public MyPlayListVO() {}
+	
+	public int getMyListDiv() {
+		return myListDiv;
+	}
+
+	public void setMyListDiv(int myListDiv) {
+		this.myListDiv = myListDiv;
+	}
 
 	public String getTitle() {
 		return title;
@@ -53,7 +62,6 @@ public class MyPlayListVO extends MemberDTO{
 	}
 
 
-
     public void setUserId(String userId) {
         super.setUserId(userId);
     }
@@ -62,7 +70,22 @@ public class MyPlayListVO extends MemberDTO{
         return super.getUserId();
     }
 
+    public void setPageNo(int pageNo) {
+        super.setPageNo(pageNo);
+    }
 
+    public int getPageNo() {
+        return super.getPageNo();
+    }
+    
+    public void setPageSize(int pageSize) {
+        super.setPageSize(pageSize);
+    }
+
+    public int getPageSize() {
+        return super.getPageSize();
+    }   
+    
 	public String getYtLink() {
 		return ytLink;
 	}
@@ -74,7 +97,9 @@ public class MyPlayListVO extends MemberDTO{
 	@Override
 	public String toString() {
 		return "MyPlayListVO [title=" + title + ", artist=" + artist + ", albumImg=" + albumImg + ", feeling=" + feeling
-				+ ", album=" + album + ", ytLink=" + ytLink + ", toString()=" + super.toString() + "]";
+				+ ", album=" + album + ", ytLink=" + ytLink + ", myListDiv=" + myListDiv + ", toString()="
+				+ super.toString() + "]";
 	}
 
+	
 }

@@ -72,7 +72,7 @@ public class MyPlayListServiceTest implements PcwkLoger{
 		LOG.debug("┌───────────────────────────┐");
 		LOG.debug("│            showPlaylist   │");
 		LOG.debug("└───────────────────────────┘");
-		List<MyPlayListVO> list = service.showPlayList(myplaylistVO);
+		List<MyPlayListVO> list = service.showPlayLists(myplaylistVO);
 	    LOG.debug("List: " + list); // list 변수를 출력하여 확인
 	    for (MyPlayListVO item : list) {
 	        LOG.debug(item);
