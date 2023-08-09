@@ -1,9 +1,11 @@
 package com.heno.airock.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,19 +13,33 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.heno.airock.cmn.PcwkLoger;
+import com.heno.airock.cmn.StringUtil;
+import com.heno.airock.dto.CodeVO;
 import com.heno.airock.dto.MemberDTO;
 import com.heno.airock.dto.MessageDTO;
+import com.heno.airock.dto.PostVO;
+import com.heno.airock.service.CodeService;
 import com.heno.airock.service.MemberService;
+import com.heno.airock.service.PostService;
 
 @Controller
 @RequestMapping("/admin")
-public class AdminController {
-
+public class AdminController implements PcwkLoger{
+	
+	@Autowired
 	private final MemberService memberService;
+	
+	@Autowired
+	PostService postService;
+	
+	@Autowired
+	CodeService codeService;
 
 	public AdminController(MemberService memberService) {
 		this.memberService = memberService;
@@ -111,5 +127,85 @@ public class AdminController {
 		return modelAndView;
 	}
 
+	@RequestMapping(value="/post")
+	public String select(PostVO inVO, Model model) throws SQLException {
+		String viewPage = "/admin/admin_post";
+		// page번호
+		if (null != inVO && inVO.getPageNo() == 0) {
+			inVO.setPageNo(1);
+		}
+
+		// pageSize
+		if (null != inVO && inVO.getPageSize() == 0) {
+			inVO.setPageSize(10);
+		}
+
+		// searchWord
+		if (null != inVO && null == inVO.getSearchWord()) {
+			inVO.setSearchWord("");
+		}
+
+		// searchDiv
+		if (null != inVO && null == inVO.getSearchDiv()) {
+			inVO.setSearchDiv("");
+		}
+		
+		// postDiv
+		if (null != inVO && null == inVO.getPostDiv()) {
+			inVO.setPostDiv("10");
+		}
+		
+		LOG.debug("inVO:" + inVO);
+		// 코드조회: 검색코드
+		CodeVO codeVO = new CodeVO();
+		codeVO.setCodeId("BOARD_SEARCH");
+		List<CodeVO> searchList = codeService.select(codeVO);
+		model.addAttribute("searchList", searchList);
+		
+		//코드조회: 페이지 사이즈
+		codeVO.setCodeId("CMN_PAGE_SIZE");
+		List<CodeVO> pageSizeList = codeService.select(codeVO);
+		model.addAttribute("pageSizeList", pageSizeList);
+		
+		List<PostVO> list = postService.select(inVO);
+		LOG.debug("list:" + list);
+		model.addAttribute("list", list);
+		
+		//총글수
+		int totalCnt = 0;
+		if(null !=list && list.size() >0 ) {
+			totalCnt = list.get(0).getTotalCnt();
+		}
+		
+		model.addAttribute("totalCnt", totalCnt);
+		model.addAttribute("inVO", inVO);
+		return viewPage;
+	}
+	
+	@RequestMapping(value = "delete", method = RequestMethod.GET
+			, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String delete(PostVO inVO) throws SQLException {
+		String jsonString = "";
+		LOG.debug("┌──────────────────────────────┐");
+		LOG.debug("│doDelete                      │");
+		LOG.debug("│inVO                          │" + inVO);
+		LOG.debug("└──────────────────────────────┘");
+		
+		
+		int flag = postService.delete(inVO);
+		
+		String message = "";
+		if (1 == flag) {// 삭제 성공
+			message = "게시글이 삭제되었습니다";
+		} else {// 등록실패
+			message = inVO.getPostSeq() + " 삭제 실패";
+		}
+
+		jsonString = StringUtil.validMessageTOJson(flag + "", message);
+		LOG.debug("│jsonString                          │" + jsonString);
+		
+	    return 	jsonString;
+	}
 	// 여기에 다른 어드민 관리 기능의 핸들러들을 추가할 수 있습니다.
 }

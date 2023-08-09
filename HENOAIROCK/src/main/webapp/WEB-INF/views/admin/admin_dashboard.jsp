@@ -24,6 +24,22 @@
         .card-title {
             font-size: 1.25rem;
         }
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: #f8f9fa;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #343a40;
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #495057;
+    }
     </style>
 </head>
 <body>
@@ -72,7 +88,7 @@
                 <div class="card-body text-center">
                     <h5 class="card-title"><i class="fas fa-newspaper"></i> 게시판 관리</h5>
                     <p class="card-text">게시판</p>
-                    <a href="/post" class="btn btn-primary" onclick="return checkAdminLogin()">Go to GaeSiPan</a>
+                    <a href="/admin/post" class="btn btn-primary" onclick="return checkAdminLogin()">Go to GaeSiPan</a>
                 </div>
             </div>
         </div>
