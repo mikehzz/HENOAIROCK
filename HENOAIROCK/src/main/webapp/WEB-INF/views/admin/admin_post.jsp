@@ -147,92 +147,61 @@
     </div>
     <script src="/resources/js/post.js"></script>
 </div> 
+
 <script>
-   function select(url, pageNo){
-     console.log("url:"+url);
-     console.log("pageNo:"+pageNo);
-     
-     let frm = document.boardFrm;
-     //$("#pageNo").val(1); //jquery
-     frm.action = url;
-     frm.pageNo.value=pageNo;//javascript
-     frm.submit();//controller call  
-   }
+   // 삭제 버튼 클릭 시 실행되는 함수
+   $(".delete-button").on("click", function () {
+       console.log("doDelete");
+       var seq = $(this).data("post-seq"); // 삭제할 게시물의 번호 가져오기
+       if (confirm('삭제 하시겠습니까') == false) return;
 
-
-/*    //table 목록 click시 seq값 찾기
-   $("#boardTable>tbody").on("click","tr",function(e){
-     console.log("#boardTable>tbody");
-     let tdArray = $(this).children();
-     console.log('tdArray:'+tdArray);
-     let seq = tdArray.eq(5).text();
-     console.log('seq:'+seq);
-     
-     if( confirm("상세 조회 하시겠어요?") == false ) return;
-     
-     //div,seq
-     //http://localhost:8080/ehr/board/doSelectOne.do?div=10&seq=393
-     window.location.href = "${CP}/post/select?div="+$("#div").val()+"&seq="+seq;
-     
-   }); */
-
-   
-   function doRetrieveCall(pageNo){
-       let frm = document.boardFrm;
-       //$("#pageNo").val(1); //jquery
-       frm.pageNo.value=pageNo;//javascript
-       frm.submit();//controller call    
-   }
-   
-   $("#searchWord").on("keypress",function(e){
-      console.log("searchWord");
-      if(13 == e.which){//enter keycode
-        e.preventDefault();
-        doRetrieveCall(1);
-      }
-   });
-   
-   //삭제
-   $(".delete-button").on("click",function(){
-       console.log(".delete-button");
-       console.log("seq:"+$("#seq").val());
-       if(confirm('삭제 하시겠습니까')==false)return;
-       
        $.ajax({
            type: "GET",
-           url:"/admin/delete",
-           asyn:"true",
-           dataType:"html",
-           data:{
-             postDiv: $("#div").val(),
-             postSeq: $("#seq").val()  
+           url: "/admin/delete", // 삭제를 처리하는 서버 URL
+           async: true, // 비동기 처리
+           dataType: "html", // 응답 데이터 형식은 HTML로 설정
+           data: {
+               postDiv: $("#div").val(), // 게시물 구분 값
+               postSeq: seq // 게시물 번호
            },
-           success:function(data){//통신 성공
-               console.log("success data:"+data);
-               //성공, 실패
-               //성공->board_list.jsp로 이동
-               let parsedJson = JSON.parse(data);
-               if("1" == parsedJson.msgId){
-                 alert(parsedJson.msgContents);
-                 moveToListView();
-               }else{
-                 alert(parsedJson.msgContents);
+           success: function (data) { // 서버 응답 성공 시 실행되는 함수
+               console.log("success data:", data);
+               var result = JSON.parse(data); // JSON 데이터로 변환
+               if ("1" === result.msgId) { // 성공적으로 삭제되었을 경우
+                   alert(result.msgContents);
+                   location.reload(); // 삭제 후 페이지 새로고침
+               } else {
+                   alert(result.msgContents);
                }
-               
            },
-           error:function(data){//실패시 처리
-              console.log("error:"+data);
+           error: function (data) { // 서버 응답 실패 시 실행되는 함수
+               console.log("error:", data);
            }
        });
-       
-   });//--doDelete-----------------------------------------------------------
-
-
-   $("#doRetrieve").on("click",function(){
-        console.log("doRetrieve");
-        doRetrieveCall(1);
    });
-   
+
+   // 조회 버튼 클릭 시 실행되는 함수
+   $("#doRetrieve").on("click", function () {
+       console.log("doRetrieve");
+       doRetrieveCall(1); // 페이지 번호 1로 조회 호출
+   });
+
+   // 검색어 입력란에서 Enter 키를 누를 때 실행되는 함수
+   $("#searchWord").on("keypress", function (e) {
+       console.log("searchWord");
+       if (13 === e.which) { // Enter 키의 키코드
+           e.preventDefault();
+           doRetrieveCall(1); // 페이지 번호 1로 조회 호출
+       }
+   });
+
+   // 게시물 목록 조회 함수
+   function doRetrieveCall(pageNo) {
+       var frm = document.boardFrm;
+       frm.pageNo.value = pageNo;
+       frm.submit();
+   }
+
 </script>
 </body>
 
