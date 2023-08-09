@@ -32,10 +32,10 @@ public class MusicController implements PcwkLoger{
 	public MusicController() {}
 
 	
-	@GetMapping("/music_select")
+	@GetMapping("/music_detail")
 	public String selectOne(@RequestParam(value="musicId") String musicId,
 	@ModelAttribute MusicVO inVO, Model model, HttpSession httpSession) throws SQLException {
-		String view = "/music/music_select";
+		String view = "/music/music_detail";
 		
 		if(null !=inVO && null != musicId) {
 			inVO.setMusicId(musicId);

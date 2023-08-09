@@ -75,8 +75,7 @@
 
     </aside>
   
-  <!-- 음악 상세 조회 -->
-
+  
   
   <!--// 제목 ------------------------------------------------------------------->
   <!-- 검색 form -->
@@ -174,17 +173,22 @@
    }
 
 
-   //table 목록 click시 seq값 찾기
-   $("#boardTable>tbody").on("click","tr",function(e){
-     console.log("#boardTable>tbody");
-     let tdArray = $(this).children();
-     console.log('tdArray:'+tdArray);
-     let musicId = tdArray.eq(6).text();
-     console.log('musicId:'+musicId);
-     
-     window.open("music/music_select/?musicId="+musicId);
-     
+   // table 목록 click시 seq값 찾기
+   $("#boardTable>tbody").on("click", "tr", function (e) {
+       console.log("#boardTable>tbody");
+       let tdArray = $(this).children();
+       console.log('tdArray:' + tdArray);
+       let musicId = tdArray.eq(6).text();
+       console.log('musicId:' + musicId);
+
+       // 팝업 창 열기
+       let popupUrl = "music/music_detail/?musicId=" + musicId;
+       let popupName = "MusicDetailPopup";
+       let popupOptions = "width=800,height=600,resizable=yes,scrollbars=yes";
+       window.open(popupUrl, popupName, popupOptions);
+       
    });
+   
  
    function doRetrieveCall(pageNo){
        let frm = document.boardFrm;
