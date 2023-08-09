@@ -11,10 +11,14 @@
   #{postSeq}, 
   #{userId}, 
   SYSDATE, 
-  #{cmtContents)
+  #{cmtContents}
   )
   </insert>
 
+<!-- 조회랑 삭제 쿼리 추가하면됨 -->
 
-
+  <delete id="delete" parameterType="comment">
+    DELETE FROM comments
+    WHERE post_Seq = #{postSeq}
+  </delete>
 </mapper>

@@ -17,32 +17,28 @@ public class CommentServiceImpl  implements CommentService{
 
 	@Override
 	public int save(CommentVO inVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		return commentDao.save(inVO);
 	}
 
 	@Override
 	public int delete(CommentVO inVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		return commentDao.delete(inVO);
 	}
 
 	@Override
 	public int update(CommentVO inVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		return commentDao.update(inVO);
 	}
 
 	@Override
 	public CommentVO selectOne(CommentVO inVO) throws SQLException {
-		// TODO Auto-generated method stub
+	
 		return null;
 	}
 
 	@Override
 	public List<CommentVO> select(CommentVO inVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return commentDao.select(inVO);
 	}
 
 }
