@@ -1,0 +1,227 @@
+/* 전체 페이지 스타일 */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f8f8;
+}
+
+
+/* 탭 메뉴 모음 */
+.tab_menu {
+    position: relative; /* 요소 자기 자신을 기준으로 배치 */
+    margin-top: 30px;
+    margin-bottom: 0px;
+  }
+  .tab_list {
+    list-style-type: none;
+    overflow: hidden; /* 부모요소의 범위를 넘어가는 자식요소의 부분은 보이지 않도록 처리 */
+  }
+  .tab_list li {
+    float: left; /* 왼쪽 정렬 */
+    margin-right: 12px; /* 탭끼리 간격 */
+    border: solid #f8f8f8;
+  }
+  /* 전체 탭 */
+  .tab_btn {
+	  text-decoration: none;
+	  padding: 50px;
+	  font-size: 20px;
+	  background-color: #f8f8f8;
+	  color: #333;
+	  font-family: 'NanumSquareNeoExtraBold';
+  }
+  /* 활성화된 탭 */
+  .tab_btn:hover {
+    padding: 50px;
+    background-color: #a3a7ad;
+    color: white;
+  }
+  .is_on .tab_btn {
+	  padding: 50px;
+	  background-color: #a3a7ad;
+	  color: white;
+}
+
+/* 플레이리스트 정보 스타일 */
+#musicList {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #707070;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.meta_info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.meta_info_img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 20px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.meta_info_text {
+  flex: 1;
+}
+
+h1 {
+  font-size: 28px;
+  margin: 0;
+  color: #b0abab;
+}
+
+.text96 {
+  font-size: 16px;
+  color: #888;
+  padding: 4px;
+}
+
+.tag_list {
+  margin-top: 10px;
+}
+
+.tag_list .text96 {
+  margin-right: 5px;
+  padding: 2px 6px;
+  background-color: #eee;
+  border-radius: 3px;
+  color: #333;
+  font-size: 12px;
+}
+
+/* 노래 목록 스타일 */
+.music_list {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.horizen_zzz {
+  width: calc(88% - 10px);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  background-color: #f8f8f8;
+  padding: 15px;
+  border-radius: 25px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+   z-index: 1; /* 요소를 앞으로 가져옵니다 */
+}
+
+.horizen_zzz::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 10px 10px 0;
+  border-style: solid;
+  border-color: transparent transparent transparent #f8f8f8;
+  z-index: -1; /* 배경 삼각형을 뒤로 보냅니다 */
+}
+
+
+.horizen_station {
+  width: calc(30% - 10px);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  background-color: #f8f8f8;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.horizen_station:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.fs {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.horizen_mmimg {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 15px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.horizen_img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 15px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.meta_info_title {
+  font-size: 17px;
+  margin: 0;
+  color: #333;
+}
+
+.meta_info_desc {
+  font-size: 12px;
+  color: #888;
+  display: block;
+  text-align: left;
+  padding: 3px;
+}
+
+/* 가로 선 스타일 */
+hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 20px 0;
+}
+
+
+
+/* 추가 스타일 */
+.tag_list .text96 {
+  margin: 2px 4px;
+  padding: 4px 8px;
+  background-color: #f2f2f2;
+  border-radius: 20px;
+  color: #666;
+  font-size: 12px;
+}
+
+.horizen_station .meta_info_title {
+  font-weight: bold;
+  color: #444;
+}
+
+/* 노래 목록을 2열로 표시하기 위한 추가 스타일 */
+@media (max-width: 768px) {
+  .music_list {
+    justify-content: flex-start;
+  }
+
+  .horizen_station {
+    width: 100%;
+  }
+}
+
+
