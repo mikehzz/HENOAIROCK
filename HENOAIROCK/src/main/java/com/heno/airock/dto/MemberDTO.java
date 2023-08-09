@@ -1,6 +1,8 @@
 package com.heno.airock.dto;
 
-public class MemberDTO {
+import com.heno.airock.cmn.DTO;
+
+public class MemberDTO extends DTO{
 	private String userId;
 	private String password;
 	private String name;

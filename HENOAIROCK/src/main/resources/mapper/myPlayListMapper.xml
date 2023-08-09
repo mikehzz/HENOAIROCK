@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="MyPlayList">
-
-  <!-- 마이플레이리스트 보여주기 --> 
-  <select id="select" parameterType="com.heno.airock.dto.MyPlayListVO" resultType="com.heno.airock.dto.MyPlayListVO">
-    SELECT  c.title,
-		        c.artist,
-		        c.album,
-		        c.feeling
-		FROM member a
-		JOIN myplaylist b ON a.user_id = b.user_id
-		JOIN music c ON b.music_id = c.music_id
-		WHERE feeling = #{feeling}
-		AND a.user_id = #{userId}
-  </select>
   
   <select id="selectList" parameterType="MyPlayList" resultType="MyPlayList">
 		SELECT  TT1.rnum as num,
@@ -31,10 +18,14 @@
 		        JOIN myplaylist b ON a.music_id = b.music_id
 		        WHERE user_id = #{userId}
 		        AND feeling = #{feeling}
+		        AND mylist_div = #{myListDiv}
 		        ORDER BY public_dt DESC
 		    )T1
- <![CDATA[ 		    WHERE ROWNUM <= 10  ]]>
+          <![CDATA[     WHERE ROWNUM <= #{pageSize} * (#{pageNo}-1)+#{pageSize}   ]]>
 		)TT1
- <![CDATA[ 		WHERE  rnum >=1          ]]>
+       <![CDATA[   WHERE rnum >=#{pageSize} * (#{pageNo}-1)+ 1 ]]>
   </select>
+ 
+  
+  
 </mapper>

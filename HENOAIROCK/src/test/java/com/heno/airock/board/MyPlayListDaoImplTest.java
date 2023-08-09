@@ -35,13 +35,6 @@ public class MyPlayListDaoImplTest {
 	
 	MyPlayListVO myplaylistVO;
 
-	MyPlayListVO myplaylistVO1;
-	MyPlayListVO myplaylistVO2;
-	MyPlayListVO myplaylistVO3;
-	MyPlayListVO myplaylistVO4;
-	MyPlayListVO myplaylistVO5;
-	
-	
 	@Before
 	public void setUp() throws Exception {
 		LOG.debug("*************************");
@@ -52,41 +45,14 @@ public class MyPlayListDaoImplTest {
 		
 		myplaylistVO = new MyPlayListVO();
 		myplaylistVO.setUserId("procss2696@gmail.com");
-		myplaylistVO.setFeeling("신남");
-		
-//		myplaylistVO1 = new MyPlayListVO("Super Shy","NewJeans","NewJeans 2nd EP 'Get Up'","신남");
-//		myplaylistVO2 = new MyPlayListVO("Seven (feat. Latto) - Clean Ver.","정국","Seven (feat. Latto) - Clean Ver.","신남");
-//		myplaylistVO3 = new MyPlayListVO("ETA","NewJeans","NewJeans 2nd EP 'Get Up'","신남");
-//		myplaylistVO4 = new MyPlayListVO("퀸카 (Queencard)","(여자)아이들","I feel","신남");
-//		myplaylistVO5 = new MyPlayListVO("I AM","IVE (아이브)","I've IVE","신남");
+		myplaylistVO.setFeeling("슬픔");
+		myplaylistVO.setPageNo(1);
+		myplaylistVO.setPageSize(10);
+		myplaylistVO.setMyListDiv(10);
 
 	}
 	
-	@Test
-	@Ignore
-	public void showPlayList() throws SQLException{
-		LOG.debug("=====================");
-		LOG.debug("=showPlayList()==");
-		LOG.debug("=====================");
-		
-		List<MyPlayListVO> list = dao.showPlayList(myplaylistVO);
-	    LOG.debug("List: " + list); // list 변수를 출력하여 확인
-	    for (MyPlayListVO item : list) {
-	        LOG.debug(item);
-	    }
 
-//		for (MyPlayListVO item : list) {
-//			isSameData(item,myplaylistVO1);
-//			isSameData(item,myplaylistVO2);
-//			isSameData(item,myplaylistVO3);
-//			isSameData(item,myplaylistVO4);
-//			isSameData(item,myplaylistVO5);
-//
-//		}
-		
-		assertEquals(list.size(), 5);
-
-	}
 	
 	@Test
 	public void showPlayLists() throws SQLException{
@@ -98,27 +64,12 @@ public class MyPlayListDaoImplTest {
 	    for (MyPlayListVO item : list) {
 	        LOG.debug(item);
 	    }
-
-//		for (MyPlayListVO item : list) {
-//			isSameData(item,myplaylistVO1);
-//			isSameData(item,myplaylistVO2);
-//			isSameData(item,myplaylistVO3);
-//			isSameData(item,myplaylistVO4);
-//			isSameData(item,myplaylistVO5);
-//
-//		}
-		
+	    
 		assertEquals(list.size(), 10);
-
+		
+		
 	}
-	
-	private void isSameData(MyPlayListVO outVO01,MyPlayListVO board01) {
-		assertEquals(outVO01.getTitle(), board01.getTitle());
-		assertEquals(outVO01.getArtist(), board01.getArtist());
-		assertEquals(outVO01.getAlbumImg(), board01.getAlbumImg());
-		assertEquals(outVO01.getFeeling(), board01.getFeeling());
-	}	
-	
+		
 	@After
 	public void tearDown() {
 		LOG.debug("--------------");

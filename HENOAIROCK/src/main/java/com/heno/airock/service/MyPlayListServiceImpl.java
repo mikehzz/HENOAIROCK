@@ -40,9 +40,9 @@ public class MyPlayListServiceImpl implements MyPlayListService {
 	}
 
 	@Override
-	public List<MyPlayListVO> showPlayList(MyPlayListVO inVO) throws SQLException {
+	public List<MyPlayListVO> showPlayLists(MyPlayListVO inVO) throws SQLException {
 		
-		return dao.showPlayList(inVO);
+		return dao.showPlayLists(inVO);
 	}
 
 	@Override
