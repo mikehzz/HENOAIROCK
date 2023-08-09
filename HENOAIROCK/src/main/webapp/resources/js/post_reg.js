@@ -1,5 +1,5 @@
 function moveToListView() {
-	window.location.href = "/post?div=" + $("#div").val();
+	window.location.href = "/admin/post?div=" + $("#div").val();
 }
 
 $("#moveToList").on("click", function() {

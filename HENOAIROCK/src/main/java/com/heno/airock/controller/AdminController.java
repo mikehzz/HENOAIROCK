@@ -3,6 +3,7 @@ package com.heno.airock.controller;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -207,5 +208,49 @@ public class AdminController implements PcwkLoger{
 		
 	    return 	jsonString;
 	}
-	// 여기에 다른 어드민 관리 기능의 핸들러들을 추가할 수 있습니다.
+	@GetMapping("/select")
+	public String select(@ModelAttribute PostVO inVO, Model model, HttpServletRequest reqeust, HttpSession session)
+			throws SQLException {
+		String view = "/admin/admin_post_mng";
+
+		LOG.debug("┌──────────────────────────────┐");
+		LOG.debug("│doSelectOne                   │");
+		LOG.debug("│inVO                          │" + inVO);
+		LOG.debug("└──────────────────────────────┘");
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("user");
+
+		if (memberDTO != null) {
+			LOG.debug("│userVO                          │" + memberDTO);
+			inVO.setPostSeq(reqeust.getParameter("seq"));
+			inVO.setUserId(memberDTO.getUserId());
+			PostVO outVO = postService.selectOne(inVO);
+
+			model.addAttribute("outVO", outVO);
+			model.addAttribute("inVO", inVO);
+
+			return view;
+		} else {
+			return "redirect:/admin/login";
+		}
+
+	}
+	@RequestMapping("admin_post_reg")
+	public String moveReg(PostVO inVO, Model model, HttpSession session) {
+		String view = "/admin/admin_post_reg";
+		LOG.debug("┌──────────────────────────────┐");
+		LOG.debug("│doMoveToReg                   │");
+		LOG.debug("│inVO                          │" + inVO);
+		LOG.debug("└──────────────────────────────┘");
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("user");
+		
+		if(memberDTO != null) {
+			LOG.debug("│userVO                          │" + memberDTO);
+			inVO.setUserId(memberDTO.getUserId());
+			model.addAttribute("inVO", inVO);
+
+			return view;
+		} else {
+			return "redirect:/admin/login";
+		}
+	}
 }
