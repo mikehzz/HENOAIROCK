@@ -2,7 +2,7 @@ package com.heno.airock.dto;
 
 import com.heno.airock.cmn.DTO;
 
-public class MusicVO extends DTO {
+public class MusicVO extends MemberDTO {
 	private String musicId	  ;
 	private String title	  ;
 	private String album	  ;
@@ -13,6 +13,7 @@ public class MusicVO extends DTO {
 	private String albumPath  ;
 	private String ytLink	  ;
 	private String publicDt   ;
+	private int likeSeq		  ;
 	
 	public MusicVO() {}
 
@@ -110,6 +111,14 @@ public class MusicVO extends DTO {
 	public void setPublicDt(String publicDt) {
 		this.publicDt = publicDt;
 	}
+	
+    public void setUserId(String userId) {
+        super.setUserId(userId);
+    }
+
+    public String getUserId() {
+        return super.getUserId();
+    }
 
 	@Override
 	public String toString() {

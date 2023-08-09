@@ -179,12 +179,15 @@
 </select>
 
 <insert id="addMusic" parameterType="music">
-  INSERT INTO MUSIC_LIKE_CNT (
+INSERT INTO music_like_cnt (
+    like_seq,
     music_id,
     user_id
-  ) VALUES (
-  #{musicId}, 
-  #{userId})
+) VALUES (
+    #{likeSeq},
+    #{musicId},
+    #{userId}
+)
 </insert>
 
 <update id="musicLikeCnt" parameterType="music">

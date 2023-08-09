@@ -19,17 +19,17 @@ public class MusicDaoImpl implements MusicDao {
 	public int save(MusicVO inVO) throws SQLException {
 		return sqlSessionTemplate.insert("Music.save", inVO);
 	}
-
+	
 	@Override
 	public int delete(MusicVO inVO) throws SQLException {
 		return sqlSessionTemplate.delete("Music.delete",inVO);
 	}
-
+	
 	@Override
 	public int update(MusicVO inVO) throws SQLException {
 		return sqlSessionTemplate.update("Music.update",inVO);
 	}
-
+	
 	@Override
 	public MusicVO selectOne(MusicVO inVO) throws SQLException {
 		return sqlSessionTemplate.selectOne("Music.selectOne", inVO);

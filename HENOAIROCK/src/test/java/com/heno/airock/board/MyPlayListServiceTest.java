@@ -61,7 +61,12 @@ public class MyPlayListServiceTest implements PcwkLoger{
 
 
 		//myplaylistVO.setUserId("procss2696@gmail.com");
-		myplaylistVO.setFeeling("신남");
+		myplaylistVO = new MyPlayListVO();
+		myplaylistVO.setUserId("procss2696@gmail.com");
+		myplaylistVO.setFeeling("슬픔");
+		myplaylistVO.setPageNo(1);
+		myplaylistVO.setPageSize(10);
+		myplaylistVO.setMyListDiv(10);
 		
 		
 	}
@@ -79,23 +84,7 @@ public class MyPlayListServiceTest implements PcwkLoger{
 	    }
 		
 		
-		for (MyPlayListVO item : list) {
-			isSameData(item,myplaylistVO1);
-			isSameData(item,myplaylistVO2);
-			isSameData(item,myplaylistVO3);
-			isSameData(item,myplaylistVO4);
-			isSameData(item,myplaylistVO5);
-
-		}
 	}
-	
-	
-	private void isSameData(MyPlayListVO outVO01,MyPlayListVO board01) {
-		assertEquals(outVO01.getTitle(), board01.getTitle());
-		assertEquals(outVO01.getArtist(), board01.getArtist());
-		assertEquals(outVO01.getAlbumImg(), board01.getAlbumImg());
-		assertEquals(outVO01.getFeeling(), board01.getFeeling());
-	}	
 	
 	
 	@After

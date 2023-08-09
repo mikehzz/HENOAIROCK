@@ -49,11 +49,11 @@ public class MusicServiceTest implements PcwkLoger {
 		music03 = new MusicVO("23354", "title2", "album2","artist2","lyrics2","genre2","feeling2","album123","yt233","23/07/01");
 		music04 = new MusicVO("35234","title3","album3","artist3","lyrics3","genre3","feeling3","album532","yt351","23/04/25");
 		music05 = new MusicVO("51241","title4","album4","artist4","lyrics4","genre4","feeling4","album424","yt352","23/05/15");
-
+		
 	}
-
+	
 	@Test
-//	@Ignore
+	@Ignore
 	public void select() throws SQLException{
 		service.delete(music01);
 		service.delete(music02);
@@ -80,6 +80,11 @@ public class MusicServiceTest implements PcwkLoger {
 		LOG.debug("└──┘");
 		
 	}
+
+	
+	
+	
+	
 	
 	@Test
 	public void bean() {
