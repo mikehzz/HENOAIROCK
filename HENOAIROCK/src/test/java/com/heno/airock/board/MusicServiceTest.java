@@ -44,11 +44,11 @@ public class MusicServiceTest implements PcwkLoger {
 		LOG.debug("│setUp()│");
 		LOG.debug("└───────┘");
 		
-		music01 = new MusicVO("21351", "title", "album", "artist", "lyrics", "genre", "feeling", "album213", "yt1235", "23/8/03");	
-		music02 = new MusicVO("22315", "title1", "album1","artist1", "lyrics1", "genre1", "feeling1","album124","yt344", "23/08/01");
-		music03 = new MusicVO("23354", "title2", "album2","artist2","lyrics2","genre2","feeling2","album123","yt233","23/07/01");
-		music04 = new MusicVO("35234","title3","album3","artist3","lyrics3","genre3","feeling3","album532","yt351","23/04/25");
-		music05 = new MusicVO("51241","title4","album4","artist4","lyrics4","genre4","feeling4","album424","yt352","23/05/15");
+		music01 = new MusicVO("21351", "title", "album", "artist", "lyrics", "genre", "feeling", "album213", "yt1235", "23/8/03", 0);	
+		music02 = new MusicVO("22315", "title1", "album1","artist1", "lyrics1", "genre1", "feeling1","album124","yt344", "23/08/01", 0);
+		music03 = new MusicVO("23354", "title2", "album2","artist2","lyrics2","genre2","feeling2","album123","yt233","23/07/01", 0);
+		music04 = new MusicVO("35234","title3","album3","artist3","lyrics3","genre3","feeling3","album532","yt351","23/04/25", 0);
+		music05 = new MusicVO("51241","title4","album4","artist4","lyrics4","genre4","feeling4","album424","yt352","23/05/15", 0);
 		
 	}
 	

@@ -13,12 +13,15 @@ public class MusicVO extends MemberDTO {
 	private String albumPath  ;
 	private String ytLink	  ;
 	private String publicDt   ;
+	private int likeCnt	  ;
 	private int likeSeq		  ;
 	
 	public MusicVO() {}
 
+	
+
 	public MusicVO(String musicId, String title, String album, String artist, String lyrics, String genre,
-			String feeling, String albumPath, String ytLink, String publicDt) {
+			String feeling, String albumPath, String ytLink, String publicDt, int likeCnt) {
 		super();
 		this.musicId = musicId;
 		this.title = title;
@@ -30,7 +33,10 @@ public class MusicVO extends MemberDTO {
 		this.albumPath = albumPath;
 		this.ytLink = ytLink;
 		this.publicDt = publicDt;
+		this.likeCnt = likeCnt;
 	}
+
+
 
 	public String getMusicId() {
 		return musicId;
@@ -119,12 +125,25 @@ public class MusicVO extends MemberDTO {
     public String getUserId() {
         return super.getUserId();
     }
+    
+	
+	public int getLikeCnt() {
+		return likeCnt;
+	}
+
+	public void setLikeCnt(int likeCnt) {
+		this.likeCnt = likeCnt;
+	}
+
+
 
 	@Override
 	public String toString() {
 		return "MusicVO [musicId=" + musicId + ", title=" + title + ", album=" + album + ", artist=" + artist
 				+ ", lyrics=" + lyrics + ", genre=" + genre + ", feeling=" + feeling + ", albumPath=" + albumPath
-				+ ", ytLink=" + ytLink + ", publicDt=" + publicDt + "]";
+				+ ", ytLink=" + ytLink + ", publicDt=" + publicDt + ", likeCnt=" + likeCnt 
+				+ "]";
 	}
+
 
 }

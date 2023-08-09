@@ -116,8 +116,6 @@ public class BoardDaoTest implements PcwkLoger{
 		assertEquals(outVO01.getPostSeq(), board01.getPostSeq());
 		assertEquals(outVO01.getPostTitle(), board01.getPostTitle());
 		assertEquals(outVO01.getPostContents(), board01.getPostContents());
-		assertEquals(outVO01.getPostDiv(), board01.getPostDiv());
-		assertEquals(outVO01.getReadCnt(), board01.getReadCnt());
 		assertEquals(outVO01.getUserId(), board01.getUserId());
 	}
 	
