@@ -12,7 +12,7 @@
 	<div class="meta_info">
 		<img class="meta_info_img" alt="" src="https://api1.indj.club/api/v3/channel/image/thumbnail/CHThumbnail_2022-06-23-15-08-35_51532.jpg">
 	<div class="meta_info_text absolute p-16">
-		<h1>혼술할때 들어봐요</h1>
+		<h1>나만의 좋아요 리스트</h1>
 		<span class="text96">13곡 · 01시간 01분</span>
 	<div class="tag_list">
 		<span class="text96"> #휴식 </span>
@@ -42,7 +42,8 @@
     </ul>
   </div>
 
-
+	<!-- 좋아요 목록 -->
+	<div id="tab1" class="cont_area cont_active">
 	<div class="music_list p-16">
 	<article class="horizen_station cursor">
 	<button class="fs">
@@ -172,7 +173,18 @@
    </button>
   </article>
   
-  <article class="horizen_station cursor">
+  
+  
+  
+  <!--  -----------------------------------중복-------------------------------------------------------------------------- -->
+  
+  <!-- 앨범 목록 -->
+  
+  
+  	<div id="tab2" class="cont_area">
+	<div class="music_list p-16">
+	
+	<article class="horizen_station cursor">
 	<button class="fs">
 		<img class="horizen_img station" src="https://api1.indj.club/api/v3/album/image/COVERS_90/10374783" alt="이미지" style="width: 80px;">
 	<div id="meta_info" class="ell">
@@ -181,8 +193,6 @@
 	</div>
    </button>
   </article>
-  
-  <!--  -----------------------------------------중복------------------------------------------------------- -->
   
   <article class="horizen_station cursor">
 	<button class="fs">
@@ -318,7 +328,8 @@
 	<div id="meta_info" class="ell">
 		<p class="meta_info_title ell">다시 난, 여기</p>
 	<span class="meta_info_desc ell">백예린 (Yerin Baek)</span>
-	</div>
+	</div> <!-- 좋아요 -->
+	</div> <!-- 앨범 -->
    </button>
   </article>
   
@@ -327,26 +338,24 @@
   
 <script>
 const tabList = document.querySelectorAll('.tab_menu .tab_list li');
-const contents = document.querySelectorAll('.tab_menu .cont_area .cont');
-let activeCont = ''; // 현재 활성화 된 컨텐츠 (기본: #tab1 활성화)
+const contents = document.querySelectorAll('.cont_area');
+
+// 초기에 첫 번째 탭 내용을 활성화
+contents[0].classList.add('cont_active');
 
 for (var i = 0; i < tabList.length; i++) {
   tabList[i].querySelector('.tab_btn').addEventListener('click', function(e) {
     e.preventDefault();
     for (var j = 0; j < tabList.length; j++) {
-      tabList[j].classList.remove('is_on'); // 나머지 버튼 클래스 제거
-      contents[j].style.display = 'none'; // 나머지 컨텐츠 display:none 처리
+      tabList[j].classList.remove('is_on');
+      contents[j].classList.remove('cont_active');
     }
 
-    // 버튼 관련 이벤트
     this.parentNode.classList.add('is_on');
-
-    // 버튼 클릭시 컨텐츠 전환
-    activeCont = this.getAttribute('href');
-    document.querySelector(activeCont).style.display = 'block';
+    const activeContId = this.getAttribute('href');
+    document.querySelector(activeContId).classList.add('cont_active');
   });
 }
-
-</script> 
+</script>
 </body>
 </html>
