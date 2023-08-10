@@ -2,23 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="comment">
 
- <insert id="saveCmt" parameterType="comment">
-  INSERT 
-  INTO COMMENTS 
-  VALUES 
-  ( 
-  #{cmtSeq}, 
-  #{postSeq}, 
-  #{userId}, 
-  SYSDATE, 
-  #{cmtContents}
-  )
-  </insert>
-
+<insert id="save" parameterType="comment">
+    <selectKey keyProperty="cmtSeq" resultType="string" order="BEFORE">
+        SELECT CMT_SEQ.NEXTVAL FROM DUAL
+    </selectKey>
+    INSERT INTO COMMENTS (
+       cmt_seq,
+       post_seq,
+       user_id,
+       cmt_dt,
+       cmt_contents
+    ) VALUES (
+       #{cmtSeq},
+       #{postSeq},
+       #{userId},
+       SYSDATE,
+       #{cmtContents}
+    )
+</insert>
 <!-- 조회랑 삭제 쿼리 추가하면됨 -->
 
   <delete id="delete" parameterType="comment">
     DELETE FROM comments
     WHERE post_Seq = #{postSeq}
   </delete>
+  
+ <!--  <select id="select" parameterType="comment" resultType="comment">
+      cmt_seq,
+		  post_seq,
+		  user_id,
+		  cmt_dt,
+		  cmt_contents
+			FROM comments
+			WHERE cmt_seq = #{cmtSeq}
+  </select>  -->
+  
 </mapper>
