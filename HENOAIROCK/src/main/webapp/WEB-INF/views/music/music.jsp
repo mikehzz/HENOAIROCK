@@ -4,32 +4,32 @@
     pageEncoding="UTF-8"%>
 <%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%       
-				MusicVO vo = (MusicVO)request.getAttribute("inVO");
-				String divValue = vo.getFeeling();
-				String title    = "음악검색";
-				
-				request.setAttribute("title", title);
-				
-				//paging
-				int bottomCount = 10;
-				int pageSize    = 10;
-				int pageNo      =  1;
-				int totalCnt    =  0;
-				String searchWord = "";
-				String searchDiv  = "";
-				
-				if(null != vo){
+        MusicVO vo = (MusicVO)request.getAttribute("inVO");
+        String divValue = vo.getFeeling();
+        String title    = "음악검색";
+        
+        request.setAttribute("title", title);
+        
+        //paging
+        int bottomCount = 10;
+        int pageSize    = 10;
+        int pageNo      =  1;
+        int totalCnt    =  0;
+        String searchWord = "";
+        String searchDiv  = "";
+        
+        if(null != vo){
              pageSize   = vo.getPageSize();
              pageNo     = vo.getPageNo();
              searchDiv  = vo.getSearchDiv();
              searchWord = vo.getSearchWord();
         }
-				  
-				if(null !=  request.getAttribute("totalCnt")){
-				     totalCnt = Integer.parseInt(request.getAttribute("totalCnt").toString());
-				}
-				
-				String cPath  = request.getContextPath();
+          
+        if(null !=  request.getAttribute("totalCnt")){
+             totalCnt = Integer.parseInt(request.getAttribute("totalCnt").toString());
+        }
+        
+        String cPath  = request.getContextPath();
          
 %>
 <c:set var="CP" value="${pageContext.request.contextPath }"/>  
@@ -57,25 +57,6 @@
     <h2><c:out value='${title}' /></h2>
   </div>
   <hr class="my-2">
-  <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <!-- New Chat Button -->
-            <button class="new-chat-btn" onclick="openNewChat()">New Chat</button>
-            <h2>GPT</h2>
-            <!-- Close Sidebar Button -->
-            <!-- <button class="close-btn" onclick="closeSidebar()">Close Sidebar</button> -->
-        </div>
-        <ul>
-            <li><a href="#">홈</a></li>
-            <li><a href="/mypage">마이페이지</a></li>
-            <li><a href="/post">게시판</a></li>
-            <li><a href="#">설정&#128540;</a></li>
-        </ul>
-
-    </aside>
-  
-  
   
   <!--// 제목 ------------------------------------------------------------------->
   <!-- 검색 form -->
@@ -124,6 +105,7 @@
            <th class="text-center">앨범</th>
            <th class="text-center">장르</th> 
            <th class="text-center">감정</th>
+           <th class="text-center">좋아요</th>
            <th style="display:none;">SEQ</th>    
         </tr>
       </thead>
@@ -138,6 +120,7 @@
                 <td class="text-center  col-sm-1  col-md-1  col-lg-1"><c:out value="${vo.artist}"/></td>
                 <td class="text-center  col-sm-4  col-md-4  col-lg-4"><c:out value="${vo.album}"/></td>
                 <td class="text-center col-sm-1  col-md-1 col-lg-1"><c:out value="${vo.genre}"/></td>
+                <td class="text-center     col-sm-1  col-md-1  col-lg-1"><c:out value="${vo.feeling}"/></td>
                 <td class="text-center     col-sm-1  col-md-1  col-lg-1"><c:out value="${vo.feeling}"/></td>
                 <td style="display:none;"><c:out value="${vo.musicId}"/></td>
               </tr>            
@@ -178,7 +161,7 @@
        console.log("#boardTable>tbody");
        let tdArray = $(this).children();
        console.log('tdArray:' + tdArray);
-       let musicId = tdArray.eq(6).text();
+       let musicId = tdArray.eq(7).text();
        console.log('musicId:' + musicId);
 
        // 팝업 창 열기

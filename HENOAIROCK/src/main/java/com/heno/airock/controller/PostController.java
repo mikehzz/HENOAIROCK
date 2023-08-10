@@ -40,7 +40,7 @@ public class PostController implements PcwkLoger {
 	@GetMapping("/select")
 	public String select(@ModelAttribute PostVO inVO, Model model, HttpServletRequest reqeust, HttpSession session)
 			throws SQLException {
-		String view = "/post/post_mng";
+		String view = "/post/post_detail";
 
 		LOG.debug("┌──────────────────────────────┐");
 		LOG.debug("│doSelectOne                   │");

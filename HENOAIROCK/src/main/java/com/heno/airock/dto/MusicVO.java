@@ -14,7 +14,6 @@ public class MusicVO extends MemberDTO {
 	private String ytLink	  ;
 	private String publicDt   ;
 	private int likeCnt	  ;
-	private int likeSeq		  ;
 	
 	public MusicVO() {}
 

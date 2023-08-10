@@ -15,37 +15,15 @@ public class MusicLikeCntRepository {
 		this.sql = sql;
 	}
 	
-	public MusicVO musicSaveHeart(MusicHeartDTO heartDTO) {
-		MusicVO muVO = new MusicVO();
-		heartDTO.setMusicId(muVO.getMusicId());
-		
-		//해당 게시물의 하트 +1
-		sql.update("MusicHeart.heart_up", heartDTO);
-		
-		// music_like_cnt 테이블에 추가
-		int result = sql.insert("MusicHeart.heart_save", heartDTO);
-		
-		if (result == 1) {
-			muVO = sql.selectOne("MusicHeart.heart_cnt", muVO);
-		}
-		
-		return muVO;
+	public int musicSaveHeart(MusicHeartDTO heartDTO) {
+		return sql.insert("MusicHeart.heart_save", heartDTO);
 	}
 	
-	public MusicVO musicRemoveHeart(MusicHeartDTO heartDTO) {
-		MusicVO muVO = new MusicVO();
-		heartDTO.setMusicId(muVO.getMusicId());
-		
-		//해당 게시물의 하트 +1
-		sql.update("MusicHeart.heart_down", heartDTO);
-		
-		// music_like_cnt 테이블에 추가
-		int result = sql.insert("MusicHeart.heart_remove", heartDTO);
-		
-		if (result == 1) {
-			muVO = sql.selectOne("MusicHeart.heart_cnt", muVO);
-		}
-		
-		return muVO;
+	public int musicRemoveHeart(MusicHeartDTO heartDTO) {
+		return sql.delete("MusicHeart.heart_remove", heartDTO);
+	}
+	
+	public int findLike(MusicHeartDTO heartDTO) {
+		return sql.selectOne("MusicHeart.findLike", heartDTO);
 	}
 }

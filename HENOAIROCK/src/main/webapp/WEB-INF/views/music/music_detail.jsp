@@ -40,35 +40,31 @@
 		    }
 		    
 		</style>
-		<script>
-		    function toggleLyrics() {
-		        var lyricsBox = document.getElementById("lyricsBox");
-		        if (lyricsBox.style.display === "none") {
-		            lyricsBox.style.display = "block";
-		        } else {
-		            lyricsBox.style.display = "none";
-		        }
-		    }
-		</script>
 </head>
 <body>
+    <input type="hidden" name="like" id="like" value='${like}'>
+    <input type="hidden" name="musicId" id="musicId" value="${musicDetail.musicId}">
+    <input type="hidden" name="userId" id="userId" value="${sessionScope.userId}">
+    
     <header class="text-center py-3">
         <a class="header-logo" href="#">HENOAIROCK</a>
     </header>
     <div class="container my-3">
-        <h2 class="border-bottom py-2">곡 정보</h2>
+        <h2 class="border-bottom py-2">곡 정보 </h2>
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
                     <img class="album-cover" src="${musicDetail.albumPath}" alt="앨범 커버">
                 </div>
             </div>
+            <input type="button" class="LikeBtn" id="LikeBtn" onclick="fn_like()">
             <div class="col-md-8">
                 <div class="song-details">
                     <p class="song-title">${musicDetail.title}</p>
                     <p class="song-album">${musicDetail.album}</p>
                     <p class="song-artist">${musicDetail.artist}</p>
                     <p class="song-genre">${musicDetail.genre}</p>
+                    <p class="song-likeCnt">${musicDetail.likeCnt}</p>
                <div class="song-youtube">
                   <iframe width="450" height="280" src="${musicDetail.ytLink}" frameborder="0" allowfullscreen></iframe>
                </div>
@@ -87,8 +83,7 @@
                 </div>
             </div>
         </div>
+      </div>
     </div>
+    <script src="${CP}/resources/js/music_detail.js"></script>
 </body>
-</html>
-
-</html>

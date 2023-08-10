@@ -88,13 +88,15 @@
         user_id,
         post_title,
         post_contents,
-        post_div
+        post_div,
+        post_dt
     ) VALUES (
         #{postSeq}, 
         #{userId}, 
         #{postTitle}, 
         #{postContents},
-        10
+        10,
+        SYSDATE
     )
   </insert>
   <delete id="delete" parameterType="post">
