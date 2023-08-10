@@ -48,7 +48,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script src="${CP}/resources/js/jquery-3.7.0.js"></script>
 <script src="${CP}/resources/js/util.js"></script>
-<link rel="stylesheet" type="text/css" href="/resources/css/intro.css">
 
 <title>${title}</title>
 
@@ -97,23 +96,6 @@
   <div id="dyContainer">
   
   </div>
-  <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <!-- New Chat Button -->
-            <button class="new-chat-btn" onclick="openNewChat()">New Chat</button>
-            <h2>GPT</h2>
-            <!-- Close Sidebar Button -->
-            <!-- <button class="close-btn" onclick="closeSidebar()">Close Sidebar</button> -->
-        </div>
-        <ul>
-            <li><a href="#">홈</a></li>
-            <li><a href="/mypage">마이페이지</a></li>
-            <li><a href="/post">게시판</a></li>
-            <li><a href="#">설정&#128540;</a></li>
-        </ul>
-
-    </aside>
 
    <table id="boardTable" class="table table-striped table-hover table-bordered  thead-dark thead-inverse">
       <thead>

@@ -17,22 +17,22 @@ public class CommentDaoImpl implements CommentDao{
 
 	@Override
 	public int save(CommentVO inVO) throws SQLException {
-		return sqlSessionTemplate.insert("Comment.save", inVO);
+		return sqlSessionTemplate.insert("comment.save", inVO);
 	}
 
 	@Override
 	public int delete(CommentVO inVO) throws SQLException {
-		return sqlSessionTemplate.delete("Comment.delete", inVO);
+		return sqlSessionTemplate.delete("comment.delete", inVO);
 	}
 
 	@Override
 	public int update(CommentVO inVO) throws SQLException {
-		return sqlSessionTemplate.update("Comment.update", inVO);
+		return sqlSessionTemplate.update("comment.update", inVO);
 	}
 
 	@Override
 	public CommentVO selectOne(CommentVO inVO) throws SQLException {
-		return sqlSessionTemplate.selectOne("Comment.selectOne", inVO);
+		return sqlSessionTemplate.selectOne("comment.selectOne", inVO);
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class CommentDaoImpl implements CommentDao{
 		LOG.debug("│inVO                          │"+inVO);
 		LOG.debug("│statement                     │ select");
 		LOG.debug("└──────────────────────────────┘");	
-		return sqlSessionTemplate.selectList("Comment.select", inVO);
+		return sqlSessionTemplate.selectList("comment.select", inVO);
 	}
 
 }

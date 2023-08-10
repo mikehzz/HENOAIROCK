@@ -1,12 +1,12 @@
-function moveToListView() {
-	window.location.href = "/post?div=" + $("#div").val();
+function moveToAdminListView() {
+	window.location.href = "/admin/post?div=" + $("#div").val();
 }
 
-$("#moveToList").on("click", function() {
+$("#moveToAdminList").on("click", function() {
 	if (confirm('목록 화면으로 이동 하시겠습니까?') == false)
 		return;
 
-	moveToListView();
+	moveToAdminListView();
 });
 
 $("#doSave").on("click", function() {
@@ -71,7 +71,7 @@ $("#doSave").on("click", function() {
 				// javascript
 				// window.location.href
 				// ="${CP}/board/boardView.do?div="+$("#div").val();
-				moveToListView();
+				moveToAdminListView();
 			} else {
 				alert(parsedJson.msgContents);
 			}

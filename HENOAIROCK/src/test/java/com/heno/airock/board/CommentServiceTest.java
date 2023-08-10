@@ -5,8 +5,10 @@ import static org.junit.Assert.assertNotNull;
 
 import java.sql.SQLException;
 
+import org.apache.ibatis.annotations.Select;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -45,8 +47,38 @@ public class CommentServiceTest implements PcwkLoger{
 	
 	CommentVO search;
 	
+	@Before
+	public void setUp() throws Exception {
+	    board01 = new CommentVO("1","142","rudwhdi123@naver.com","날짜11", "test_comment01");
+	    board02 = new CommentVO("2","143","rudwhdi123@naver.com","날짜12", "test_comment02");
+	    board03 = new CommentVO("3","144","rudwhdi123@naver.com","날짜13", "test_comment03");
+	    
+	    // 데이터베이스에 저장
+	    service.save(board01);
+	    service.save(board02);
+	    service.save(board03);
+	    
+	    search = new CommentVO("1","142","rudwhdi123@naver.com","test","test_comment");
+	}
 	
 	@Test
+	@Ignore
+	public void select() throws SQLException {
+	    service.save(board01);
+	    
+	}
+	
+	@Test
+	public void delete() throws SQLException {
+	    service.delete(board03);
+	    
+	}
+	
+
+	
+
+	@Test
+	@Ignore
 	public void bean() {
 		LOG.debug("┌──────────────────────────────┐");
 		LOG.debug("│bean                          │");
