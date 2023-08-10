@@ -48,7 +48,7 @@
     <!-- 버튼 -->
     <div class="row g-1 d-flex justify-content-end">
       <div class="col-auto">
-        <input type="button" class="btn btn-primary" value="목록" id="moveToList">
+        <input type="button" class="btn btn-primary" value="목록" id="moveToAdminList">
         <input type="button" class="btn btn-primary" value="등록" id="doSave">
       </div>
     </div>
@@ -75,6 +75,6 @@
     </form>
   </div>
   <!--// contents  ------------------------------------------------------------>
- <script src="/resources/js/post_reg.js"></script>
+ <script src="/resources/js/admin_post_reg.js"></script>
 </body>
 </html>

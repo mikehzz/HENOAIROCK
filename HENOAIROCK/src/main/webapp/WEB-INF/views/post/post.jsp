@@ -97,23 +97,6 @@
   <div id="dyContainer">
   
   </div>
-  <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <!-- New Chat Button -->
-            <button class="new-chat-btn" onclick="openNewChat()">New Chat</button>
-            <h2>GPT</h2>
-            <!-- Close Sidebar Button -->
-            <!-- <button class="close-btn" onclick="closeSidebar()">Close Sidebar</button> -->
-        </div>
-        <ul>
-            <li><a href="#">홈</a></li>
-            <li><a href="/mypage">마이페이지</a></li>
-            <li><a href="/post">게시판</a></li>
-            <li><a href="#">설정&#128540;</a></li>
-        </ul>
-
-    </aside>
 
    <table id="boardTable" class="table table-striped table-hover table-bordered  thead-dark thead-inverse">
       <thead>
