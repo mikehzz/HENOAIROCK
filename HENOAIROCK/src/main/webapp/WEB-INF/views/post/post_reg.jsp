@@ -41,6 +41,7 @@
       <div class="col-auto">
         <input type="button" class="btn btn-primary" value="목록" id="moveToList">
         <input type="button" class="btn btn-primary" value="등록" id="doSave">
+                <button id="openPopupBtn">음악 선택</button>
       </div>
     </div>
     <!--// 버튼 ----------------------------------------------------------------->
@@ -62,10 +63,25 @@
           <label for="exampleFormControlTextarea1" class="form-label">내용</label>
           <textarea class="form-control" id="contents" name="contents" rows="3" required="required"></textarea>
         </div>
-                
+        
+        <div class="mb-3">
+            <label for="musicContents" class="form-label musicContents">음악</label>
+            <input type="text" class="form-control musicContents" id="musicContents" name="musicContents" required="required"/>
+        </div>
     </form>
   </div>
   <!--// contents  ------------------------------------------------------------>
  <script src="/resources/js/post_reg.js"></script>
+    <script>
+        // 팝업 창 열기
+        document.getElementById("openPopupBtn").addEventListener("click", function() {
+            var popupUrl = "/music/music_reg"; // music.jsp 경로
+            var popupName = "MusicPopup";
+            var popupOptions = "width=800,height=600,resizable=yes,scrollbars=yes";
+            var popupWindow = window.open(popupUrl, popupName, popupOptions);
+        });
+    </script>
+
+
 </body>
 </html>

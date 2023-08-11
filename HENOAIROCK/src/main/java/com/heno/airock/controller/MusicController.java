@@ -206,4 +206,53 @@ public class MusicController implements PcwkLoger{
 		return viewPage;
 	}
 
+	@GetMapping("/music_reg")
+	public String select_reg(@RequestParam(value = "music_reg/genre", 
+		    required = false) String genre, MusicVO inVO, Model model) throws SQLException {
+		String viewPage = "/music/music_reg";
+		// page번호
+		if (null != inVO && inVO.getPageNo() == 0) {
+			inVO.setPageNo(1);
+		}
+
+		// pageSize
+		if (null != inVO && inVO.getPageSize() == 0) {
+			inVO.setPageSize(50);
+		}
+
+		// searchWord
+		if (null != inVO && null == inVO.getSearchWord()) {
+			inVO.setSearchWord("");
+		}
+
+		// searchDiv
+		if (null != inVO && null == inVO.getSearchDiv()) {
+			inVO.setSearchDiv("");
+		}
+		
+		// genre
+		if (null != inVO && null != genre) {
+			inVO.setGenre(genre);
+		}
+		LOG.debug("inVO:" + inVO);
+		// 코드조회: 검색코드
+		CodeVO codeVO = new CodeVO();
+		codeVO.setCodeId("MUSIC_SEARCH");
+		List<CodeVO> searchList = codeService.select(codeVO);
+		model.addAttribute("searchList", searchList);
+		
+		
+		List<MusicVO> musicList = this.musicService.select(inVO);
+		model.addAttribute("musicList", musicList);
+		
+		//총글수
+		int totalCnt = 0;
+		if(null !=musicList && musicList.size() >0 ) {
+			totalCnt = musicList.get(0).getTotalCnt();
+		}
+		
+		model.addAttribute("totalCnt", totalCnt);
+		model.addAttribute("inVO", inVO);
+		return viewPage;
+	}
 }

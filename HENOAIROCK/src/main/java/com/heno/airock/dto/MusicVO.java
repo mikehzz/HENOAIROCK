@@ -1,7 +1,5 @@
 package com.heno.airock.dto;
 
-import com.heno.airock.cmn.DTO;
-
 public class MusicVO extends MemberDTO {
 	private String musicId	  ;
 	private String title	  ;

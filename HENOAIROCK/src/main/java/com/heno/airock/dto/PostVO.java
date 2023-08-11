@@ -2,7 +2,7 @@ package com.heno.airock.dto;
 
 import com.heno.airock.cmn.DTO;
 
-public class PostVO extends DTO{
+public class PostVO extends DTO {
 	private String postSeq;
 	private String userId;
 	private String postTitle;
@@ -12,8 +12,10 @@ public class PostVO extends DTO{
 	private String updateDt;
 	private String postDt;
 	private String postDiv;
-	
-	public PostVO() {}
+	private String musicId;
+
+	public PostVO() {
+	}
 
 	public String getPostSeq() {
 		return postSeq;
@@ -87,28 +89,19 @@ public class PostVO extends DTO{
 		this.postDiv = postDiv;
 	}
 
-	public PostVO(String postSeq, String userId, String postTitle, String postContents, int readCnt, int likeCnt,
-			String updateDt, String postDt, String postDiv) {
-		super();
-		this.postSeq = postSeq;
-		this.userId = userId;
-		this.postTitle = postTitle;
-		this.postContents = postContents;
-		this.readCnt = readCnt;
-		this.likeCnt = likeCnt;
-		this.updateDt = updateDt;
-		this.postDt = postDt;
-		this.postDiv = postDiv;
+	public String getMusicId() {
+		return musicId;
+	}
+
+	public void setMusicId(String musicId) {
+		this.musicId = musicId;
 	}
 
 	@Override
 	public String toString() {
 		return "PostVO [postSeq=" + postSeq + ", userId=" + userId + ", postTitle=" + postTitle + ", postContents="
 				+ postContents + ", readCnt=" + readCnt + ", likeCnt=" + likeCnt + ", updateDt=" + updateDt
-				+ ", postDt=" + postDt + ", postDiv=" + postDiv + "]";
+				+ ", postDt=" + postDt + ", postDiv=" + postDiv + ", musicId=" + musicId + "]";
 	}
 
-	
 }
-
-

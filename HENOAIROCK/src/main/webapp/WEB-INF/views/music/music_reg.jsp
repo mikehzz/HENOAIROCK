@@ -60,17 +60,17 @@
   <!--// 제목 ------------------------------------------------------------------->
   <!-- 검색 form -->
   <div class="row g-1 d-flex justify-content-end ">
-    <div class="col-sm" onclick="location.href='music?genre=발라드';">발라드</div>
-    <div class="col-sm" onclick="location.href='music?genre=댄스';">댄스</div>
-    <div class="col-sm" onclick="location.href='music?genre=랩/힙합';">랩/힙합</div>
-    <div class="col-sm" onclick="location.href='music?genre=Soul';">R&B/Soul</div>
-    <div class="col-sm" onclick="location.href='music?genre=인디음악';">인디음악</div>
-    <div class="col-sm" onclick="location.href='music?genre=록/메탈';">록/메탈</div>
-    <div class="col-sm" onclick="location.href='music?genre=트로트';">트로트</div>
-    <div class="col-sm" onclick="location.href='music?genre=포크/블루스';">포크/블루스</div>
+    <div class="col-sm" onclick="location.href='music_reg?genre=발라드';">발라드</div>
+    <div class="col-sm" onclick="location.href='music_reg?genre=댄스';">댄스</div>
+    <div class="col-sm" onclick="location.href='music_reg?genre=랩/힙합';">랩/힙합</div>
+    <div class="col-sm" onclick="location.href='music_reg?genre=Soul';">R&B/Soul</div>
+    <div class="col-sm" onclick="location.href='music_reg?genre=인디음악';">인디음악</div>
+    <div class="col-sm" onclick="location.href='music_reg?genre=록/메탈';">록/메탈</div>
+    <div class="col-sm" onclick="location.href='music_reg?genre=트로트';">트로트</div>
+    <div class="col-sm" onclick="location.href='music_reg?genre=포크/블루스';">포크/블루스</div>
   </div>
   <hr class="my-2">
-  <form action="/music" method="get" name="boardFrm">
+  <form action="/music/music_reg" method="get" name="boardFrm">
     <input type="hidden" name="pageNo" id="pageNo">
     <div class="row g-1 d-flex justify-content-left">
       <div class="col-auto">
@@ -105,7 +105,7 @@
            <th class="text-center">장르</th> 
            <th class="text-center">감정</th>
            <th class="text-center">좋아요</th>
-
+           <th class="text-center">선택</th>
            <th style="display:none;">SEQ</th>    
            
         </tr>
@@ -123,6 +123,7 @@
                 <td class="text-center col-sm-1  col-md-1 col-lg-1"><c:out value="${vo.genre}"/></td>
                 <td class="text-center     col-sm-1  col-md-1  col-lg-1"><c:out value="${vo.feeling}"/></td>
                 <td class="text-center     col-sm-1  col-md-1  col-lg-1"><c:out value="${vo.feeling}"/></td>
+                <td><button class="add-music-btn" data-musicid="${vo.musicId}">선택</button></td>
                 <td style="display:none;"><c:out value="${vo.musicId}"/></td>
               </tr>
             </c:forEach>
@@ -139,7 +140,7 @@
 </table>
 <!-- 페이징 -->
     <div class="d-flex justify-content-center">
-      <%=StringUtil.renderPaging(totalCnt, pageNo, pageSize, bottomCount, cPath+"/music", "select") %>
+      <%=StringUtil.renderPaging(totalCnt, pageNo, pageSize, bottomCount, cPath+"/music/music_reg", "select") %>
     </div>
     <script src="/resources/js/music.js"></script>
 </div>
@@ -162,16 +163,25 @@
        console.log("#boardTable>tbody");
        let tdArray = $(this).children();
        console.log('tdArray:' + tdArray);
-       let musicId = tdArray.eq(7).text();
+       let musicId = tdArray.eq(8).text();
        console.log('musicId:' + musicId);
 
-       // 팝업 창 열기
-       let popupUrl = "music/music_detail/?musicId=" + musicId;
-       let popupName = "MusicDetailPopup";
-       let popupOptions = "width=800,height=600,resizable=yes,scrollbars=yes";
-       window.open(popupUrl, popupName, popupOptions);
+       window.close();
        
    });
+
+
+// 추가 버튼 클릭 시
+   $(".add-music-btn").on("click", function() {
+       var musicId = $(this).data("musicid");
+       var musicContentsTextarea = window.opener.document.getElementById("musicContents");
+       if (musicContentsTextarea) {
+           musicContentsTextarea.value = "음악 ID: " + musicId;
+       } else {
+           console.error("Textarea with ID 'musicContents' not found in the parent window.");
+       }
+   });
+
  
    function doRetrieveCall(pageNo){
        let frm = document.boardFrm;
