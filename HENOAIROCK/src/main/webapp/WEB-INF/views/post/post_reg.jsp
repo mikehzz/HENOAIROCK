@@ -25,6 +25,55 @@
 <script src="/resources/js/jquery-3.7.0.js"></script>
 <script src="/resources/js/util.js"></script>
 <title>${title}</title>
+<style>
+  .album-info-container {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .album-content {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+
+  .selected-album-image {
+    width: 60px;
+    height: 60px;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+  }
+
+  .title-artist {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .selected-title {
+  font-weight: bold;
+  font-size: 13px;
+  }
+  .selected-artist {
+    font-size: 13px;
+    color: #a1a1a1;
+  }
+
+  .album-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .selected-album {
+    font-size: 13px;
+  }
+</style>
 </head>
 <body>
   <!-- contents  -->  
@@ -62,15 +111,31 @@
           <label for="exampleFormControlTextarea1" class="form-label">내용</label>
           <textarea class="form-control" id="contents" name="contents" rows="3" required="required"></textarea>
         </div>
+        
         <div class="mb-3">
-            <label for="musicContents" class="form-label musicContents">음악</label>
-            <input type="text" class="form-control musicContents" id="musicContents" name="musicContents" required="required"/>
+            <label for="musicContents" class="form-label musicContents">곡정보</label>
+            <input type="text" class="form-control musicContents" id="musicContents" name="musicContents" required="required" readonly/>
         </div>
+
+<div id="albumImageContainer" class="album-info-container">
+    <div class="album-content">
+        <img class="selected-album-image">
+        <div class="info">
+            <span class="selected-title"></span>
+            <span class="selected-artist"></span>
+        </div>
+    </div>
+    <div class="album-info">
+        <div class="selected-album"></div>
+    </div>
+</div>
+
         <div class="row g-1 d-flex justify-content-end">
           <div class="col-auto">
               <input type="button" class="btn btn-primary" value="음악 선택" id="openPopupBtn">
           </div>
         </div>
+        
     </form>
   </div>
   <!--// contents  ------------------------------------------------------------>

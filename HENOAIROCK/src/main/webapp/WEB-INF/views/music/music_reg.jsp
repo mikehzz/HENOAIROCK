@@ -116,12 +116,12 @@
          <c:when test="${not empty musicList }">
             <c:forEach var="vo" items="${musicList}">
               <tr>
-                <td class="text-center    col-sm-0  col-md-0  col-lg-0"><img src="<c:out value="${vo.albumPath}"/>" width="60px" height="60px"></td>
-                <td class="text-center    col-sm-4  col-md-4  col-lg-4"><c:out value="${vo.title}"/></td>
-                <td class="text-center  col-sm-1  col-md-1  col-lg-1"><c:out value="${vo.artist}"/></td>
-                <td class="text-center  col-sm-4  col-md-4  col-lg-4"><c:out value="${vo.album}"/></td>
-                <td class="text-center col-sm-1  col-md-1 col-lg-1"><c:out value="${vo.genre}"/></td>
-                <td class="text-center     col-sm-1  col-md-1  col-lg-1"><c:out value="${vo.feeling}"/></td>
+                <td class="text-center    col-sm-0  col-md-0  col-lg-0 albumPath" data-albumpath="${vo.albumPath}"><img class="album-image" src="<c:out value="${vo.albumPath}"/>" width="60px" height="60px"></td>
+                <td class="text-center    col-sm-4  col-md-4  col-lg-4 title" data-title="${vo.title}"><c:out value="${vo.title}"/></td>
+                <td class="text-center  col-sm-1  col-md-1  col-lg-1 artist" data-artist="${vo.artist}"><c:out value="${vo.artist}"/></td>
+                <td class="text-center  col-sm-4  col-md-4  col-lg-4 album" data-album="${vo.album}"><c:out value="${vo.album}"/></td>
+                <td class="text-center col-sm-1  col-md-1 col-lg-1 genre" data-genre="${vo.genre}"><c:out value="${vo.genre}"/></td>
+                <td class="text-center     col-sm-1  col-md-1  col-lg-1 feeling" data-feeling="${vo.feeling}"><c:out value="${vo.feeling}"/></td>
                 <td class="text-center     col-sm-1  col-md-1  col-lg-1"><c:out value="${vo.feeling}"/></td>
                 <td><button class="add-music-btn" data-musicid="${vo.musicId}">선택</button></td>
                 <td style="display:none;"><c:out value="${vo.musicId}"/></td>
@@ -159,22 +159,45 @@
 
 
    $(document).ready(function() {
-	    // 추가 버튼 클릭 시
 	    $("#boardTable>tbody").on("click", ".add-music-btn", function() {
 	        var musicId = $(this).data("musicid");
+
+	        var title = $(this).closest("tr").find(".title").data("title");
+	        var artist = $(this).closest("tr").find(".artist").data("artist");
+	        var album = $(this).closest("tr").find(".album").data("album");
+	        var genre = $(this).closest("tr").find(".genre").data("genre");
+	        var feeling = $(this).closest("tr").find(".feeling").data("feeling");
+	        var albumImage = $(this).closest("tr").find(".album-image").attr("src");
+
 	        var musicContentsTextarea = window.opener.document.getElementById("musicContents");
 	        if (musicContentsTextarea) {
-	            musicContentsTextarea.value = "음악 ID: " + musicId;
+	            musicContentsTextarea.value = "음악 ID: " + musicId +
+	                "\t제목: " + title +
+	                "\t아티스트: " + artist +
+	                "\t앨범: " + album +
+	                "\t장르: " + genre +
+	                "\t느낌: " + feeling;
+
+
+	            // 앨범 이미지를 부모 페이지의 엘리먼트에 추가
+        var parentAlbumImageContainer = window.opener.document.getElementById("albumImageContainer");
+        if (parentAlbumImageContainer) {
+            parentAlbumImageContainer.querySelector(".selected-album-image").src = albumImage;
+            parentAlbumImageContainer.querySelector(".selected-title").textContent = title;
+            parentAlbumImageContainer.querySelector(".selected-artist").textContent = artist;
+            parentAlbumImageContainer.querySelector(".selected-album").textContent = album;
+	            } else {
+	                console.error("Element with ID 'albumImageContainerParent' not found in the parent window.");
+	            }
 	        } else {
 	            console.error("Textarea with ID 'musicContents' not found in the parent window.");
 	        }
-	        window.close(); // 창 닫기
+	        window.close();
 	    });
 
-	    // table 목록 click시 seq값 찾기
 	    $("#boardTable>tbody").on("click", "tr", function(e) {
 	        if ($(e.target).hasClass("add-music-btn")) {
-	            return; // 추가 버튼 클릭 시에만 아래 코드 실행하지 않고 종료
+	            return;
 	        }
 	        let tdArray = $(this).children();
 	        let musicId = tdArray.eq(8).text();

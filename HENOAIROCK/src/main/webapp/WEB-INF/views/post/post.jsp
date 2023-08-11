@@ -117,7 +117,7 @@
                 <td class="text-center  col-sm-2  col-md-1  col-lg-1"><c:out value="${vo.num}"/></td>
                 <td class="text-left    col-sm-6  col-md-6  col-lg-7"><a href="#"><c:out value="${vo.postTitle}"/></a></td>
                 <td class="text-center  col-sm-2  col-md-2  col-lg-2"><c:out value="${vo.userId}"/></td>
-                <td class="text-center  col-sm-2  col-md-2  col-lg-1"><c:out value="${vo.updateDt}"/></td>
+                <td class="text-center  col-sm-2  col-md-2  col-lg-1"><c:out value="${vo.postDt}"/></td>
                 <td class="text-end     col-sm-0  col-md-1  col-lg-1"><c:out value="${vo.readCnt}"/></td>
                 <td style="display:none;"><c:out value="${vo.postSeq}"/></td>
               </tr>            
