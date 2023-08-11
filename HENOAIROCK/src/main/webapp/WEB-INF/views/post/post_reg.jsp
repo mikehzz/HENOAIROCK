@@ -41,7 +41,6 @@
       <div class="col-auto">
         <input type="button" class="btn btn-primary" value="목록" id="moveToList">
         <input type="button" class="btn btn-primary" value="등록" id="doSave">
-                <button id="openPopupBtn">음악 선택</button>
       </div>
     </div>
     <!--// 버튼 ----------------------------------------------------------------->
@@ -63,10 +62,14 @@
           <label for="exampleFormControlTextarea1" class="form-label">내용</label>
           <textarea class="form-control" id="contents" name="contents" rows="3" required="required"></textarea>
         </div>
-        
         <div class="mb-3">
             <label for="musicContents" class="form-label musicContents">음악</label>
             <input type="text" class="form-control musicContents" id="musicContents" name="musicContents" required="required"/>
+        </div>
+        <div class="row g-1 d-flex justify-content-end">
+          <div class="col-auto">
+              <input type="button" class="btn btn-primary" value="음악 선택" id="openPopupBtn">
+          </div>
         </div>
     </form>
   </div>
