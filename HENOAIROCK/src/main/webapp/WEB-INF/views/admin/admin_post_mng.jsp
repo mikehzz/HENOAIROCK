@@ -68,7 +68,7 @@
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">제목</label>
           <input type="text" class="form-control title_cls" id="title"  name="title"
-             placeholder="제목을 입력 하세요." required="required" maxlength="66"  value="${outVO.postTitle}">
+             placeholder="제목을 입력 하세요." required="required" readonly="readonly" maxlength="66"  value="${outVO.postTitle}">
         </div>
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">읽은 횟수</label>
@@ -99,7 +99,7 @@
                         
         <div class="mb-3">
           <label for="exampleFormControlTextarea1" class="form-label">내용</label>
-          <textarea class="form-control" id="contents" name="contents" rows="3" required="required">${outVO.postContents}</textarea>
+          <textarea class="form-control" id="contents" name="contents" rows="3" readonly="readonly" required="required">${outVO.postContents}</textarea>
         </div>
                 
     </form>

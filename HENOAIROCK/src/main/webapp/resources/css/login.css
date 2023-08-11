@@ -331,16 +331,14 @@ label {
   font-size: 13px;
 }
 
-/**/
 #google-connect {
-    border: 1px solid gray;
-    background: #eee url('https://raw.githubusercontent.com/eswarasai/social-login/master/img/google-plus.png') no-repeat scroll 5px 0px / 50px 50px padding-box border-box;
+    background: rgb(255, 255, 255) url('https://cdn-icons-png.flaticon.com/512/281/281781.png') no-repeat scroll 15px 10px / 30px 30px padding-box border-box;
+    border: 1px solid rgb(85, 172, 238);
 }
 
 #google-connect:hover {
-  	border-color: gray;
-  	color: gray;
-    background: rgb(220, 74, 61) url('https://raw.githubusercontent.com/eswarasai/social-login/master/img/google-plus-white.png') no-repeat scroll 5px 0px / 50px 50px padding-box border-box;
+    border-color: rgb(85, 172, 238);
+    background: rgb(85, 172, 238) url('https://cdn-icons-png.flaticon.com/512/281/281747.png') no-repeat scroll 15px 10px / 30px 30px padding-box border-box;
     -webkit-transition: all .8s ease-out;
     -moz-transition: all .3s ease;
     -ms-transition: all .3s ease;
@@ -350,11 +348,11 @@ label {
 
 #google-connect span {
     box-sizing: border-box;
-    color: #c0c0c02207461;
+    color: rgb(85, 172, 238);
     cursor: pointer;
     text-align: center;
     text-transform: uppercase;
-    border: 1px none #8080802207461;
+    border: 0px none rgb(220, 74, 61);
     outline: rgb(255, 255, 255) none 0px;
     -webkit-transition: all .3s ease;
     -moz-transition: all .3s ease;
@@ -395,7 +393,7 @@ label {
 .social-button {
     background-position: 25px 0px;
     box-sizing: border-box;
-    color: #c0c0c0255255255;
+    color: rgb(255, 255, 255);
     cursor: pointer;
     display: inline-block;
     height: 50px;
