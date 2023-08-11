@@ -43,7 +43,7 @@
 	                <hr>
 	
 	                <!-- Connect with Google -->
-	                <a href="#" class="social-button" id="google-connect">
+	                <a href="#" class="social-button" id="google-connect"> 
 	                    <span>Connect with Google</span>
 	                </a>
 	            </form>

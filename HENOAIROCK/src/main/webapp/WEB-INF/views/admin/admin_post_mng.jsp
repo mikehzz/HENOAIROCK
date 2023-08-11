@@ -96,7 +96,7 @@
           <label for="exampleFormControlInput1" class="form-label">수정일</label>
           <input type="text" class="form-control" id="modDt" name="modDt" value="${outVO.updateDt}" readonly="readonly">
         </div>
-                        
+
         <div class="mb-3">
           <label for="exampleFormControlTextarea1" class="form-label">내용</label>
           <textarea class="form-control" id="contents" name="contents" rows="3" readonly="readonly" required="required">${outVO.postContents}</textarea>
