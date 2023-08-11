@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,7 +23,6 @@ import com.heno.airock.dto.MemberDTO;
 import com.heno.airock.dto.MessageDTO;
 import com.heno.airock.dto.MusicHeartDTO;
 import com.heno.airock.dto.MusicVO;
-import com.heno.airock.member.repository.MusicLikeCntRepository;
 import com.heno.airock.service.CodeService;
 import com.heno.airock.service.MusicLikeCntService;
 import com.heno.airock.service.MusicService;
@@ -47,22 +45,32 @@ public class MusicController implements PcwkLoger{
 	
 	@ResponseBody
 	@RequestMapping(value= "/saveHeart", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	public String save_heart(@RequestParam(value="musicId") String musicId, MusicHeartDTO mhDTO, HttpSession httpSession) {
+	public String save_heart(@ModelAttribute MusicHeartDTO mhDTO, @RequestBody MusicHeartDTO mDTO) {
 		String jsonString = "";
-		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("user");
 		MessageDTO message = new MessageDTO();
 		
-		mhDTO.setUserId(memberDTO.getUserId());
-		mhDTO.setMusicId(musicId);
+		mhDTO.setMusicId(mDTO.getMusicId());
+		mhDTO.setUserId(mDTO.getUserId());
 		LOG.debug("mhDTO:" + mhDTO);
+		LOG.debug("mDTO:" + mDTO);
 		int saveHeartResult = musicLikeCntService.saveHeart(mhDTO);
 		
 		LOG.debug("saveHeartResult:" + saveHeartResult);
 		if(saveHeartResult == 1) {
-			message.setMsgId("1");
-			message.setMsgContents("좋아요!");
-			jsonString = new Gson().toJson(message);
-			return jsonString;
+			int heartUp = musicLikeCntService.heartUp(mhDTO);
+			
+			if(heartUp == 1) {
+				message.setMsgId("1");
+				message.setMsgContents("정상적으로 좋아요 완료!!");
+				jsonString = new Gson().toJson(message);
+				return jsonString;
+			} else {
+				message.setMsgId("2");
+				message.setMsgContents("실패!");
+				jsonString = new Gson().toJson(message);
+				return jsonString;
+			}
+			
 		} else {
 			message.setMsgId("2");
 			message.setMsgContents("실패!");
@@ -74,22 +82,30 @@ public class MusicController implements PcwkLoger{
 	
 	@ResponseBody
 	@RequestMapping(value = "/deleteHeart", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	public String delete_heart(@RequestParam(value="musicId") String musicId, MusicHeartDTO mhDTO, HttpSession httpSession) {
+	public String delete_heart(@ModelAttribute MusicHeartDTO mhDTO, @RequestBody MusicHeartDTO mDTO) {
 		String jsonString = "";
-		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("user");
 		MessageDTO message = new MessageDTO();
-
-		mhDTO.setUserId(memberDTO.getUserId());
-		mhDTO.setMusicId(musicId);
+		
+		mhDTO.setMusicId(mDTO.getMusicId());
+		mhDTO.setUserId(mDTO.getUserId());
 		LOG.debug("mhDTO:" + mhDTO);
+		LOG.debug("mDTO:" + mDTO);
 		
 		int deleteHeartResult = musicLikeCntService.deleteHeart(mhDTO);
 
 		if(deleteHeartResult == 1) {
-			message.setMsgId("1");
-			message.setMsgContents("좋아요 취소");
-			jsonString = new Gson().toJson(message);
-			return jsonString;
+			int heartDown = musicLikeCntService.heartDown(mhDTO);
+			if(heartDown == 1) {
+				message.setMsgId("1");
+				message.setMsgContents("정상적으로 좋아요 취소 완료!!");
+				jsonString = new Gson().toJson(message);
+				return jsonString;
+			} else {
+				message.setMsgId("2");
+				message.setMsgContents("실패!");
+				jsonString = new Gson().toJson(message);
+				return jsonString;
+			}
 		} else {
 			message.setMsgId("2");
 			message.setMsgContents("실패!");
@@ -167,7 +183,7 @@ public class MusicController implements PcwkLoger{
 
 		// pageSize
 		if (null != inVO && inVO.getPageSize() == 0) {
-			inVO.setPageSize(50);
+			inVO.setPageSize(100);
 		}
 
 		// searchWord
@@ -191,6 +207,10 @@ public class MusicController implements PcwkLoger{
 		List<CodeVO> searchList = codeService.select(codeVO);
 		model.addAttribute("searchList", searchList);
 		
+		// 코드조회: 페이지 사이즈
+		codeVO.setCodeId("CMN_PAGE_SIZE");
+		List<CodeVO> pageSizeList = codeService.select(codeVO);
+		model.addAttribute("pageSizeList", pageSizeList);
 		
 		List<MusicVO> musicList = this.musicService.select(inVO);
 		model.addAttribute("musicList", musicList);
@@ -205,7 +225,7 @@ public class MusicController implements PcwkLoger{
 		model.addAttribute("inVO", inVO);
 		return viewPage;
 	}
-
+	
 	@GetMapping("/music_reg")
 	public String select_reg(@RequestParam(value = "music_reg/genre", 
 		    required = false) String genre, MusicVO inVO, Model model) throws SQLException {
@@ -255,4 +275,5 @@ public class MusicController implements PcwkLoger{
 		model.addAttribute("inVO", inVO);
 		return viewPage;
 	}
+
 }

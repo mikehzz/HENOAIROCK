@@ -40,11 +40,11 @@ public class PostServiceTest implements PcwkLoger{
 
 	@Before
 	public void setUp() throws Exception {
-		board01 = new PostVO("33", "kjmin1124@naver.com", "test_title3", "test_contents3", 0, 0, "등록일 x", "등록일 x", "10");
-		board02 = new PostVO("43", "kjmin1124@naver.com", "test_title4", "test_contents4", 0, 0, "등록일 x", "등록일 x", "20");
-		board03 = new PostVO("53", "kjmin1124@naver.com", "test_title5", "test_contents5", 0, 0, "등록일 x", "등록일 x", "20");
-		
-		search = new PostVO("3", "kjmin1124@naver.com", "test", "test", 0, 0, "등록일x", "수정일x", "10");
+//		board01 = new PostVO("33", "kjmin1124@naver.com", "test_title3", "test_contents3", 0, 0, "등록일 x", "등록일 x", "10", "x");
+//		board02 = new PostVO("43", "kjmin1124@naver.com", "test_title4", "test_contents4", 0, 0, "등록일 x", "등록일 x", "20", "x");
+//		board03 = new PostVO("53", "kjmin1124@naver.com", "test_title5", "test_contents5", 0, 0, "등록일 x", "등록일 x", "20", "x");
+//		
+//		search = new PostVO("3", "kjmin1124@naver.com", "test", "test", 0, 0, "등록일x", "수정일x", "10", "x");
 	}
 
 	@Test

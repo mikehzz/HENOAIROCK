@@ -19,21 +19,26 @@ if(like > 0) {
 function fn_like() {
 	if(like > 0) {
 		document.getElementById("LikeBtn").value  = "좋아요 취소";
+		console.log(like);
+		console.log(music_Id);
+		console.log(user_Id);
 		$.ajax({
 			type :"POST",
 			url : "/music/deleteHeart",
 			dataType : "html",
 			contentType: 'application/json',
-			data : { 
-				userId : $('#userId').val(),
-				musicId : $('#musicId').val()
-			},
+			data : JSON.stringify({
+				"userId" : $('#userId').val(),
+				"musicId" : music_Id,
+			}),	
 			success : function(data) {// 통신 성공
 				let paredJSON = JSON.parse(data)
 				if ("1" == paredJSON.msgId) {
 					alert(paredJSON.msgContents);
+					location.reload();
 				} else if("2" == paredJSON.msgId){
 					alert(paredJSON.msgContents);
+					location.reload();
 				}
 			},
 			error : function(data) {// 실패시 처리
@@ -42,21 +47,26 @@ function fn_like() {
 		});
 	} else {
 		document.getElementById("LikeBtn").value = "좋아요";
+		console.log(like);
+		console.log(music_Id);
+		console.log(user_Id);
 		$.ajax({
 			type :"POST",
 			url : "/music/saveHeart",
 			dataType : "html",
 			contentType: 'application/json',
-			data : { 
+			data : JSON.stringify({ 
 				userId : $('#userId').val(),
-				musicId : $('#musicId').val()
-			},
+				musicId : music_Id
+			}),
 			success : function(data) {
 				let paredJSON = JSON.parse(data)
 				if ("1" == paredJSON.msgId) {
 					alert(paredJSON.msgContents);
+					location.reload();
 				} else if("2" == paredJSON.msgId){
 					alert(paredJSON.msgContents);
+					location.reload();
 				}
 			},
 			error : function(data) {// 실패시 처리

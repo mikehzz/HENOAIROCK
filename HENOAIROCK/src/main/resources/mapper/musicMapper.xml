@@ -78,7 +78,7 @@
     FROM music
     <include refid="searchGenre"></include>
     )B
-    ORDER BY like_cnt
+    ORDER BY like_cnt DESC
 </select>
 
 
@@ -116,7 +116,7 @@
     <include refid="searchCondition"></include>
     <include refid="searchGenre"></include>
     )B
-    ORDER BY like_cnt
+    ORDER BY like_cnt DESC
 </select>
 
 <select id="selectOne" parameterType="music" resultType="music">

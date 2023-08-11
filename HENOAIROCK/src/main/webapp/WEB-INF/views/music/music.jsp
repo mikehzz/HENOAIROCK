@@ -88,6 +88,15 @@
         <input type="text" name="searchWord" id="searchWord" value="<c:out value='${inVO.searchWord }'/>" placeholder="검색어를 입력 하세요" class="form-control">
       </div>
       <div class="col-auto">  
+        <select class="form-select" name="pageSize" id="pageSize">
+          <c:forEach var="vo" items="${pageSizeList }">
+            <option <c:if test="${vo.code == inVO.pageSize }">selected</c:if> value="<c:out value='${vo.code }'/>">
+               <c:out value='${vo.codeNm }'/>
+            </option>
+          </c:forEach>
+        </select>
+      </div>  
+      <div class="col-auto">  
         <a href="#" class="btn btn-primary" id="doRetrieve">검색</a>  
       </div>      
     </div>  
@@ -105,9 +114,7 @@
            <th class="text-center">장르</th> 
            <th class="text-center">감정</th>
            <th class="text-center">좋아요</th>
-
            <th style="display:none;">SEQ</th>    
-           
         </tr>
       </thead>
       <tbody>
@@ -122,12 +129,12 @@
                 <td class="text-center  col-sm-4  col-md-4  col-lg-4"><c:out value="${vo.album}"/></td>
                 <td class="text-center col-sm-1  col-md-1 col-lg-1"><c:out value="${vo.genre}"/></td>
                 <td class="text-center     col-sm-1  col-md-1  col-lg-1"><c:out value="${vo.feeling}"/></td>
-                <td class="text-center     col-sm-1  col-md-1  col-lg-1"><c:out value="${vo.feeling}"/></td>
+                <td class="text-center     col-sm-1  col-md-1  col-lg-1"><c:out value="${vo.likeCnt}"/></td>
                 <td style="display:none;"><c:out value="${vo.musicId}"/></td>
-              </tr>
+              </tr>            
             </c:forEach>
          </c:when>
-
+         
          <%-- 조회 데이터가 없는 경우--%>
          <c:otherwise>
            <tr>
@@ -172,6 +179,7 @@
        window.open(popupUrl, popupName, popupOptions);
        
    });
+   
  
    function doRetrieveCall(pageNo){
        let frm = document.boardFrm;

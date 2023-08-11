@@ -1,5 +1,7 @@
 package com.heno.airock.controller;
 
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +17,10 @@ import com.google.gson.Gson;
 import com.heno.airock.cmn.PcwkLoger;
 import com.heno.airock.dto.MemberDTO;
 import com.heno.airock.dto.MessageDTO;
+import com.heno.airock.dto.MyPlayListVO;
 import com.heno.airock.service.MailSendService;
 import com.heno.airock.service.MemberService;
+import com.heno.airock.service.MyPlayListService;
 
 @Controller
 @RequestMapping("/member") // 공통 주소 처리
@@ -24,6 +28,9 @@ public class MemberController implements PcwkLoger {
 
 	@Autowired
 	MailSendService mailService;
+	
+	@Autowired
+	MyPlayListService myPlayListService;
 
 	private final MemberService memberService;
 
@@ -109,18 +116,31 @@ public class MemberController implements PcwkLoger {
 
 	// 회원가입 post
 	@PostMapping("/**/register")
-	public String postRegister(MemberDTO memberDTO) throws Exception {
-		int result = memberService.idChk(memberDTO);
-		try {
-			if (result == 1) {
-				return "/register";
-			} else if (result == 0) {
-				memberService.save(memberDTO);
+	public String postRegister(MemberDTO memberDTO) throws SQLException {
+		
+		int idChkResult = memberService.idChk(memberDTO);
+		
+		MyPlayListVO inVO = new MyPlayListVO();
+		MessageDTO message = new MessageDTO();
+		
+		if (idChkResult == 1) {
+			message.setMsgId("1");
+			message.setMsgContents("중복확인을 다시 진행해주세요.");
+			return "/register";
+		} else if(idChkResult == 0) {
+			int myResult = memberService.save(memberDTO);
+			if(myResult == 1) {
+				inVO.setUserId(memberDTO.getUserId());
+				myPlayListService.save(inVO);
+				return "redirect:/";
 			}
-		} catch (Exception e) {
-			throw new RuntimeException();
+			
+			return "/register";
+		} else {
+			return "/register";
 		}
-		return "redirect:/";
+		
+		
 	}
 
 	// 아이디 중복 체크

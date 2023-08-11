@@ -2,7 +2,8 @@ package com.heno.airock.dto;
 
 
 public class MyPlayListVO extends MemberDTO{
-
+	
+	private String myListSeq;
 	private String title;
 	private String artist;
 	private String albumImg;
@@ -13,6 +14,17 @@ public class MyPlayListVO extends MemberDTO{
 	
 	public MyPlayListVO() {}
 	
+	
+	
+	public String getMyListSeq() {
+		return myListSeq;
+	}
+
+	public void setMyListSeq(String myListSeq) {
+		this.myListSeq = myListSeq;
+	}
+
+
 	public int getMyListDiv() {
 		return myListDiv;
 	}
@@ -94,12 +106,31 @@ public class MyPlayListVO extends MemberDTO{
 		this.ytLink = ytLink;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "MyPlayListVO [title=" + title + ", artist=" + artist + ", albumImg=" + albumImg + ", feeling=" + feeling
-				+ ", album=" + album + ", ytLink=" + ytLink + ", myListDiv=" + myListDiv + ", toString()="
-				+ super.toString() + "]";
+		return "MyPlayListVO [myListSeq=" + myListSeq + ", title=" + title + ", artist=" + artist + ", albumImg="
+				+ albumImg + ", feeling=" + feeling + ", album=" + album + ", ytLink=" + ytLink + ", myListDiv="
+				+ myListDiv + "]";
 	}
+
+
+
+	public MyPlayListVO(String myListSeq, String title, String artist, String albumImg, String feeling, String album,
+			String ytLink, int myListDiv) {
+		super();
+		this.myListSeq = myListSeq;
+		this.title = title;
+		this.artist = artist;
+		this.albumImg = albumImg;
+		this.feeling = feeling;
+		this.album = album;
+		this.ytLink = ytLink;
+		this.myListDiv = myListDiv;
+	}
+
+	
 
 	
 }

@@ -26,4 +26,13 @@ public class MusicLikeCntRepository {
 	public int findLike(MusicHeartDTO heartDTO) {
 		return sql.selectOne("MusicHeart.findLike", heartDTO);
 	}
+	
+	public int heartUp(MusicHeartDTO heartDTO) {
+		return sql.update("MusicHeart.heart_up", heartDTO);
+	}
+	
+	public int heartDown(MusicHeartDTO heartDTO) {
+		return sql.update("MusicHeart.heart_down", heartDTO);
+	}
+	
 }

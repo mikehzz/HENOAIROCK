@@ -9,7 +9,7 @@
     WHERE t1.code_id = t2.code_id
     AND   T2.use_yn  = 'Y'
     AND   t2.code_id = #{codeId}
-    ORDER BY t2.code
+    ORDER BY t2.code_nm asc
   </select>
 
 </mapper>
