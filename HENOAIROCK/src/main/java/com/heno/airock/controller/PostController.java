@@ -1,12 +1,16 @@
 package com.heno.airock.controller;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,15 +23,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.heno.airock.cmn.PcwkLoger;
 import com.heno.airock.cmn.StringUtil;
 import com.heno.airock.dto.CodeVO;
+import com.heno.airock.dto.CommentVO;
 import com.heno.airock.dto.MemberDTO;
 import com.heno.airock.dto.PostVO;
 import com.heno.airock.service.CodeService;
+import com.heno.airock.service.CommentService;
 import com.heno.airock.service.PostService;
 
 @Controller
 @RequestMapping("/post")
 public class PostController implements PcwkLoger {
 
+	@Autowired
+	CommentService commentService;
+	
 	@Autowired
 	PostService postService;
 
@@ -37,6 +46,39 @@ public class PostController implements PcwkLoger {
 	public PostController() {
 	}
 
+	@PostMapping("/create")
+	@ResponseBody // 이 어노테이션을 추가하여 JSON 응답을 반환하도록 설정합니다.
+	public Map<String, Object> addComment(@ModelAttribute CommentVO comment,
+	                                      HttpServletRequest request,
+	                                      HttpSession session) throws SQLException {
+	    Map<String, Object> response = new HashMap<>();
+	    
+	    MemberDTO memberDTO = (MemberDTO) session.getAttribute("user");
+	    if (memberDTO != null) {
+	        String postSeq = request.getParameter("postSeq");
+	        String cmtContents = request.getParameter("cmtContents");
+	        
+	        comment.setPostSeq(postSeq);
+	        comment.setCmtContents(cmtContents);
+	        comment.setUserId(memberDTO.getUserId());
+	        
+	        int result = commentService.save(comment);
+	        if (result > 0) {
+	            response.put("success", true);
+	            response.put("message", "댓글이 추가되었습니다.");
+	            response.put("comment", comment); // 추가된 댓글 정보를 응답에 포함시킴
+	        } else {
+	            response.put("success", false);
+	            response.put("message", "댓글 추가에 실패했습니다.");
+	        }
+	    } else {
+	        response.put("success", false);
+	        response.put("message", "로그인이 필요합니다.");
+	    }
+	    
+	    return response;
+	}
+	
 	@GetMapping("/select")
 	public String select(@ModelAttribute PostVO inVO, Model model, HttpServletRequest reqeust, HttpSession session)
 			throws SQLException {

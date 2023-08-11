@@ -27,14 +27,5 @@
     WHERE post_Seq = #{postSeq}
   </delete>
   
- <!--  <select id="select" parameterType="comment" resultType="comment">
-      cmt_seq,
-		  post_seq,
-		  user_id,
-		  cmt_dt,
-		  cmt_contents
-			FROM comments
-			WHERE cmt_seq = #{cmtSeq}
-  </select>  -->
   
 </mapper>

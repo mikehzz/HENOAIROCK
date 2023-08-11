@@ -90,10 +90,61 @@
           <textarea class="form-control" id="contents" name="contents" rows="3" required="required">${outVO.postContents}</textarea>
         </div>
                 
+                <div class="input-group">
+           <textarea class="form-control" id="comments" name="comments" rows="2"></textarea>
+           <button class="btn btn-primary" type="button" id="doAddComment">댓글 추가</button>
+        </div>
+<div id="commentList">
+  <!-- 여기에 댓글이 추가될 것입니다 -->
+</div>
     </form>
+
   </div>
   <!--// contents  ------------------------------------------------------------>
-  <script>
+ <script>
+ <!-- 댓글 추가 start -->
+ $("#doAddComment").on("click", function() {
+	  var commentText = $("#comments").val();
+
+	  if (eUtil.ISEmpty(commentText)) {
+	    alert("댓글을 입력하세요.");
+	    $("#comments").focus();
+	    return;
+	  }
+
+	  var userId = "${sessionScope.user.userId}";
+	  var postSeq = $("#seq").val();
+
+	  $.ajax({
+	    type: "POST",
+	    url: "/post/create",
+	    dataType: "json",
+	    data: {
+	      postSeq: postSeq,
+	      cmtContents: commentText,
+	      userId: userId
+	    },
+	    success: function(response) {
+	      if (response.success) {
+	        // 댓글 추가 성공 시 화면에 댓글을 동적으로 추가
+	        var newComment = '<div class="comment">' +
+	                         '<span class="comment-user">' + userId + '</span>' +
+	                         '<span class="comment-text">' + commentText + '</span>' +
+	                         '</div>';
+	        $("#commentList").prepend(newComment);
+
+	        // 입력 필드 초기화
+	        $("#comments").val("");
+
+	        alert("댓글이 추가되었습니다.");
+	      } else {
+	        alert(response.message);
+	      }
+	    }
+	  });
+	});
+ <!-- /// 댓글 추가 END/// -->
+ 
       //수정
       $("#doUpdate").on("click",function(){
         console.log("doUpdate");
@@ -186,8 +237,8 @@
       
       // 추천하기
       $("#doRecommend").on("click",function(){
-    	  console.log("doRecommend");  
-    	  $.ajax({
+        console.log("doRecommend");  
+        $.ajax({
               type: "GET",
               url:"/post/recommend",
               asyn:"true",
@@ -312,6 +363,6 @@
           
           
       });//--doSave
-  </script>  
+  </script>
 </body>
 </html>
