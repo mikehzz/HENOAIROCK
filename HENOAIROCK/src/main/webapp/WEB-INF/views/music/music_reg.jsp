@@ -161,23 +161,12 @@
    $(document).ready(function() {
 	    $("#boardTable>tbody").on("click", ".add-music-btn", function() {
 	        var musicId = $(this).data("musicid");
-
 	        var title = $(this).closest("tr").find(".title").data("title");
 	        var artist = $(this).closest("tr").find(".artist").data("artist");
 	        var album = $(this).closest("tr").find(".album").data("album");
 	        var genre = $(this).closest("tr").find(".genre").data("genre");
 	        var feeling = $(this).closest("tr").find(".feeling").data("feeling");
 	        var albumImage = $(this).closest("tr").find(".album-image").attr("src");
-
-	        var musicContentsTextarea = window.opener.document.getElementById("musicContents");
-	        if (musicContentsTextarea) {
-	            musicContentsTextarea.value = "음악 ID: " + musicId +
-	                "\t제목: " + title +
-	                "\t아티스트: " + artist +
-	                "\t앨범: " + album +
-	                "\t장르: " + genre +
-	                "\t느낌: " + feeling;
-
 
 	            // 앨범 이미지를 부모 페이지의 엘리먼트에 추가
         var parentAlbumImageContainer = window.opener.document.getElementById("albumImageContainer");
@@ -188,10 +177,8 @@
             parentAlbumImageContainer.querySelector(".selected-album").textContent = album;
 	            } else {
 	                console.error("Element with ID 'albumImageContainerParent' not found in the parent window.");
-	            }
-	        } else {
-	            console.error("Textarea with ID 'musicContents' not found in the parent window.");
-	        }
+	            
+	        } 
 	        window.close();
 	    });
 

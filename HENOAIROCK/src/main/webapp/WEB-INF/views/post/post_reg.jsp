@@ -114,7 +114,7 @@
         
         <div class="mb-3">
             <label for="musicContents" class="form-label musicContents">곡정보</label>
-            <input type="text" class="form-control musicContents" id="musicContents" name="musicContents" required="required" readonly/>
+            
         </div>
 
 <div id="albumImageContainer" class="album-info-container">
