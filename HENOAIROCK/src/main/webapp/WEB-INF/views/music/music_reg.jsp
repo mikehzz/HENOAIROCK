@@ -117,7 +117,7 @@
             <c:forEach var="vo" items="${musicList}">
               <tr>
                 <td class="text-center    col-sm-0  col-md-0  col-lg-0"><img src="<c:out value="${vo.albumPath}"/>" width="60px" height="60px"></td>
-                <td class="text-center    col-sm-4  col-md-4  col-lg-4"><a href="#"><c:out value="${vo.title}"/></a></td>
+                <td class="text-center    col-sm-4  col-md-4  col-lg-4"><c:out value="${vo.title}"/></td>
                 <td class="text-center  col-sm-1  col-md-1  col-lg-1"><c:out value="${vo.artist}"/></td>
                 <td class="text-center  col-sm-4  col-md-4  col-lg-4"><c:out value="${vo.album}"/></td>
                 <td class="text-center col-sm-1  col-md-1 col-lg-1"><c:out value="${vo.genre}"/></td>
@@ -158,29 +158,29 @@
    }
 
 
-   // table 목록 click시 seq값 찾기
-   $("#boardTable>tbody").on("click", "tr", function (e) {
-       console.log("#boardTable>tbody");
-       let tdArray = $(this).children();
-       console.log('tdArray:' + tdArray);
-       let musicId = tdArray.eq(8).text();
-       console.log('musicId:' + musicId);
+   $(document).ready(function() {
+	    // 추가 버튼 클릭 시
+	    $("#boardTable>tbody").on("click", ".add-music-btn", function() {
+	        var musicId = $(this).data("musicid");
+	        var musicContentsTextarea = window.opener.document.getElementById("musicContents");
+	        if (musicContentsTextarea) {
+	            musicContentsTextarea.value = "음악 ID: " + musicId;
+	        } else {
+	            console.error("Textarea with ID 'musicContents' not found in the parent window.");
+	        }
+	        window.close(); // 창 닫기
+	    });
 
-       window.close();
-       
-   });
-
-
-// 추가 버튼 클릭 시
-   $(".add-music-btn").on("click", function() {
-       var musicId = $(this).data("musicid");
-       var musicContentsTextarea = window.opener.document.getElementById("musicContents");
-       if (musicContentsTextarea) {
-           musicContentsTextarea.value = "음악 ID: " + musicId;
-       } else {
-           console.error("Textarea with ID 'musicContents' not found in the parent window.");
-       }
-   });
+	    // table 목록 click시 seq값 찾기
+	    $("#boardTable>tbody").on("click", "tr", function(e) {
+	        if ($(e.target).hasClass("add-music-btn")) {
+	            return; // 추가 버튼 클릭 시에만 아래 코드 실행하지 않고 종료
+	        }
+	        let tdArray = $(this).children();
+	        let musicId = tdArray.eq(8).text();
+	        console.log('musicId:' + musicId);
+	    });
+	});
 
  
    function doRetrieveCall(pageNo){
