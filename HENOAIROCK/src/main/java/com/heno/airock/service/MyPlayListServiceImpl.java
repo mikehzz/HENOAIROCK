@@ -17,8 +17,7 @@ public class MyPlayListServiceImpl implements MyPlayListService {
 	
 	@Override
 	public int save(MyPlayListVO inVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.save(inVO);
 	}
 
 	@Override

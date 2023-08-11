@@ -25,6 +25,14 @@
 		)TT1
        <![CDATA[   WHERE rnum >=#{pageSize} * (#{pageNo}-1)+ 1 ]]>
   </select>
+  
+  <insert id="LikeListSave" parameterType="MyPlayList">
+  <selectKey keyProperty="myListSeq" resultType="string" order="BEFORE">
+         SELECT MY_LIST_SEQ.NEXTVAL FROM DUAL
+  </selectKey>
+    INSERT INTO MYPLAYLIST (mylist_seq, user_id, mylist_div) 
+    VALUES (#{myListSeq} , #{userId}, 10)   
+  </insert>
  
   
   

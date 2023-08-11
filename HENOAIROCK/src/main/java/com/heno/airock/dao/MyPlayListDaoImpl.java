@@ -18,8 +18,7 @@ public class MyPlayListDaoImpl implements MyPlaylistDao {
 	
 	@Override
 	public int save(MyPlayListVO inVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSessionTemplate.insert("MyPlayList.LikeListSave", inVO);
 	}
 
 	@Override

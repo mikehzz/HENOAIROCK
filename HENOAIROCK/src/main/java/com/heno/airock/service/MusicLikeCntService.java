@@ -26,4 +26,12 @@ public class MusicLikeCntService {
 		return mlcRepository.musicRemoveHeart(mhDTO);
 	}
 	
+	public int heartUp(MusicHeartDTO mhDTO) {
+		return mlcRepository.heartUp(mhDTO);
+	}
+	
+	public int heartDown(MusicHeartDTO mhDTO) {
+		return mlcRepository.heartDown(mhDTO);
+	}
+	
 }
