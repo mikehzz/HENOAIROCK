@@ -57,6 +57,16 @@ public class MyPlayListDaoImpl implements MyPlaylistDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public int saveMusic(MyPlayListVO inVO) throws SQLException {
+		return sqlSessionTemplate.insert("MyPlayList.saveLikeMusic", inVO);
+	}
+
+	@Override
+	public MyPlayListVO selectLikeList(MyPlayListVO inVO) throws SQLException {
+		return sqlSessionTemplate.selectOne("MyPlayList.selectLikeSeq", inVO);
+	}
 	
 
 }

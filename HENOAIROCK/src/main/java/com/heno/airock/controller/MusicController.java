@@ -23,9 +23,11 @@ import com.heno.airock.dto.MemberDTO;
 import com.heno.airock.dto.MessageDTO;
 import com.heno.airock.dto.MusicHeartDTO;
 import com.heno.airock.dto.MusicVO;
+import com.heno.airock.dto.MyPlayListVO;
 import com.heno.airock.service.CodeService;
 import com.heno.airock.service.MusicLikeCntService;
 import com.heno.airock.service.MusicService;
+import com.heno.airock.service.MyPlayListService;
 
 @Controller
 @RequestMapping("/music")
@@ -37,6 +39,9 @@ public class MusicController implements PcwkLoger{
 	@Autowired
 	CodeService codeService;
 	
+	@Autowired
+	MyPlayListService myPlayListService;
+	
 	private final MusicLikeCntService musicLikeCntService;
 
 	public MusicController(MusicLikeCntService musicLikeCntService) {
@@ -45,14 +50,16 @@ public class MusicController implements PcwkLoger{
 	
 	@ResponseBody
 	@RequestMapping(value= "/saveHeart", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	public String save_heart(@ModelAttribute MusicHeartDTO mhDTO, @RequestBody MusicHeartDTO mDTO) {
+	public String save_heart(@ModelAttribute MusicHeartDTO mhDTO,@ModelAttribute MyPlayListVO myplayVO, @RequestBody MusicHeartDTO mDTO) throws SQLException {
 		String jsonString = "";
 		MessageDTO message = new MessageDTO();
+		LOG.debug("mhDTO:" + mhDTO);
+		LOG.debug("mDTO:" + mDTO);
 		
 		mhDTO.setMusicId(mDTO.getMusicId());
 		mhDTO.setUserId(mDTO.getUserId());
-		LOG.debug("mhDTO:" + mhDTO);
-		LOG.debug("mDTO:" + mDTO);
+		
+		LOG.debug("myplayVO" + myplayVO);
 		int saveHeartResult = musicLikeCntService.saveHeart(mhDTO);
 		
 		LOG.debug("saveHeartResult:" + saveHeartResult);
@@ -60,10 +67,37 @@ public class MusicController implements PcwkLoger{
 			int heartUp = musicLikeCntService.heartUp(mhDTO);
 			
 			if(heartUp == 1) {
-				message.setMsgId("1");
-				message.setMsgContents("정상적으로 좋아요 완료!!");
-				jsonString = new Gson().toJson(message);
-				return jsonString;
+				myplayVO.setUserId(mDTO.getUserId());
+				MyPlayListVO outVO = myPlayListService.selectLikeSeq(myplayVO);
+				LOG.debug("myplayVO:" + myplayVO);
+				
+				myplayVO.setMyListSeq(outVO.getMyListSeq());
+				
+				if(myplayVO.getMyListSeq() != null) {
+					
+					myplayVO.setMusicId(mDTO.getMusicId());
+					
+					LOG.debug("myplayVO:" + myplayVO);
+					int saveMusic = myPlayListService.saveMusic(myplayVO);
+					
+					if(saveMusic == 1) {
+						message.setMsgId("1");
+						message.setMsgContents("정상적으로 좋아요 완료!!");
+						jsonString = new Gson().toJson(message);
+						return jsonString;
+					} else {
+						message.setMsgId("2");
+						message.setMsgContents("실패!");
+						jsonString = new Gson().toJson(message);
+						return jsonString;
+					}
+				} else {
+					message.setMsgId("2");
+					message.setMsgContents("실패!");
+					jsonString = new Gson().toJson(message);
+					return jsonString;
+				}
+
 			} else {
 				message.setMsgId("2");
 				message.setMsgContents("실패!");

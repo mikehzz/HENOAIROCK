@@ -127,6 +127,7 @@
     </div>
     <div class="album-info">
         <div class="selected-album"></div>
+        <input type="hidden" class="selected-musicId" name="musicId" id="musicId">
     </div>
 </div>
 

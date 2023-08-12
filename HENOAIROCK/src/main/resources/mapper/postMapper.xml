@@ -16,7 +16,7 @@
 
   <!-- 게시글 목록조회 -->
   <select id='select' parameterType="com.heno.airock.cmn.DTO" resultType="post">
-    SELECT A.*,B.*
+    SELECT A.*,B.*, M.*
     FROM (
         SELECT TT1.rnum as num,
                TT1.post_title,
@@ -31,7 +31,8 @@
                       ,TO_CHAR(TT1.update_dt,'HH24:MI')
                       ,TO_CHAR(TT1.update_dt,'YYYY/MM/DD') )update_dt,
                TT1.user_id,
-               TT1.post_seq
+               TT1.post_seq,
+               TT1.music_id
         FROM (
             SELECT ROWNUM as rnum, t1.*
             FROM (
@@ -52,7 +53,9 @@
     FROM posts
     WHERE post_div = #{postDiv}
     <include refid="searchCondition"></include>
-    )B 
+    )B
+    LEFT JOIN
+    music M ON A.music_id = M.music_id
   </select>
   
   <select id="selectOne" parameterType="post" resultType="post">
@@ -64,7 +67,8 @@
       read_cnt,
       post_div,
       post_dt,
-      update_dt
+      update_dt,
+      music_id
     FROM posts
     WHERE post_seq = #{postSeq}
   </select>
@@ -74,7 +78,8 @@
     SET post_title = #{postTitle},
         post_contents = #{postContents},
         update_dt = SYSDATE,
-        user_id = #{userId}
+        user_id = #{userId},
+        music_id = #{musicId}
     WHERE post_seq = #{postSeq}
   </update>
   
@@ -89,14 +94,16 @@
         post_title,
         post_contents,
         post_div,
-        post_dt
+        post_dt,
+        music_id
     ) VALUES (
         #{postSeq}, 
         #{userId}, 
         #{postTitle}, 
         #{postContents},
         10,
-        SYSDATE
+        SYSDATE,
+        #{musicId}
     )
   </insert>
   <delete id="delete" parameterType="post">

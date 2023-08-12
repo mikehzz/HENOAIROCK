@@ -33,7 +33,18 @@
     INSERT INTO MYPLAYLIST (mylist_seq, user_id, mylist_div) 
     VALUES (#{myListSeq} , #{userId}, 10)   
   </insert>
- 
+  
+  <insert id="saveLikeMusic" parameterType="MyPlayList">
+    INSERT INTO MYPLAYLIST_DETAIL (mylist_seq, user_id, music_id, mylist_div)
+    VALUES (#{myListSeq}, #{userId}, #{musicId}, 10)
+  </insert>
+  
+  <select id="selectLikeSeq" parameterType="member" resultType="MyPlayList">
+    SELECT 
+      mylist_seq
+    FROM myplaylist
+    WHERE user_id = #{userId} AND mylist_div = 10
+  </select>
   
   
 </mapper>

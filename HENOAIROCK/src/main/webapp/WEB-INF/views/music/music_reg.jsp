@@ -175,6 +175,7 @@
             parentAlbumImageContainer.querySelector(".selected-title").textContent = title;
             parentAlbumImageContainer.querySelector(".selected-artist").textContent = artist;
             parentAlbumImageContainer.querySelector(".selected-album").textContent = album;
+            parentAlbumImageContainer.querySelector(".selected-musicId").value = musicId;
 	            } else {
 	                console.error("Element with ID 'albumImageContainerParent' not found in the parent window.");
 	            

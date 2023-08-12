@@ -50,4 +50,14 @@ public class MyPlayListServiceImpl implements MyPlayListService {
 		return null;
 	}
 
+	@Override
+	public int saveMusic(MyPlayListVO inVO) throws SQLException {
+		return dao.saveMusic(inVO);
+	}
+
+	@Override
+	public MyPlayListVO selectLikeSeq(MyPlayListVO inVO) throws SQLException {
+		return dao.selectLikeList(inVO);
+	}
+
 }

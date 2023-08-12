@@ -12,6 +12,8 @@ public class MyPlayListVO extends MemberDTO{
 	private String ytLink;
 	private int myListDiv;
 	
+	private String musicId;
+	
 	public MyPlayListVO() {}
 	
 	
@@ -105,6 +107,19 @@ public class MyPlayListVO extends MemberDTO{
 	public void setYtLink(String ytLink) {
 		this.ytLink = ytLink;
 	}
+	
+	
+	
+
+	public String getMusicId() {
+		return musicId;
+	}
+
+
+
+	public void setMusicId(String musicId) {
+		this.musicId = musicId;
+	}
 
 
 
@@ -112,13 +127,13 @@ public class MyPlayListVO extends MemberDTO{
 	public String toString() {
 		return "MyPlayListVO [myListSeq=" + myListSeq + ", title=" + title + ", artist=" + artist + ", albumImg="
 				+ albumImg + ", feeling=" + feeling + ", album=" + album + ", ytLink=" + ytLink + ", myListDiv="
-				+ myListDiv + "]";
+				+ myListDiv + ", musicId=" + musicId + "]";
 	}
 
 
 
 	public MyPlayListVO(String myListSeq, String title, String artist, String albumImg, String feeling, String album,
-			String ytLink, int myListDiv) {
+			String ytLink, int myListDiv, String musicId) {
 		super();
 		this.myListSeq = myListSeq;
 		this.title = title;
@@ -128,9 +143,9 @@ public class MyPlayListVO extends MemberDTO{
 		this.album = album;
 		this.ytLink = ytLink;
 		this.myListDiv = myListDiv;
+		this.musicId = musicId;
 	}
 
-	
 
 	
 }

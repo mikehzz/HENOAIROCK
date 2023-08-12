@@ -3,6 +3,7 @@ function moveToListView() {
 }
 
 $("#moveToList").on("click", function() {
+	console.log($("#musicId").val())
 	if (confirm('목록 화면으로 이동 하시겠습니까?') == false)
 		return;
 
@@ -40,7 +41,8 @@ $("#doSave").on("click", function() {
 			postDiv : $("#div").val(),
 			postTitle : $("#title").val(),
 			userId : $("#regId").val(),
-			postContents : $("#contents").val()
+			postContents : $("#contents").val(),
+			musicId : $("#musicId").val()
 		},
 		success : function(data) {// 통신 성공
 			console.log("success data:" + data);
