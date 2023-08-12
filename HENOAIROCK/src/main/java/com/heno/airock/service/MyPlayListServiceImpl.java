@@ -46,8 +46,7 @@ public class MyPlayListServiceImpl implements MyPlayListService {
 
 	@Override
 	public List<MyPlayListVO> select(MyPlayListVO inVO) throws SQLException {
-
-		return null;
+		return dao.select(inVO);
 	}
 
 	@Override
@@ -59,5 +58,6 @@ public class MyPlayListServiceImpl implements MyPlayListService {
 	public MyPlayListVO selectLikeSeq(MyPlayListVO inVO) throws SQLException {
 		return dao.selectLikeList(inVO);
 	}
+	
 
 }

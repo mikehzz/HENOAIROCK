@@ -8,14 +8,13 @@ public class MyPlayListVO extends MemberDTO{
 	private String artist;
 	private String albumImg;
 	private String feeling;
-	private String album;
+	private String albumPath;
 	private String ytLink;
 	private int myListDiv;
 	
 	private String musicId;
 	
 	public MyPlayListVO() {}
-	
 	
 	
 	public String getMyListSeq() {
@@ -67,16 +66,19 @@ public class MyPlayListVO extends MemberDTO{
 		this.feeling = feeling;
 	}
 
-	public String getAlbum() {
-		return album;
-	}
-
-	public void setAlbum(String album) {
-		this.album = album;
+	
+    public String getAlbumPath() {
+		return albumPath;
 	}
 
 
-    public void setUserId(String userId) {
+	public void setAlbumPath(String albumPath) {
+		this.albumPath = albumPath;
+	}
+
+
+
+	public void setUserId(String userId) {
         super.setUserId(userId);
     }
 
@@ -108,14 +110,9 @@ public class MyPlayListVO extends MemberDTO{
 		this.ytLink = ytLink;
 	}
 	
-	
-	
-
 	public String getMusicId() {
 		return musicId;
 	}
-
-
 
 	public void setMusicId(String musicId) {
 		this.musicId = musicId;
@@ -123,28 +120,33 @@ public class MyPlayListVO extends MemberDTO{
 
 
 
+
 	@Override
 	public String toString() {
 		return "MyPlayListVO [myListSeq=" + myListSeq + ", title=" + title + ", artist=" + artist + ", albumImg="
-				+ albumImg + ", feeling=" + feeling + ", album=" + album + ", ytLink=" + ytLink + ", myListDiv="
+				+ albumImg + ", feeling=" + feeling + ", albumPath=" + albumPath + ", ytLink=" + ytLink + ", myListDiv="
 				+ myListDiv + ", musicId=" + musicId + "]";
 	}
 
 
 
-	public MyPlayListVO(String myListSeq, String title, String artist, String albumImg, String feeling, String album,
-			String ytLink, int myListDiv, String musicId) {
+	public MyPlayListVO(String myListSeq, String title, String artist, String albumImg, String feeling,
+			String albumPath, String ytLink, int myListDiv, String musicId) {
 		super();
 		this.myListSeq = myListSeq;
 		this.title = title;
 		this.artist = artist;
 		this.albumImg = albumImg;
 		this.feeling = feeling;
-		this.album = album;
+		this.albumPath = albumPath;
 		this.ytLink = ytLink;
 		this.myListDiv = myListDiv;
 		this.musicId = musicId;
 	}
+
+
+
+	
 
 
 	
