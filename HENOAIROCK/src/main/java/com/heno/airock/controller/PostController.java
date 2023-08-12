@@ -15,9 +15,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.heno.airock.cmn.PcwkLoger;
@@ -45,7 +47,13 @@ public class PostController implements PcwkLoger {
 
 	public PostController() {
 	}
-
+	
+    @GetMapping("/comment/{postSeq}")
+    public ResponseEntity<List<CommentVO>> getCommentsForPost(@PathVariable String postSeq) throws SQLException {
+        List<CommentVO> comments = commentService.getCommentsForPost(postSeq);
+        return ResponseEntity.ok(comments);
+    }
+    
 	@PostMapping("/create")
 	@ResponseBody // 이 어노테이션을 추가하여 JSON 응답을 반환하도록 설정합니다.
 	public Map<String, Object> addComment(@ModelAttribute CommentVO comment,

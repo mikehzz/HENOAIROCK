@@ -5,15 +5,16 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import com.heno.airock.dao.CommentDao;
 import com.heno.airock.dto.CommentVO;
 
-@Repository
+@Service
 public class CommentServiceImpl  implements CommentService{
 	
 	@Autowired
-	CommentDao commentDao;
+	private CommentDao commentDao;
 
 	@Override
 	public int save(CommentVO inVO) throws SQLException {
@@ -32,10 +33,12 @@ public class CommentServiceImpl  implements CommentService{
 
 	@Override
 	public CommentVO selectOne(CommentVO inVO) throws SQLException {
-	
-		return null;
+		return commentDao.selectOne(inVO);
 	}
-
+    @Override
+    public List<CommentVO> getCommentsForPost(String postSeq) throws SQLException {
+        return commentDao.getCommentsForPost(postSeq);
+    }
 	@Override
 	public List<CommentVO> select(CommentVO inVO) throws SQLException {
 		return commentDao.select(inVO);
