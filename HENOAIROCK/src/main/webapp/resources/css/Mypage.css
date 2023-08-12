@@ -142,7 +142,7 @@ h1 {
 
 
 .horizen_station {
-  width: calc(30% - 10px);
+  width: calc(33.33% - 10px);
   margin-bottom: 20px;
   display: flex;
   align-items: center;
@@ -222,15 +222,16 @@ hr {
   color: #444;
 }
 
-/* 노래 목록을 2열로 표시하기 위한 추가 스타일 */
-@media (max-width: 768px) {
+/* 노래 목록을 3열로 표시하기 위한 추가 스타일 */
+@media {
   .music_list {
     justify-content: flex-start;
   }
 
   .horizen_station {
-    width: 100%;
+    width: calc(28% - 10px); /* Divide width equally for 3 columns */
+    margin: 20px;
+  }
+
   }
 }
-
-
