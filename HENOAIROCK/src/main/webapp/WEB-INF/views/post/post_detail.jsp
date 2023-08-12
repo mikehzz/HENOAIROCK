@@ -27,6 +27,44 @@
 <script src="${CP}/resources/js/jquery-3.7.0.js"></script>
 <script src="${CP}/resources/js/util.js"></script>
 <title>${title}</title>
+<style>
+.comment {
+  border: 1px solid #ccc;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+}
+
+.comment-user {
+  font-weight: bold;
+}
+
+.comment-text {
+  margin-top: 5px;
+}
+
+.comment-time {
+  color: #666;
+  font-size: 12px;
+}
+
+/* 추가된 댓글 입력 영역 스타일 */
+.input-group {
+  margin-top: 20px;
+}
+
+#comments {
+  width: 70%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+#doAddComment {
+  margin-left: 10px;
+}
+</style>
 </head>
 <body>
   <!-- contents  -->  
@@ -34,6 +72,7 @@
   <!-- 소 제목 -->
   <div class="page-title">
     <h2>${title}</h2>
+    ${comments}
   </div>
   
   <!--// 소 제목 end ------------------------------------------------------------->
@@ -97,81 +136,104 @@
 <div id="commentList">
   <!-- 여기에 댓글이 추가될 것입니다 -->
 </div>
-<input type="hidden" id="seq" value="242">
+
+<c:forEach var="comment" items="${comments}">
+    <div class="comment">
+        <div class="comment-content">
+            <span class="comment-user">${comment.userId}</span>
+            <span class="comment-text">${comment.cmtContents}</span>
+            <span class="comment-time">${comment.cmtDt}</span>
+        </div>
+        <div class="comment-actions">
+            <button class="edit-comment-button" data-comment-id="${comment.cmtSeq}">수정</button>
+        </div>
+        <!-- 수정 폼 -->
+        <div class="comment-edit-form" style="display: none;">
+            <textarea class="editedComment" rows="4">${comment.cmtContents}</textarea>
+            <input type="hidden" class="commentId" value="${comment.cmtSeq}">
+            <button type="button" class="submitEdit">수정 완료</button>
+        </div>
+    </div>
+</c:forEach>
+
     </form>
 
   </div>
   <!--// contents  ------------------------------------------------------------>
 <script>
-  $(document).ready(function() {
+$(document).ready(function() {
     // 페이지 로드 시 댓글 가져오기
-    function loadComments(postSeq) {
-      $.ajax({
-        type: "GET",
-        url: "/post/comment/" + postSeq,
-        dataType: "json",
-        success: function(comments) {
-          $("#commentList").empty(); // 댓글 리스트 초기화
 
-          // 서버에서 받은 댓글 데이터를 사용하여 댓글 섹션을 채웁니다.
-          for (var i = 0; i < comments.length; i++) {
-            var comment = comments[i];
-            var newComment = '<div class="comment">' +
-              '<span class="comment-user">' + comment.userId + '</span>' +
-              '<span class="comment-text">' + comment.cmtContents + '</span>' +
-              '</div>';
-            $("#commentList").append(newComment); // 댓글을 추가합니다.
-          }
-        }
-      });
-    }
 
-    // 페이지 로드 시 댓글 가져오기
-    loadComments($("#seq").val());
-
-    // 댓글 추가
     $("#doAddComment").on("click", function() {
-      var commentText = $("#comments").val();
+        var commentText = $("#comments").val();
 
-      if (!commentText) {
-        alert("댓글을 입력하세요.");
-        $("#comments").focus();
-        return;
-      }
-
-      var userId = "${sessionScope.user.userId}";
-      var postSeq = $("#seq").val();
-
-      $.ajax({
-        type: "POST",
-        url: "/post/create",
-        dataType: "json",
-        data: {
-          postSeq: postSeq,
-          cmtContents: commentText,
-          userId: userId
-        },
-        success: function(response) {
-          if (response.success) {
-            // 댓글 추가 성공 시 화면에 댓글을 동적으로 추가
-            var newComment = '<div class="comment">' +
-              '<span class="comment-user">' + userId + '</span>' +
-              '<span class="comment-text">' + commentText + '</span>' +
-              '</div>';
-            $("#commentList").prepend(newComment);
-
-            // 입력 필드 초기화
-            $("#comments").val("");
-
-            alert("댓글이 추가되었습니다.");
-
-            // 댓글 추가 후 다시 댓글을 로드하여 갱신
-            loadComments(postSeq);
-          } else {
-            alert(response.message);
-          }
+        if (!commentText) {
+            alert("댓글을 입력하세요.");
+            $("#comments").focus();
+            return;
         }
-      });
+
+        var userId = "${sessionScope.user.userId}";
+        var postSeq = $("#seq").val();
+
+        $.ajax({
+            type: "POST",
+            url: "/post/create",
+            dataType: "json",
+            data: {
+                postSeq: postSeq,
+                cmtContents: commentText,
+                userId: userId
+            },
+            success: function(response) {
+                if (response.success) {
+                    var newComment = 
+                    alert("댓글이 추가되었습니다.");
+                    location.reload();
+                } else {
+                    alert(response.message);
+                }
+            }
+        });
+    });
+
+ // 댓글 수정 버튼 클릭 시 수정 폼 보여주기
+    $(document).on("click", ".edit-comment-button", function() {
+    var commentText = $(this).siblings(".comment-text").text();
+    var commentId = $(this).data("comment-id");
+    var editedCommentForm = $(this).closest(".comment").find(".comment-edit-form");
+    editedCommentForm.find(".editedComment").val(commentText);
+    editedCommentForm.find(".commentId").val(commentId);
+    editedCommentForm.show();
+});
+
+ // 수정 완료 버튼 클릭 시 수정 내용 서버로 전송
+    $(document).on("click", ".submitEdit", function() {
+        var editedComment = $(this).siblings(".editedComment").val();
+        var commentId = $(this).siblings(".commentId").val();
+
+        $.ajax({
+            type: "POST",
+            url: "/post/updateComment",
+            data: {
+                cmtSeq: commentId,
+                cmtContents: editedComment
+            },
+            success: function(response) {
+                if (response.success) {
+                    var editedCommentText = response.editedComment.cmtContents;
+                    var commentToUpdate = $(".edit-comment-button[data-comment-id='" + commentId + "']").siblings(".comment-text");
+                    commentToUpdate.text(editedCommentText);
+                    $(".comment-edit-form").hide();
+                } else {
+                    alert("댓글 수정에 실패했습니다.");
+                }
+            },
+            error: function() {
+                alert("댓글 수정에 실패했습니다.");
+            }
+        });
     });
     // 댓글 추가 END
 

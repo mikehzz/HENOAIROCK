@@ -2,6 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="comment">
 
+    <update id="update" parameterType="comment">
+        UPDATE comments
+        SET cmtContents = #{cmtContents}
+        WHERE commentId = #{commentId}
+    </update>
+
 <select id="getCommentsForPost" parameterType="string" resultType="comment">
     SELECT
         cmt_seq,
@@ -11,6 +17,7 @@
         cmt_contents
     FROM comments
     WHERE post_seq = #{postSeq}
+    ORDER BY cmt_dt ASC
 </select>
 
     <insert id="save" parameterType="comment">
@@ -36,17 +43,6 @@
         DELETE FROM comments
         WHERE post_seq = #{postSeq}
     </delete>
-    
-<select id="selectOne" parameterType="string" resultType="comment">
-    SELECT
-        cmt_seq,
-        post_seq,
-        user_id,
-        cmt_dt,
-        cmt_contents
-    FROM COMMENTS
-    WHERE cmt_seq = #{cmtSeq}
-</select>
 
     <select id="select" parameterType="comment" resultType="comment">
         SELECT
