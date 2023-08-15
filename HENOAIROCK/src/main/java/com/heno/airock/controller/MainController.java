@@ -37,6 +37,7 @@ public class MainController implements PcwkLoger{
 			List<ChatMessageVO> list = chatService.select(inVO);
 			LOG.debug("list:" + list);
 			model.addAttribute("MsgList", list);
+			
 			return viewPage;
 		} else {
 			return "redirect:/member/login";
