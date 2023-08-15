@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chat">
+
+<insert id="start" parameterType="chat">
+<selectKey keyProperty="chatSeq" resultType="string" order="BEFORE">
+  SELECT CHAT_SEQ.NEXTVAL FROM DUAL
+</selectKey>
+  INSERT INTO MSG (
+    chat_seq,
+    user_id,
+    chat_div
+  ) VALUES (
+    #{chatSeq},
+    #{userId},
+    #{chatDiv}
+  )
+
+</insert>
+
+<insert id="message" parameterType="chat">
+INSERT INTO MSG_DETAIL (
+  chat_seq,
+  chat_div,
+  chat_dt,
+  chat_contents
+) VALUES (
+  #{chatSeq},
+  #{chatDiv},
+  SYSDATE,
+  #{chatContents}
+)
+</insert>
+
+<select id="selectMsgList" parameterType="chat" resultType="chat">
+  SELECT 
+    *
+  FROM MSG
+  WHERE USER_ID = #{userId}
+</select>
+
+
+</mapper>
+

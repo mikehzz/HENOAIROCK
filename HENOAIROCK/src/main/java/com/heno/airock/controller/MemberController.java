@@ -2,6 +2,7 @@ package com.heno.airock.controller;
 
 import java.sql.SQLException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,9 +96,12 @@ public class MemberController implements PcwkLoger {
 	// 로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String login(@ModelAttribute MemberDTO memberDTO, HttpSession session) {
+	public String login(@ModelAttribute MemberDTO memberDTO, HttpServletRequest request) {
 		String jsonString = "";
+		HttpSession session = request.getSession();
+		
 		boolean loginResult = memberService.login(memberDTO);
+		LOG.debug("└loginResult┘" + loginResult);
 		MessageDTO message = new MessageDTO();
 		if (loginResult) {
 			session.setAttribute("user", memberDTO);

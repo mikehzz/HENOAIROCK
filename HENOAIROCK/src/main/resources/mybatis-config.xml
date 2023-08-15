@@ -22,6 +22,7 @@
      alias="comment"/>
      <typeAlias type="com.heno.airock.dto.MusicHeartDTO"
      alias="musicHeart"/>
+     <typeAlias type="com.heno.airock.dto.ChatMessageVO" alias="chat"/>
 	</typeAliases>
 	
 </configuration>

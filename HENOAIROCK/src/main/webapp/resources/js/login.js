@@ -12,9 +12,12 @@ $('#fn_email').on("click",function() {
 					let paredJSON = JSON.parse(data)
 					if ("1" == paredJSON.msgId) {
 						alert(paredJSON.msgContents);
-						window.location.href = '/post';
+						window.location.href = '/main';
 					} else if("2" == paredJSON.msgId){
 						alert(paredJSON.msgContents);
+						window.location.href = '/member/login';
+					} else {
+						alert("알수없는 오류 발생 재접속 바랍니다.")
 						window.location.href = '/member/login';
 					}
 				},
