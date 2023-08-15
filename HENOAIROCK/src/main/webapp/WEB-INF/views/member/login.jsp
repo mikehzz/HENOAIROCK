@@ -43,9 +43,11 @@
 	                <hr>
 	
 	                <!-- Connect with Google -->
-	                <a href="#" class="social-button" id="google-connect"> 
-	                    <span>Connect with Google</span>
-	                </a>
+<a href="#" class="social-button" id="google-connect"> 
+    <span class="connect">Connect</span>
+    <span class="with">with</span>
+    <span class="google">Google</span>
+</a>
 	            </form>
 	        </div>
 	    </div>

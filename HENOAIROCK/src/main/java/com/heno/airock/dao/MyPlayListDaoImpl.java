@@ -41,8 +41,8 @@ public class MyPlayListDaoImpl implements MyPlaylistDao {
 	
 	@Override
 	public List<MyPlayListVO> select(MyPlayListVO inVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return sqlSessionTemplate.selectList("MyPlayList.likeList", inVO);
 	}
 
 	

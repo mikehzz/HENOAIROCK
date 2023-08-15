@@ -15,9 +15,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.heno.airock.cmn.PcwkLoger;
@@ -45,7 +48,32 @@ public class PostController implements PcwkLoger {
 
 	public PostController() {
 	}
+	
+	@PostMapping("/updateComment")
+	@ResponseBody
+	public ResponseEntity<Map<String, Object>> updateComment(@RequestParam String cmtSeq, @RequestParam String cmtContents) throws SQLException {
+	    Map<String, Object> response = new HashMap<>();
 
+	    // 입력 값 유효성 검사 등 필요한 로직을 추가하세요.
+
+	    CommentVO inVO = new CommentVO();
+	    inVO.setCmtSeq(cmtSeq);
+	    inVO.setCmtContents(cmtContents);
+
+	    int flag = commentService.update(inVO);
+	    if (flag == 1) {
+	        response.put("success", true);
+	        response.put("message", "댓글이 수정되었습니다.");
+	        response.put("editedComment", inVO); // 수정된 댓글 정보를 응답에 포함시킴
+	    } else {
+	        response.put("success", false);
+	        response.put("message", "수정 실패");
+	    }
+
+	    return ResponseEntity.ok(response);
+	}
+
+    
 	@PostMapping("/create")
 	@ResponseBody // 이 어노테이션을 추가하여 JSON 응답을 반환하도록 설정합니다.
 	public Map<String, Object> addComment(@ModelAttribute CommentVO comment,
@@ -89,16 +117,18 @@ public class PostController implements PcwkLoger {
 		LOG.debug("│inVO                          │" + inVO);
 		LOG.debug("└──────────────────────────────┘");
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("user");
-
+        
 		if (memberDTO != null) {
 			LOG.debug("│userVO                          │" + memberDTO);
 			inVO.setPostSeq(reqeust.getParameter("seq"));
 			inVO.setUserId(memberDTO.getUserId());
 			PostVO outVO = postService.selectOne(inVO);
-
+			
+			List<CommentVO> comments = commentService.getCommentsForPost(reqeust.getParameter("seq"));
+	        
 			model.addAttribute("outVO", outVO);
 			model.addAttribute("inVO", inVO);
-
+			model.addAttribute("comments",comments);
 			return view;
 		} else {
 			return "redirect:/member/login";

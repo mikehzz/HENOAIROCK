@@ -46,5 +46,20 @@
     WHERE user_id = #{userId} AND mylist_div = 10
   </select>
   
+  <select id="likeList" parameterType="MyPlayList" resultType="MyPlayList">
+    SELECT 
+      A.*, 
+      M.title,
+      M.artist,
+      M.album_path
+    FROM
+    (SELECT
+        *
+        FROM myplaylist_detail
+        WHERE mylist_seq = #{myListSeq}) A
+    LEFT JOIN
+    music M ON A.music_id = M.music_id
+  </select>
+  
   
 </mapper>

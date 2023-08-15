@@ -10,39 +10,43 @@ import org.springframework.stereotype.Repository;
 import com.heno.airock.dto.CommentVO;
 
 @Repository
-public class CommentDaoImpl implements CommentDao{
+public class CommentDaoImpl implements CommentDao {
 	
 	@Autowired
-	SqlSessionTemplate sqlSessionTemplate; //DB 연결
+	private SqlSessionTemplate sqlSessionTemplate; // SqlSession을 주입 받습니다.
 
 	@Override
-	public int save(CommentVO inVO) throws SQLException {
+	public int save(CommentVO inVO) {
+		// 댓글 저장 쿼리 호출
 		return sqlSessionTemplate.insert("comment.save", inVO);
 	}
 
 	@Override
-	public int delete(CommentVO inVO) throws SQLException {
+	public int delete(CommentVO inVO) {
+		// 댓글 삭제 쿼리 호출
 		return sqlSessionTemplate.delete("comment.delete", inVO);
 	}
 
 	@Override
-	public int update(CommentVO inVO) throws SQLException {
+	public int update(CommentVO inVO) {
+		// 댓글 수정 쿼리 호출
 		return sqlSessionTemplate.update("comment.update", inVO);
 	}
 
 	@Override
-	public CommentVO selectOne(CommentVO inVO) throws SQLException {
+	public CommentVO selectOne(CommentVO inVO) {
+		// 댓글 조회 (단일) 쿼리 호출
 		return sqlSessionTemplate.selectOne("comment.selectOne", inVO);
 	}
 
 	@Override
-	public List<CommentVO> select(CommentVO inVO) throws SQLException {
-		LOG.debug("┌──────────────────────────────┐");
-		LOG.debug("│doRetrieve                    │");
-		LOG.debug("│inVO                          │"+inVO);
-		LOG.debug("│statement                     │ select");
-		LOG.debug("└──────────────────────────────┘");	
+	public List<CommentVO> select(CommentVO inVO) {
+		// 댓글 조회 (다중) 쿼리 호출
 		return sqlSessionTemplate.selectList("comment.select", inVO);
 	}
-
+	
+    @Override
+    public List<CommentVO> getCommentsForPost(String postSeq) throws SQLException {
+        return sqlSessionTemplate.selectList("comment.getCommentsForPost", postSeq);
+    }
 }

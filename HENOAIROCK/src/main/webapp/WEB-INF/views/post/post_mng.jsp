@@ -89,7 +89,12 @@
           <label for="exampleFormControlTextarea1" class="form-label">내용</label>
           <textarea class="form-control" id="contents" name="contents" rows="3" required="required">${outVO.postContents}</textarea>
         </div>
-                
+        
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label">곡정보</label>
+          <textarea class="form-control" id="musicId" name="musicId" required="required">${outVO.musicId}</textarea>
+        </div>
+
     </form>
   </div>
   <!--// contents  ------------------------------------------------------------>
