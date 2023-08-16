@@ -61,5 +61,9 @@
     music M ON A.music_id = M.music_id
   </select>
   
+  <delete id="deleteLikeMusic" parameterType="MyPlayList">
+    DELETE FROM MYPLAYLIST_DETAIL
+    WHERE music_id = #{musicId} AND mylist_seq = #{myListSeq}
+  </delete>
   
 </mapper>

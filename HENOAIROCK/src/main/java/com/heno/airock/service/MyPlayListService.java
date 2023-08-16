@@ -14,5 +14,6 @@ public interface MyPlayListService extends WorkDiv<MyPlayListVO>{
 	
 	public MyPlayListVO selectLikeSeq(MyPlayListVO inVO) throws SQLException;
 	
-	
+	public int deleteMusic(MyPlayListVO inVO) throws SQLException;
+
 }

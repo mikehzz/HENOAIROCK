@@ -68,5 +68,11 @@ public class MyPlayListDaoImpl implements MyPlaylistDao {
 		return sqlSessionTemplate.selectOne("MyPlayList.selectLikeSeq", inVO);
 	}
 	
+	@Override
+	public int deleteMusic(MyPlayListVO inVO) throws SQLException {
+		
+		return sqlSessionTemplate.delete("MyPlayList.deleteLikeMusic", inVO);
+	}
+	
 
 }

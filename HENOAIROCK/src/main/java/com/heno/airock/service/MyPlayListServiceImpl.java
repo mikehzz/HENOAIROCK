@@ -59,5 +59,10 @@ public class MyPlayListServiceImpl implements MyPlayListService {
 		return dao.selectLikeList(inVO);
 	}
 	
+	@Override
+	public int deleteMusic(MyPlayListVO inVO) throws SQLException {
+		return dao.deleteMusic(inVO);
+	}
+	
 
 }

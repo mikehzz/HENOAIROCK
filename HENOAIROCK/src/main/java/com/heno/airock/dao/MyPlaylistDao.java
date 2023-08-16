@@ -16,5 +16,5 @@ public interface MyPlaylistDao extends WorkDiv<MyPlayListVO> {
 	
 	public MyPlayListVO selectLikeList(MyPlayListVO myPlayListVO) throws SQLException;
 
-	
+	public int deleteMusic(MyPlayListVO myPlayListVO) throws SQLException;
 }
