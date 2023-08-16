@@ -32,22 +32,23 @@ eUtil.ISEmpty = function(str) {
 
 //회원여부 확인 체크
 function fn_idChk() {
-	const email = $('#email').val();
+	const email = $('#userId').val();
 	if (exptext.test(email) == false) {
 		// 이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우
 		alert("이메일 형식이 올바르지 않습니다.");
 		$("#email").focus();
 	} else {
+		console.log("email : " + email);
 		$.ajax({
 			url : "/member/idChk",
 			type : "get",
 			dataType : "json",
-			data : 'email=' + email,
+			data : 'userId=' + email,
 
 			success : function(data) {
 				if (data == 1) {
 					console.log("data : " + data);
-					alert("just listen의 회원이십니다");
+					alert("HenoAiRock의 회원이십니다");
 					email_Check = true;
 				} else if (data == 0) {
 					$('#mail-Check-Btn').attr('disabled', false);
@@ -83,7 +84,7 @@ $('#mail-Confirm-Btn').click(function() {
 
 // 이메일 인증 버튼
 $('#mail-Check-Btn').click(function() {
-	const email = $('#email').val(); // 이메일 주소값 얻어오기!
+	const email = $('#userId').val(); // 이메일 주소값 얻어오기!
 	console.log('완성된 이메일 : ' + email); // 이메일 오는지 확인
 	const checkInput = $('#checkInput'); // 인증번호 입력하는곳
 

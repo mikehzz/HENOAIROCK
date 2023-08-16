@@ -23,7 +23,7 @@
 					<input onclick="fn_idChk();" type="button" value="회원 인증 " class="btnRe">
 					<p class="input-title">가입한 E-mail 확인</p>
 					<div class="input-wrapper">
-						<label> <input type="email" name="email" id="email" class="size line-input"> </label>
+						<label> <input type="email" name="userId" id="userId" class="size line-input"> </label>
 					</div>
 
 					<!--이메일 인증번호 입력-->

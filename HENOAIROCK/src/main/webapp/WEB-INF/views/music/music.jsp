@@ -122,7 +122,7 @@
          <%-- 조회 데이터가 있는 경우--%>
          <c:when test="${not empty musicList }">
             <c:forEach var="vo" items="${musicList}">
-              <tr>
+              <tr>  
                 <td class="text-center    col-sm-0  col-md-0  col-lg-0"><img src="<c:out value="${vo.albumPath}"/>" width="60px" height="60px"></td>
                 <td class="text-center    col-sm-4  col-md-4  col-lg-4"><a href="#"><c:out value="${vo.title}"/></a></td>
                 <td class="text-center  col-sm-1  col-md-1  col-lg-1"><c:out value="${vo.artist}"/></td>
@@ -144,51 +144,12 @@
        </c:choose>
       </tbody>
 </table>
-<!-- 페이징 -->
+      <!-- 페이징 -->
     <div class="d-flex justify-content-center">
       <%=StringUtil.renderPaging(totalCnt, pageNo, pageSize, bottomCount, cPath+"/music", "select") %>
     </div>
     <script src="/resources/js/music.js"></script>
-</div>
-
-<script>
-   function select(url, pageNo){
-     console.log("url:"+url);
-     console.log("pageNo:"+pageNo);
-     
-     let frm = document.boardFrm;
-     //$("#pageNo").val(1); //jquery
-     frm.action = url;
-     frm.pageNo.value=pageNo;//javascript
-     frm.submit();//controller call  
-   }
-
-
-   
-   
- 
-   function doRetrieveCall(pageNo){
-       let frm = document.boardFrm;
-       //$("#pageNo").val(1); //jquery
-       frm.pageNo.value=pageNo;//javascript
-       frm.submit();//controller call    
-   }
-   
-   $("#searchWord").on("keypress",function(e){
-      console.log("searchWord");
-      if(13 == e.which){//enter keycode
-        e.preventDefault();
-        doRetrieveCall(1);
-      }
-   });
-   
-   
-   $("#doRetrieve").on("click",function(){
-        console.log("doRetrieve");
-        doRetrieveCall(1);
-   });
-   
-</script>
+  </div>
 </body>
 
 </html>

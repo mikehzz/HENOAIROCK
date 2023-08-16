@@ -84,12 +84,13 @@ public class MemberController implements PcwkLoger {
 	// 비밀번호변경 페이지 에서 로그인 페이지로 이동
 	@PostMapping("/find")
 	public String find(@ModelAttribute MemberDTO memberDTO) {
+		LOG.debug("└memberDTO┘" + memberDTO);
 		int saveResult = memberService.find(memberDTO);
 		System.out.println("saveResult" + saveResult);
 		if (saveResult > 0) {
 			return "/member/login";
 		} else {
-			return "/member/save";
+			return "/member/passwd";
 		}
 	}
 
@@ -151,6 +152,7 @@ public class MemberController implements PcwkLoger {
 	@GetMapping("/**/idChk")
 	@ResponseBody
 	public int idChk(MemberDTO memberDTO) throws Exception {
+		LOG.debug("└idChk┘" + memberDTO);
 		int result = memberService.idChk(memberDTO);
 		return result;
 	}
