@@ -38,7 +38,6 @@ public class MainController implements PcwkLoger{
 			LOG.debug("list:" + list);
 			model.addAttribute("MsgList", list);
 			
-			
 			return viewPage;
 		} else {
 			return "redirect:/member/login";

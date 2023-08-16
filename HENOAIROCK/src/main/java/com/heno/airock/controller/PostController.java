@@ -114,7 +114,7 @@ public class PostController implements PcwkLoger {
 		LOG.debug("│inVO                          │" + inVO);
 		LOG.debug("└──────────────────────────────┘");
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("user");
-        
+         
 		if (memberDTO != null) {
 			LOG.debug("│userVO                          │" + memberDTO);
 			inVO.setPostSeq(reqeust.getParameter("seq"));
