@@ -1,0 +1,36 @@
+.comment {
+  border: 1px solid #ccc;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+}
+
+.comment-user {
+  font-weight: bold;
+}
+
+.comment-text {
+  margin-top: 5px;
+}
+
+.comment-time {
+  color: #666;
+  font-size: 12px;
+}
+
+/* 추가된 댓글 입력 영역 스타일 */
+.input-group {
+  margin-top: 20px;
+}
+
+#comments {
+  width: 70%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+#doAddComment {
+  margin-left: 10px;
+}

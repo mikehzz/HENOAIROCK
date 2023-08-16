@@ -17,9 +17,6 @@ function select(url, pageNo){
      console.log('tdArray:'+tdArray);
      let seq = tdArray.eq(0).text();
      console.log('seq:'+seq);
-     
-     if( confirm("상세 조회 하시겠어요?") == false ) return;
-     
      //div,seq
      //http://localhost:8080/ehr/board/doSelectOne.do?div=10&seq=393
      window.location.href = "/post/select?div="+$("#div").val()+"&seq="+seq;

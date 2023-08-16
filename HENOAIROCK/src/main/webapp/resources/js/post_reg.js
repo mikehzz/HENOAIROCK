@@ -1,3 +1,11 @@
+// 팝업 창 열기
+document.getElementById("openPopupBtn").addEventListener("click", function() {
+    var popupUrl = "/music/music_reg"; // music.jsp 경로
+    var popupName = "MusicPopup";
+    var popupOptions = "width=800,height=600,resizable=yes,scrollbars=yes";
+    var popupWindow = window.open(popupUrl, popupName, popupOptions);
+});
+
 function moveToListView() {
 	window.location.href = "/post?div=" + $("#div").val();
 }

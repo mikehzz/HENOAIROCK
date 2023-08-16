@@ -97,39 +97,42 @@
   
   </div>
 
-   <table id="boardTable" class="table table-striped table-hover table-bordered  thead-dark thead-inverse">
-      <thead>
+   <table id="boardTable" class="table table-striped table-borderless table-hover thead-inverse">
+      <thead class="table-light">
         <tr  class="table-primary" >
            <th class="text-center">번호</th>
            <th class="text-center">제목</th>  
            <th class="text-center">글쓴이</th>
            <th class="text-center">작성일</th> 
            <th class="text-center">조회</th>
-           <th style="display:none;">SEQ</th>    
+           <th style="display:none;">SEQ</th>
+           <th class="text-center">앨범</th> 
+           <th class="text-center">음악 정보</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="table-group-divider">
        <c:choose>
          <%-- 조회 데이터가 있는 경우--%>
          <c:when test="${not empty list }">
             <c:forEach var="vo" items="${list}">
               <tr>
                 <td style="display:none;"><c:out value="${vo.postSeq}"/></td>
-                <td class="text-center  col-sm-2  col-md-1  col-lg-1"><c:out value="${vo.num}"/></td>
-                <td class="text-left    col-sm-6  col-md-6  col-lg-7"><a href="#"><c:out value="${vo.postTitle}"/></a></td>
+                <td class="text-center  col-sm-1  col-md-1  col-lg-1"><c:out value="${vo.num}"/></td>
+                <td class="text-left    col-sm-2  col-md-2  col-lg-2"><a href="#"><c:out value="${vo.postTitle}"/></a></td>
                 <td class="text-center  col-sm-2  col-md-2  col-lg-2"><c:out value="${vo.userId}"/></td>
-                <td class="text-center  col-sm-2  col-md-2  col-lg-1"><c:out value="${vo.postDt}"/></td>
-                <td class="text-end     col-sm-0  col-md-1  col-lg-1"><c:out value="${vo.readCnt}"/></td> 
-                <c:if test="${not empty vo.musicId }">
-                <td class="text-center  col-sm-2  col-md-2  col-lg-2"><c:out value="${vo.title}"/></td>
-                <td class="text-center  col-sm-2  col-md-2  col-lg-2"><c:out value="${vo.album}"/></td>
-                <td class="text-center  col-sm-2  col-md-2  col-lg-2"><c:out value="${vo.artist}"/></td>
-                <td class="text-center  col-sm-2  col-md-2  col-lg-2"><c:out value="${vo.genre}"/></td>
-                </c:if>
+                <td class="text-center  col-sm-2  col-md-1  col-lg-1"><c:out value="${vo.postDt}"/></td>
+                <td class="text-end     col-sm-0  col-md-1  col-lg-1"><c:out value="${vo.readCnt}"/></td>
+                <c:if test="${not empty vo.musicId}">
+                  <td class="text-center  col-sm-2  col-md-1  col-lg-1"><img class="album-cover" src="${vo.albumPath }" alt="앨범커버" width="60px" height="60px"></td>
+		              <td class="text-center  col-sm-2  col-md-5  col-lg-5"><c:out value="${vo.title}- ${vo.artist}"/></td>
+		            </c:if>
+		            <c:if test="${empty vo.musicId}">
+		              <td class="text-center  col-sm-2  col-md-4  col-lg-4">음악정보가 없습니다.</td>
+		              <td class="text-center  col-sm-2  col-md-4  col-lg-4"></td>
+		            </c:if>
               </tr>            
             </c:forEach>
          </c:when>
-         
          <%-- 조회 데이터가 없는 경우--%>
          <c:otherwise>
            <tr>

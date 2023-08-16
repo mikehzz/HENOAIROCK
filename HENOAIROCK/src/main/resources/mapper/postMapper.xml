@@ -60,17 +60,21 @@
   
   <select id="selectOne" parameterType="post" resultType="post">
     SELECT
-      post_seq,
-      user_id,
-      post_title,
-      post_contents,
-      read_cnt,
-      post_div,
-      post_dt,
-      update_dt,
-      music_id
-    FROM posts
-    WHERE post_seq = #{postSeq}
+			  p.post_seq,
+			  p.user_id,
+			  p.post_title,
+			  p.post_contents,
+			  p.read_cnt,
+			  p.post_div,
+			  p.post_dt,
+			  p.update_dt,
+			  p.music_id,
+			  m.title,
+			  m.artist,
+			  m.album_path 
+		FROM posts p
+		LEFT JOIN music m ON p.music_id = m.music_id
+		WHERE p.post_seq = #{postSeq}
   </select>
   
   <update id="update" parameterType="post">
