@@ -62,13 +62,13 @@ public class CommentServiceTest implements PcwkLoger{
 	}
 	
 	@Test
-	@Ignore
 	public void select() throws SQLException {
 	    service.save(board01);
 	    
 	}
 	
 	@Test
+	@Ignore
 	public void delete() throws SQLException {
 	    service.delete(board03);
 	    

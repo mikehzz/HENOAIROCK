@@ -21,6 +21,8 @@ package com.heno.airock.cmn;
 
 import java.sql.SQLException;
 import java.util.List;
+
+import com.heno.airock.dto.CommentVO;
 /**
  * 
  * @author user

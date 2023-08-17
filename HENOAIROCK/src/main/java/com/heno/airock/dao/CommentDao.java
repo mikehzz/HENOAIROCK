@@ -7,7 +7,9 @@ import com.heno.airock.cmn.PcwkLoger;
 import com.heno.airock.cmn.WorkDiv;
 import com.heno.airock.dto.CommentVO;
 
-public interface CommentDao extends WorkDiv<CommentVO>, PcwkLoger{
+public interface CommentDao extends WorkDiv<CommentVO>, PcwkLoger {
 
-	List<CommentVO> getCommentsForPost(String postSeq) throws SQLException;
+    List<CommentVO> getCommentsForPost(String postSeq) throws SQLException;
+
+
 }

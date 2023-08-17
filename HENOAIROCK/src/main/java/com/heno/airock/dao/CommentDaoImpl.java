@@ -49,4 +49,7 @@ public class CommentDaoImpl implements CommentDao {
     public List<CommentVO> getCommentsForPost(String postSeq) throws SQLException {
         return sqlSessionTemplate.selectList("comment.getCommentsForPost", postSeq);
     }
+
+
 }
+

@@ -127,25 +127,29 @@ request.setAttribute("title", title);
 			<!-- 여기에 댓글이 추가될 것입니다 -->
 		</div>
 
-		<c:forEach var="comment" items="${comments}">
-			<div class="comment">
-				<div class="comment-content">
-					<span class="comment-user">${comment.userId}</span> <span
-						class="comment-text">${comment.cmtContents}</span> <span
-						class="comment-time">${comment.cmtDt}</span>
-				</div>
-				<div class="comment-actions">
-					<button class="edit-comment-button"
-						data-comment-id="${comment.cmtSeq}">수정</button>
-				</div>
-				<!-- 수정 폼 -->
-				<div class="comment-edit-form" style="display: none;">
-					<textarea class="editedComment" rows="4">${comment.cmtContents}</textarea>
-					<input type="hidden" class="commentId" value="${comment.cmtSeq}">
-					<button type="button" class="submitEdit">수정 완료</button>
-				</div>
-			</div>
-		</c:forEach>
+
+
+<c:forEach var="comment" items="${comments}">
+    <div class="comment">
+        <div class="comment-content">
+            <span class="comment-user">${comment.userId}</span>
+            <span class="comment-time">${comment.cmtDt}</span>
+        </div>
+        <div class="comment-text">${comment.cmtContents}</div>
+        <div class="comment-actions text-end">
+            <button class="edit-comment-button" data-comment-id="${comment.cmtSeq}">수정</button>
+            <button class="delete-comment-button" data-comment-id="${comment.cmtSeq}">삭제</button>
+        </div>
+        <div class="comment-edit-form" style="display: none;">
+            <textarea class="editedComment" rows="4">${comment.cmtContents}</textarea>
+            <input type="hidden" class="commentId" value="${comment.cmtSeq}">
+            <button type="button" class="submitEdit">수정 완료</button>
+        </div>
+    </div>
+</c:forEach>
+
+				
+		
 	</div>
 </body>
 </html>

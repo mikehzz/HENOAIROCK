@@ -9,6 +9,7 @@ public class CommentVO extends DTO{
 	public String cmtDt;
 	public String cmtContents;
 	
+	
 	public CommentVO() {}
 
 	public String getCmtSeq() {
@@ -50,6 +51,8 @@ public class CommentVO extends DTO{
 	public void setCmtContents(String cmtContents) {
 		this.cmtContents = cmtContents;
 	}
+	
+
 
 	@Override
 	public String toString() {
