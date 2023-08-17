@@ -72,6 +72,7 @@ $(document).ready(function() {
                     var commentToUpdate = $(".edit-comment-button[data-comment-id='" + commentId + "']").siblings(".comment-text");
                     commentToUpdate.text(editedCommentText);
                     $(".comment-edit-form").hide();
+                    location.reload();
                 } else {
                     alert("댓글 수정에 실패했습니다.");
                 }
