@@ -23,7 +23,6 @@ public class MyPageController implements PcwkLoger {
 	@Autowired
 	MyPlayListService myPlayListService;
 	
-	
 	@RequestMapping(value="")
 	public String select(MyPlayListVO inVO, Model model, HttpServletRequest reqeust, HttpSession session) throws SQLException {
 		String viewPage = "/member/mypage";

@@ -12,13 +12,14 @@ public class MusicVO extends MemberDTO {
 	private String ytLink	  ;
 	private String publicDt   ;
 	private int likeCnt	  ;
+	private String embedLink;
 	
 	public MusicVO() {}
 
 	
 
 	public MusicVO(String musicId, String title, String album, String artist, String lyrics, String genre,
-			String feeling, String albumPath, String ytLink, String publicDt, int likeCnt) {
+			String feeling, String albumPath, String ytLink, String publicDt, int likeCnt, String embedLink) {
 		super();
 		this.musicId = musicId;
 		this.title = title;
@@ -31,9 +32,18 @@ public class MusicVO extends MemberDTO {
 		this.ytLink = ytLink;
 		this.publicDt = publicDt;
 		this.likeCnt = likeCnt;
+		this.embedLink = embedLink;
 	}
 
 
+
+	public String getEmbedLink() {
+		return embedLink;
+	}
+
+	public void setEmbedLink(String embedLink) {
+		this.embedLink = embedLink;
+	}
 
 	public String getMusicId() {
 		return musicId;

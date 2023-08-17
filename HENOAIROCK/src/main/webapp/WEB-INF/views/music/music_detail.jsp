@@ -71,7 +71,7 @@ to {
 					<p class="song-artist">${musicDetail.artist}</p>
 					<p class="song-genre">${musicDetail.genre}</p>
 					<div class="song-youtube">
-						<iframe width="450" height="280" src="${musicDetail.ytLink}"
+						<iframe width="450" height="280" src="${musicDetail.embedLink}"
 							frameborder="0" allowfullscreen></iframe>
 					</div>
 				</div>

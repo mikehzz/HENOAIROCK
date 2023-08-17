@@ -129,7 +129,7 @@
       genre,
       feeling,
       album_path,
-      yt_link,
+      embed_link,
       public_dt,
       like_cnt
     FROM MUSIC
