@@ -8,6 +8,7 @@ public class AppController {
     @GetMapping("/")
     public String intro() {
     	return "redirect:/member/login";
+    	
     }
 
 }	
