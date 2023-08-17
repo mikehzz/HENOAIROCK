@@ -118,22 +118,23 @@ request.setAttribute("title", title);
 				</p>
 			</section>
 		</div>
-		<div class="input-group">
-			<textarea class="form-control" id="comments" name="comments" rows="2"></textarea>
-			<button class="btn btn-primary" type="button" id="doAddComment">댓글
-				추가</button>
-		</div>
-		<div id="commentList">
-			<!-- 여기에 댓글이 추가될 것입니다 -->
-		</div>
+		
+<div class="comment-input">
+    <textarea class="form-control" id="comments" name="comments" rows="4"></textarea>
+    <button class="btn btn-primary btn-lg" type="button" id="doAddComment">댓글 추가</button>
+</div>
 
+    <div id="commentList">
+      <!-- 여기에 댓글이 추가될 것입니다 -->
+    </div>
 
 
 <c:forEach var="comment" items="${comments}">
-    <div class="comment">
+    <span class="comment">
+        <div class="comment-divider"></div>
         <div class="comment-content">
-            <span class="comment-user">${comment.userId}</span>
-            <span class="comment-time">${comment.cmtDt}</span>
+            <div class="comment-user">${comment.userId}</div>
+            <div class="comment-time">${comment.cmtDt}</div>
         </div>
         <div class="comment-text">${comment.cmtContents}</div>
         <div class="comment-actions text-end">
@@ -145,9 +146,8 @@ request.setAttribute("title", title);
             <input type="hidden" class="commentId" value="${comment.cmtSeq}">
             <button type="button" class="submitEdit">수정 완료</button>
         </div>
-    </div>
+    </span>
 </c:forEach>
-
 				
 		
 	</div>
