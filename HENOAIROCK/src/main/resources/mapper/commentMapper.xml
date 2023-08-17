@@ -4,8 +4,9 @@
 
     <update id="update" parameterType="comment">
         UPDATE comments
-        SET cmtContents = #{cmtContents}
-        WHERE commentId = #{commentId}
+        SET
+            cmt_contents = #{cmtContents}
+        WHERE cmt_seq = #{cmtSeq}
     </update>
 
 <select id="getCommentsForPost" parameterType="string" resultType="comment">
