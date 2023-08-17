@@ -48,6 +48,27 @@ public class PostController implements PcwkLoger {
 	public PostController() {
 	}
 	
+	@PostMapping("/deleteComment")
+	@ResponseBody
+	public ResponseEntity<Map<String, Object>> deleteComment(@RequestParam String cmtSeq) throws SQLException {
+	    Map<String, Object> response = new HashMap<>();
+
+	    // 입력 값 유효성 검사 등 필요한 로직을 추가하세요.
+	    CommentVO inVO = new CommentVO();
+	    inVO.setCmtSeq(cmtSeq);
+	    
+	    int flag = commentService.delete(inVO);
+	    if (flag == 1) {
+	        response.put("success", true);
+	        response.put("message", "댓글이 삭제되었습니다.");
+	    } else {
+	        response.put("success", false);
+	        response.put("message", "삭제 실패");
+	    }
+
+	    return ResponseEntity.ok(response);
+	}
+	
 	@PostMapping("/updateComment")
 	@ResponseBody
 	public ResponseEntity<Map<String, Object>> updateComment(@RequestParam String cmtSeq, @RequestParam String cmtContents) throws SQLException {

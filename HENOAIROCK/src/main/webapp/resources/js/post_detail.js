@@ -44,6 +44,30 @@ $(document).ready(function() {
 	    
 	});
 
+    $(document).on("click", ".delete-comment-button", function() {
+        var commentId = $(this).data("comment-id");
+
+        $.ajax({
+            type: "POST",
+            url: "/post/deleteComment",
+            data: {
+                cmtSeq: commentId
+            },
+            success: function(response) {
+                if (response.success) {
+                    // 삭제 성공 시에 필요한 로직을 추가하세요.
+                    alert("댓글이 삭제되었습니다.");
+                    location.reload(); // 댓글 삭제 후 페이지 리로드
+                } else {
+                    alert("댓글 삭제에 실패했습니다.");
+                }
+            },
+            error: function() {
+                alert("댓글 삭제에 실패했습니다.");
+            }
+        });
+    });
+    
  // 댓글 수정 버튼 클릭 시 수정 폼 보여주기
     $(document).on("click", ".edit-comment-button", function() {
     var commentText = $(this).siblings(".comment-text").text();
@@ -84,6 +108,8 @@ $(document).ready(function() {
     });
     // 댓글 추가 END
 
+    
+    
     // 수정으로 이동
     $("#doUpdate").on("click", function() {
     	if (confirm('수정화면으로 이동하시겠습니까?') == false) return;

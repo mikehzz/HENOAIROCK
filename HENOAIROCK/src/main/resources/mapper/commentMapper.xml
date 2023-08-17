@@ -42,7 +42,7 @@
 
     <delete id="delete" parameterType="comment">
         DELETE FROM comments
-        WHERE post_seq = #{postSeq}
+        WHERE cmt_seq = #{cmtSeq}
     </delete>
 
     <select id="select" parameterType="comment" resultType="comment">
