@@ -85,8 +85,8 @@ to {
 						<div class="lyrics-content">
 							<!-- 가사를 스타일링하여 표시 -->
 							<%-- <pre>${musicDetail.lyrics}</pre> --%>
-							<p
-								style="white-space: pre-line; font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5;">${musicDetail.lyrics}</p>
+							<p style="white-space: pre-line; font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5; text-align: center;">${musicDetail.lyrics}</p>
+								
 						</div>
 					</div>
 				</div>
