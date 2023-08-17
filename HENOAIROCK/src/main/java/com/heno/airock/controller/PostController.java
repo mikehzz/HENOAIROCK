@@ -20,11 +20,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.heno.airock.cmn.PcwkLoger;
 import com.heno.airock.cmn.StringUtil;
 import com.heno.airock.dto.CodeVO;
 import com.heno.airock.dto.CommentVO;
 import com.heno.airock.dto.MemberDTO;
+import com.heno.airock.dto.MessageDTO;
 import com.heno.airock.dto.PostVO;
 import com.heno.airock.service.CodeService;
 import com.heno.airock.service.CommentService;
@@ -132,8 +134,37 @@ public class PostController implements PcwkLoger {
 		}
 
 	}
+	
+	@GetMapping("/post_mng")
+	public String post_mng(@ModelAttribute PostVO inVO, Model model, HttpServletRequest reqeust, HttpSession session) throws SQLException {
+		String view = "/post/post_mng";
+		
+		LOG.debug("┌──────────────────────────────┐");
+		LOG.debug("│doSelectOne                   │");
+		LOG.debug("│inVO                          │" + inVO);
+		LOG.debug("└──────────────────────────────┘");
+		
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("user");
+         
+		if (memberDTO != null) {
+			LOG.debug("│userVO                          │" + memberDTO);
+			inVO.setPostSeq(reqeust.getParameter("seq"));
+			inVO.setUserId(memberDTO.getUserId());
+			PostVO outVO = postService.selectOne(inVO);
+			
+			List<CommentVO> comments = commentService.getCommentsForPost(reqeust.getParameter("seq"));
+			LOG.debug("│outVO                          │" + outVO);
+			model.addAttribute("outVO", outVO);
+			model.addAttribute("inVO", inVO);
+			model.addAttribute("comments",comments);
+			return view;
+		} else {
+			return "redirect:/member/login";
+		}
+	}
 
-	@PostMapping("/update")
+	@RequestMapping(value = "update", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
 	public String update(PostVO inVO) throws SQLException {
 		String jsonString = "";
 		LOG.debug("┌──────────────────────────────┐");
@@ -142,15 +173,20 @@ public class PostController implements PcwkLoger {
 		LOG.debug("└──────────────────────────────┘");
 
 		int flag = this.postService.update(inVO);
-		String message = "";
+		MessageDTO message = new MessageDTO();
 		if (1 == flag) {
-			message = inVO.getPostTitle() + "이 수정 되었습니다.";
+			message.setMsgId("1");
+			message.setMsgContents("수정되었습니다.");
+			jsonString = new Gson().toJson(message);
+			
+			return jsonString;
 		} else {
-			message = "수정 실패";
+			message.setMsgId("2");
+			message.setMsgContents("수정 실패");
+			jsonString = new Gson().toJson(message);
+			
+			return jsonString;
 		}
-		jsonString = StringUtil.validMessageTOJson(flag + "", message);
-		LOG.debug("│jsonString                          │" + jsonString);
-		return jsonString;
 	}
 
 	@RequestMapping(value = "")
@@ -272,17 +308,21 @@ public class PostController implements PcwkLoger {
 
 		int flag = postService.delete(inVO);
 
-		String message = "";
+		MessageDTO message = new MessageDTO();
 		if (1 == flag) {// 삭제 성공
-			message = "게시글이 삭제되었습니다";
+			message.setMsgId("1");
+			message.setMsgContents("삭제되었습니다!");
+			jsonString = new Gson().toJson(message);
+			
+			return jsonString;
 		} else {// 등록실패
-			message = inVO.getPostSeq() + " 삭제 실패";
+			message.setMsgId("2");
+			message.setMsgContents("삭제실패했습니다!");
+			jsonString = new Gson().toJson(message);
+			
+			return jsonString;
 		}
-
-		jsonString = StringUtil.validMessageTOJson(flag + "", message);
-		LOG.debug("│jsonString                          │" + jsonString);
-
-		return jsonString;
+		
 	}
 
 }

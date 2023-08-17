@@ -66,8 +66,13 @@
 			  p.post_contents,
 			  p.read_cnt,
 			  p.post_div,
-			  p.post_dt,
-			  p.update_dt,
+			  DECODE( TO_CHAR(p.post_dt,'YYYYMMDD'),TO_CHAR(sysdate,'YYYYMMDD')
+                      ,TO_CHAR(p.post_dt,'HH24:MI')
+                      ,TO_CHAR(p.post_dt,'YYYY/MM/DD') )post_dt,
+               --당일 등록이면 : 16:26 그렇치 않으면 2023/06/28
+               DECODE( TO_CHAR(p.update_dt,'YYYYMMDD'),TO_CHAR(sysdate,'YYYYMMDD')
+                      ,TO_CHAR(p.update_dt,'HH24:MI')
+                      ,TO_CHAR(p.update_dt,'YYYY/MM/DD') )update_dt,
 			  p.music_id,
 			  m.title,
 			  m.artist,
@@ -112,7 +117,7 @@
   </insert>
   <delete id="delete" parameterType="post">
         DELETE FROM posts 
-        WHERE post_seq = #{postSeq} 
+        WHERE post_seq = #{postSeq} AND user_id = #{userId}
   </delete>
   
   

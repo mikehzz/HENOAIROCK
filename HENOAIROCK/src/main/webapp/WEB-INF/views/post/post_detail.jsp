@@ -46,6 +46,8 @@ request.setAttribute("title", title);
 			<h2>${title}</h2>
 		</div>
 		<input type="hidden" name="div" id="div" value="${inVO.getPostDiv()}">
+		<input type="hidden" name="seq" id="seq" value="${inVO.getPostSeq()}">
+		<input type="hidden" name="userId" id="userId" value="${sessionScope.user.userId}">
 		<input type="hidden" name="musicId" id="musicId" value="${outVO.musicId}">
 		<div class="content">
 			<section>
@@ -64,8 +66,16 @@ request.setAttribute("title", title);
 									alt="앨범커버" width="60px" height="60px" id=musicClick name=musicClick></td>
 								<th scope="row">곡이름</th>
 								<td>${outVO.title} - ${outVO.artist }</td>
+								<c:if test="${not empty outVO.updateDt }">
 								<th scope="row">등록일</th>
 								<td>${outVO.postDt}</td>
+								<th scope="row">수정일</th>
+								<td>${outVO.updateDt }</td>
+								</c:if>
+								<c:if test="${empty outVO.updateDt }">
+								<th scope="row">등록일</th>
+                <td>${outVO.postDt}</td>
+								</c:if>
 							</c:if>
 							<c:if test="${empty outVO.musicId}">
 								<th scope="row">음악 정보</th>
@@ -79,15 +89,15 @@ request.setAttribute("title", title);
 							<td>${outVO.postTitle}</td>
 
 							<th scope="row">조회</th>
-							<td colspan="4">${outVO.readCnt}</td>
+							<td colspan="6">${outVO.readCnt}</td>
 						</tr>
 						<tr>
 							<th scope="row">글쓴이</th>
-							<td colspan="5">${outVO.userId}</td>
+							<td colspan="7">${outVO.userId}</td>
 						</tr>
 						<tr>
 							<th scope="row">내용</th>
-							<td colspan="5"></td>
+							<td colspan="7"></td>
 						</tr>
 					</tbody>
 				</table>
@@ -96,10 +106,15 @@ request.setAttribute("title", title);
 				</div>
 				<hr class="my-2">
 				<p class="btn_set">
+				  <c:set var="writer" value="${outVO.userId }" />
+				  <c:set var="currentUser" value="${sessionScope.user.userId}" />
+				  
+				  <c:if test="${writer eq currentUser}">
 					<input type="button" class="btn btn-primary" value="수정"
 						id="doUpdate"> <input type="button"
-						class="btn btn-primary" value="삭제" id="doDelete"> <input
-						type="button" class="btn btn-primary" value="목록" id="moveToList">
+						class="btn btn-primary" value="삭제" id="doDelete">
+					</c:if>
+						<input type="button" class="btn btn-primary" value="목록" id="moveToList">
 				</p>
 			</section>
 		</div>

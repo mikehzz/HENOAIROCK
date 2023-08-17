@@ -3,14 +3,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%       
-         PostVO vo = (PostVO)request.getAttribute("inVO");
-         String divValue = vo.getPostDiv();
          String title    = "자유게시판";//10:자유게시판, 20:공지사항
-         
-         if("20".equals(divValue)){
-            title = "공지사항";
-         }
-         
+       
          request.setAttribute("title", title);
 %>
 
@@ -35,70 +29,108 @@
   <div class="page-title">
     <h2>${title}</h2>
   </div>
-  
-  <!--// 소 제목 end ------------------------------------------------------------->
-    <!-- 버튼 -->
-    <div class="row g-1 d-flex justify-content-end">
-      <div class="col-auto">
-        <input type="button" class="btn btn-primary" value="목록" id="moveToList">
-        <input type="button" class="btn btn-primary" value="수정" id="doUpdate">
-        <input type="button" class="btn btn-primary" value="삭제" id="doDelete">
-      </div>
-    </div>
-    <!--// 버튼 ----------------------------------------------------------------->
-    <form action="#"  name="reg_frm" id="reg_frm">
-       <input type="hidden" name="div" id="div" value="${inVO.getPostDiv()}">
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">SEQ</label>
-          <input type="text" class="form-control title_cls" id="seq"  name="seq"
-             placeholder="제목을 입력 하세요." required="required" readonly="readonly" value="${outVO.postSeq}">
-        </div>       
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">제목</label>
-          <input type="text" class="form-control title_cls" id="title"  name="title"
-             placeholder="제목을 입력 하세요." required="required" maxlength="66"  value="${outVO.postTitle}">
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">읽은 횟수</label>
-          <input type="text" class="form-control title_cls" id="readCnt"  name="readCnt"
-             placeholder="읽은 횟수" required="required"  readonly="readonly"   value="${outVO.readCnt}">
-        </div>
-                
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">등록자ID</label>
-          <input type="text" class="form-control" id="regId" name="regId" value="${outVO.userId}"
-          placeholder="아이디를 입력 하세요." readonly="readonly">
-        </div>
-        
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">등록일</label>
-          <input type="text" class="form-control" id="regDt" name="regDt" value="${outVO.postDt}" readonly="readonly">
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">수정자</label>
-          <input type="text" class="form-control" id="modId" name="modId" value="${outVO.userId}"
-          placeholder="수정자 아이디를 입력 하세요." readonly="readonly">
-        </div>
-        
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">수정일</label>
-          <input type="text" class="form-control" id="modDt" name="modDt" value="${outVO.updateDt}" readonly="readonly">
-        </div>
-                        
-        <div class="mb-3">
-          <label for="exampleFormControlTextarea1" class="form-label">내용</label>
+    <input type="hidden" name="div" id="div" value="${inVO.getPostDiv()}">
+    <input type="hidden" name="seq" id="seq" value="${inVO.getPostSeq()}">
+    <input type="hidden" name="userId" id="userId" value="${sessionScope.user.userId}">
+    
+      <div class="content">
+      <form action="#"  name="reg_frm" id="reg_frm">
+      <section>
+        <table class="table table-striped table-hover">
+          <colgroup>
+            <col style="width: 10%;" />
+            <col style="width: 23%;" />
+            <col style="width: 10%;" />
+            <col style="width: 23%;" />
+          </colgroup>
+          <tbody>
+            <tr>
+              <c:if test="${not empty outVO.musicId}">
+                <th scope="row">음악 정보</th>
+                <td><img class="album-cover" src="${outVO.albumPath }"
+                  alt="앨범커버" width="60px" height="60px" id=musicClick name=musicClick></td>
+                <th scope="row">곡이름</th>
+                <td>${outVO.title} - ${outVO.artist }</td>
+                <th scope="row">등록일</th>
+                <td>${outVO.postDt}</td>
+              </c:if>
+              <c:if test="${empty outVO.musicId}">
+                <th scope="row">음악 정보</th>
+                <td>음악 정보가 없습니다.</td>
+                <th scope="row">등록일</th>
+                <td colspan="2">${outVO.postDt}</td>
+              </c:if>
+            </tr>
+            <tr>
+              <th scope="row">제목</th>
+              <td><input type="text" class="form-control title_cls" id="title"  name="title"
+             placeholder="제목을 입력 하세요." required="required" maxlength="66"  value="${outVO.postTitle}"></td>
+              <th scope="row">조회</th>
+              <td colspan="4">${outVO.readCnt}</td>
+            </tr>
+            <tr>
+              <th scope="row">글쓴이</th>
+              <td colspan="5">${outVO.userId}</td>
+            </tr>
+            <tr>
+              <th scope="row">내용</th>
+              <td colspan="5"></td>
+            </tr>
+            <tr>
+              <th scope="row" colspan="8"> <div class="content">
           <textarea class="form-control" id="contents" name="contents" rows="3" required="required">${outVO.postContents}</textarea>
+        </div></th>
+            </tr>
+            <tr>
+              <th scope="row">곡 추가하기</th>
+              <td colspan="4"><div id="albumImageContainer" class="album-info-container">
+        <div class="album-content">
+          <img class="selected-album-image" width="100px" height="100px">
+          <div class="info">
+            <span class="selected-title"></span> <span class="selected-artist"></span>
+          </div>
         </div>
+        <div class="album-info">
+          <div class="selected-album"></div>
+          <input type="hidden" class="selected-musicId" name="musicId"
+            id="musicId">
+        </div>
+      </div></td>
+      <td><div class="row g-1 d-flex justify-content-end">
+        <div class="col-auto">
+          <input type="button" class="btn btn-primary" value="음악 선택"
+            id="openPopupBtn">
+        </div>
+      </div></td>
+          </tbody>
+        </table>
         
-        <div class="mb-3">
-          <label for="exampleFormControlTextarea1" class="form-label">곡정보</label>
-          <textarea class="form-control" id="musicId" name="musicId" required="required">${outVO.musicId}</textarea>
-        </div>
-
-    </form>
-  </div>
+        <hr class="my-2">
+        <p class="btn_set">
+          <c:set var="writer" value="${outVO.userId }" />
+          <c:set var="currentUser" value="${sessionScope.user.userId}" />
+          
+          <c:if test="${writer eq currentUser}">
+          <input type="button" class="btn btn-primary" value="수정하기"
+            id="doUpdate">
+          </c:if>
+            <input type="button" class="btn btn-primary" value="돌아가기" id="moveToList">
+        </p>
+      </section> 
+      </form>  
+    </div>
+    </div>
   <!--// contents  ------------------------------------------------------------>
   <script>
+  
+  //음악 선택시 팝업 창 열기
+  document.getElementById("openPopupBtn").addEventListener("click", function() {
+	    var popupUrl = "/music/music_reg"; // music.jsp 경로
+	    var popupName = "MusicPopup";
+	    var popupOptions = "width=800,height=600,resizable=yes,scrollbars=yes";
+	    var popupWindow = window.open(popupUrl, popupName, popupOptions);
+	});
+  
       //수정
       $("#doUpdate").on("click",function(){
         console.log("doUpdate");
@@ -128,12 +160,11 @@
               postTitle: $("#title").val(),
               postContents: $("#contents").val(),
               userId: '${sessionScope.user.userId}',
-              postSeq: $("#seq").val()  
+              postSeq: $("#seq").val(),
+              musicId: $("#musicId").val()
             },
             success:function(data){//통신 성공
               console.log("success data:"+data);
-              //성공(1),실패
-              
               let parsedJson = JSON.parse(data);
               if("1" == parsedJson.msgId){
                 alert(parsedJson.msgContents);
@@ -141,8 +172,6 @@
               }else{
                 alert(parsedJson.msgContents);
               }
-              
-            
             },
             error:function(data){//실패시 처리
               console.log("error:"+data);
@@ -152,171 +181,15 @@
         
       });
       //--수정-------------------------------------------------------------------
-  
-  
-      //삭제
-      $("#doDelete").on("click",function(){
-          console.log("doDelete");
-          console.log("seq:"+$("#seq").val());
-          if(confirm('삭제 하시겠습니까')==false)return;
-          
-          $.ajax({
-              type: "GET",
-              url:"/post/delete",
-              asyn:"true",
-              dataType:"html",
-              data:{
-                postDiv: $("#div").val(),
-                postSeq: $("#seq").val()  
-              },
-              success:function(data){//통신 성공
-                  console.log("success data:"+data);
-                  //성공, 실패
-                  //성공->board_list.jsp로 이동
-                  let parsedJson = JSON.parse(data);
-                  if("1" == parsedJson.msgId){
-                    alert(parsedJson.msgContents);
-                    moveToListView();
-                  }else{
-                    alert(parsedJson.msgContents);
-                  }
-                  
-              },
-              error:function(data){//실패시 처리
-                 console.log("error:"+data);
-              }
-          });
-          
-      });//--doDelete-----------------------------------------------------------
-      
-      // 추천하기
-      $("#doRecommend").on("click",function(){
-    	  console.log("doRecommend");  
-    	  $.ajax({
-              type: "GET",
-              url:"/post/recommend",
-              asyn:"true",
-              dataType:"html",
-              data:{
-                postDiv: $("#div").val(),
-                postSeq: $("#seq").val()  
-              },
-              success:function(data){//통신 성공
-                  console.log("success data:"+data);
-                  //성공, 실패
-                  //성공->board_list.jsp로 이동
-                  let parsedJson = JSON.parse(data);
-                  if("1" == parsedJson.msgId){
-                    alert(parsedJson.msgContents);
-                    moveToListView();
-                  }else{
-                    alert(parsedJson.msgContents);
-                  }
-                  
-              },
-              error:function(data){//실패시 처리
-                 console.log("error:"+data);
-              }
-          });
-      });
-      // 추천하기 끝
       function moveToListView(){
-        window.location.href ="/post?div="+$("#div").val();
+    	  window.location.href = "/post/select?div="+$("#div").val()+"&seq="+$("#seq").val();
       }
-      
-  
       $("#moveToList").on("click",function(){
-          if(confirm('목록 화면으로 이동 하시겠습니까?')==false)return;
+          if(confirm('수정을 취소하시고 돌아가겠습니까? (변경된 사항은 저장되지 않습니다.)')==false)return;
           
           moveToListView();
       });//--moveToList
       
-      $("#doSave").on("click",function(){
-          console.log("doSave");
-          
-          let frmTitle = document.reg_frm.title.value;
-          console.log("frmTitle:"+frmTitle);
-          
- 
-          //class로 선택
-          let sTitle = document.querySelector(".title_cls").value;
-          //class값으로 값 가지고 오기
-          
-          
-          console.log("sTitle:"+sTitle);
-          
-          
-          if(eUtil.ISEmpty($("#regId").val()) == true){
-              alert("등록자를 입력 하세요.");
-              $("#regId").focus();
-              return;
-          }         
-          
-          if(eUtil.ISEmpty($("#contents").val()) == true){
-                alert("내용을 입력 하세요.");
-                $("#contents").focus();
-                return;             
-          }
-          
-          
-          //confirm
-          if(confirm('등록 하시겠습니까')==false)return;
-          
-          //console.log("확인:");
-          
-          //ajax
-            $.ajax({
-                type: "POST",
-                url:"/post/save",
-                asyn:"true",
-                dataType:"html",
-                data:{
-                  postDiv: $("#div").val(),       
-                  postTitle: $("#title").val(),
-                  userId: $("#regId").val(),
-                  postContents: $("#contents").val()  
-                },
-                success:function(data){//통신 성공
-                    console.log("success data:"+data);
-                    let parsedJson = JSON.parse(data);
-                    //title 미 입력
-                    if("10" == parsedJson.msgId ){
-                        alert(parsedJson.msgContents);
-                        $("#title").focus();
-                        return;
-                    }  
-                
-                     //등록자 미 입력
-                     if("20" == parsedJson.msgId ){
-                         alert(parsedJson.msgContents);
-                         $("#regId").focus();
-                         return;
-                     }
-                     
-                     //등록자 미 입력
-                     if("30" == parsedJson.msgId ){
-                         alert(parsedJson.msgContents);
-                         $("#contents").focus();
-                         return;
-                     }           
-                     
-                     
-                     if("1" == parsedJson.msgId ){
-                       alert(parsedJson.msgContents);
-                       //javascript
-                       //window.location.href ="${CP}/board/boardView.do?div="+$("#div").val();
-                       moveToListView();
-                     }else{
-                       alert(parsedJson.msgContents);
-                     }   
-                },
-                error:function(data){//실패시 처리
-                    console.log("error:"+data);
-                }
-              });
-          
-          
-      });//--doSave
   </script>  
 </body>
 </html>
