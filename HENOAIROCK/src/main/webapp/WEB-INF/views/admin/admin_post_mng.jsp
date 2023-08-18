@@ -105,54 +105,6 @@
     </form>
   </div>
   <!--// contents  ------------------------------------------------------------>
-  <script>
-  // 삭제 버튼 클릭 시 실행되는 함수
-  $(".delete-button").on("click", function () {
-      console.log("doDelete");
-      var seq = $(this).data("post-seq"); // 삭제할 게시물의 번호 가져오기
-      
-      // 어드민으로 로그인되었는지 확인
-      if (!isAdminLoggedIn) {
-          alert("어드민으로 로그인해주세요!");
-          return;
-      }
-
-      if (confirm('삭제 하시겠습니까') == false) return;
-
-      $.ajax({
-          type: "GET",
-          url: "/admin/delete", // 삭제를 처리하는 서버 URL
-          async: true, // 비동기 처리
-          dataType: "html", // 응답 데이터 형식은 HTML로 설정
-          data: {
-              postDiv: $("#div").val(), // 게시물 구분 값
-              postSeq: seq // 게시물 번호
-          },
-          success: function (data) { // 서버 응답 성공 시 실행되는 함수
-              console.log("success data:", data);
-              var result = JSON.parse(data); // JSON 데이터로 변환
-              if ("1" === result.msgId) { // 성공적으로 삭제되었을 경우
-                  alert(result.msgContents);
-                  moveToListView();
-              } else {
-                  alert(result.msgContents);
-              }
-          },
-          error: function (data) { // 서버 응답 실패 시 실행되는 함수
-              console.log("error:", data);
-          }
-      });
-  });
-
-  function moveToListView() {
-      window.location.href = "/admin/post?div=" + $("#div").val();
-  }
-
-  $("#moveToList").on("click", function () {
-      if (confirm('목록 화면으로 이동 하시겠습니까?') == false) return;
-
-      moveToListView();
-  }); //--moveToList
-  </script>  
+  <script src="/resources/js/admin/admin_post_mng.js"></script>
 </body>
 </html>

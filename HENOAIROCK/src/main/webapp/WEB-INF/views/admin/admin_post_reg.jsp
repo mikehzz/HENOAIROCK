@@ -75,6 +75,6 @@
     </form>
   </div>
   <!--// contents  ------------------------------------------------------------>
- <script src="/resources/js/admin_post_reg.js"></script>
+ <script src="/resources/js/admin/admin_post_reg.js"></script>
 </body>
 </html>

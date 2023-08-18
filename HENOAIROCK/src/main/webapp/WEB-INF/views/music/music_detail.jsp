@@ -12,7 +12,7 @@
 	rel="stylesheet"
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="${CP}/resources/css/music_detail.css">
+<link rel="stylesheet" href="${CP}/resources/css/music/music_detail.css">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
@@ -20,33 +20,7 @@
 <script src="${CP}/resources/js/jquery-3.7.0.js"></script>
 <script src="${CP}/resources/js/util.js"></script>
 <title>곡 정보</title>
-<style>
-/* 애니메이션 스타일링 */
-@
-keyframes fadeIn {from { opacity:0;
-	transform: translateY(-10px);
-}
 
-to {
-	opacity: 1;
-	transform: translateY(0);
-}
-
-}
-
-/* 가사 스타일링 */
-.lyrics-content {
-	white-space: pre-line; /* 줄 바꿈 유지 */
-	font-family: Arial, sans-serif;
-	font-size: 16px;
-	line-height: 1.5;
-}
-
-.lyrics-box {
-	display: none;
-	animation: fadeIn 0.5s ease-out;
-}
-</style>
 </head>
 <body>
 	<header class="text-center py-3">
@@ -93,7 +67,7 @@ to {
 			</div>
 		</div>
 	</div>
-	<script src="${CP}/resources/js/music_detail.js"></script>
+	<script src="${CP}/resources/js/music/music_detail.js"></script>
 </body>
 
 </html>

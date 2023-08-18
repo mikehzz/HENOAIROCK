@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="author" content="User">
 <title>비밀번호 변경 또는 찾기</title>
-<link rel="stylesheet" type="text/css" href="../resources/css/passwd.css">
+<link rel="stylesheet" type="text/css" href="../resources/css/member/passwd.css">
 <script src="/resources/js/jquery-3.7.0.js"></script>
 </head>
 <body>
@@ -57,6 +57,6 @@
 			</div>
 		</div>
 	</div>
-	<script src="${CP}/resources/js/passwd.js"></script>
+	<script src="${CP}/resources/js/member/passwd.js"></script>
 </body>
 </html>

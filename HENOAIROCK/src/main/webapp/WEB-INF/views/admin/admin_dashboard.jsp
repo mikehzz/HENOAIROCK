@@ -6,41 +6,7 @@
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-
-        .navbar-dark.bg-dark {
-            background-color: #343a40 !important;
-        }
-
-        .card {
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .card-title {
-            font-size: 1.25rem;
-        }
-    ::-webkit-scrollbar {
-        width: 12px;
-    }
-
-    ::-webkit-scrollbar-track {
-        background-color: #f8f9fa;
-    }
-
-    ::-webkit-scrollbar-thumb {
-        background-color: #343a40;
-        border-radius: 10px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-        background-color: #495057;
-    }
-    </style>
+    <link rel="stylesheet" type="text/css" href="/resources/css/admin/admin_dashboard.css">
 </head>
 <body>
 
@@ -98,14 +64,6 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script>
-function checkAdminLogin() {
-    if (!("${loggedInAdmin}" != "")) {
-        alert("어드민으로 로그인해주세요!");
-        return false;
-    }
-    return true;
-}
-</script>
+<script src="/resources/js/admin/admin_dashboard.js"></script>
 </body>
 </html>

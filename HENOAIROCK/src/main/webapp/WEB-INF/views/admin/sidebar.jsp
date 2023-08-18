@@ -8,107 +8,108 @@
 %>
 <!DOCTYPE html>
 <html lang="en">
+<style>
+body2 {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    font-family: Arial, sans-serif;
+}
 
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+        top: 0;
+        left: 0;
+        background-color: #343a40;
+        padding-top: 20px;
+        transition: width 0.3s ease-in-out; /* Add smooth width transition */
+}
+.user-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    background-color: #495057;
+    width: 100%; /* Set the width to 100% */
+        }
+        
+.user-profile img {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px; /* Change border-radius to create a square shape */
+          margin-bottom: 5px;
+      }
+
+.user-profile span {
+    color: #f8f9fa;
+    font-size: 14px;
+}
+.content {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin-bottom: 10px;
+}
+
+.sidebar a {
+    color: #f8f9fa;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+    transition: background-color 0.2s ease; /* Add smooth background color transition */
+  }
+    
+    .sidebar a:hover {
+        background-color: #495057;
+    }
+
+.sidebar .material-icons {
+    font-size: 24px;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+.toggle-btn {
+    background-color: #343a40;
+    border: none;
+    color: #f8f9fa;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    display: none; /* Hide on large screens */
+          }
+  
+  @media screen and (max-width:1023px) {
+      .sidebar {
+          width: 60px;
+      }
+  }
+  @media screen and (max-width:560px) {
+      .sidebar #expand-menu:not(:checked) ~ ul {
+          display: none;
+      }
+}
+   </style>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sidebar</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <style>
-        body2 {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            font-family: Arial, sans-serif;
-        }
+    <link rel="stylesheet" type="text/css" href="/resources/css/admin/sidebar.css">
 
-        .sidebar {
-            height: 100%;
-            width: 250px;
-            position: fixed;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-            top: 0;
-            left: 0;
-            background-color: #343a40;
-            padding-top: 20px;
-            transition: width 0.3s ease-in-out; /* Add smooth width transition */
-        }
-        .user-profile {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 10px;
-            background-color: #495057;
-            width: 100%; /* Set the width to 100% */
-        }
-
-        .user-profile img {
-            width: 50px;
-            height: 50px;
-            border-radius: 10px; /* Change border-radius to create a square shape */
-            margin-bottom: 5px;
-        }
-
-.user-profile span {
-    color: #f8f9fa;
-    font-size: 14px;
-}
-        .content {
-            margin-left: 250px;
-            padding: 20px;
-        }
-
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .sidebar li {
-            margin-bottom: 10px;
-        }
-
-        .sidebar a {
-            color: #f8f9fa;
-            text-decoration: none;
-            padding: 10px;
-            display: block;
-            transition: background-color 0.2s ease; /* Add smooth background color transition */
-        }
-
-        .sidebar a:hover {
-            background-color: #495057;
-        }
-
-        .sidebar .material-icons {
-            font-size: 24px;
-            vertical-align: middle;
-            margin-right: 8px;
-        }
-
-        .toggle-btn {
-            background-color: #343a40;
-            border: none;
-            color: #f8f9fa;
-            padding: 10px;
-            cursor: pointer;
-            font-size: 16px;
-            display: none; /* Hide on large screens */
-        }
-
-@media screen and (max-width:1023px) {
-    .sidebar {
-        width: 60px;
-    }
-}
-@media screen and (max-width:560px) {
-    .sidebar #expand-menu:not(:checked) ~ ul {
-        display: none;
-    }
-}
-    </style>
 </head>
 
 <body class="body2">

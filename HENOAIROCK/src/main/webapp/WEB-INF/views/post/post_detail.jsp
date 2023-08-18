@@ -22,7 +22,7 @@ request.setAttribute("title", title);
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- CSS only -->
 <link rel="stylesheet" type="text/css"
-	href="/resources/css/post_detail.css">
+	href="/resources/css/post/post_detail.css">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -35,7 +35,7 @@ request.setAttribute("title", title);
 	crossorigin="anonymous"></script>
 <script src="${CP}/resources/js/jquery-3.7.0.js"></script>
 <script src="${CP}/resources/js/util.js"></script>
-<script src="/resources/js/post_detail.js"></script>
+<script src="/resources/js/post/post_detail.js"></script>
 <title>${title}</title>
 </head>
 <body>

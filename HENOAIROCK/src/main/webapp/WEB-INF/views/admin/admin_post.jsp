@@ -60,12 +60,12 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script src="${CP}/resources/js/jquery-3.7.0.js"></script>
 <script src="${CP}/resources/js/util.js"></script>
+<script src="/resources/js/admin/admin_post.js"></script>
 
 <title>${title}</title>
 
 </head>
-<style>
-</style>
+
 <body class="music-board">
 <div class="container">
   <!-- Content here -->
@@ -158,83 +158,8 @@
       <%=StringUtil.renderPaging(totalCnt, pageNo, pageSize, bottomCount, cPath+"/admin/post", "select") %>
     </div>
 </div> 
+  <!--// contents  ------------------------------------------------------------>
 
-<script>
-function select(url, pageNo){
-    console.log("url:"+url);
-    console.log("pageNo:"+pageNo);
-    
-    let frm = document.boardFrm;
-    //$("#pageNo").val(1); //jquery
-    frm.action = url;
-    frm.pageNo.value=pageNo;//javascript
-    frm.submit();//controller call  
-  }
-
-
-//상세조회 버튼 클릭 시 실행되는 함수
-$(".detail-button").on("click", function () {
-    console.log("doDetail");
-    var seq = $(this).data("post-seq"); // 조회할 게시물의 번호 가져오기
-    // div, seq
-    // http://localhost:8080/ehr/board/doSelectOne.do?div=10&seq=393
-    window.location.href = "${CP}/admin/select?div=" + $("#div").val() + "&seq=" + seq;
-
-});
-   // 삭제 버튼 클릭 시 실행되는 함수
-   $(".delete-button").on("click", function () {
-       console.log("doDelete");
-       var seq = $(this).data("post-seq"); // 삭제할 게시물의 번호 가져오기
-       if (confirm('삭제 하시겠습니까') == false) return;
-
-       $.ajax({
-           type: "GET",
-           url: "/admin/delete", // 삭제를 처리하는 서버 URL
-           async: true, // 비동기 처리
-           dataType: "html", // 응답 데이터 형식은 HTML로 설정
-           data: {
-               postDiv: $("#div").val(), // 게시물 구분 값
-               postSeq: seq // 게시물 번호
-           },
-           success: function (data) { // 서버 응답 성공 시 실행되는 함수
-               console.log("success data:", data);
-               var result = JSON.parse(data); // JSON 데이터로 변환
-               if ("1" === result.msgId) { // 성공적으로 삭제되었을 경우
-                   alert(result.msgContents);
-                   location.reload(); // 삭제 후 페이지 새로고침
-               } else {
-                   alert(result.msgContents);
-               }
-           },
-           error: function (data) { // 서버 응답 실패 시 실행되는 함수
-               console.log("error:", data);
-           }
-       });
-   });
-
-   // 조회 버튼 클릭 시 실행되는 함수
-   $("#doRetrieve").on("click", function () {
-       console.log("doRetrieve");
-       doRetrieveCall(1); // 페이지 번호 1로 조회 호출
-   });
-
-   // 검색어 입력란에서 Enter 키를 누를 때 실행되는 함수
-   $("#searchWord").on("keypress", function (e) {
-       console.log("searchWord");
-       if (13 === e.which) { // Enter 키의 키코드
-           e.preventDefault();
-           doRetrieveCall(1); // 페이지 번호 1로 조회 호출
-       }
-   });
-
-   // 게시물 목록 조회 함수
-   function doRetrieveCall(pageNo) {
-       var frm = document.boardFrm;
-       frm.pageNo.value = pageNo;
-       frm.submit();
-   }
-
-</script>
 </body>
 
 </html>
