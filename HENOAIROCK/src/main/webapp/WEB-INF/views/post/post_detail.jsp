@@ -138,8 +138,11 @@ request.setAttribute("title", title);
         </div>
         <div class="comment-text">${comment.cmtContents}</div>
         <div class="comment-actions text-end">
-            <button class="edit-comment-button" data-comment-id="${comment.cmtSeq}">수정</button>
-            <button class="delete-comment-button" data-comment-id="${comment.cmtSeq}">삭제</button>
+            <!-- 수정 및 삭제 버튼은 댓글 작성자와 로그인한 사용자가 같을 때만 표시 -->
+            <c:if test="${comment.userId eq currentUser}">
+                <button class="edit-comment-button" data-comment-id="${comment.cmtSeq}">수정</button>
+                <button class="delete-comment-button" data-comment-id="${comment.cmtSeq}">삭제</button>
+            </c:if>
         </div>
         <div class="comment-edit-form" style="display: none;">
             <textarea class="editedComment" rows="4">${comment.cmtContents}</textarea>
@@ -148,6 +151,7 @@ request.setAttribute("title", title);
         </div>
     </span>
 </c:forEach>
+
 
 				
 		
