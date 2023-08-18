@@ -137,20 +137,21 @@ request.setAttribute("title", title);
             <div class="comment-time">${comment.cmtDt}</div>
         </div>
         <div class="comment-text">${comment.cmtContents}</div>
-        <div class="comment-actions text-end">
+        <div class="comment-actions text-end justify-content-end">
             <!-- 수정 및 삭제 버튼은 댓글 작성자와 로그인한 사용자가 같을 때만 표시 -->
             <c:if test="${comment.userId eq currentUser}">
-                <button class="edit-comment-button" data-comment-id="${comment.cmtSeq}">수정</button>
-                <button class="delete-comment-button" data-comment-id="${comment.cmtSeq}">삭제</button>
+                <button class="btn btn-primary btn-sm edit-comment-button" data-comment-id="${comment.cmtSeq}">수정</button>
+                <button class="btn btn-primary btn-sm delete-comment-button" data-comment-id="${comment.cmtSeq}">삭제</button>
             </c:if>
-        </div>
-        <div class="comment-edit-form" style="display: none;">
-            <textarea class="editedComment" rows="4">${comment.cmtContents}</textarea>
-            <input type="hidden" class="commentId" value="${comment.cmtSeq}">
-            <button type="button" class="submitEdit">수정 완료</button>
+            <div class="comment-edit-form" style="display: none;">
+                <textarea class="form-control editedComment comment-input" rows="4" style="width: 100%;">${comment.cmtContents}</textarea>
+                <input type="hidden" class="commentId" value="${comment.cmtSeq}">
+                <button type="button" class="btn btn-primary btn-sm submitEdit">수정 완료</button>
+            </div>
         </div>
     </span>
 </c:forEach>
+
 
 
 				
