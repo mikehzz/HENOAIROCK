@@ -9,6 +9,7 @@ import com.heno.airock.dto.CommentVO;
 public interface CommentService extends WorkDiv<CommentVO>{
 
 	List<CommentVO> getCommentsForPost(String postSeq) throws SQLException;
+
 	
 
 }
