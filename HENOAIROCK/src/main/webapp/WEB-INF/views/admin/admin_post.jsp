@@ -157,7 +157,6 @@
     <div class="d-flex justify-content-center">
       <%=StringUtil.renderPaging(totalCnt, pageNo, pageSize, bottomCount, cPath+"/admin/post", "select") %>
     </div>
-    <script src="/resources/js/post.js"></script>
 </div> 
 
 <script>
@@ -177,7 +176,6 @@ function select(url, pageNo){
 $(".detail-button").on("click", function () {
     console.log("doDetail");
     var seq = $(this).data("post-seq"); // 조회할 게시물의 번호 가져오기
-
     // div, seq
     // http://localhost:8080/ehr/board/doSelectOne.do?div=10&seq=393
     window.location.href = "${CP}/admin/select?div=" + $("#div").val() + "&seq=" + seq;

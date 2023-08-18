@@ -45,6 +45,7 @@ $(document).ready(function() {
 	});
 
     $(document).on("click", ".delete-comment-button", function() {
+    	console.log('버튼클릭');
         var commentId = $(this).data("comment-id");
 
         $.ajax({

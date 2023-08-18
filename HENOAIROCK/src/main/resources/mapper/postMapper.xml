@@ -120,6 +120,11 @@
         WHERE post_seq = #{postSeq} AND user_id = #{userId}
   </delete>
   
+  <delete id="adminDelete" parameterType="post">
+        DELETE FROM posts 
+        WHERE post_seq = #{postSeq}
+  </delete>
+  
   
   <update id="updateReadCnt" parameterType="post">
     <![CDATA[

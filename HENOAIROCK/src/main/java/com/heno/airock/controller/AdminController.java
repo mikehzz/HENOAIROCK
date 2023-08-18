@@ -194,7 +194,7 @@ public class AdminController implements PcwkLoger{
 		LOG.debug("└──────────────────────────────┘");
 		
 		
-		int flag = postService.delete(inVO);
+		int flag = postService.admindelete(inVO);
 		
 		String message = "";
 		if (1 == flag) {// 삭제 성공

@@ -16,6 +16,11 @@ public class PostDaoImpl implements PostDao, PcwkLoger {
 	
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
+	
+	@Override
+	public int admindelete(PostVO inVO)throws SQLException {
+		return sqlSessionTemplate.delete("Post.adminDelete", inVO);
+	}
 
 	@Override
 	public int updateReadCnt(PostVO inVO) throws SQLException {

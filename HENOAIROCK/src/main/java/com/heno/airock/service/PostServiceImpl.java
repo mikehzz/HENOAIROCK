@@ -46,6 +46,11 @@ public class PostServiceImpl implements PostService{
 	public List<PostVO> select(PostVO inVO) throws SQLException {
 		return dao.select(inVO);
 	}
+	
+	@Override
+	public int admindelete(PostVO inVO) throws SQLException {
+		return dao.admindelete(inVO);
+	}
 
 
 }
