@@ -1,6 +1,7 @@
 package com.heno.airock.controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -212,58 +213,71 @@ public class PostController implements PcwkLoger {
 
 	@RequestMapping(value = "")
 	public String select(PostVO inVO, Model model) throws SQLException {
-		String viewPage = "/post/post";
-		// page번호
-		if (null != inVO && inVO.getPageNo() == 0) {
-			inVO.setPageNo(1);
-		}
+	    String viewPage = "/post/post";
+	    // page번호
+	    if (null != inVO && inVO.getPageNo() == 0) {
+	        inVO.setPageNo(1);
+	    }
 
-		// pageSize
-		if (null != inVO && inVO.getPageSize() == 0) {
-			inVO.setPageSize(10);
-		}
+	    // pageSize
+	    if (null != inVO && inVO.getPageSize() == 0) {
+	        inVO.setPageSize(10);
+	    }
 
-		// searchWord
-		if (null != inVO && null == inVO.getSearchWord()) {
-			inVO.setSearchWord("");
-		}
+	    // searchWord
+	    if (null != inVO && null == inVO.getSearchWord()) {
+	        inVO.setSearchWord("");
+	    }
 
-		// searchDiv
-		if (null != inVO && null == inVO.getSearchDiv()) {
-			inVO.setSearchDiv("");
-		}
+	    // searchDiv
+	    if (null != inVO && null == inVO.getSearchDiv()) {
+	        inVO.setSearchDiv("");
+	    }
 
-		// postDiv
-		if (null != inVO && null == inVO.getPostDiv()) {
-			inVO.setPostDiv("10");
-		}
+	    // postDiv
+	    if (null != inVO && null == inVO.getPostDiv()) {
+	        inVO.setPostDiv("10");
+	    }
 
-		LOG.debug("inVO:" + inVO);
-		// 코드조회: 검색코드
-		CodeVO codeVO = new CodeVO();
-		codeVO.setCodeId("BOARD_SEARCH");
-		List<CodeVO> searchList = codeService.select(codeVO);
-		model.addAttribute("searchList", searchList);
+	    LOG.debug("inVO:" + inVO);
+	    // 코드조회: 검색코드
+	    CodeVO codeVO = new CodeVO();
+	    codeVO.setCodeId("BOARD_SEARCH");
+	    List<CodeVO> searchList = codeService.select(codeVO);
+	    model.addAttribute("searchList", searchList);
 
-		// 코드조회: 페이지 사이즈
-		codeVO.setCodeId("CMN_PAGE_SIZE");
-		List<CodeVO> pageSizeList = codeService.select(codeVO);
-		model.addAttribute("pageSizeList", pageSizeList);
+	    // 코드조회: 페이지 사이즈
+	    codeVO.setCodeId("CMN_PAGE_SIZE");
+	    List<CodeVO> pageSizeList = codeService.select(codeVO);
+	    model.addAttribute("pageSizeList", pageSizeList);
 
-		List<PostVO> list = postService.select(inVO);
-		LOG.debug("list:" + list);
-		model.addAttribute("list", list);
+	    List<PostVO> allPosts = postService.select(inVO);
+	    List<PostVO> adminPosts = new ArrayList<>();
+	    List<PostVO> otherPosts = new ArrayList<>();
 
-		// 총글수
-		int totalCnt = 0;
-		if (null != list && list.size() > 0) {
-			totalCnt = list.get(0).getTotalCnt();
-		}
+	    for (PostVO post : allPosts) {
+	        if ("어드민".equals(post.getUserId())) {
+	            adminPosts.add(post);
+	        } else {
+	            otherPosts.add(post);
+	        }
+	    }
 
-		model.addAttribute("totalCnt", totalCnt);
-		model.addAttribute("inVO", inVO);
-		return viewPage;
+	    adminPosts.addAll(otherPosts);
+	    List<PostVO> sortedPosts = adminPosts;
+
+	    // 총글수
+	    int totalCnt = 0;
+	    if (null != sortedPosts && sortedPosts.size() > 0) {
+	        totalCnt = sortedPosts.get(0).getTotalCnt();
+	    }
+
+	    model.addAttribute("totalCnt", totalCnt);
+	    model.addAttribute("list", sortedPosts);
+	    model.addAttribute("inVO", inVO);
+	    return viewPage;
 	}
+
 
 	@RequestMapping("post_reg")
 	public String moveReg(PostVO inVO, Model model, HttpSession session) {

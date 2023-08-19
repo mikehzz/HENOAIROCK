@@ -35,7 +35,11 @@
             background-color: #343a40;
             padding-top: 20px;
             transition: width 0.3s ease-in-out; /* Add smooth width transition */
+           height: 100%;
+
+    z-index: 1; /* 추가: 사이드바는 아래에 위치 */
         }
+
         .user-profile {
             display: flex;
             flex-direction: column;
@@ -59,7 +63,9 @@
         .content {
             margin-left: 250px;
             padding: 20px;
+
         }
+
 
         .sidebar ul {
             list-style: none;
@@ -98,12 +104,20 @@
             display: none; /* Hide on large screens */
         }
 
-@media screen and (max-width:1023px) {
-    .sidebar {
+    /* 화면을 줄였을 때 스타일 조정 */
+    @media screen and (max-width: 767px) {
+      .sidebar {
         width: 60px;
+        overflow: hidden; /* 사이드바 너비 축소 시 내용 숨김 */
+      }
+
+      .content {
+        margin-left: 60px;
+      }
     }
-}
-@media screen and (max-width:560px) {
+
+@media screen and (max-width: 560px) {
+    /* Keep the existing code to hide ul when #expand-menu is not checked */
     .sidebar #expand-menu:not(:checked) ~ ul {
         display: none;
     }

@@ -51,7 +51,13 @@
 <script src="${CP}/resources/js/util.js"></script>
 
 <title>${title}</title>
-
+<style>
+.admin-post {
+    background-color: #f0f8ff; /* 예시로 배경색을 변경 */
+    font-weight: bold; /* 글씨를 볼드체로 변경 */
+    /* 추가적인 스타일 지정 가능 */
+}
+</style>
 </head>
 <body>
 <div class="container">
@@ -62,6 +68,7 @@
   </div>
   <!--// 제목 ------------------------------------------------------------------->
   <!-- 검색 form -->
+
   <form action="/post" name="boardFrm">
     <input type="hidden" name="pageNo" id="pageNo">
     <input type="hidden" name="div"    id="div" value='${inVO.getPostDiv()}'>
@@ -112,13 +119,24 @@
         </tr>
       </thead>
       <tbody class="table-group-divider">
+
        <c:choose>
          <%-- 조회 데이터가 있는 경우--%>
          <c:when test="${not empty list }">
             <c:forEach var="vo" items="${list}">
-              <tr>
+                                  <tr class="<c:if test='${vo.userId eq "어드민"}'>admin-post</c:if>">
+
                 <td style="display:none;"><c:out value="${vo.postSeq}"/></td>
-                <td class="text-center  col-sm-1  col-md-1  col-lg-1"><c:out value="${vo.num}"/></td>
+        <td class="text-center  col-sm-1  col-md-1  col-lg-1">
+            <c:choose>
+                <c:when test='${vo.userId eq "어드민"}'>
+                    <span style="color: red;">공지</span>
+                </c:when>
+                <c:otherwise>
+                    <c:out value="${vo.num}" />
+                </c:otherwise>
+            </c:choose>
+        </td>
                 <td class="text-left    col-sm-2  col-md-2  col-lg-2"><a href="#"><c:out value="${vo.postTitle}"/></a></td>
                 <td class="text-center  col-sm-2  col-md-2  col-lg-2"><c:out value="${vo.userId}"/></td>
                 <td class="text-center  col-sm-2  col-md-1  col-lg-1"><c:out value="${vo.postDt}"/></td>

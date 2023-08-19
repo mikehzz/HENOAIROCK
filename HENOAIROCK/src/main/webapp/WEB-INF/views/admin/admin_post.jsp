@@ -65,6 +65,7 @@
 
 </head>
 <style>
+
 </style>
 <body class="music-board">
 <div class="container">
@@ -103,7 +104,7 @@
       </div>  
       <div class="col-auto">  
         <a href="#" class="btn btn-primary" id="doRetrieve" >조회</a>
-        <a href="/admin/admin_post_reg" class="btn btn-primary" >등록</a>
+        <a href="/admin/admin_post_reg" class="btn btn-primary" >공지사항 등록</a>
       </div>      
     </div>  
   </form>
@@ -120,6 +121,7 @@
            <th class="text-center">작성일</th> 
            <th class="text-center">조회</th>
            <th style="display:none;">SEQ</th>
+           <th class="text-center">Action</th>
         </tr>
       </thead>
       
@@ -130,7 +132,7 @@
             <c:forEach var="vo" items="${list}">
                <tr>
                   <td class="text-center col-1"><c:out value="${vo.num}" /></td>
-                  <td class="text-left col-7"><a href="#"><c:out value="${vo.postTitle}" /></a></td>
+                  <td class="text-left col-7"><c:out value="${vo.postTitle}" /></td>
                   <td class="text-center col-2"><c:out value="${vo.userId}" /></td>
                   <td class="text-center col-2"><c:out value="${vo.updateDt}" /></td>
                   <td class="text-end col-1"><c:out value="${vo.readCnt}" /></td>
@@ -157,6 +159,7 @@
     <div class="d-flex justify-content-center">
       <%=StringUtil.renderPaging(totalCnt, pageNo, pageSize, bottomCount, cPath+"/admin/post", "select") %>
     </div>
+
 </div> 
 
 <script>
@@ -176,6 +179,7 @@ function select(url, pageNo){
 $(".detail-button").on("click", function () {
     console.log("doDetail");
     var seq = $(this).data("post-seq"); // 조회할 게시물의 번호 가져오기
+
     // div, seq
     // http://localhost:8080/ehr/board/doSelectOne.do?div=10&seq=393
     window.location.href = "${CP}/admin/select?div=" + $("#div").val() + "&seq=" + seq;
