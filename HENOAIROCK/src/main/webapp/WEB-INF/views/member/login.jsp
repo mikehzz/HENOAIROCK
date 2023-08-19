@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="author" content="User">
     <title>로그인</title>
-    <link rel="stylesheet" type="text/css" href="/resources/css/login.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/member/login.css">
  <script src="/resources/js/jquery-3.7.0.js"></script>
 </head>
 <body>
@@ -52,6 +52,6 @@
 	        </div>
 	    </div>
 </div>
-  <script src="/resources/js/login.js"></script>
+  <script src="/resources/js/member/login.js"></script>
 </body>
 </html>

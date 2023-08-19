@@ -1,0 +1,27 @@
+<style>
+/* 애니메이션 스타일링 */
+@
+keyframes fadeIn {from { opacity:0;
+  transform: translateY(-10px);
+}
+
+to {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+}
+
+/* 가사 스타일링 */
+.lyrics-content {
+  white-space: pre-line; /* 줄 바꿈 유지 */
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.lyrics-box {
+  display: none;
+  animation: fadeIn 0.5s ease-out;
+}
+</style>

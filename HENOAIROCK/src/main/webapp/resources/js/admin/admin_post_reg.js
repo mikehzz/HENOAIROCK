@@ -10,10 +10,7 @@ $("#moveToAdminList").on("click", function() {
 });
 
 $("#doSave").on("click", function() {
-    console.log("doSave");
-    
-    // adminPost 체크 여부 확인
-    var adminPost = $("#adminPost").prop("checked");
+	console.log("doSave");
 
 	if (eUtil.ISEmpty($("#regId").val()) == true) {
 		alert("등록자를 입력 하세요.");
@@ -33,19 +30,18 @@ $("#doSave").on("click", function() {
 
 	// console.log("확인:");
 
-    // ajax
-    $.ajax({
-        type : "POST",
-        url : "/post/save",
-        asyn : "true",
-        dataType : "html",
-        data : {
-            postDiv : $("#div").val(),
-            postTitle : $("#title").val(),
-            userId : $("#regId").val(),
-            postContents : $("#contents").val(),
-            adminPost: adminPost // 어드민 글 여부 추가
-        },
+	// ajax
+	$.ajax({
+		type : "POST",
+		url : "/post/save",
+		asyn : "true",
+		dataType : "html",
+		data : {
+			postDiv : $("#div").val(),
+			postTitle : $("#title").val(),
+			userId : $("#regId").val(),
+			postContents : $("#contents").val()
+		},
 		success : function(data) {// 통신 성공
 			console.log("success data:" + data);
 			let parsedJson = JSON.parse(data);

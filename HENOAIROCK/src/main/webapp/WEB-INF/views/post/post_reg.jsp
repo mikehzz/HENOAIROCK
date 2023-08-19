@@ -25,7 +25,7 @@ request.setAttribute("title", title);
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
 <link rel="stylesheet" type="text/css"
-  href="/resources/css/post_reg.css">
+  href="/resources/css/post/post_reg.css">
 <!-- JavaScript Bundle with Popper -->
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
@@ -104,6 +104,6 @@ request.setAttribute("title", title);
 		</form>
 	</div>
 	<!--// contents  ------------------------------------------------------------>
-	<script src="/resources/js/post_reg.js"></script>
+	<script src="/resources/js/post/post_reg.js"></script>
 </body>
 </html>

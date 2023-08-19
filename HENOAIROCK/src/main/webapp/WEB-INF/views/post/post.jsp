@@ -45,19 +45,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="/resources/css/post/post.css">
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script src="${CP}/resources/js/jquery-3.7.0.js"></script>
 <script src="${CP}/resources/js/util.js"></script>
 
 <title>${title}</title>
-<style>
-.admin-post {
-    background-color: #f0f8ff; /* 예시로 배경색을 변경 */
-    font-weight: bold; /* 글씨를 볼드체로 변경 */
-    /* 추가적인 스타일 지정 가능 */
-}
-</style>
+
 </head>
 <body>
 <div class="container">
@@ -68,7 +63,6 @@
   </div>
   <!--// 제목 ------------------------------------------------------------------->
   <!-- 검색 form -->
-
   <form action="/post" name="boardFrm">
     <input type="hidden" name="pageNo" id="pageNo">
     <input type="hidden" name="div"    id="div" value='${inVO.getPostDiv()}'>
@@ -119,24 +113,13 @@
         </tr>
       </thead>
       <tbody class="table-group-divider">
-
        <c:choose>
          <%-- 조회 데이터가 있는 경우--%>
          <c:when test="${not empty list }">
             <c:forEach var="vo" items="${list}">
-                                  <tr class="<c:if test='${vo.userId eq "어드민"}'>admin-post</c:if>">
-
+              <tr>
                 <td style="display:none;"><c:out value="${vo.postSeq}"/></td>
-        <td class="text-center  col-sm-1  col-md-1  col-lg-1">
-            <c:choose>
-                <c:when test='${vo.userId eq "어드민"}'>
-                    <span style="color: red;">공지</span>
-                </c:when>
-                <c:otherwise>
-                    <c:out value="${vo.num}" />
-                </c:otherwise>
-            </c:choose>
-        </td>
+                <td class="text-center  col-sm-1  col-md-1  col-lg-1"><c:out value="${vo.num}"/></td>
                 <td class="text-left    col-sm-2  col-md-2  col-lg-2"><a href="#"><c:out value="${vo.postTitle}"/></a></td>
                 <td class="text-center  col-sm-2  col-md-2  col-lg-2"><c:out value="${vo.userId}"/></td>
                 <td class="text-center  col-sm-2  col-md-1  col-lg-1"><c:out value="${vo.postDt}"/></td>
@@ -165,7 +148,7 @@
     <div class="d-flex justify-content-center">
       <%=StringUtil.renderPaging(totalCnt, pageNo, pageSize, bottomCount, cPath+"/post", "select") %>
     </div>
-    <script src="/resources/js/post.js"></script>
+    <script src="/resources/js/post/post.js"></script>
 </div>  
 </body>
 

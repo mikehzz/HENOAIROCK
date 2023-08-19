@@ -29,9 +29,32 @@
         <button onclick="sendMessage()">전송&#127925;</button>
     </div>
     
-    <input type="hidden" id= "userId" value="${sessionScope.userId}" name="userId" >     
-    
-    <!-- Sidebar -->
+    <input type="hidden" id= "userId" value="${sessionScope.userId}" name="userId" >
+     <table>
+      <thead>
+        <tr>
+          <th></th>
+        </tr>
+       </thead>
+       <tbody class="table-group-divider">
+       <c:choose>
+          <c:when test="${not empty MsgList }">
+            <c:forEach var="vo" items="${MsgList}">
+                <tr>
+                  <td><c:out value="${vo.chatSeq }"/></td>
+                  </tr>
+                  
+                              </c:forEach>
+           </c:when>
+           <c:otherwise>
+            <tr>
+                  <td>검색 결과 없음</td>
+               </tr>
+           </c:otherwise>
+          </c:choose>
+       </tbody>
+     </table>
+        <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <!-- New Chat Button -->

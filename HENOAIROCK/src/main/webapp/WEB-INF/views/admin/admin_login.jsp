@@ -44,6 +44,6 @@
 	        </div>
 	    </div>
 </div>
-  <script src="/resources/js/admin_login.js"></script>
+  <script src="/resources/js/admin/admin_login.js"></script>
 </body>
 </html>
