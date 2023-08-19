@@ -39,6 +39,13 @@ INSERT INTO MSG_DETAIL (
   WHERE USER_ID = #{userId}
 </select>
 
+<select id="contentSelect" parameterType="chat" resultType="chatDetail">
+  SELECT
+  *
+  FROM MSG_DETAIL
+  WHERE CHAT_SEQ = #{chatSeq}
+</select>
+
 
 </mapper>
 

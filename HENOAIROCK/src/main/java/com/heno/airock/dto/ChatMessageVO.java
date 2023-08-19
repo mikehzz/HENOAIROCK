@@ -4,6 +4,8 @@ public class ChatMessageVO extends MemberDTO{
 	private String chatSeq; //채팅 시퀀스
 	private String chatDiv; //채팅 분류
 	
+	public ChatMessageVO() { }
+	
 	public String getChatSeq() {
 		return chatSeq;
 	}

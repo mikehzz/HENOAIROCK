@@ -41,10 +41,10 @@
           <c:when test="${not empty MsgList }">
             <c:forEach var="vo" items="${MsgList}">
                 <tr>
-                  <td><c:out value="${vo.chatSeq }"/></td>
-                  </tr>
+                  <td onclick="chatContents(this)"><c:out value="${vo.chatSeq }"/></td>
+                </tr>
                   
-                              </c:forEach>
+            </c:forEach>
            </c:when>
            <c:otherwise>
             <tr>
@@ -52,6 +52,22 @@
                </tr>
            </c:otherwise>
           </c:choose>
+            <c:choose>
+          <c:when test="${not empty contentsList }">
+            <c:forEach var="conVO" items="${contentsList}">
+                <tr>
+                  <td><c:out value="${conVO.chatSeq }"/></td>
+                  <td><c:out value="${conVO.chatContents }"/></td>
+                </tr>
+                  
+            </c:forEach>
+           </c:when>
+           <c:otherwise>
+            <tr>
+                  <td>검색 결과 없음</td>
+               </tr>
+           </c:otherwise>
+           </c:choose>
        </tbody>
      </table>
         <!-- Sidebar -->
@@ -71,5 +87,6 @@
         </ul>
 
     </aside>
+    <input type="text" id="userInput" placeholder="대화를 입력하세요.">
 </body>
 </html>

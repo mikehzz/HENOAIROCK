@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.heno.airock.dao.ChatDao;
+import com.heno.airock.dto.ChatMessageDetailVO;
 import com.heno.airock.dto.ChatMessageVO;
 
 @Service
@@ -48,6 +49,12 @@ public class ChatServiceImpl implements ChatService{
 	@Override
 	public List<ChatMessageVO> select(ChatMessageVO inVO) throws SQLException {
 		return chatDao.select(inVO);
+	}
+
+	@Override
+	public List<ChatMessageDetailVO> ContentsSelect(ChatMessageDetailVO inVO) {
+		
+		return chatDao.ContentsSelect(inVO);
 	}
 	
 	

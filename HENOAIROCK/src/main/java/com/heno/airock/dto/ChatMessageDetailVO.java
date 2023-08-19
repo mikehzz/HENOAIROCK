@@ -2,17 +2,25 @@ package com.heno.airock.dto;
 
 public class ChatMessageDetailVO extends ChatMessageVO{
 	
-	private String Contents; // 채팅 내용
+	private String chatContents; // 채팅 내용
 	private String chatDt; //채팅 시간
 	
-	public String getContents() {
-		return Contents;
+	public ChatMessageDetailVO() {}
+	
+	
+	
+	public String getChatContents() {
+		return chatContents;
 	}
 
-	public void setContents(String contents) {
-		Contents = contents;
+
+
+	public void setChatContents(String chatContents) {
+		this.chatContents = chatContents;
 	}
-	
+
+
+
 	public String getChatSeq() {
 		return super.getChatSeq();
 	}
@@ -37,17 +45,21 @@ public class ChatMessageDetailVO extends ChatMessageVO{
 		this.chatDt = chatDt;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "ChatMessageDetailVO [Contents=" + Contents + ", chatDt=" + chatDt + "]";
+		return "ChatMessageDetailVO [chatContents=" + chatContents + ", chatDt=" + chatDt + "]";
 	}
 
-	public ChatMessageDetailVO(String chatSeq, String chatDiv, String contents, String chatDt) {
-		super(chatSeq, chatDiv);
-		Contents = contents;
+
+
+	public ChatMessageDetailVO(String chatContents, String chatDt) {
+		super();
+		this.chatContents = chatContents;
 		this.chatDt = chatDt;
 	}
-	
+
 	
 	
 	

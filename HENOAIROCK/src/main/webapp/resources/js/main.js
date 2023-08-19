@@ -24,3 +24,11 @@ function openNewChat(){
 		}
 	});
 }
+
+function chatContents(element){
+	 var chatSeqValue = element.textContent; // Get the text content of the clicked cell
+	 console.log("Clicked chatSeq:", chatSeqValue);
+	 
+	 window.location.href = "/main/selectOne?chatSeq=" + chatSeqValue;
+
+}

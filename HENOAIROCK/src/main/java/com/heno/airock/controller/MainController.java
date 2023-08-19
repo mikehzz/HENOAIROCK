@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,6 +30,20 @@ public class MainController implements PcwkLoger{
 	@Autowired
 	ChatService chatService;
 	
+	
+	@GetMapping(value = "/selectOne")
+	public String selectOne(ChatMessageDetailVO inVO,Model model, HttpSession session, HttpServletRequest request) {
+		String viewPage = "/common/main";
+		LOG.debug("request.getParameter(\"chatSeq\"):" + request.getParameter("chatSeq"));
+		inVO.setChatSeq(request.getParameter("chatSeq"));
+		LOG.debug("inVO:" + inVO);
+		List<ChatMessageDetailVO> list = chatService.ContentsSelect(inVO);
+		LOG.debug("list:" + list);
+		model.addAttribute("contentsList", list);
+		
+		return viewPage;
+	}
+	
 	@RequestMapping(value = "")
 	public String main(ChatMessageVO inVO, Model model, HttpSession session) throws SQLException {
 		String viewPage = "/common/main";
@@ -44,6 +59,23 @@ public class MainController implements PcwkLoger{
 		} else {
 			return "redirect:/member/login";
 		}
+		
+	}
+	
+	@RequestMapping(value="/chat",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String newChat(ChatMessageDetailVO inVO, Model model, HttpSession session)throws SQLException {
+		inVO.setChatDiv("10");
+		int result = chatService.save(inVO);
+		
+		if(result == 1) {
+			
+		} else {
+			
+		}
+		
+		return "redirect:/memebr/main";
+		
 		
 	}
 	
