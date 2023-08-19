@@ -77,7 +77,7 @@
             }
         }
 
-        /* 나머지 스타일은 여기에 추가합니다. */
+
         .sidebar ul {
             list-style: none;
             padding: 0;
