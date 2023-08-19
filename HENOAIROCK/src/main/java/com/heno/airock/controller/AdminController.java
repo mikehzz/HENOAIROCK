@@ -99,13 +99,18 @@ public class AdminController implements PcwkLoger{
 		return "redirect:/admin/login";
 	}
 
-	@GetMapping("/users")
-	public ModelAndView userListPage() {
-		ModelAndView modelAndView = new ModelAndView("admin/user_list");
-		List<MemberDTO> userList = memberService.getAllUsers(); // 사용자 목록 조회
-		modelAndView.addObject("userList", userList); // 사용자 목록을 modelAndView에 추가
-		return modelAndView;
-	}
+    @GetMapping("/users")
+    public ModelAndView userListPage(HttpSession session) {
+        MemberDTO loggedInAdmin = (MemberDTO) session.getAttribute("loggedInAdmin");
+        if (loggedInAdmin == null) {
+            return new ModelAndView("redirect:/admin/login"); // Redirect to login page if not logged in
+        }
+
+        ModelAndView modelAndView = new ModelAndView("admin/user_list");
+        List<MemberDTO> userList = memberService.getAllUsers(); // 사용자 목록 조회
+        modelAndView.addObject("userList", userList); // 사용자 목록을 modelAndView에 추가
+        return modelAndView;
+    }
 
 	// 사용자 삭제 기능
 	@PostMapping("/users/{userId}/delete")
@@ -127,9 +132,14 @@ public class AdminController implements PcwkLoger{
 		modelAndView.addObject("user", user);
 		return modelAndView;
 	}
-
+    
 	@RequestMapping(value="/post")
-	public String select(PostVO inVO, Model model) throws SQLException {
+	public String select(PostVO inVO, Model model, HttpSession session) throws SQLException {
+	    MemberDTO loggedInAdmin = (MemberDTO) session.getAttribute("loggedInAdmin");
+	    if (loggedInAdmin == null) {
+	        return "redirect:/admin/login"; // Redirect to login page if not logged in
+	    }
+		
 		String viewPage = "/admin/admin_post";
 		// page번호
 		if (null != inVO && inVO.getPageNo() == 0) {

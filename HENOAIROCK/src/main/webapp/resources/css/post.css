@@ -76,3 +76,8 @@
     .left {
         text-align : left;
 }
+.admin-post {
+    background-color: #f0f8ff; /* 예시로 배경색을 변경 */
+    font-weight: bold; /* 글씨를 볼드체로 변경 */
+    /* 추가적인 스타일 지정 가능 */
+}

@@ -103,7 +103,7 @@
       </div>  
       <div class="col-auto">  
         <a href="#" class="btn btn-primary" id="doRetrieve" >조회</a>
-        <a href="/admin/admin_post_reg" class="btn btn-primary" >등록</a>
+        <a href="/admin/admin_post_reg" class="btn btn-primary" >공지사항 등록</a>
       </div>      
     </div>  
   </form>
