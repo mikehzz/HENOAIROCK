@@ -127,7 +127,7 @@
         <li><a href="#"><i class="material-icons">home</i> 홈</a></li>
         <li><a href="/mypage"><i class="material-icons">person</i> 마이페이지</a></li>
         <li><a href="/post"><i class="material-icons">forum</i> 게시판</a></li>
-        <li><a href="#"><i class="material-icons">&#128295;</i> 설정</a></li>
+        <li><a href="/setting"><i class="material-icons">&#128295;</i> 설정</a></li>
         <!-- Additional menu items can be added here -->
     </ul>
     <!-- User profile section -->
