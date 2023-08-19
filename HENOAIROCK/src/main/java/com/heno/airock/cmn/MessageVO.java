@@ -10,6 +10,7 @@ public class MessageVO extends DTO {
 		super();
 		this.msgId = msgId;
 		this.msgContents = msgContents;
+		
 	}
 
 	public String getMsgId() {
