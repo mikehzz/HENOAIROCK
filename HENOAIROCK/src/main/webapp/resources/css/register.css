@@ -10,7 +10,7 @@ a {
 
 h2 {
   text-align: left; /* Align the heading to the left */
-  margin-left: 0; /* Remove the default margin */
+  margin-bottom: 45px; /* Remove the default margin */
 }
 
 #con {
@@ -135,12 +135,12 @@ h2 {
   border: none;
   cursor: pointer;
   border-radius: 5px;
-  font-weight: 100; /* 이게 굵기 조절 */
+  font-weight: 100; /* �씠寃� 援듦린 議곗젅 */
   transition: 0.5s;
   float: right;
 /*       margin: -5; */
-  margin-top: -7px; /* 위로 10px만큼 이동 */
-  margin-left: 1px; /* 왼쪽으로 20px만큼 이동 */
+  margin-top: -7px; /* �쐞濡� 10px留뚰겮 �씠�룞 */
+  margin-left: 1px; /* �쇊履쎌쑝濡� 20px留뚰겮 �씠�룞 */
 }
 
 .btn01 {
@@ -163,7 +163,7 @@ h2 {
 }
 
 .Creative {
-  width: 100%
+  width: 100%;
   color: #000012;
   width: 100px;
   height: 30px;
@@ -172,11 +172,12 @@ h2 {
   border: none;
   cursor: pointer;
   border-radius: 5px;
-  font-weight: 100; /* 이게 굵기 조절 */
+  font-weight: 100;
   transition: 0.5s;
-  margin-top: -7px; /* 위로 10px만큼 이동 */
-  margin-left: 1px; /* 왼쪽으로 20px만큼 이동 */
+  margin-top: 20px;
+  margin-left: 1px;
 }
+
 
 hr {
   margin-top: 20px;
@@ -231,7 +232,7 @@ label {
 }
 
 
-/* -------ȸ������-------- */
+/* -------회占쏙옙占쏙옙占쏙옙-------- */
 .h-zero {
   margin: 0;
   padding-top: 20px;
@@ -242,7 +243,7 @@ label {
   color: #808080;
 }
 
-/* -------��й�ȣ ã��-------- */
+/* -------占쏙옙橘占싫� 찾占쏙옙-------- */
 .error-message {
     display: block;
     font-size: 11px;

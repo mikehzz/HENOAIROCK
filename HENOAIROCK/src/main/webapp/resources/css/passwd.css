@@ -10,7 +10,7 @@ a {
 
 h2 {
   text-align: left; /* Align the heading to the left */
-  margin-left: 0; /* Remove the default margin */
+  margin-bottom: 45px; /* Remove the default margin */
 }
 
 #con {
@@ -112,6 +112,7 @@ h2 {
   border-bottom: 1px solid #ccc;
   padding: 5px;
   margin: 5px;
+  margin-top: 8px;
 }
 
 .line-input2 {
@@ -289,8 +290,8 @@ label {
   font-weight: 100; /* �씠寃� 援듦린 議곗젅 */
   transition: 0.5s;
   float: right;
-/*       margin: -5; */
-  margin-top: -7px; /* �쐞濡� 10px留뚰겮 �씠�룞 */
+  /*       margin: -5; */
+  margin-top: -6px; /* �쐞濡� 10px留뚰겮 �씠�룞 */
   margin-left: 1px; /* �쇊履쎌쑝濡� 20px留뚰겮 �씠�룞 */
 }
 
