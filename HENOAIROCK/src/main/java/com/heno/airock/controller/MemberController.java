@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,11 +39,21 @@ public class MemberController implements PcwkLoger {
 	public MemberController(MemberService memberService) {
 		this.memberService = memberService;
 	}
+	
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+        return "redirect:/member/login";
+    }
 
-	@GetMapping("/login")
-	public String loginForm() {
-		return "/member/login";
-	}
+    @GetMapping("/login")
+    public String loginForm(Model model) {
+        model.addAttribute("userLoggedIn", false); // 로그인 폼의 초기 값 설정
+        return "/member/login";
+    }
 
 	// 이용약관 동의 페이지
 	@GetMapping("/agree")
@@ -95,29 +106,34 @@ public class MemberController implements PcwkLoger {
 	}
 
 	// 로그인
-	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	@ResponseBody
-	public String login(@ModelAttribute MemberDTO memberDTO, HttpServletRequest request) {
-		String jsonString = "";
-		HttpSession session = request.getSession();
-		
-		boolean loginResult = memberService.login(memberDTO);
-		LOG.debug("└loginResult┘" + loginResult);
-		MessageDTO message = new MessageDTO();
-		if (loginResult) {
-			session.setAttribute("user", memberDTO);
-			message.setMsgId("1");
-			message.setMsgContents(memberDTO.getUserId() + "님 환영합니다!");
-			LOG.debug("└session┘" + session.getAttribute("user"));
-			jsonString = new Gson().toJson(message);
-			return jsonString;
-		} else {
-			message.setMsgId("2");
-			message.setMsgContents("아이디 또는 비밀번호를 확인해주세요.");
-			jsonString = new Gson().toJson(message);
-			return jsonString;
-		}
-	}
+    @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String login(@ModelAttribute MemberDTO memberDTO, HttpServletRequest request) {
+        String jsonString = "";
+        
+        boolean loginResult = memberService.login(memberDTO);
+        LOG.debug("└loginResult┘" + loginResult);
+        MessageDTO message = new MessageDTO();
+        
+        HttpSession session = request.getSession(); // HttpSession 객체 얻어옴
+        
+        if (loginResult) {
+            session.setAttribute("userLoggedIn", true); // 사용자가 로그인했음을 표시
+            session.setAttribute("user", memberDTO);
+            
+            message.setMsgId("1");
+            message.setMsgContents(memberDTO.getUserId() + "님 환영합니다!");
+            
+            LOG.debug("└session┘" + session.getAttribute("user"));
+            jsonString = new Gson().toJson(message);
+            return jsonString;
+        } else {
+            message.setMsgId("2");
+            message.setMsgContents("아이디 또는 비밀번호를 확인해주세요.");
+            jsonString = new Gson().toJson(message);
+            return jsonString;
+        }
+    }
 
 	// 회원가입 post
 	@PostMapping("/**/register")
