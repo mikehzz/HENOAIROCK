@@ -60,14 +60,14 @@
   <!--// 제목 ------------------------------------------------------------------->
   <!-- 검색 form -->
   <div class="row g-1 d-flex justify-content-end ">
-    <div class="col-sm" onclick="location.href='music?genre=발라드';">발라드</div>
-    <div class="col-sm" onclick="location.href='music?genre=댄스';">댄스</div>
-    <div class="col-sm" onclick="location.href='music?genre=랩/힙합';">랩/힙합</div>
-    <div class="col-sm" onclick="location.href='music?genre=Soul';">R&B/Soul</div>
-    <div class="col-sm" onclick="location.href='music?genre=인디음악';">인디음악</div>
-    <div class="col-sm" onclick="location.href='music?genre=록/메탈';">록/메탈</div>
-    <div class="col-sm" onclick="location.href='music?genre=트로트';">트로트</div>
-    <div class="col-sm" onclick="location.href='music?genre=포크/블루스';">포크/블루스</div>
+    <div class="col-sm" id="genre" onclick="location.href='music?genre=발라드';">발라드</div>
+    <div class="col-sm" id="genre" onclick="location.href='music?genre=댄스';">댄스</div>
+    <div class="col-sm" id="genre" onclick="location.href='music?genre=랩/힙합';">랩/힙합</div>
+    <div class="col-sm" id="genre" onclick="location.href='music?genre=Soul';">R&B/Soul</div>
+    <div class="col-sm" id="genre" onclick="location.href='music?genre=인디음악';">인디음악</div>
+    <div class="col-sm" id="genre" onclick="location.href='music?genre=록/메탈';">록/메탈</div>
+    <div class="col-sm" id="genre" onclick="location.href='music?genre=트로트';">트로트</div>
+    <div class="col-sm" id="genre" onclick="location.href='music?genre=포크/블루스';">포크/블루스</div>
   </div>
   <hr class="my-2">
   <form action="/music" method="get" name="boardFrm">
@@ -149,55 +149,7 @@
       <%=StringUtil.renderPaging(totalCnt, pageNo, pageSize, bottomCount, cPath+"/music", "select") %>
     </div>
     <script src="/resources/js/music.js"></script>
-  </div>
-	  <script>
-	   function select(url, pageNo){
-	     console.log("url:"+url);
-	     console.log("pageNo:"+pageNo);
-	     
-	     let frm = document.boardFrm;
-	     //$("#pageNo").val(1); //jquery
-	     frm.action = url;
-	     frm.pageNo.value=pageNo;//javascript
-	     frm.submit();//controller call  
-	   }
-	
-	
-	   $("#boardTable>tbody").on("click","tr",function(e){
-	     console.log("#boardTable>tbody");
-	     let tdArray = $(this).children();
-	     console.log('tdArray:'+tdArray);
-	     let musicId = tdArray.eq(7).text();
-	     
-	     let popupUrl = "music/music_detail/?musicId=" + musicId;
-	     let popupName = "MusicDetailPopup";
-	     let popupOptions = "width=800,height=600,resizable=yes,scrollbars=yes";
-	     window.open(popupUrl, popupName, popupOptions);
-	   });
-	   
-	 
-	   function doRetrieveCall(pageNo){
-	       let frm = document.boardFrm;
-	       //$("#pageNo").val(1); //jquery
-	       frm.pageNo.value=pageNo;//javascript
-	       frm.submit();//controller call    
-	   }
-	   
-	   $("#searchWord").on("keypress",function(e){
-	      console.log("searchWord");
-	      if(13 == e.which){//enter keycode
-	        e.preventDefault();
-	        doRetrieveCall(1);
-	      }
-	   });
-	   
-	   
-	   $("#doRetrieve").on("click",function(){
-	        console.log("doRetrieve");
-	        doRetrieveCall(1);
-	   });
-	   
-	</script>
+  </div>   
 </body>
 
 </html>

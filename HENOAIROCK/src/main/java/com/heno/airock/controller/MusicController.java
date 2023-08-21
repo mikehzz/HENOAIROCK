@@ -215,7 +215,10 @@ public class MusicController implements PcwkLoger {
 
 	// 음악 순위 게시판
 	@GetMapping("/music_rank")
-	public String music_rank(MusicVO inVO, Model model) throws SQLException {
+	public String music_rank(
+			@RequestParam(value = "genre", required = false) String genre,
+			@RequestParam(value = "feeling", required = false) String feeling,
+			MusicVO inVO, Model model) throws SQLException {
 		String viewPage = "/music/music_rank";
 		// page번호
 		if (null != inVO && inVO.getPageNo() == 0) {
@@ -224,10 +227,20 @@ public class MusicController implements PcwkLoger {
 
 		// pageSize
 		if (null != inVO && inVO.getPageSize() == 0) {
-			inVO.setPageSize(10);
+			inVO.setPageSize(100);
+		}
+		
+		// genre
+		if (null != inVO && null != genre) {
+			inVO.setGenre(genre);
+		}
+		
+		// feeling
+		if (null != inVO && null != feeling) {
+			inVO.setFeeling(feeling);
 		}
 
-		List<MusicVO> musicList = this.musicService.selectRank(inVO);
+		List<MusicVO> musicList = this.musicService.select(inVO);
 
 		model.addAttribute("musicList", musicList);
 		model.addAttribute("inVO", inVO);
@@ -237,7 +250,10 @@ public class MusicController implements PcwkLoger {
 	}
 
 	@GetMapping("")
-	public String select(@RequestParam(value = "genre", required = false) String genre, MusicVO inVO, Model model)
+	public String select(
+			@RequestParam(value = "genre", required = false) String genre,
+			@RequestParam(value = "feeling", required = false) String feeling,
+			MusicVO inVO, Model model)
 			throws SQLException {
 		String viewPage = "/music/music";
 		// page번호
@@ -263,6 +279,11 @@ public class MusicController implements PcwkLoger {
 		// genre
 		if (null != inVO && null != genre) {
 			inVO.setGenre(genre);
+		}
+		
+		// feeling
+		if (null != inVO && null != feeling) {
+			inVO.setFeeling(feeling);
 		}
 		LOG.debug("inVO:" + inVO);
 		// 코드조회: 검색코드

@@ -53,13 +53,13 @@
       </div>
     </div>
     <!--// 버튼 ----------------------------------------------------------------->
-    <form action="#"  name="reg_frm" id="reg_frm">
-       <input type="hidden" name="div" id="div" value="${inVO.getPostDiv()}">
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">제목</label>
-          <input type="text" class="form-control title_cls" id="title"  name="title"
-             placeholder="제목을 입력 하세요." required="required" maxlength="66">
-        </div>
+<form action="#" name="reg_frm" id="reg_frm">
+    <input type="hidden" name="div" id="div" value="${inVO.getPostDiv()}">
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">제목</label>
+        <input type="text" class="form-control title_cls" id="title" name="title"
+            placeholder="(공지) 제목을 입력하세요." required="required" maxlength="66">
+    </div>
         
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">등록자ID</label>
@@ -71,7 +71,7 @@
           <label for="exampleFormControlTextarea1" class="form-label">내용</label>
           <textarea class="form-control" id="contents" name="contents" rows="3" required="required"></textarea>
         </div>
-                
+                <input type="checkbox" id="adminPost" name="adminPost"> 어드민 글로 설정
     </form>
   </div>
   <!--// contents  ------------------------------------------------------------>

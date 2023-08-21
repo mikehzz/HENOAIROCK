@@ -8,8 +8,8 @@ import com.heno.airock.dto.MusicVO;
 
 public interface MusicService extends WorkDiv<MusicVO> {
 
-	List<MusicVO> selectRank(MusicVO inVO) throws SQLException;
-
 	List<MusicVO> selectGenre(MusicVO inVO) throws SQLException;
+	
+	List<MusicVO> selectFeeling(MusicVO inVO) throws SQLException;
 	
 }

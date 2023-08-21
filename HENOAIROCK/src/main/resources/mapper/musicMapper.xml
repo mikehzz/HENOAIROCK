@@ -6,13 +6,13 @@
 <sql id="searchCondition">
    <choose>
     <when test=" '' != searchWord and '10' == searchDiv">
-       WHERE title LIKE '%' || #{searchWord} || '%'
+       AND title LIKE '%' || #{searchWord} || '%'
     </when>
     <when test=" '' != searchWord and '20' == searchDiv">
-       WHERE artist LIKE '%' || #{searchWord} || '%'
+       AND artist LIKE '%' || #{searchWord} || '%'
     </when>
     <when test=" '' != searchWord and '30' == searchDiv">
-       WHERE lyrics LIKE '%' || #{searchWord} || '%'
+       AND lyrics LIKE '%' || #{searchWord} || '%'
     </when>
    </choose>
 </sql>
@@ -20,28 +20,54 @@
 <sql id="searchGenre">
    <choose>
     <when test=" '' != genre and '발라드' == genre">
-       WHERE genre LIKE '%발라드%'
+       AND genre LIKE '%발라드%'
     </when>
     <when test=" '' != genre and '댄스' == genre">
-       WHERE genre LIKE '%댄스%'
+       AND genre LIKE '%댄스%'
     </when>
     <when test=" '' != genre and '랩/힙합' == genre">
-       WHERE genre LIKE '%힙합%'
+       AND genre LIKE '%힙합%'
     </when>
     <when test=" '' != genre and 'Soul' == genre">
-       WHERE genre LIKE '%Soul%'
+       AND genre LIKE '%Soul%'
     </when>
     <when test=" '' != genre and '인디음악' == genre">
-       WHERE genre LIKE '%인디음악%'
+       AND genre LIKE '%인디음악%'
     </when>
     <when test=" '' != genre and '록/메탈' == genre">
-       WHERE genre LIKE '%록%'
+       AND genre LIKE '%록%'
     </when>
     <when test=" '' != genre and '트로트' == genre">
-       WHERE genre LIKE '%트로트%'
+       AND genre LIKE '%트로트%'
     </when>
     <when test=" '' != genre and '포크/블루' == genre">
-       WHERE genre LIKE '%포크%'
+       AND genre LIKE '%포크%'
+    </when>
+   </choose>
+</sql>
+
+<sql id="searchFeeling">
+   <choose>
+    <when test=' "" != feeling and "설렘" == feeling'>
+       AND feeling LIKE '%설렘%'
+    </when>
+    <when test=' "" != feeling and "슬픔" == feeling'>
+       AND feeling LIKE '%슬픔%'
+    </when>
+    <when test=' "" != feeling and "편안" == feeling'>
+       AND feeling LIKE '%편안%'
+    </when>
+    <when test=' "" != feeling and "불안" == feeling'>
+       AND feeling LIKE '%불안%'
+    </when>
+    <when test=' "" != feeling and "화" == feeling'>
+       AND feeling LIKE '%화%'
+    </when>
+    <when test=' "" != feeling and "신남" == feeling'>
+       AND feeling LIKE '%신남%'
+    </when>
+    <when test=' "" != feeling and "자신감" == feeling'>
+       AND feeling LIKE '%자신감%'
     </when>
    </choose>
 </sql>
@@ -66,6 +92,7 @@
             FROM (
                 SELECT *
                 FROM music
+                WHERE 1 = 1
                 <include refid="searchGenre"></include>
             )t1
             <![CDATA[ WHERE ROWNUM <= #{pageSize} * (#{pageNo}-1)+#{pageSize} ]]>
@@ -76,10 +103,50 @@
     (
     SELECT COUNT(music_id) totalCnt
     FROM music
+    WHERE 1 = 1
     <include refid="searchGenre"></include>
     )B
     ORDER BY like_cnt DESC
 </select>
+
+<select id="feeling" parameterType="music" resultType="music">
+  SELECT A.*,B.*
+    FROM (
+        SELECT TT1.rnum as num,
+               TT1.music_id,
+               TT1.title,
+               TT1.album,
+               TT1.artist,
+               TT1.lyrics,
+               TT1.genre,
+               TT1.feeling,
+               TT1.album_path,
+               TT1.yt_link,
+               TT1.public_dt,
+               TT1.like_cnt
+        FROM (
+            SELECT ROWNUM as rnum, t1.*
+            FROM (
+                SELECT *
+                FROM music
+                WHERE 1 = 1
+                <include refid="searchFeeling"></include>
+            )t1
+            <![CDATA[ WHERE ROWNUM <= #{pageSize} * (#{pageNo}-1)+#{pageSize} ]]>
+        )TT1
+        <![CDATA[ WHERE rnum >=#{pageSize} * (#{pageNo}-1)+ 1 ]]>
+    )A
+    CROSS JOIN
+    (
+    SELECT COUNT(music_id) totalCnt
+    FROM music
+    WHERE 1 = 1
+    <include refid="searchFeeling"></include>
+    )B
+    ORDER BY like_cnt DESC
+</select>
+
+
 
 
 <select id="doRetrieve" parameterType="com.heno.airock.cmn.DTO" resultType="music">
@@ -102,10 +169,14 @@
             FROM (
                 SELECT *
                 FROM music
+                WHERE 1 = 1
                 <include refid="searchCondition"></include>
                 <include refid="searchGenre"></include>
+                <include refid="searchFeeling"></include>
+                ORDER BY like_cnt DESC, music_id
             )t1
             <![CDATA[ WHERE ROWNUM <= #{pageSize} * (#{pageNo}-1)+#{pageSize} ]]>
+            ORDER BY like_cnt DESC
         )TT1
         <![CDATA[ WHERE rnum >=#{pageSize} * (#{pageNo}-1)+ 1 ]]>
     )A
@@ -113,8 +184,10 @@
     (
     SELECT COUNT(music_id) totalCnt
     FROM music
+    WHERE 1 = 1
     <include refid="searchCondition"></include>
     <include refid="searchGenre"></include>
+    <include refid="searchFeeling"></include>
     )B
     ORDER BY like_cnt DESC
 </select>
@@ -168,16 +241,6 @@
     DELETE FROM MUSIC 
     WHERE music_id = #{musicId}   
 </delete>
-
-<select id="rank" parameterType="music">
-		SELECT
-		  music_id,
-		  title,
-		  artist,
-		  like_cnt
-		FROM MUSIC
-		ORDER BY like_cnt
-</select>
 
 <insert id="addMusic" parameterType="music">
 INSERT INTO music_like_cnt (

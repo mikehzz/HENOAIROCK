@@ -9,23 +9,25 @@
 <title>회원가입</title>
 </head>
 <body>
-	<div id="con">
-		<div id="login">
-			<div id="login_form">
-				<!--로그인 폼-->
-				<form action="/member/register" method="post" id="register-form">
-					<h2>회원가입</h2>
-					
+		<div id="con">
+			<div id="login">
+				<div id="login_form">
+					<!--로그인 폼-->
+					<form>
 					<p class="find">
 						<span><a href="/member/login">로그인 페이지로 이동</a></span>
 					</p>
-					
-					<!--이메일-->
-					<input type="button" value="중복확인" class="btnRe" onclick = "fn_idChk();" >
-					<p class="input-title">E-mail</p>
-					<div class="input-wrapper">
-						<label>
-							<input type="email" name="userId" id="userId" class="size line-input" required="required"> 
+						<h2>회원가입</h2>
+						
+						
+						
+						
+						<!--이메일-->
+<!-- 						<input type="button" value="중복확인" class="btnRe"> -->
+						<p class="input-title">E-mail</p>
+						<div class="input-wrapper">
+						  <label> <input type="text" class="size line-input"> 
+
 						</label>
 					</div>
 
