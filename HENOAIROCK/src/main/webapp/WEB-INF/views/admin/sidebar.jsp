@@ -228,7 +228,7 @@
         <i class="material-icons" id="toggleIconOpen">arrow_forward_ios</i>
     </button>
 </div>
-<!-- Logout Confirmation Modal -->
+
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
