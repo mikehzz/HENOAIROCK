@@ -19,11 +19,15 @@ $("#moveToList").on("click", function() {
 });
 
 $("#doSave").on("click", function() {
-	console.log("doSave");
-
 	if (eUtil.ISEmpty($("#regId").val()) == true) {
 		alert("등록자를 입력 하세요.");
 		$("#regId").focus();
+		return;
+	}
+	
+	if (eUtil.ISEmpty($("#title").val()) == true) {
+		alert("제목을 입력 하세요.");
+		$("#title").focus();
 		return;
 	}
 

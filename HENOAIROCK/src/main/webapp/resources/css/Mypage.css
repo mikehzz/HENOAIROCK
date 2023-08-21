@@ -1,4 +1,4 @@
-/* ÀüÃ¼ ÆäÀÌÁö ½ºÅ¸ÀÏ */
+/* ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -17,22 +17,22 @@ body {
 }
 
 
-/* ÅÇ ¸Þ´º ¸ðÀ½ */
+/* ï¿½ï¿½ ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 .tab_menu {
-    position: relative; /* ¿ä¼Ò ÀÚ±â ÀÚ½ÅÀ» ±âÁØÀ¸·Î ¹èÄ¡ */
+    position: relative; /* ï¿½ï¿½ï¿½ ï¿½Ú±ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ */
     margin-top: 30px;
     margin-bottom: 0px;
   }
   .tab_list {
     list-style-type: none;
-    overflow: hidden; /* ºÎ¸ð¿ä¼ÒÀÇ ¹üÀ§¸¦ ³Ñ¾î°¡´Â ÀÚ½Ä¿ä¼ÒÀÇ ºÎºÐÀº º¸ÀÌÁö ¾Êµµ·Ï Ã³¸® */
+    overflow: hidden; /* ï¿½Î¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾î°¡ï¿½ï¿½ ï¿½Ú½Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Êµï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ */
   }
   .tab_list li {
-    float: left; /* ¿ÞÂÊ Á¤·Ä */
-    margin-right: 12px; /* ÅÇ³¢¸® °£°Ý */
+    float: left; /* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
+    margin-right: 12px; /* ï¿½Ç³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
     border: solid #f8f8f8;
   }
-  /* ÀüÃ¼ ÅÇ */
+  /* ï¿½ï¿½Ã¼ ï¿½ï¿½ */
   .tab_btn {
 	  text-decoration: none;
 	  padding: 50px;
@@ -41,7 +41,7 @@ body {
 	  color: #333;
 	  font-family: 'NanumSquareNeoExtraBold';
   }
-  /* È°¼ºÈ­µÈ ÅÇ */
+  /* È°ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ */
   .tab_btn:hover {
     padding: 50px;
     background-color: #a3a7ad;
@@ -53,7 +53,7 @@ body {
 	  color: white;
 }
 
-/* ÇÃ·¹ÀÌ¸®½ºÆ® Á¤º¸ ½ºÅ¸ÀÏ */
+/* ï¿½Ã·ï¿½ï¿½Ì¸ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ */
 #musicList {
   max-width: 1200px;
   margin: 0 auto;
@@ -107,7 +107,7 @@ body {
   font-size: 12px;
 }
 
-/* ³ë·¡ ¸ðÀ½ ½ºÅ¸ÀÏ */
+/* ï¿½ë·¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ */
 
 .user-nickName {
   width: calc(88% - 10px);
@@ -120,7 +120,7 @@ body {
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
   position: relative;
-   z-index: 1; /* ¿ä¼Ò¸¦ ¾ÕÀ¸·Î °¡Á®¿É´Ï´Ù */
+   z-index: 1; /* ï¿½ï¿½Ò¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½É´Ï´ï¿½ */
 }
 
 .user-nickName::before {
@@ -132,7 +132,7 @@ body {
   border-width: 10px 10px 0;
   border-style: solid;
   border-color: transparent transparent transparent #f8f8f8;
-  z-index: -1; /* ¹è°æ »ï°¢ÇüÀ» µÚ·Î º¸³À´Ï´Ù */
+  z-index: -1; /* ï¿½ï¿½ï¿½ ï¿½ï°¢ï¿½ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ */
 }
 
 
@@ -194,7 +194,7 @@ body {
   padding: 3px;
 }
 
-/* °¡·Î ¼± ½ºÅ¸ÀÏ */
+/* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ */
 hr {
   border: none;
   border-top: 1px solid #ddd;
@@ -203,7 +203,7 @@ hr {
 
 
 
-/* Ãß°¡ ½ºÅ¸ÀÏ */
+/* ï¿½ß°ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ */
 .tag_list .text96 {
   margin: 2px 4px;meta_info_title
   padding: 4px 8px;
@@ -223,7 +223,7 @@ hr {
   
 }
 
-/* ³ë·¡ ¸ñ·ÏÀ» Ç×»ó 3¿­·Î Ç¥½ÃÇÏ´Â ½ºÅ¸ÀÏ */
+/* ï¿½ë·¡ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×»ï¿½ 3ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ */
 .music_list {
   display: flex;
   flex-wrap: wrap;
@@ -238,4 +238,14 @@ hr {
   width: 27%;
   margin: 0 1.9%;
   margin-bottom: 20px;
+}
+
+.truncate-text {
+  white-space: nowrap;       /* ì¤„ë°”ê¿ˆ ê¸ˆì§€ */
+  overflow: hidden;          /* ë‚´ìš© ë„˜ì¹˜ëŠ” ë¶€ë¶„ ìˆ¨ê¹€ */
+  text-overflow: ellipsis;   /* ë„˜ì¹˜ëŠ” ë¶€ë¶„ "..."ìœ¼ë¡œ í‘œì‹œ */
+}
+
+.limit {
+	width: 160px;
 }

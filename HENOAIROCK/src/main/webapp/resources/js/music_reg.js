@@ -21,8 +21,8 @@
 
 
    $(document).ready(function() {
-	    $("#boardTable>tbody").on("click", ".add-music-btn", function() {
-	        var musicId = $(this).data("musicid");
+	   $("tr").on("click", function() {
+		   	var musicId = $(this).find("[data-musicid]").data("musicid");
 	        var title = $(this).closest("tr").find(".title").data("title");
 	        var artist = $(this).closest("tr").find(".artist").data("artist");
 	        var album = $(this).closest("tr").find(".album").data("album");
