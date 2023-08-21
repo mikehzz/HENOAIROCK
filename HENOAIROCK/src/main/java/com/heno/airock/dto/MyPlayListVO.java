@@ -17,6 +17,7 @@ public class MyPlayListVO extends MemberDTO{
 	public MyPlayListVO() {}
 	
 	
+	
 	public String getMyListSeq() {
 		return myListSeq;
 	}

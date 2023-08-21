@@ -40,7 +40,7 @@
   </insert>
   
   <select id="selectLikeSeq" parameterType="member" resultType="MyPlayList">
-    SELECT 
+    SELECT
       mylist_seq
     FROM myplaylist
     WHERE user_id = #{userId} AND mylist_div = 10

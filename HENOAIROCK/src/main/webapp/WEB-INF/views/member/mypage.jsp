@@ -40,6 +40,9 @@
  </div>
 </div>
 
+  <input type="text" id="rest" value="">
+  <input type="submit" value="제출" class="btn" id="fn_email" name="fn_email">
+    
   <div class="tab_menu">
     <ul class="tab_list">
       <li class="is_on"><a href="#tab1" class="tab_btn">좋아요</a></li>
@@ -75,6 +78,70 @@
   
   <!--  -----------------------------------------중복------------------------------------------------------- -->
   
-  <script src="${CP}/resources/js/member/mypage.js"></script>
+<script src="${CP}/resources/js/member/mypage.js"></script>
+  
+<script>
+const tabList = document.querySelectorAll('.tab_menu .tab_list li');
+const contents = document.querySelectorAll('.tab_menu .cont_area .cont');
+let activeCont = ''; // 현재 활성화 된 컨텐츠 (기본: #tab1 활성화)
+
+for (var i = 0; i < tabList.length; i++) {
+  tabList[i].querySelector('.tab_btn').addEventListener('click', function(e) {
+    e.preventDefault();
+    for (var j = 0; j < tabList.length; j++) {
+      tabList[j].classList.remove('is_on'); // 나머지 버튼 클래스 제거
+      contents[j].style.display = 'none'; // 나머지 컨텐츠 display:none 처리
+    }
+
+    // 버튼 관련 이벤트
+    this.parentNode.classList.add('is_on');
+
+    // 버튼 클릭시 컨텐츠 전환
+    activeCont = this.getAttribute('href');
+    document.querySelector(activeCont).style.display = 'block';
+  });
+}
+
+$(".music").on("click", function (e) {
+   let musicId = $(this).siblings("input[type='hidden']").val();
+    console.log('musicId:' + musicId);
+    // 팝업 창 열기
+    let popupUrl = "music/music_detail/?musicId=" + musicId;
+    let popupName = "MusicDetailPopup";
+    let popupOptions = "width=800,height=600,resizable=yes,scrollbars=yes";
+    window.open(popupUrl, popupName, popupOptions);
+    
+});
+
+
+///////////////////////////////////
+
+     $("#fn_email").on('click', function(){
+       console.log('#restCall');
+
+       let url = 'http://127.0.0.1:8000/pybo/boot/rest/';
+       $.ajax({
+           type: "POST",
+           url:url,
+           asyn:"true",
+           dataType:"html",
+           data:{
+               rest:$("#rest").val()
+           },
+           success:function(data){//통신 성공
+               console.log("success data:"+data);
+             },
+             error:function(data){//실패시 처리
+               console.log("error:"+data);
+             }
+         });
+     });
+
+    
+
+
+
+</script>
+
 </body>
 </html>
