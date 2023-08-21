@@ -123,39 +123,36 @@ request.setAttribute("title", title);
     <textarea class="form-control" id="comments" name="comments" rows="4"></textarea>
     <button class="btn btn-primary btn-lg" type="button" id="doAddComment">댓글 추가</button>
 </div>
+<br/>
+
+<h5>댓글</h5>
 
     <div id="commentList">
       <!-- 여기에 댓글이 추가될 것입니다 -->
     </div>
 
-
 <c:forEach var="comment" items="${comments}">
-    <span class="comment">
-        <div class="comment-divider"></div>
-        <div class="comment-content">
+    <div class="comment mb-3 p-3 border rounded">
+        <div class="d-flex justify-content-between align-items-center">
             <div class="comment-user">${comment.userId}</div>
-            <div class="comment-time">${comment.cmtDt}</div>
-        </div>
-        <div class="comment-text">${comment.cmtContents}</div>
-        <div class="comment-actions text-end justify-content-end">
-            <!-- 수정 및 삭제 버튼은 댓글 작성자와 로그인한 사용자가 같을 때만 표시 -->
             <c:if test="${comment.userId eq currentUser}">
-                <button class="btn btn-primary btn-sm edit-comment-button" data-comment-id="${comment.cmtSeq}">수정</button>
-                <button class="btn btn-primary btn-sm delete-comment-button" data-comment-id="${comment.cmtSeq}">삭제</button>
+                <div class="comment-actions">
+                    <button class="btn btn-primary btn-sm edit-comment-button" data-comment-id="${comment.cmtSeq}">수정</button>
+                    <button class="btn btn-danger btn-sm delete-comment-button" data-comment-id="${comment.cmtSeq}">삭제</button>
+                </div>
             </c:if>
-            <div class="comment-edit-form" style="display: none;">
-                <textarea class="form-control editedComment comment-input" rows="4" style="width: 100%;">${comment.cmtContents}</textarea>
-                <input type="hidden" class="commentId" value="${comment.cmtSeq}">
-                <button type="button" class="btn btn-primary btn-sm submitEdit">수정 완료</button>
-            </div>
         </div>
-    </span>
+        <div class="comment-text mt-2">${comment.cmtContents}</div>
+        <div class="comment-time text-muted mt-2">${comment.cmtDt}</div>
+        <div class="comment-edit-form mt-2" style="display: none;">
+            <textarea class="form-control editedComment comment-input" rows="4"></textarea>
+            <input type="hidden" class="commentId" value="${comment.cmtSeq}">
+            <button type="button" class="btn btn-primary btn-sm submitEdit mt-2">수정 완료</button>
+            <button type="button" class="btn btn-secondary btn-sm cancelEdit mt-2">취소</button>
+        </div>
+    </div>
 </c:forEach>
-
-
-
 				
-		
-	</div>
+</div>
 </body>
 </html>

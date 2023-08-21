@@ -146,6 +146,7 @@
         <li><a href="/setting"><i class="material-icons">&#xE8B8;</i> 설정</a></li>
         <!-- Additional menu items can be added here -->
     </ul>
+    
     <!-- User profile section -->
 <div class="user-profile" id="userProfileSection">
     <% if (userLoggedIn) { %>

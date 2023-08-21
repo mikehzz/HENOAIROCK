@@ -69,17 +69,40 @@ $(document).ready(function() {
         });
     });
     
- // 댓글 수정 버튼 클릭 시 수정 폼 보여주기
+    // 댓글 수정 버튼 클릭 시 수정 폼 보여주기
     $(document).on("click", ".edit-comment-button", function() {
-    var commentText = $(this).siblings(".comment-text").text();
-    var commentId = $(this).data("comment-id");
-    var editedCommentForm = $(this).closest(".comment").find(".comment-edit-form");
-    editedCommentForm.find(".editedComment").val(commentText);
-    editedCommentForm.find(".commentId").val(commentId);
-    editedCommentForm.show();
-});
+        var commentId = $(this).data("comment-id");
+        var commentText = $(this).closest(".comment").find(".comment-text").text(); // 기존 댓글 내용 가져오기
+        var commentActions = $(this).closest(".comment").find(".comment-actions");
+        var editedCommentForm = $(this).closest(".comment").find(".comment-edit-form");
+        
+        // 기존 내용 가져와서 셋팅
+        editedCommentForm.find(".editedComment").val(commentText);
+        editedCommentForm.find(".commentId").val(commentId);
+        
+        // 수정, 삭제 버튼 숨기고 폼 표시
+        commentActions.find(".edit-comment-button, .delete-comment-button").hide();
+        editedCommentForm.show();
+        
+        // 기존 댓글 내용 숨기기
+        $(this).closest(".comment").find(".comment-text").hide();
+    });
 
- // 수정 완료 버튼 클릭 시 수정 내용 서버로 전송
+    // 수정 취소 버튼 클릭 시 이전 댓글 내용 표시
+    $(document).on("click", ".cancelEdit", function() {
+        var commentActions = $(this).closest(".comment").find(".comment-actions");
+        var editedCommentForm = $(this).closest(".comment").find(".comment-edit-form");
+        
+        editedCommentForm.hide(); // 수정 폼 숨기기
+        
+        // 수정, 삭제 버튼 보이기
+        commentActions.find(".edit-comment-button, .delete-comment-button").show();
+        
+        // 기존 댓글 내용 보이기
+        $(this).closest(".comment").find(".comment-text").show();
+    });
+
+    // 수정 완료 버튼 클릭 시 수정 내용 서버로 전송
     $(document).on("click", ".submitEdit", function() {
         var editedComment = $(this).siblings(".editedComment").val();
         var commentId = $(this).siblings(".commentId").val();
@@ -103,10 +126,11 @@ $(document).ready(function() {
                 }
             },
             error: function() {
-                alert("댓글 수정에 실패했습니다.");
+                alert("공백은 안돼 ㅋㅋ");
             }
         });
     });
+
     // 댓글 추가 END
 
     
