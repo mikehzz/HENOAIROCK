@@ -84,7 +84,8 @@ request.setAttribute("title", title);
 				<div class="album-content">
 					<img class="selected-album-image">
 					<div class="info">
-						<span class="selected-title"></span> <span class="selected-artist"></span>
+						<span class="selected-title"></span>
+						<span class="selected-artist"></span>
 					</div>
 				</div>
 				<div class="album-info">
