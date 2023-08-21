@@ -17,12 +17,16 @@
         int totalCnt    =  0;
         String searchWord = "";
         String searchDiv  = "";
+        String genre = "";
+        String feeling = "";
         
         if(null != vo){
              pageSize   = vo.getPageSize();
              pageNo     = vo.getPageNo();
              searchDiv  = vo.getSearchDiv();
              searchWord = vo.getSearchWord();
+             genre = vo.getGenre();
+             feeling = vo.getFeeling();
         }
           
         if(null !=  request.getAttribute("totalCnt")){
@@ -60,14 +64,23 @@
   <!--// 제목 ------------------------------------------------------------------->
   <!-- 검색 form -->
   <div class="row g-1 d-flex justify-content-end ">
-    <div class="col-sm" onclick="location.href='music_reg?genre=발라드';">발라드</div>
-    <div class="col-sm" onclick="location.href='music_reg?genre=댄스';">댄스</div>
-    <div class="col-sm" onclick="location.href='music_reg?genre=랩/힙합';">랩/힙합</div>
-    <div class="col-sm" onclick="location.href='music_reg?genre=Soul';">R&B/Soul</div>
-    <div class="col-sm" onclick="location.href='music_reg?genre=인디음악';">인디음악</div>
-    <div class="col-sm" onclick="location.href='music_reg?genre=록/메탈';">록/메탈</div>
-    <div class="col-sm" onclick="location.href='music_reg?genre=트로트';">트로트</div>
-    <div class="col-sm" onclick="location.href='music_reg?genre=포크/블루스';">포크/블루스</div>
+    <div class="col-sm" id="genre" onclick="redirectToMusicReg('발라드')">발라드</div>
+    <div class="col-sm" id="genre" onclick="redirectToMusicReg('댄스')">댄스</div>
+    <div class="col-sm" id="genre" onclick="redirectToMusicReg('랩/힙합')">랩/힙합</div>
+    <div class="col-sm" id="genre" onclick="redirectToMusicReg('Soul')">R&B/Soul</div>
+    <div class="col-sm" id="genre" onclick="redirectToMusicReg('인디음악')">인디음악</div>
+    <div class="col-sm" id="genre" onclick="redirectToMusicReg('록/메탈')">록/메탈</div>
+    <div class="col-sm" id="genre" onclick="redirectToMusicReg('트로트')">트로트</div>
+    <div class="col-sm" id="genre" onclick="redirectToMusicReg('포크/블루스')">포크/블루스</div>
+  </div>
+  <div class="row g-1 d-flex justify-content-end ">
+    <div class="col-sm" id="feeling" onclick="redirectToMusicRegEmo('설렘')">설렘</div>
+    <div class="col-sm" id="feeling" onclick="redirectToMusicRegEmo('슬픔')">슬픔</div>
+    <div class="col-sm" id="feeling" onclick="redirectToMusicRegEmo('편안')">편안함</div>
+    <div class="col-sm" id="feeling" onclick="redirectToMusicRegEmo('불안')">불안함</div>
+    <div class="col-sm" id="feeling" onclick="redirectToMusicRegEmo('화')">화남</div>
+    <div class="col-sm" id="feeling" onclick="redirectToMusicRegEmo('신남')">신남</div>
+    <div class="col-sm" id="feeling" onclick="redirectToMusicRegEmo('자신감')">자신감</div>
   </div>
   <hr class="my-2">
   <form action="/music/music_reg" method="get" name="boardFrm">
@@ -86,6 +99,8 @@
       
       <div class="col-sm">
         <input type="text" name="searchWord" id="searchWord" value="<c:out value='${inVO.searchWord }'/>" placeholder="검색어를 입력 하세요" class="form-control">
+        <input type="hidden" name="genre" id="genre" value="<c:out value='${inVO.genre }'/>" class="form-control">
+        <input type="hidden" name="feeling" id="feeling" value="<c:out value='${inVO.feeling }'/>" class="form-control">
       </div>
       <div class="col-auto">  
         <a href="#" class="btn btn-primary" id="doRetrieve">검색</a>  
@@ -142,80 +157,8 @@
     <div class="d-flex justify-content-center">
       <%=StringUtil.renderPaging(totalCnt, pageNo, pageSize, bottomCount, cPath+"/music/music_reg", "select") %>
     </div>
-    <script src="/resources/js/music.js"></script>
+    <script src="/resources/js/music_reg.js"></script>
 </div>
-
-<script>
-   function select(url, pageNo){
-     console.log("url:"+url);
-     console.log("pageNo:"+pageNo);
-     
-     let frm = document.boardFrm;
-     //$("#pageNo").val(1); //jquery
-     frm.action = url;
-     frm.pageNo.value=pageNo;//javascript
-     frm.submit();//controller call  
-   }
-
-
-   $(document).ready(function() {
-	    $("#boardTable>tbody").on("click", ".add-music-btn", function() {
-	        var musicId = $(this).data("musicid");
-	        var title = $(this).closest("tr").find(".title").data("title");
-	        var artist = $(this).closest("tr").find(".artist").data("artist");
-	        var album = $(this).closest("tr").find(".album").data("album");
-	        var genre = $(this).closest("tr").find(".genre").data("genre");
-	        var feeling = $(this).closest("tr").find(".feeling").data("feeling");
-	        var albumImage = $(this).closest("tr").find(".album-image").attr("src");
-
-	            // 앨범 이미지를 부모 페이지의 엘리먼트에 추가
-        var parentAlbumImageContainer = window.opener.document.getElementById("albumImageContainer");
-        if (parentAlbumImageContainer) {
-            parentAlbumImageContainer.querySelector(".selected-album-image").src = albumImage;
-            parentAlbumImageContainer.querySelector(".selected-title").textContent = title;
-            parentAlbumImageContainer.querySelector(".selected-artist").textContent = artist;
-            parentAlbumImageContainer.querySelector(".selected-album").textContent = album;
-            parentAlbumImageContainer.querySelector(".selected-musicId").value = musicId;
-	            } else {
-	                console.error("Element with ID 'albumImageContainerParent' not found in the parent window.");
-	            
-	        } 
-	        window.close();
-	    });
-
-	    $("#boardTable>tbody").on("click", "tr", function(e) {
-	        if ($(e.target).hasClass("add-music-btn")) {
-	            return;
-	        }
-	        let tdArray = $(this).children();
-	        let musicId = tdArray.eq(8).text();
-	        console.log('musicId:' + musicId);
-	    });
-	});
-
- 
-   function doRetrieveCall(pageNo){
-       let frm = document.boardFrm;
-       //$("#pageNo").val(1); //jquery
-       frm.pageNo.value=pageNo;//javascript
-       frm.submit();//controller call    
-   }
-   
-   $("#searchWord").on("keypress",function(e){
-      console.log("searchWord");
-      if(13 == e.which){//enter keycode
-        e.preventDefault();
-        doRetrieveCall(1);
-      }
-   });
-   
-   
-   $("#doRetrieve").on("click",function(){
-        console.log("doRetrieve");
-        doRetrieveCall(1);
-   });
-   
-</script>
 </body>
 
 </html>

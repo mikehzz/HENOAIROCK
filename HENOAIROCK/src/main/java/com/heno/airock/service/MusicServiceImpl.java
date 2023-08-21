@@ -50,4 +50,9 @@ public class MusicServiceImpl implements MusicService {
 		return dao.selectGenre(inVO);
 	}
 
+	@Override
+	public List<MusicVO> selectFeeling(MusicVO inVO) throws SQLException {
+		return dao.selectFeeling(inVO);
+	}
+
 }

@@ -12,4 +12,6 @@ public interface MusicService extends WorkDiv<MusicVO> {
 
 	List<MusicVO> selectGenre(MusicVO inVO) throws SQLException;
 	
+	List<MusicVO> selectFeeling(MusicVO inVO) throws SQLException;
+	
 }

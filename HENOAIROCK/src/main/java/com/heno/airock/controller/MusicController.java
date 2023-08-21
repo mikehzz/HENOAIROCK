@@ -237,7 +237,10 @@ public class MusicController implements PcwkLoger {
 	}
 
 	@GetMapping("")
-	public String select(@RequestParam(value = "genre", required = false) String genre, MusicVO inVO, Model model)
+	public String select(
+			@RequestParam(value = "genre", required = false) String genre,
+			@RequestParam(value = "feeling", required = false) String feeling,
+			MusicVO inVO, Model model)
 			throws SQLException {
 		String viewPage = "/music/music";
 		// page번호
@@ -263,6 +266,11 @@ public class MusicController implements PcwkLoger {
 		// genre
 		if (null != inVO && null != genre) {
 			inVO.setGenre(genre);
+		}
+		
+		// feeling
+		if (null != inVO && null != feeling) {
+			inVO.setFeeling(feeling);
 		}
 		LOG.debug("inVO:" + inVO);
 		// 코드조회: 검색코드
