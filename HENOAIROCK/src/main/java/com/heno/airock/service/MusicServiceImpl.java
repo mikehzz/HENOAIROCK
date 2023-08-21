@@ -40,10 +40,6 @@ public class MusicServiceImpl implements MusicService {
 		return dao.select(inVO);
 	}
 	
-	@Override
-	public List<MusicVO> selectRank(MusicVO inVO) throws SQLException {
-		return dao.selectRank(inVO);
-	}
 	
 	@Override
 	public List<MusicVO> selectGenre(MusicVO inVO) throws SQLException {

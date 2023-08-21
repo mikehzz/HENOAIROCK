@@ -173,8 +173,10 @@
                 <include refid="searchCondition"></include>
                 <include refid="searchGenre"></include>
                 <include refid="searchFeeling"></include>
+                ORDER BY like_cnt DESC, music_id
             )t1
             <![CDATA[ WHERE ROWNUM <= #{pageSize} * (#{pageNo}-1)+#{pageSize} ]]>
+            ORDER BY like_cnt DESC
         )TT1
         <![CDATA[ WHERE rnum >=#{pageSize} * (#{pageNo}-1)+ 1 ]]>
     )A
@@ -239,16 +241,6 @@
     DELETE FROM MUSIC 
     WHERE music_id = #{musicId}   
 </delete>
-
-<select id="rank" parameterType="music">
-		SELECT
-		  music_id,
-		  title,
-		  artist,
-		  like_cnt
-		FROM MUSIC
-		ORDER BY like_cnt
-</select>
 
 <insert id="addMusic" parameterType="music">
 INSERT INTO music_like_cnt (
