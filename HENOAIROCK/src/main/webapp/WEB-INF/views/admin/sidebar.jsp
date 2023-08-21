@@ -158,11 +158,9 @@
         cursor: pointer;
     }
 
-    /* Styling for the open sidebar button */
     .sidebar-open {
-        position: absolute;
-        top: 10px;
-        left: 10px;
+        position: fixed; /* "absolute" 대신 "fixed"로 변경합니다 */
+
     }
 
     .toggle-btn-open {
@@ -260,21 +258,29 @@
     function openSidebar() {
         sidebar.classList.remove('sidebar-closed');
         content.classList.remove('content-expanded');
-        userProfileSection.style.display = 'block'; // Show user profile section
-        menuItems.style.display = 'block'; // Show menu items
+        userProfileSection.style.display = 'block';
+        menuItems.style.display = 'block';
         toggleIconClose.textContent = 'arrow_back_ios';
         sidebar.style.width = '250px';
         toggleIconOpen.style.display = 'none';
+
+        // 오픈된 사이드바가 항상 화면 상단에 고정되도록 합니다
+        sidebar.classList.add('sidebar-open');
+        // 스크롤을 막기 위해 추가합니다
+        document.body.style.overflow = 'auto';
     }
 
     function closeSidebar() {
         sidebar.classList.add('sidebar-closed');
         content.classList.add('content-expanded');
-        userProfileSection.style.display = 'none'; // Hide user profile section
-        menuItems.style.display = 'none'; // Hide menu items
+        userProfileSection.style.display = 'none';
+        menuItems.style.display = 'none';
         toggleIconClose.textContent = '';
         sidebar.style.width = '0';
         toggleIconOpen.style.display = 'block';
+
+        // 스크롤을 다시 허용하기 위해 추가합니다
+        document.body.style.overflow = 'auto';
     }
 
     function toggleSidebar() {
