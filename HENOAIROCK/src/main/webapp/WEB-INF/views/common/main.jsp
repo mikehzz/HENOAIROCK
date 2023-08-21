@@ -24,11 +24,7 @@
             <div class="bot-message">싸그리싺싺AI: 안녕하세요! 무엇을 도와드릴까요?</div>
         </div>
     </div>
-    <div class="user-input">
-        <input type="text" id="userInput" placeholder="메시지를 입력하세요...">
-        <button onclick="sendMessage()">전송&#127925;</button>
-    </div>
-    
+   
     <input type="hidden" id= "userId" value="${sessionScope.userId}" name="userId" >
      <table>
       <thead>
@@ -86,7 +82,58 @@
             <li><a href="#">설정&#128540;</a></li>
         </ul>
 
-    </aside>
-    <input type="text" id="userInput" placeholder="대화를 입력하세요.">
+    </aside>   
+    
+		<div id="messageContainer" class="message-container"></div>
+			<input type="text" id="userInput" placeholder="대화를 입력하세요.">
+			<button onclick="sendMessage()">보내기</button>
+
+ 
+   
+  <script>
+  function sendMessage() {
+	    var currentURL = window.location.href;
+	    const userInput = document.getElementById("userInput").value.trim();
+	    var urlParams = new URLSearchParams(new URL(currentURL).search);
+	    
+	    // chatSeq 파라미터 값 가져오기
+	    var chatSeq = urlParams.get("chatSeq");
+	    if (userInput !== "") {
+	        // Create a new message element and append to the container
+	        var messageElement = document.createElement("div");
+	        messageElement.className = "user-message";
+	        messageElement.textContent = userInput;
+	        document.getElementById("messageContainer").appendChild(messageElement);
+
+         // Clear the input field using jQuery
+         $("#userInput").val("");
+
+         // Scroll to the bottom of the chatLogs to show the latest message
+         const chatLogs = document.getElementById("chatLogs");
+         chatLogs.scrollTop = chatLogs.scrollHeight;
+         
+         
+	        // Send the message to the server
+	        $.ajax({
+	            url: "${CP}/main/chat",
+	            type: "POST",
+	            data: {
+	                chatSeq: chatSeq,
+	                chatContents: userInput
+	            },
+	            success: function() {
+	                console.log("Message sent!");
+	                // Clear the input field
+	                document.getElementById("userInput").value = "";
+	            },
+	            error: function() {
+	                console.log("Error sending the message");
+	            }
+	        });
+	    }
+	}
+
+
+  </script>
 </body>
 </html>
