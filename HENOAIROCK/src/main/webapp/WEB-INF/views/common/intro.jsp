@@ -22,7 +22,7 @@
     <div>
       <h2>HENOAIROCK</h2>
       <nav class="nav nav-masthead justify-content-center float-md-end">
-        <a class="nav-link active" aria-current="page" href="/common/intro">Home</a>
+        <a class="nav-link active" aria-current="page" href="/">Home</a>
         <a class="nav-link" href="/member/login">Login</a>
         <a class="nav-link" href="/common/main">Experience</a>
       </nav>
