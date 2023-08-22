@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class AppController {
     @GetMapping("/")
     public String intro() {
-    	return "redirect:/member/login";
+    	return "/common/intro";
     	
     }
 

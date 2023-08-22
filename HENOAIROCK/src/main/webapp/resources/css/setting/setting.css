@@ -8,8 +8,8 @@
       line-height: 1.6;
       margin: 0;
       padding: 20px;
-      background-color: #222; /* 어두운 배경색상 */
-      color: #fff; /* 글자 색상 */
+      background-color: #222; /* �뼱�몢�슫 諛곌꼍�깋�긽 */
+      color: #fff; /* 湲��옄 �깋�긽 */
     }
     section {
       margin-bottom: 80px;
@@ -29,12 +29,12 @@
     li {
       margin-bottom: 10px;
     }
-    /* 추가된 스타일 - 로그아웃, 회원탈퇴, 비밀번호 변경 글씨 색상 및 크기 설정 */
+    /* 異붽��맂 �뒪���씪 - 濡쒓렇�븘�썐, �쉶�썝�깉�눜, 鍮꾨�踰덊샇 蹂�寃� 湲��뵪 �깋�긽 諛� �겕湲� �꽕�젙 */
     .setting_itmes {
       color: #fff;
       font-size: 18px;
     }
-    /* 추가된 스타일 - 선 스타일 설정 */
+    /* 異붽��맂 �뒪���씪 - �꽑 �뒪���씪 �꽕�젙 */
     .separator {
       width: 100%;
       height: 1px;
@@ -44,7 +44,7 @@
     .footer {
   color: #fff;
   text-align: center;
-  margin-top : 7.5%;
+  margin-top : 15.5%;
   line-height: 28px;
   padding: 8px;
   font-family: Arial, sans-serif;
