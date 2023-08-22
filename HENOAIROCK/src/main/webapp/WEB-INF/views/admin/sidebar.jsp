@@ -164,12 +164,13 @@
     }
 
     .toggle-btn-open {
-        background-color: #white;
+        background-color: #fff;
         border: none;
         color: #black;
         padding: 10px;
         font-size: 16px;
         cursor: pointer;
+
     }
     .sidebar-content-wrapper {
     display: flex;
@@ -290,6 +291,20 @@
             closeSidebar();
         }
     }
+    
+    function checkScreenWidth() {
+        if (window.innerWidth <= 767) {
+            closeSidebar();
+        } else {
+            openSidebar();
+        }
+    }
+    
+    // Initial check when the page loads
+    checkScreenWidth();
+
+    // Attach an event listener to the window's resize event
+    window.addEventListener('resize', checkScreenWidth);
 </script>
 
 
