@@ -147,12 +147,10 @@ tbody tr:nth-child(even) {
     width: 8%;
 }
 
-/* Center align the buttons */
 .d-flex.justify-content-center {
     justify-content: center;
 }
 
-/* Style the form inputs */
 .form-select,
 .form-control {
     width: auto;
