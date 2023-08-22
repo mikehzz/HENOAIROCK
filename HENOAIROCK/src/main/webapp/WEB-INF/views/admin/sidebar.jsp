@@ -265,9 +265,8 @@
         sidebar.style.width = '250px';
         toggleIconOpen.style.display = 'none';
 
-        // 오픈된 사이드바가 항상 화면 상단에 고정되도록 합니다
         sidebar.classList.add('sidebar-open');
-        // 스크롤을 막기 위해 추가합니다
+
         document.body.style.overflow = 'auto';
     }
 
@@ -280,7 +279,6 @@
         sidebar.style.width = '0';
         toggleIconOpen.style.display = 'block';
 
-        // 스크롤을 다시 허용하기 위해 추가합니다
         document.body.style.overflow = 'auto';
     }
 
@@ -300,14 +298,10 @@
         }
     }
     
-    // Initial check when the page loads
     checkScreenWidth();
 
-    // Attach an event listener to the window's resize event
     window.addEventListener('resize', checkScreenWidth);
 </script>
-
-
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
