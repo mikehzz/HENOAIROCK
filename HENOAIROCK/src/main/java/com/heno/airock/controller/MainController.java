@@ -31,6 +31,7 @@ public class MainController implements PcwkLoger{
 	ChatService chatService;
 	
 	
+	//클릭시 상세 채팅 내용 조회
 	@GetMapping(value = "/selectOne")
 	public String selectOne(ChatMessageDetailVO inVO,Model model, HttpSession session, HttpServletRequest request) {
 		String viewPage = "/common/main";
@@ -45,6 +46,7 @@ public class MainController implements PcwkLoger{
 		return viewPage;
 	}
 	
+	//채팅방 리스트 뿌리기
 	@RequestMapping(value = "")
 	public String main(ChatMessageVO inVO, Model model, HttpSession session) throws SQLException {
 		String viewPage = "/common/main";
@@ -66,12 +68,13 @@ public class MainController implements PcwkLoger{
 	@RequestMapping(value="/chat",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String newChat(ChatMessageDetailVO inVO, Model model, HttpSession session)throws SQLException {
+		
 		inVO.setChatDiv("10");
 
 		int result = chatService.MessageSave(inVO);
 		
 		if(result == 1) {
-			
+
 		} else {
 			
 		}
@@ -81,9 +84,10 @@ public class MainController implements PcwkLoger{
 		
 	}
 	
+	//채팅시작시 POST 방식으로 내용 저장
 	@RequestMapping(value= "/start", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String start(ChatMessageVO inVO, HttpSession session) throws SQLException {
+	public String start(ChatMessageVO inVO, HttpSession session, Model model) throws SQLException {
 		String jsonString = "";
 		MessageDTO message = new MessageDTO();
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("user");
@@ -96,7 +100,9 @@ public class MainController implements PcwkLoger{
 			int flag = this.chatService.save(inVO);
 			if (1 == flag) {
 				message.setMsgId("1");
-				message.setMsgContents("채팅이 시작됩니다!");
+				LOG.debug("│inVO                          │" + inVO);
+				message.setMsgContents(inVO.getChatSeq());
+	
 			} else {
 				message.setMsgId("2");
 				message.setMsgContents("문제 발생 재접속 바랍니다!");
