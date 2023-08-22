@@ -45,136 +45,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-
+<link rel="stylesheet" type="text/css" href="/resources/css/post.css">
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script src="${CP}/resources/js/jquery-3.7.0.js"></script>
 <script src="${CP}/resources/js/util.js"></script>
 
 <title>${title}</title>
-<style>
-/* Overall container styling */
-.container {
-    margin-top: 20px;
-}
 
-/* Page header styling */
-.page-header {
-    margin-bottom: 20px;
-}
-
-/* Table styling */
-#boardTable {
-    table-layout: fixed;
-        border-collapse: collapse;
-    width: 100%;
-}
-
-/* Table header styling */
-thead th {
-    padding: 12px;
-    background-color: #f5f5f5;
-    border-top: 1px solid #dddddd;
-    border-bottom: 2px solid #dddddd;
-    text-align: left;
-}
-
-tbody tr {
-    background-color: #ffffff;
-    border-bottom: 1px solid #dddddd;
-}
-
-td {
-    padding: 12px;
-}
-
-/* Add alternating row background colors */
-tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-.admin-notice {
-    background-color: white;
-    border: 2px solid red;
-    color: red;
-    padding: 5px 10px;
-    border-radius: 15px;
-    font-weight: bold;
-    font-size: 13px;
-}
-.admin-post td {
-    font-weight: bold;
-}
-.admin-post td .gaesi {
-    color: black !important; /* Set the font color to black */
-}
-/* Truncate long text in cells */
-.truncate-text {
-    max-height: 60px; /* Adjust this value as needed */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-/* Additional column width settings */
-.noWidth {
-    width: 5%;
-}
-.table-row {
-    height: 70px; /* Adjust this value as needed */
-}
-
-/* Adjust content alignment within cells */
-.text-center {
-    text-align: center;
-}
-.text-left {
-    text-align: left;
-}
-.albumCover {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 50%;
-}
-
-/* Adjust column widths */
-.postDt {
-    width: 12%;
-}
-
-.readCntWidth {
-    width: 8%;
-}
-
-.d-flex.justify-content-center {
-    justify-content: center;
-}
-
-.form-select,
-.form-control {
-    width: auto;
-}
-
-/* Adjust spacing for search form */
-.row.g-1 {
-    margin-top: 10px;
-}
-
-/* Button color and margin */
-.btn-primary {
-    margin-right: 10px;
-}
-
-/* Add a bit of margin below the form */
-form {
-    margin-bottom: 20px;
-}
-.admin-post {
-    position: relative;
-}
-
-</style>
 </head>
 
 <body>
