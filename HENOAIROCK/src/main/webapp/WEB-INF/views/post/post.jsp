@@ -52,7 +52,6 @@
 <script src="${CP}/resources/js/util.js"></script>
 
 <title>${title}</title>
-
 </head>
 
 <body>
@@ -65,7 +64,7 @@
   <!--// 제목 ------------------------------------------------------------------->
    <table id="boardTable" class="table table-hover table-striped table-sm table-borderless" style="table-layout: fixed">
       <thead class="table-light">
-        <tr class="text-center table-Secondary" style="height: 38px; border-top: 10px solid #000000; border-bottom: 2px solid #000000;">
+        <tr class="text-center table-Secondary didi">
    <th class="text-center noWidth" style="width: 5%;">번호</th>
    <th class="text-center" style="width: 25%;">제목</th>
    <th class="text-center" style="width: 15%;">앨범</th> 

@@ -7,44 +7,51 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <style>
-        body {
-            background-color: #f8f9fa;
-        }
+header{
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Ensure the header is above other elements */
+}
 
-        .navbar-dark.bg-dark {
-            background-color: #343a40 !important;
-        }
+body {
+    background-color: #f8f9fa;
+}
 
-        .card {
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+.navbar-dark.bg-dark {
+    background-color: #343a40 !important;
+}
 
-        .card-title {
-            font-size: 1.25rem;
-        }
+.card {
+     margin-bottom: 20px;
+     border-radius: 10px;
+     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+     font-size: 1.25rem;
+}
+
     ::-webkit-scrollbar {
         width: 12px;
-    }
+}
 
     ::-webkit-scrollbar-track {
         background-color: #f8f9fa;
-    }
+}
 
     ::-webkit-scrollbar-thumb {
         background-color: #343a40;
         border-radius: 10px;
-    }
+}
 
     ::-webkit-scrollbar-thumb:hover {
         background-color: #495057;
-    }
+}
     </style>
 </head>
 <body>
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<header>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark nana">
     <div class="container">
         <a class="navbar-brand" href="/admin/dashboard">Admin Dashboard</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,6 +78,7 @@
         </div>
     </div>
 </nav>
+</header>
 
 <div class="container mt-4">
     <div class="row">
