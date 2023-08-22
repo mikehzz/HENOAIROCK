@@ -41,6 +41,7 @@ public class MainController implements PcwkLoger{
 		LOG.debug("list:" + list);
 		model.addAttribute("contentsList", list);
 		
+		
 		return viewPage;
 	}
 	
@@ -66,7 +67,8 @@ public class MainController implements PcwkLoger{
 	@ResponseBody
 	public String newChat(ChatMessageDetailVO inVO, Model model, HttpSession session)throws SQLException {
 		inVO.setChatDiv("10");
-		int result = chatService.save(inVO);
+
+		int result = chatService.MessageSave(inVO);
 		
 		if(result == 1) {
 			

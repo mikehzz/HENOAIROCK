@@ -1,4 +1,4 @@
-function openNewChat(){
+/*function sendMessage(){
 	$.ajax({
 		type :"POST",
 		url : "/main/start",
@@ -10,7 +10,7 @@ function openNewChat(){
 			let paredJSON = JSON.parse(data)
 			if ("1" == paredJSON.msgId) {
 				alert(paredJSON.msgContents);
-				window.location.href = '/main/chat';
+				window.location.href = '/main/selectOne?chatSeq=' + parsedJSON.chatSeq; // 수정한 부분
 			} else if("2" == paredJSON.msgId){
 				alert(paredJSON.msgContents);
 				location.reload();
@@ -31,4 +31,9 @@ function chatContents(element){
 	 
 	 window.location.href = "/main/selectOne?chatSeq=" + chatSeqValue;
 
-}
+}*/
+
+
+
+
+
