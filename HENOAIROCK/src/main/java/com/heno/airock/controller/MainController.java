@@ -41,6 +41,7 @@ public class MainController implements PcwkLoger{
 		LOG.debug("list:" + list);
 		model.addAttribute("contentsList", list);
 		
+		
 		return viewPage;
 	}
 	

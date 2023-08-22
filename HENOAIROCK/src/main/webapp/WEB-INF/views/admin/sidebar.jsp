@@ -105,16 +105,6 @@
             margin-right: 8px;
         }
 
-        .toggle-btn {
-            background-color: #343a40;
-            border: none;
-            color: #f8f9fa;
-            padding: 10px;
-            cursor: pointer;
-            font-size: 16px;
-            display: none;
-        }
-        /* Styling for the logout button */
 .logout-button {
     padding: 8px 16px;
     background-color: #dc3545;
@@ -129,16 +119,81 @@
 .logout-button:hover {
     background-color: #c82333;
 }
+
+    .sidebar-closed {
+        width: 0;
+    }
+
+    .content-expanded {
+        margin-left: 60px;
+    }
+
+        .menu-items {
+        margin-top: 40px; /* Adjust the value to control the spacing */
+        padding-left: 0; /* Reset the default padding for the list */
+    }
+
+.sidebar-closed .menu-items {
+    display: none; /* Hide menu items when sidebar is closed */
+}
+    .menu-items li {
+        margin-bottom: 10px;
+    }
+
+    .menu-items a {
+        padding: 10px;
+        display: block;
+        transition: background-color 0.2s ease;
+    }
+    /* Styling for the close sidebar button */
+    .toggle-btn-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #343a40;
+        border: none;
+        color: #f8f9fa;
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .sidebar-open {
+        position: fixed; /* "absolute" 대신 "fixed"로 변경합니다 */
+
+    }
+
+    .toggle-btn-open {
+        background-color: #white;
+        border: none;
+        color: #black;
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    .sidebar-content-wrapper {
+    display: flex;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.sidebar-closed .sidebar {
+    width: 0;
+}
+
+.sidebar-closed .content {
+    margin-left: 0;
+}
     </style>
 </head>
 
 <body class="body2">
-
+<div class="sidebar-content-wrapper">
 <div class="sidebar">
-    <button class="toggle-btn" onclick="toggleSidebar()">
-        <i class="material-icons">&#xe5d2;</i>
+    <button class="toggle-btn toggle-btn-close" onclick="toggleSidebar()">
+        <i class="material-icons" id="toggleIconClose">arrow_back_ios</i>
     </button>
-    <ul>
+
+    <ul class="menu-items">
         <li><a href="#"><i class="material-icons">home</i> 홈</a></li>
         <li><a href="/mypage"><i class="material-icons">person</i> 마이페이지</a></li>
         <li><a href="/music/music_rank"><i class="material-icons">&#xE01D;</i> 음악 순위</a></li>
@@ -146,22 +201,32 @@
         <li><a href="/setting"><i class="material-icons">&#xE8B8;</i> 설정</a></li>
         <!-- Additional menu items can be added here -->
     </ul>
+
     <!-- User profile section -->
 <div class="user-profile" id="userProfileSection">
     <% if (userLoggedIn) { %>
         <img src="<%= userImageUrl %>" alt="User Profile Image">
         <span>${sessionScope.user.userId}</span>
         <!-- Show Logout button when user is logged in -->
-        <a class="nav-link" data-toggle="modal" data-target="#logoutModal" style="cursor: pointer;">Logout</a>
+        <a class="nav-link" data-toggle="modal" data-target="#logoutModal" style="cursor: pointer;">Logout
+        <i class="material-icons">logout</i>
+        </a>
     <% } else { %>
-        <a class="nav-link" href="/member/login">Login</a>
+        <a class="nav-link" href="/member/login">Login
+        <i class="material-icons">login</i>
+        </a>
     <% } %>
 </div>
 </div>
     <div class="content">
 </div>
+</div>
+<div class="sidebar-open">
+    <button class="toggle-btn toggle-btn-open" onclick="toggleSidebar()">
+        <i class="material-icons" id="toggleIconOpen">arrow_forward_ios</i>
+    </button>
+</div>
 
-<!-- Logout Confirmation Modal -->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -181,6 +246,51 @@
         </div>
     </div>
 </div>
+
+<script>
+    const sidebar = document.querySelector('.sidebar');
+    const content = document.querySelector('.content');
+    const menuItems = document.querySelector('.menu-items');
+    const userProfileSection = document.getElementById('userProfileSection');
+    const toggleIconClose = document.getElementById('toggleIconClose');
+    const toggleIconOpen = document.getElementById('toggleIconOpen');
+
+    function openSidebar() {
+        sidebar.classList.remove('sidebar-closed');
+        content.classList.remove('content-expanded');
+        userProfileSection.style.display = 'block';
+        menuItems.style.display = 'block';
+        toggleIconClose.textContent = 'arrow_back_ios';
+        sidebar.style.width = '250px';
+        toggleIconOpen.style.display = 'none';
+
+        // 오픈된 사이드바가 항상 화면 상단에 고정되도록 합니다
+        sidebar.classList.add('sidebar-open');
+        // 스크롤을 막기 위해 추가합니다
+        document.body.style.overflow = 'auto';
+    }
+
+    function closeSidebar() {
+        sidebar.classList.add('sidebar-closed');
+        content.classList.add('content-expanded');
+        userProfileSection.style.display = 'none';
+        menuItems.style.display = 'none';
+        toggleIconClose.textContent = '';
+        sidebar.style.width = '0';
+        toggleIconOpen.style.display = 'block';
+
+        // 스크롤을 다시 허용하기 위해 추가합니다
+        document.body.style.overflow = 'auto';
+    }
+
+    function toggleSidebar() {
+        if (sidebar.classList.contains('sidebar-closed')) {
+            openSidebar();
+        } else {
+            closeSidebar();
+        }
+    }
+</script>
 
 
 

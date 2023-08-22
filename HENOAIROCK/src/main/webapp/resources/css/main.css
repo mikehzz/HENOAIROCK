@@ -452,3 +452,9 @@ footer {
   margin-top : 67px;
   background-image: linear-gradient(to right, #00b8ff, rgb(255,255,255), #00b8ff);
 }
+
+.truncate-text {
+  white-space: nowrap;       /* 줄바꿈 금지 */
+  overflow: hidden;          /* 내용 넘치는 부분 숨김 */
+  text-overflow: ellipsis;   /* 넘치는 부분 "..."으로 표시 */
+}

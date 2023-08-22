@@ -40,7 +40,7 @@
                 FROM posts
                 WHERE post_div = #{postDiv}
                 <include refid="searchCondition"></include>
-                ORDER BY update_dt DESC
+                ORDER BY post_dt DESC, post_seq
             )t1
           <![CDATA[     WHERE ROWNUM <= #{pageSize} * (#{pageNo}-1)+#{pageSize}   ]]>
         )TT1

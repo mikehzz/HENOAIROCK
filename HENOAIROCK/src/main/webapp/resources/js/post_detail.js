@@ -126,10 +126,11 @@ $(document).ready(function() {
                 }
             },
             error: function() {
-                alert("댓글 수정에 실패했습니다.");
+                alert("공백은 안돼 ㅋㅋ");
             }
         });
     });
+
     // 댓글 추가 END
 
     

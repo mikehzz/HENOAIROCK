@@ -55,8 +55,12 @@
 				  <button class="fs music" id="music" name="music">
 					    <img class="horizen_img station" src="${vo.albumPath }" alt="이미지" style="width: 80px;">
 					  <div id="meta_info" class="ell">
-					    <p class="meta_info_title ell">${vo.title}</p>
-					    <span class="meta_info_desc ell">${vo.artist }</span>
+					     <div class="truncate-text limit">
+					     <p class="meta_info_title ell">${vo.title}</p>
+					     </div>
+					    <div class="truncate-text">
+					     <span class="meta_info_desc ell">${vo.artist }</span>
+					    </div>
 					  </div>
 				   </button>
 				   <input type="hidden" value="${vo.musicId }" id="musicId" name="musicId">
