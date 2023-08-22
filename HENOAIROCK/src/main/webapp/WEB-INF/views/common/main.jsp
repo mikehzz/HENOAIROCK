@@ -68,13 +68,6 @@
      </table>
         <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <!-- New Chat Button -->
-            <button class="new-chat-btn" onclick="openNewChat()">New Chat</button>
-            <h2>GPT</h2>
-            <!-- Close Sidebar Button -->
-            <!-- <button class="close-btn" onclick="closeSidebar()">Close Sidebar</button> -->
-        </div>
         <ul>
             <li><a href="#">홈</a></li>
             <li><a href="/mypage">마이페이지</a></li>
@@ -92,46 +85,91 @@
    
   <script>
   function sendMessage() {
-	    var currentURL = window.location.href;
 	    const userInput = document.getElementById("userInput").value.trim();
-	    var urlParams = new URLSearchParams(new URL(currentURL).search);
-	    
-	    // chatSeq 파라미터 값 가져오기
-	    var chatSeq = urlParams.get("chatSeq");
+	    const chatSeq = new URLSearchParams(window.location.search).get("chatSeq"); // 기존의 chatSeq를 체크
+	    if (!chatSeq && userInput === "") {
+	        alert("대화를 입력하세요.");
+	        return;
+	    }
 	    if (userInput !== "") {
 	        // Create a new message element and append to the container
-	        var messageElement = document.createElement("div");
+	        const messageElement = document.createElement("div");
 	        messageElement.className = "user-message";
 	        messageElement.textContent = userInput;
 	        document.getElementById("messageContainer").appendChild(messageElement);
 
-         // Clear the input field using jQuery
-         $("#userInput").val("");
+	        // Clear the input field using jQuery
+	        $("#userInput").val("");
 
-         // Scroll to the bottom of the chatLogs to show the latest message
-         const chatLogs = document.getElementById("chatLogs");
-         chatLogs.scrollTop = chatLogs.scrollHeight;
-         
-         
+	        // Scroll to the bottom of the chatLogs to show the latest message
+	        const chatLogs = document.getElementById("chatLogs");
+	        chatLogs.scrollTop = chatLogs.scrollHeight;
+
 	        // Send the message to the server
-	        $.ajax({
-	            url: "${CP}/main/chat",
-	            type: "POST",
-	            data: {
-	                chatSeq: chatSeq,
-	                chatContents: userInput
-	            },
-	            success: function() {
-	                console.log("Message sent!");
-	                // Clear the input field
-	                document.getElementById("userInput").value = "";
-	            },
-	            error: function() {
-	                console.log("Error sending the message");
-	            }
-	        });
+	        if (chatSeq) {
+	            $.ajax({
+	                url: "${CP}/main/chat",
+	                type: "POST",
+	                data: {
+	                    chatSeq: chatSeq,
+	                    chatContents: userInput
+	                },
+	                success: function() {
+	                    console.log("Message sent!");
+	                    // Clear the input field
+	                    document.getElementById("userInput").value = "";
+	                    // Refresh the chat logs using JQuery
+	                    $.get(window.location.href, function(data) {
+	                        const chatLogs = document.getElementById("chatLogs");
+	                        chatLogs.innerHTML = $(data).find("#chatLogs").html();
+	                    });
+	                },
+	                error: function() {
+	                    console.log("Error sending the message");
+	                }
+	            });
+	        } else {
+	            $.ajax({
+	                type: "POST",
+	                url: "/main/start",
+	                dataType: "json", // 수정
+	                data: {
+	                    "userId": $('#userId').val()
+	                },  
+	                success: function(parsedJSON) {
+	                    if (parsedJSON.msgId === "1") {
+	                        alert(parsedJSON.msgContents);
+	                        const newChatSeq = parsedJSON.chatSeq;
+	                        // Create a new URL with the newChatSeq value
+	                        const newURL = "${CP}/main/selectOne?chatSeq=" + newChatSeq;
+	                        window.location.href = newURL;
+	                    } else if (parsedJSON.msgId === "2") {
+	                        alert(parsedJSON.msgContents);
+	                        location.reload();
+	                    } else {
+	                        alert(parsedJSON.msgContents);
+	                        window.location.href = "${CP}/member/login";
+	                    }
+	                },
+	                error: function(data) {
+	                    console.log("Communication error");
+	                }
+	            });
+	        }
 	    }
+	    
+	    function chatContents(element) {
+	        var chatSeqValue = element.textContent;
+	        console.log("Clicked chatSeq:", chatSeqValue);
+
+	        // Create a new URL with the chatSeqValue
+	        const newURL = "${CP}/main/selectOne?chatSeq=" + chatSeqValue;
+	        window.location.href = newURL;
+	    }
+
 	}
+
+	    
 
 
   </script>

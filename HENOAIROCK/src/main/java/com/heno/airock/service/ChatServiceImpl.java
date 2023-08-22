@@ -24,6 +24,7 @@ public class ChatServiceImpl implements ChatService{
 	}
 	
 	//채팅 내용 저장(사용자 채팅 전송시 생성)
+	@Override
 	public int MessageSave(ChatMessageVO inVO) throws SQLException {
 		return chatDao.MessageSave(inVO);	
 	}
