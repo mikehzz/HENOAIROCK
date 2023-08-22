@@ -5,36 +5,36 @@
 <%@ include file="/WEB-INF/views/admin/sidebar.jsp" %>
 <%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%       
-				PostVO vo = (PostVO)request.getAttribute("inVO");
-				String divValue = vo.getPostDiv();
-				String title    = "자유게시판";//10:자유게시판, 20:공지사항
-				
-				if("20".equals(divValue)){
-				   title = "공지사항";
-				}
-				
-				request.setAttribute("title", title);
-				
-				//paging
-				int bottomCount = 10;
-				int pageSize    = 10;
-				int pageNo      =  1;
-				int totalCnt    =  0;
-				String searchWord = "";
-				String searchDiv  = "";
-				  
-				if(null != vo){
-				     pageSize   = vo.getPageSize();
-				     pageNo     = vo.getPageNo();
-				     searchDiv  = vo.getSearchDiv();
-				     searchWord = vo.getSearchWord();
-				}
-				
-				if(null !=  request.getAttribute("totalCnt")){
-				     totalCnt = Integer.parseInt(request.getAttribute("totalCnt").toString());
-				}
-				
-				String cPath  = request.getContextPath();
+        PostVO vo = (PostVO)request.getAttribute("inVO");
+        String divValue = vo.getPostDiv();
+        String title    = "자유게시판";//10:자유게시판, 20:공지사항
+        
+        if("20".equals(divValue)){
+           title = "공지사항";
+        }
+        
+        request.setAttribute("title", title);
+        
+        //paging
+        int bottomCount = 10;
+        int pageSize    = 10;
+        int pageNo      =  1;
+        int totalCnt    =  0;
+        String searchWord = "";
+        String searchDiv  = "";
+          
+        if(null != vo){
+             pageSize   = vo.getPageSize();
+             pageNo     = vo.getPageNo();
+             searchDiv  = vo.getSearchDiv();
+             searchWord = vo.getSearchWord();
+        }
+        
+        if(null !=  request.getAttribute("totalCnt")){
+             totalCnt = Integer.parseInt(request.getAttribute("totalCnt").toString());
+        }
+        
+        String cPath  = request.getContextPath();
          
 %>
 <c:set var="CP" value="${pageContext.request.contextPath }"/>  
@@ -45,13 +45,138 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="/resources/css/post.css">
+
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script src="${CP}/resources/js/jquery-3.7.0.js"></script>
 <script src="${CP}/resources/js/util.js"></script>
 
 <title>${title}</title>
+<style>
+/* Overall container styling */
+.container {
+    margin-top: 20px;
+}
+
+/* Page header styling */
+.page-header {
+    margin-bottom: 20px;
+}
+
+/* Table styling */
+#boardTable {
+    table-layout: fixed;
+        border-collapse: collapse;
+    width: 100%;
+}
+
+/* Table header styling */
+thead th {
+    padding: 12px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #dddddd;
+    border-bottom: 2px solid #dddddd;
+    text-align: left;
+}
+
+tbody tr {
+    background-color: #ffffff;
+    border-bottom: 1px solid #dddddd;
+}
+
+td {
+    padding: 12px;
+}
+
+/* Add alternating row background colors */
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.admin-notice {
+    background-color: white;
+    border: 2px solid red;
+    color: red;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 13px;
+}
+.admin-post td {
+    font-weight: bold;
+}
+.admin-post td .gaesi {
+    color: black !important; /* Set the font color to black */
+}
+/* Truncate long text in cells */
+.truncate-text {
+    max-height: 60px; /* Adjust this value as needed */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Additional column width settings */
+.noWidth {
+    width: 5%;
+}
+.table-row {
+    height: 70px; /* Adjust this value as needed */
+}
+
+/* Adjust content alignment within cells */
+.text-center {
+    text-align: center;
+}
+.text-left {
+    text-align: left;
+}
+.albumCover {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Adjust column widths */
+.postDt {
+    width: 12%;
+}
+
+.readCntWidth {
+    width: 8%;
+}
+
+/* Center align the buttons */
+.d-flex.justify-content-center {
+    justify-content: center;
+}
+
+/* Style the form inputs */
+.form-select,
+.form-control {
+    width: auto;
+}
+
+/* Adjust spacing for search form */
+.row.g-1 {
+    margin-top: 10px;
+}
+
+/* Button color and margin */
+.btn-primary {
+    margin-right: 10px;
+}
+
+/* Add a bit of margin below the form */
+form {
+    margin-bottom: 20px;
+}
+.admin-post {
+    position: relative;
+}
+
+</style>
 </head>
 
 <body>
@@ -64,15 +189,15 @@
   <!--// 제목 ------------------------------------------------------------------->
    <table id="boardTable" class="table table-hover table-striped table-sm table-borderless" style="table-layout: fixed">
       <thead class="table-light">
-        <tr  class="text-center table-Secondary"  style="height: 38px;" >
-           <th class="text-center noWidth">번호</th>
-           <th class="text-center">제목</th>
-           <th class="text-center">앨범</th> 
-           <th class="text-center">음악 정보</th>
-           <th class="text-center">글쓴이</th>
-           <th class="text-center readCntWidth">조회</th>
-           <th class="text-center postDt">작성일</th>
-           <th style="display:none;">SEQ</th>
+        <tr class="text-center table-Secondary" style="height: 38px; border-top: 10px solid #000000; border-bottom: 2px solid #000000;">
+   <th class="text-center noWidth" style="width: 5%;">번호</th>
+   <th class="text-center" style="width: 25%;">제목</th>
+   <th class="text-center" style="width: 15%;">앨범</th> 
+   <th class="text-center" style="width: 15%;">음악 정보</th>
+   <th class="text-center" style="width: 10%;">작성자</th>
+   <th class="text-center readCntWidth" style="width: 5%;">조회수</th>
+   <th class="text-center postDt" style="width: 10%;">작성일</th>
+   <th style="display:none;">SEQ</th>
         </tr>
       </thead>
       <tbody class="table-group-divider">
@@ -80,38 +205,46 @@
          <%-- 조회 데이터가 있는 경우--%>
          <c:when test="${not empty list }">
             <c:forEach var="vo" items="${list}">
-    <tr class="<c:if test='${vo.userId eq "어드민"}'>admin-post</c:if>">
-        <td style="display:none;"><c:out value="${vo.postSeq}" /></td>
-        <td class="text-center col-sm">
-            <c:choose>
-                <c:when test='${vo.userId eq "어드민"}'>
-                    <span style="color: red;">공지</span>
-                </c:when>
-                <c:otherwise>
-                    <c:out value="${vo.postSeq}" />
-                </c:otherwise>
-            </c:choose>
+<tr class="table-row <c:if test='${vo.userId eq "어드민"}'>admin-post</c:if>">
+    <td style="display:none;"><c:out value="${vo.postSeq}" /></td>
+    <td class="text-center col-sm" style="vertical-align: middle;">
+        <c:choose>
+            <c:when test='${vo.userId eq "어드민"}'>
+        <div class="admin-notice">
+            <span style="color: red;">공지</span>
+        </div>
+            </c:when>
+            <c:otherwise>
+                <c:out value="${vo.postSeq}" />
+            </c:otherwise>
+        </c:choose>
+    </td>
+    <td class="text-center col-sm" style="vertical-align: middle;"><c:out value="${vo.postTitle}"/></td>
+    <c:if test="${not empty vo.musicId}">
+        <td class="text-center  col-sm" style="vertical-align: middle;"><img class="album-cover" src="${vo.albumPath }" alt="앨범커버" width="60px" height="60px"></td>
+        <td class="text-left col-sm" style="vertical-align: middle;">
+            <div class="truncate-text">
+                <span style="font-weight: bold; font-size: 13px;"><c:out value="${vo.title}" /></span><br />
+                <span style="font-size: 13px; color: #a1a1a1;"><c:out value="${vo.artist}" /></span>
+            </div>
         </td>
-                <td class="text-center col-sm"><c:out value="${vo.postTitle}"/></td>
-                <c:if test="${not empty vo.musicId}">
-                  <td class="text-center  col-sm"><img class="album-cover" src="${vo.albumPath }" alt="앨범커버" width="60px" height="60px"></td>
-		              <td class="text-left col-sm">
-		              <div class="truncate-text">
-                    <c:out value="${vo.title}" /><br />
-                    <c:out value="${vo.artist}" />
-                  </div></td>
-		            </c:if>
-		            <c:if test="${empty vo.musicId}">
-		              <td class="text-center col-sm"></td>
-		              <td class="text-center col-sm"></td>
-		            </c:if>
-		            <td class="text-center  col-sm">
-		            <c:set var="email" value="${vo.userId}" />
-						    <c:set var="username" value="${email.split('@')[0]}" />
-						    <c:out value="${username}" /></td>
-		            <td class="text-center     col-sm"><c:out value="${vo.readCnt}"/></td>
-                <td class="text-center  col-sm"><c:out value="${vo.postDt}"/></td>
-              </tr>            
+    </c:if>
+    <c:if test="${empty vo.musicId}">
+        <td class="text-center col-sm" style="vertical-align: middle;"></td>
+        <td class="text-center col-sm" style="vertical-align: middle;"></td>
+    </c:if>
+    <td class="text-center  col-sm" style="vertical-align: middle;">
+        <c:set var="email" value="${vo.userId}" />
+        <c:set var="username" value="${email.split('@')[0]}" />
+        <span class="gaesi" style="color: gray; font-size: 13px;"><c:out value="${username}" /></span>
+    </td>
+    <td class="text-center  col-sm" style="vertical-align: middle;">
+        <span class="gaesi" style="color: gray; font-size: 13px;"><c:out value="${vo.readCnt}" /></span>
+    </td>
+    <td class="text-center  col-sm" style="vertical-align: middle;">
+        <span class="gaesi" style="color: gray; font-size: 13px;"><c:out value="${vo.postDt}" /></span>
+    </td>
+</tr>     
             </c:forEach>
          </c:when>
          <%-- 조회 데이터가 없는 경우--%>
