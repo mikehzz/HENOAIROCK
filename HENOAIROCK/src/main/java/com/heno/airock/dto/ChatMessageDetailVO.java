@@ -8,18 +8,13 @@ public class ChatMessageDetailVO extends ChatMessageVO{
 	public ChatMessageDetailVO() {}
 	
 	
-	
 	public String getChatContents() {
 		return chatContents;
 	}
 
-
-
 	public void setChatContents(String chatContents) {
 		this.chatContents = chatContents;
 	}
-
-
 
 	public String getChatSeq() {
 		return super.getChatSeq();
@@ -45,13 +40,13 @@ public class ChatMessageDetailVO extends ChatMessageVO{
 		this.chatDt = chatDt;
 	}
 
-
+	
 
 	@Override
 	public String toString() {
-		return "ChatMessageDetailVO [chatContents=" + chatContents + ", chatDt=" + chatDt + "]";
+		return "ChatMessageDetailVO [chatContents=" + chatContents + ", chatDt=" + chatDt + ", getChatSeq()="
+				+ getChatSeq() + "]";
 	}
-
 
 
 	public ChatMessageDetailVO(String chatContents, String chatDt) {

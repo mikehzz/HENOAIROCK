@@ -26,6 +26,7 @@
     </div>
    
     <input type="hidden" id= "userId" value="${sessionScope.userId}" name="userId" >
+    
      <table>
       <thead>
         <tr>
@@ -37,7 +38,7 @@
           <c:when test="${not empty MsgList }">
             <c:forEach var="vo" items="${MsgList}">
                 <tr>
-                  <td onclick="chatContents(this)"><c:out value="${vo.chatSeq }"/></td>
+                  <td id="chatSeq" class="chatSeq" onclick="chatContents(this)"><c:out value="${vo.chatSeq }"/></td>
                 </tr>
                   
             </c:forEach>
@@ -48,6 +49,16 @@
                </tr>
            </c:otherwise>
           </c:choose>
+        </tbody>
+     </table>
+ 
+      <table>
+      <thead>
+        <tr>
+          <th></th>
+        </tr>
+       </thead>
+       <tbody class="table-group-divider">
             <c:choose>
           <c:when test="${not empty contentsList }">
             <c:forEach var="conVO" items="${contentsList}">
@@ -64,7 +75,7 @@
                </tr>
            </c:otherwise>
            </c:choose>
-       </tbody>
+      </tbody>
      </table>
         <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
@@ -138,10 +149,9 @@
 	                },  
 	                success: function(parsedJSON) {
 	                    if (parsedJSON.msgId === "1") {
-	                        alert(parsedJSON.msgContents);
-	                        const newChatSeq = parsedJSON.chatSeq;
+	                        alert("채팅이 시작됩니다!");
 	                        // Create a new URL with the newChatSeq value
-	                        const newURL = "${CP}/main/selectOne?chatSeq=" + newChatSeq;
+	                        const newURL = "${CP}/main/selectOne?chatSeq=" + parsedJSON.msgContents;
 	                        window.location.href = newURL;
 	                    } else if (parsedJSON.msgId === "2") {
 	                        alert(parsedJSON.msgContents);
@@ -157,17 +167,16 @@
 	            });
 	        }
 	    }
-	    
-	    function chatContents(element) {
-	        var chatSeqValue = element.textContent;
-	        console.log("Clicked chatSeq:", chatSeqValue);
-
-	        // Create a new URL with the chatSeqValue
-	        const newURL = "${CP}/main/selectOne?chatSeq=" + chatSeqValue;
-	        window.location.href = newURL;
-	    }
-
 	}
+  
+  function chatContents(element) {
+      var chatSeqValue = element.textContent;
+      console.log("Clicked chatSeq:", chatSeqValue);
+
+      // Create a new URL with the chatSeqValue
+      const newURL = "${CP}/main/selectOne?chatSeq=" + chatSeqValue;
+      window.location.href = newURL;
+  }
 
 	    
 
