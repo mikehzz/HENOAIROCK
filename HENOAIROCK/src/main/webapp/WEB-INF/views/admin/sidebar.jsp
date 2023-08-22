@@ -195,7 +195,7 @@
     </button>
 
     <ul class="menu-items">
-        <li><a href="#"><i class="material-icons">home</i> 홈</a></li>
+        <li><a href="/main"><i class="material-icons">home</i> 홈</a></li>
         <li><a href="/mypage"><i class="material-icons">person</i> 마이페이지</a></li>
         <li><a href="/music/music_rank"><i class="material-icons">&#xE01D;</i> 음악 순위</a></li>
         <li><a href="/post"><i class="material-icons">forum</i> 게시판</a></li>

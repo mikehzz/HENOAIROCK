@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/admin/sidebar.jsp" %>
 <%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="CP" value="${pageContext.request.contextPath }"/>  
 <!DOCTYPE html>
@@ -19,12 +20,10 @@
 </head>
 <body>
 
-    <div class="chat-container">
+    <div class="container">
         <div class="chat-logs" id="chatLogs">
             <div class="bot-message">싸그리싺싺AI: 안녕하세요! 무엇을 도와드릴까요?</div>
         </div>
-    </div>
-   
     <input type="hidden" id= "userId" value="${sessionScope.userId}" name="userId" >
     
      <table>
@@ -66,7 +65,6 @@
                   <td><c:out value="${conVO.chatSeq }"/></td>
                   <td><c:out value="${conVO.chatContents }"/></td>
                 </tr>
-                  
             </c:forEach>
            </c:when>
            <c:otherwise>
@@ -77,21 +75,13 @@
            </c:choose>
       </tbody>
      </table>
-        <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
-        <ul>
-            <li><a href="#">홈</a></li>
-            <li><a href="/mypage">마이페이지</a></li>
-            <li><a href="/post">게시판</a></li>
-            <li><a href="/setting">설정&#128540;</a></li>
-        </ul>
-
-    </aside>   
-    
+     
 		<div id="messageContainer" class="message-container"></div>
 			<input type="text" id="userInput" placeholder="대화를 입력하세요.">
 			<button onclick="sendMessage()">보내기</button>
-
+			
+			
+  </div>
  
    
   <script>

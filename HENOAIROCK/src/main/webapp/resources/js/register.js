@@ -40,7 +40,7 @@ function fn_idChk() {
 	if (exptext.test(email) == false) {
 		// 이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우
 		alert("이메일 형식이 올바르지 않습니다.");
-		$("#email").focus();
+		$("#userId").focus();
 	} else {
 
 		$.ajax({
@@ -75,10 +75,10 @@ function fn_idChk() {
 $('#mail-Check-Btn').click(function() {
 	const email = $('#userId').val(); // 이메일 주소값 얻어오기!
 	const checkInput = $('#checkInput'); // 인증번호 입력하는곳
-	if (eUtil.ISEmpty($('#userId').val()) == true) {
+	if (eUtil.ISEmpty($('#email').val()) == true) {
 		alert('이메일 입력 후 중복확인을 진행해주세요.');
 		email_Check = false;
-		$("#user_id").focus();
+		$("#userId").focus();
 
 	} else if (exptext.test(email) == false) {
 		// 이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우
@@ -115,6 +115,7 @@ $('#mail-Confirm-Btn').click(function() {
 		$('#register').attr('disabled', false);
 		certified_Email = true;
 		alert("인증번호가 일치합니다!");
+		document.getElementById("password-birth-section").style.display = "block";
 	} else {
 		certified_Email = false;
 		alert("인증번호가 불일치 합니다. 다시 확인해주세요!")
