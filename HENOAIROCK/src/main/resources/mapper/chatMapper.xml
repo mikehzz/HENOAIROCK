@@ -32,11 +32,24 @@ INSERT INTO MSG_DETAIL (
 )
 </insert>
 
-<select id="selectMsgList" parameterType="chat" resultType="chat">
-  SELECT 
-    *
-  FROM MSG
-  WHERE USER_ID = #{userId}
+<select id="selectMsgList" parameterType="chatDetail" resultType="chatDetail">
+    SELECT
+		    chat_seq,
+		    chat_dt,
+		    chat_contents
+    FROM (
+    SELECT
+        MD.chat_seq,
+        MD.chat_dt,
+        MD.chat_contents,
+        ROW_NUMBER() OVER(PARTITION BY MD.chat_seq ORDER BY MD.chat_dt) AS row_num
+    FROM
+        MSG_detail MD
+    JOIN MSG M ON MD.chat_seq = M.chat_seq
+    WHERE
+        M.USER_ID = #{userId}
+		) numbered
+		WHERE row_num = 1
 </select>
 
 <select id="contentSelect" parameterType="chat" resultType="chatDetail">

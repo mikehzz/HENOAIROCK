@@ -1,4 +1,4 @@
-<%@page import="com.heno.airock.dto.PostVO"%>
+<%-- <%@page import="com.heno.airock.dto.PostVO"%>
 <%@page import="com.heno.airock.cmn.StringUtil"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -77,7 +77,7 @@
       </thead>
       <tbody class="table-group-divider">
        <c:choose>
-         <%-- 조회 데이터가 있는 경우--%>
+         조회 데이터가 있는 경우
          <c:when test="${not empty list }">
             <c:forEach var="vo" items="${list}">
 <tr class="table-row <c:if test='${vo.userId eq "어드민"}'>admin-post</c:if>">
@@ -122,7 +122,7 @@
 </tr>     
             </c:forEach>
          </c:when>
-         <%-- 조회 데이터가 없는 경우--%>
+         조회 데이터가 없는 경우
          <c:otherwise>
            <tr>
               <td  class="text-center col-sm-12  col-md-12  col-lg-12" colspan="99">검색결과가 없습니다.</td>
@@ -177,4 +177,4 @@
 </div>
 </body>
 
-</html>
+</html> --%>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="/WEB-INF/views/admin/sidebar.jsp" %>
 <c:set var="CP" value="${pageContext.request.contextPath }"/>  
 <!DOCTYPE html>
 <html>
@@ -26,10 +26,11 @@
    
     <input type="hidden" id= "userId" value="${sessionScope.userId}" name="userId" >
     
-     <table>
+     <table id="boardTable">
       <thead>
         <tr>
           <th></th>
+          <th style="display:none;">SEQ</th>
         </tr>
        </thead>
        <tbody class="table-group-divider">
@@ -37,7 +38,8 @@
           <c:when test="${not empty MsgList }">
             <c:forEach var="vo" items="${MsgList}">
                 <tr>
-                  <td id="chatSeq" class="chatSeq" onclick="chatContents(this)"><c:out value="${vo.chatSeq }"/></td>     
+                  <td style="display:none;">${vo.chatSeq}</td>
+                  <td>${vo.chatDt} ${vo.chatContents}</td>
                 </tr>                  
             </c:forEach>
            </c:when>
@@ -64,17 +66,7 @@
            </c:choose>
       </tbody>
      </table>
-        <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
-        <ul>
-            <li><a href="#">홈</a></li>
-            <li><a href="/mypage">마이페이지</a></li>
-            <li><a href="/post">게시판</a></li>
-            <li><a href="/setting">설정&#128540;</a></li>
-        </ul>
-
-    </aside>   
-    
+  
     <div id="messageContainer" class="message-container"></div>
       <input type="text" id="userInput" placeholder="대화를 입력하세요.">
       <button onclick="sendMessage()">보내기</button>
@@ -165,14 +157,15 @@
       }
   }
   
-  function chatContents(element) {
-      var chatSeqValue = element.textContent;
+  $("#boardTable>tbody").on("click", "tr", function() {
+	    let tdArray = $(this).children();
+      var chatSeqValue = tdArray.eq(0).text();
       console.log("Clicked chatSeq:", chatSeqValue);
 
       // Create a new URL with the chatSeqValue
       const newURL = "${CP}/main/selectOne?chatSeq=" + chatSeqValue;
       window.location.href = newURL;
-  }
+  });
 
       
   </script>

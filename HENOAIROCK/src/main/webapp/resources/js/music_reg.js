@@ -8,6 +8,27 @@
         window.location.href = 'music_reg?feeling=' + encodeURIComponent(feeling);
     }
 	
+   function doRetrieveCall(pageNo){
+       let frm = document.boardFrm;
+       //$("#pageNo").val(1); //jquery
+       frm.pageNo.value=pageNo;//javascript
+       frm.submit();//controller call    
+   }
+   
+   $("#searchWord").on("keypress",function(e){
+      console.log("searchWord");
+      if(13 == e.which){//enter keycode
+        e.preventDefault();
+        doRetrieveCall(1);
+      }
+   });
+   
+   
+   $("#doRetrieve").on("click",function(){
+        console.log("doRetrieve");
+        doRetrieveCall(1);
+	   });
+	
 
 	function select(url, pageNo){
      console.log("url:"+url);
@@ -56,24 +77,5 @@
 	});
 
  
-   function doRetrieveCall(pageNo){
-       let frm = document.boardFrm;
-       //$("#pageNo").val(1); //jquery
-       frm.pageNo.value=pageNo;//javascript
-       frm.submit();//controller call    
-   }
-   
-   $("#searchWord").on("keypress",function(e){
-      console.log("searchWord");
-      if(13 == e.which){//enter keycode
-        e.preventDefault();
-        doRetrieveCall(1);
-      }
-   });
-   
-   
-   $("#doRetrieve").on("click",function(){
-        console.log("doRetrieve");
-        doRetrieveCall(1);
-   });
+
    

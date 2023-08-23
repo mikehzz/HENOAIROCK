@@ -34,6 +34,27 @@ eUtil.ISEmpty = function(str) {
 
 }
 
+function getCurrentDate() {
+ var today = new Date();
+ var dd = today.getDate();
+ var mm = today.getMonth() + 1; // 0부터 시작하므로 1을 더함
+ var yyyy = today.getFullYear() - 12; // 현재로부터 12년 전까지 허용
+
+ if (dd < 10) {
+     dd = '0' + dd;
+ }
+
+ if (mm < 10) {
+     mm = '0' + mm;
+ }
+
+ return yyyy + '-' + mm + '-' + dd;
+}
+
+//최대 날짜 설정
+var birthInput = document.getElementById('birth');
+birthInput.max = getCurrentDate();
+
 //이메일 중복 확인 체크
 function fn_idChk() {
 	const email = $('#userId').val();

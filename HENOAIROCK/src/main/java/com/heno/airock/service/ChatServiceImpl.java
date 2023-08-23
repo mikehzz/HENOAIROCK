@@ -48,7 +48,7 @@ public class ChatServiceImpl implements ChatService{
 	}
 
 	@Override
-	public List<ChatMessageVO> select(ChatMessageVO inVO) throws SQLException {
+	public List<ChatMessageDetailVO> select(ChatMessageDetailVO inVO) throws SQLException {
 		return chatDao.select(inVO);
 	}
 
@@ -56,6 +56,12 @@ public class ChatServiceImpl implements ChatService{
 	public List<ChatMessageDetailVO> ContentsSelect(ChatMessageDetailVO inVO) {
 		
 		return chatDao.ContentsSelect(inVO);
+	}
+
+	@Override
+	public List<ChatMessageVO> select(ChatMessageVO inVO) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

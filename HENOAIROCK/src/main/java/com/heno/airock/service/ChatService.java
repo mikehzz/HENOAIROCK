@@ -13,4 +13,6 @@ public interface ChatService extends WorkDiv<ChatMessageVO>{
 
 	int MessageSave(ChatMessageVO inVO) throws SQLException;
 
+	List<ChatMessageDetailVO> select(ChatMessageDetailVO inVO) throws SQLException;
+
 }

@@ -47,13 +47,13 @@ public class MainController implements PcwkLoger{
 	
 	//채팅방 리스트 뿌리기
 	@RequestMapping(value = "")
-	public String main(ChatMessageVO inVO, Model model, HttpSession session) throws SQLException {
+	public String main(ChatMessageDetailVO inVO, Model model, HttpSession session) throws SQLException {
 		String viewPage = "/common/main";
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("user");
 		
 		if (memberDTO != null) {
 			inVO.setUserId(memberDTO.getUserId());
-			List<ChatMessageVO> list = chatService.select(inVO);
+			List<ChatMessageDetailVO> list = chatService.select(inVO);
 			LOG.debug("list:" + list);
 			model.addAttribute("MsgList", list);
 			

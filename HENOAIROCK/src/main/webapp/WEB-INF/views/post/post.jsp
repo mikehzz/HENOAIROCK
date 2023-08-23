@@ -34,7 +34,7 @@
              totalCnt = Integer.parseInt(request.getAttribute("totalCnt").toString());
         }
         
-        String cPath  = request.getContextPath();
+        String cPath  = request.getContextPath(); 
          
 %>
 <c:set var="CP" value="${pageContext.request.contextPath }"/>  
@@ -247,6 +247,7 @@ form {
 </head>
 
 <body class="body2">
+<%@ include file="/WEB-INF/views/admin/top.jsp" %>
 <div class="container">
   <!-- Content here -->
   <!-- 제목 -->

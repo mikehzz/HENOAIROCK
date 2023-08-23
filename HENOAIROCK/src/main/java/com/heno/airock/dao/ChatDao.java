@@ -13,5 +13,7 @@ public interface ChatDao extends WorkDiv<ChatMessageVO>, PcwkLoger {
 	int MessageSave(ChatMessageVO inVO) throws SQLException;
 
 	List<ChatMessageDetailVO> ContentsSelect(ChatMessageDetailVO inVO);
+	
+	List<ChatMessageDetailVO> select(ChatMessageDetailVO inVO);
 
 }

@@ -1,6 +1,6 @@
 $(document).ready(function() {
     // 페이지 로드 시 댓글 가져오기
-    $("#doAddComment").on("click", function() {
+	$("#doAddComment").on("click", function() {
         var commentText = $("#comments").val();
 
         if (!commentText) {
@@ -11,7 +11,7 @@ $(document).ready(function() {
 
         var userId = "${sessionScope.user.userId}";
         var postSeq = $("#seq").val();
-
+        
         $.ajax({
             type: "POST",
             url: "/post/create",
@@ -31,43 +31,44 @@ $(document).ready(function() {
                 }
             }
         });
-    });
-    //이미지 클릭스 음악 상세 페이지 출력
-    $("#musicClick").on("click", function (e) {
-		 let musicId = $('#musicId').val();
-	    console.log('musicId:' + musicId);
-	    // 팝업 창 열기
-	    let popupUrl = "/music/music_detail/?musicId=" + musicId;
-	    let popupName = "MusicDetailPopup";
-	    let popupOptions = "width=800,height=600,resizable=yes,scrollbars=yes";
-	    window.open(popupUrl, popupName, popupOptions);
-	    
-	});
+});
 
-    $(document).on("click", ".delete-comment-button", function() {
-    	console.log('버튼클릭');
-        var commentId = $(this).data("comment-id");
+//이미지 클릭스 음악 상세 페이지 출력
+$("#musicClick").on("click", function (e) {
+	 let musicId = $('#musicId').val();
+    console.log('musicId:' + musicId);
+    // 팝업 창 열기
+    let popupUrl = "/music/music_detail/?musicId=" + musicId;
+    let popupName = "MusicDetailPopup";
+    let popupOptions = "width=800,height=600,resizable=yes,scrollbars=yes";
+    window.open(popupUrl, popupName, popupOptions);
+    
+});
 
-        $.ajax({
-            type: "POST",
-            url: "/post/deleteComment",
-            data: {
-                cmtSeq: commentId
-            },
-            success: function(response) {
-                if (response.success) {
-                    // 삭제 성공 시에 필요한 로직을 추가하세요.
-                    alert("댓글이 삭제되었습니다.");
-                    location.reload(); // 댓글 삭제 후 페이지 리로드
-                } else {
-                    alert("댓글 삭제에 실패했습니다.");
-                }
-            },
-            error: function() {
+$(document).on("click", ".delete-comment-button", function() {
+	console.log('버튼클릭');
+    var commentId = $(this).data("comment-id");
+
+    $.ajax({
+        type: "POST",
+        url: "/post/deleteComment",
+        data: {
+            cmtSeq: commentId
+        },
+        success: function(response) {
+            if (response.success) {
+                // 삭제 성공 시에 필요한 로직을 추가하세요.
+                alert("댓글이 삭제되었습니다.");
+                location.reload(); // 댓글 삭제 후 페이지 리로드
+            } else {
                 alert("댓글 삭제에 실패했습니다.");
             }
-        });
+        },
+        error: function() {
+            alert("댓글 삭제에 실패했습니다.");
+        }
     });
+});
     
     // 댓글 수정 버튼 클릭 시 수정 폼 보여주기
     $(document).on("click", ".edit-comment-button", function() {
