@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -74,12 +73,13 @@ public class MainController implements PcwkLoger{
 		int result = chatService.MessageSave(inVO);
 		
 		if(result == 1) {
+			
 
 		} else {
 			
 		}
 		
-		return "redirect:/memebr/main";
+			return "redirect:/memebr/main";
 		
 		
 	}
@@ -98,11 +98,17 @@ public class MainController implements PcwkLoger{
 			inVO.setChatDiv("10");
 			
 			int flag = this.chatService.save(inVO);
+			
+			
 			if (1 == flag) {
 				message.setMsgId("1");
 				LOG.debug("│inVO                          │" + inVO);
 				message.setMsgContents(inVO.getChatSeq());
 	
+		        jsonString = new Gson().toJson(message);
+	
+		        return jsonString;		
+	        
 			} else {
 				message.setMsgId("2");
 				message.setMsgContents("문제 발생 재접속 바랍니다!");
