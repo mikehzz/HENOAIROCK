@@ -15,16 +15,19 @@
     <title>Sidebar</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
             padding: 0;
             display: flex;
-            font-family: Arial, sans-serif;
+
+            
         }
 
         .sidebar {
-            width: 250px;
+            width: 200px;
             position: fixed;
             display: flex;
             flex-direction: column;
@@ -36,6 +39,7 @@
             padding-top: 20px;
             transition: width 0.3s ease-in-out;
             z-index: 1;
+                background-image: linear-gradient(180deg,#4e73df 10%,#224abe 100%);
         }
 
         .user-profile {
@@ -43,7 +47,7 @@
             flex-direction: column;
             align-items: center;
             padding: 10px;
-            background-color: #495057;
+            background-color: #4e73df;
             width: 100%;
         }
 
@@ -81,26 +85,28 @@
         .sidebar ul {
             list-style: none;
             padding: 0;
+            
         }
 
         .sidebar li {
             margin-bottom: 10px;
         }
 
-        .sidebar a {
-            color: #f8f9fa;
-            text-decoration: none;
-            padding: 10px;
-            display: block;
-            transition: background-color 0.2s ease;
-        }
+.sidebar a {
+    font-size: 14px; /* Adjust the font size as needed */
+    color: #f8f9fa;
+    text-decoration: none;
+    padding: 8px 10px; /* Adjust the padding as needed */
+    display: block;
+    transition: background-color 0.2s ease;
+}
 
         .sidebar a:hover {
-            background-color: #495057;
+            background-color: #4e73df;
         }
 
         .sidebar .material-icons {
-            font-size: 24px;
+            font-size: 16px;
             vertical-align: middle;
             margin-right: 8px;
         }
@@ -128,10 +134,10 @@
         margin-left: 60px;
     }
 
-        .menu-items {
-        margin-top: 40px; /* Adjust the value to control the spacing */
-        padding-left: 0; /* Reset the default padding for the list */
-    }
+.menu-items {
+    margin-top: 0px; /* Adjust the margin-top value as needed */
+    padding-left: 0; /* Reset the default padding for the list */
+}
 
 .sidebar-closed .menu-items {
     display: none; /* Hide menu items when sidebar is closed */
@@ -146,17 +152,20 @@
         transition: background-color 0.2s ease;
     }
     /* Styling for the close sidebar button */
-    .toggle-btn-close {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background-color: #343a40;
-        border: none;
-        color: #f8f9fa;
-        padding: 10px;
-        font-size: 16px;
-        cursor: pointer;
-    }
+.toggle-btn-close {
+    position: absolute;
+    top: 50%; /* 위치 중앙에 맞추기 위해 top 값을 조정 */
+    left: 50%; /* 위치 중앙에 맞추기 위해 left 값을 조정 */
+    transform: translate(-50%, -50%); /* 중앙 정렬 */
+    border: 0px solid #f8f9fa; /* 테두리 추가 */
+    
+    border-radius: 50%; /* 원 모양의 버튼을 위한 테두리 반경 설정 */
+        background-color: rgba(255,255,255,.2);
+    color: #f8f9fa;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
 
     .sidebar-open {
         position: fixed; /* "absolute" 대신 "fixed"로 변경합니다 */
@@ -164,7 +173,7 @@
     }
 
     .toggle-btn-open {
-        background-color: #fff;
+        background-color: #fff0;
         border: none;
         color: #black;
         padding: 10px;
@@ -175,6 +184,7 @@
     .sidebar-content-wrapper {
     display: flex;
     transition: margin-left 0.3s ease-in-out;
+    font-family: 'Bagel Fat One', cursive;
 }
 
 .sidebar-closed .sidebar {
@@ -184,24 +194,93 @@
 .sidebar-closed .content {
     margin-left: 0;
 }
+/* Styling for separator lines */
+.menu-items .separator {
+  border: 0;
+
+    border-top: 1px solid rgba(255,255,255,.15);
+  /* background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)); */
+}
+.separator{
+  border: 0;
+
+    border-top: 1px solid rgba(255,255,255,.15);
+  /* background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)); */
+}
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 15px; /* Adjust the padding as needed */
+
+    color: #f8f9fa;
+    text-decoration: none;
+    font-weight: bold;
+}
+.sidebar .sidebar-heading {
+    text-align: left;
+    padding: 0 1rem;
+    font-weight: 800;
+    font-size: .65rem;
+    color: #ffffff9e;
+    font-family: 'Nunito', sans-serif;
+}
+.logout{
+font-family: 'Nunito', sans-serif;
+}
+/* Styling for the logo emoji */
+.logo-emoji {
+    font-size: 24px; /* Adjust the font size as needed */
+    margin-right: 10px; /* Adjust the margin as needed */
+}
+
+/* Adjusted font size for the logo text */
+.sidebar-brand div:nth-child(2) {
+    font-size: 18px; /* Adjust the font size as needed */
+                font-family: 'Nunito', sans-serif;
+}
+
     </style>
 </head>
 
 <body class="body2">
 <div class="sidebar-content-wrapper">
 <div class="sidebar">
-    <button class="toggle-btn toggle-btn-close" onclick="toggleSidebar()">
-        <i class="material-icons" id="toggleIconClose">arrow_back_ios</i>
-    </button>
 
-    <ul class="menu-items">
-        <li><a href="/main"><i class="material-icons">home</i> 홈</a></li>
-        <li><a href="/mypage"><i class="material-icons">person</i> 마이페이지</a></li>
-        <li><a href="/music/music_rank"><i class="material-icons">&#xE01D;</i> 음악 순위</a></li>
-        <li><a href="/post"><i class="material-icons">forum</i> 게시판</a></li>
-        <li><a href="/setting"><i class="material-icons">&#xE8B8;</i> 설정</a></li>
-        <!-- Additional menu items can be added here -->
-    </ul>
+
+<ul class="menu-items">
+
+<li>
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/main">
+        <div>
+            <span class="logo-emoji">👻</span> <!-- Replace with the emoji you want to use -->
+        </div>
+        <div>HeNoAIRock</div>
+    </a>
+    </li>
+    <li class="separator"><a href="/main"><i class="material-icons">home</i> 홈</a></li>
+    <li></li> <!-- Separator line -->
+    <li><a href="/mypage"><i class="material-icons">person</i> 마이페이지</a></li>
+    <li></li> <!-- Separator line -->
+    <li><a href="/music/music_rank"><i class="material-icons">&#xE01D;</i> 음악 순위</a></li>
+    <li></li> <!-- Separator line -->
+    <li><a href="/post"><i class="material-icons">forum</i> 게시판</a></li>
+    <li class="separator"></li> <!-- Separator line -->
+                <div class="sidebar-heading">
+                SETTING
+            </div>
+    <li><a href="/setting"><i class="material-icons">&#xE8B8;</i> 설정</a></li>
+    <!-- Additional menu items can be added here -->
+</br></br></br>    
+    
+    <li>
+    <button class="toggle-btn toggle-btn-close" onclick="toggleSidebar()">
+        <i class="material-icons" id="toggleIconClose">chevron_left</i>
+    </button>
+</li>
+
+    
+</ul>
 
     <!-- User profile section -->
 <div class="user-profile" id="userProfileSection">
@@ -209,7 +288,7 @@
         <img src="<%= userImageUrl %>" alt="User Profile Image">
         <span>${sessionScope.user.userId}</span>
         <!-- Show Logout button when user is logged in -->
-        <a class="nav-link" data-toggle="modal" data-target="#logoutModal" style="cursor: pointer;">Logout
+        <a class="nav-link separator logout" data-toggle="modal" data-target="#logoutModal" style="cursor: pointer;">Logout
         <i class="material-icons">logout</i>
         </a>
     <% } else { %>
@@ -262,7 +341,7 @@
         userProfileSection.style.display = 'block';
         menuItems.style.display = 'block';
         toggleIconClose.textContent = 'arrow_back_ios';
-        sidebar.style.width = '250px';
+        sidebar.style.width = '223px';
         toggleIconOpen.style.display = 'none';
 
         sidebar.classList.add('sidebar-open');
