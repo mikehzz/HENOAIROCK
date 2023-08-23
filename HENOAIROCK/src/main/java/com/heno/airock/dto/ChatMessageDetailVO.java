@@ -57,6 +57,4 @@ public class ChatMessageDetailVO extends ChatMessageVO{
 
 	
 	
-	
-	
 }

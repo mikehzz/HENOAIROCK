@@ -1,4 +1,4 @@
-/* -------로그인-------- */
+/* -------濡쒓렇�씤-------- */
 body {
   background-color: #000000;
 }
@@ -8,15 +8,18 @@ a {
   color: #333;
 }
 
+
 h2 {
   text-align: left; /* Align the heading to the left */
   margin-left: 0; /* Remove the default margin */
 }
+
+
 .background-link {
     position: absolute;
-    top: 50px; /* 조절하여 원하는 위치로 조정 */
-    left: 25%; /* 가운데 정렬을 위해 왼쪽으로 50% 이동 */
-    transform: translateX(-50%); /* 가운데 정렬 조정 */
+    top: 50px; /* 議곗젅�븯�뿬 �썝�븯�뒗 �쐞移섎줈 議곗젙 */
+    left: 25%; /* 媛��슫�뜲 �젙�젹�쓣 �쐞�빐 �쇊履쎌쑝濡� 50% �씠�룞 */
+    transform: translateX(-50%); /* 媛��슫�뜲 �젙�젹 議곗젙 */
     background-color: #fff0;
     padding: 10px 20px;
     border-radius: 20px;
@@ -27,23 +30,40 @@ h2 {
 #con {
   width: 100%;
   height: 100vh;
-  background-color: #ebebdf;
-  background-image: url('https://cdn.class101.net/images/42c9cf0f-97aa-4a07-8833-8ee146daa2a0/1920xauto.webp');
+  background-color: rgb(235, 235, 223);
+  background-image: url('https://plus.unsplash.com/premium_photo-1682125768864-c80b650614f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80');
+  background-size: cover; 
+  background-position: center center; /* Center the background image */
   padding: 0;
-  display: flex; /**/
-  justify-content: flex-end; /**/
-  align-items: center; /**/
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+    position: relative; /* Add this line to make the container a positioning context */
 }
 
+
+#con h1 {
+  position: absolute; /* Position the heading absolutely within the container */
+  bottom: 0; /* Place the heading at the bottom */
+  left: 0; /* Place the heading at the left */
+  margin: 58px; /* Remove any default margin */
+  margin-left: 241px;
+   /* Add some padding for spacing */
+  font-size: 24px; /* Adjust the font size if needed */
+  color: #fff; /* Adjust the text color if needed */
+}
+
+
+
 #login {
-  width: 600px;
-  height: 600px;
-  transform: translateX(-255px); /* 로그인 폼을 오른쪽으로 30px만큼 이동 */
-/* transform: translateY(-500px); */
+  width: 540px; /* 원래 크기의 90% */
+  height: 540px; /* 원래 크기의 90% */
+  transform: translateX(-255px);
+  transform: scale(0.9);
 }
 
 #login_form {
-  /* text-align:center; */
+  transform: scale(0.9);
   border-radius: 37px;
   padding: 30px 50px;
   background: #fff;
@@ -51,7 +71,7 @@ h2 {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-95%, -61%);
 }
 
 .hr-sect {
@@ -148,8 +168,8 @@ hr:not(.hr-sect) {
   transition: 0.5s;
   float: right;
 /*       margin: -5; */
-  margin-top: -7px; /* 위로 10px만큼 이동 */
-  margin-left: 10px; /* 왼쪽으로 20px만큼 이동 */
+  margin-top: -7px; /* �쐞濡� 10px留뚰겮 �씠�룞 */
+  margin-left: 10px; /* �쇊履쎌쑝濡� 20px留뚰겮 �씠�룞 */
 }
 
 .btnRe.w100 {
@@ -166,11 +186,11 @@ hr:not(.hr-sect) {
 
 .google-login {
   position: relative;
-  padding-left: 10px; /* 이미지의 너비만큼 왼쪽 여백 설정 */
+  padding-left: 10px; /* �씠誘몄��쓽 �꼫鍮꾨쭔�겮 �쇊履� �뿬諛� �꽕�젙 */
 }
 
 .google-login span {
-margin-left: 20px; /* 텍스트와 아이콘 사이의 간격 설정 */
+margin-left: 20px; /* �뀓�뒪�듃�� �븘�씠肄� �궗�씠�쓽 媛꾧꺽 �꽕�젙 */
 }
 
 .google-icon {
@@ -178,9 +198,9 @@ margin-left: 20px; /* 텍스트와 아이콘 사이의 간격 설정 */
   top: 50%;
   left: 0;
   transform: translateY(-50%);
-  width: 25px; /* 이미지의 너비 */
-  height: 25px; /* 이미지의 높이 */
-  background-image: url('../images/googleLogo.png'); /* 이미지 경로와 파일명 설정 */
+  width: 25px; /* �씠誘몄��쓽 �꼫鍮� */
+  height: 25px; /* �씠誘몄��쓽 �넂�씠 */
+  background-image: url('../images/googleLogo.png'); /* �씠誘몄� 寃쎈줈�� �뙆�씪紐� �꽕�젙 */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -240,7 +260,7 @@ label {
 }
 
 
-/* -------ȸ������-------- */
+/* -------회占쏙옙占쏙옙占쏙옙-------- */
 .h-zero {
   margin: 0;
   padding-top: 20px;
@@ -251,7 +271,7 @@ label {
   color: #808080;
 }
 
-/* -------��й�ȣ ã��-------- */
+/* -------占쏙옙橘占싫� 찾占쏙옙-------- */
 .error-message {
   display: block;
 }
@@ -294,7 +314,7 @@ label {
   width: 100%;
 }
 
-/* -------�̿���-------- */
+/* -------占싱울옙占쏙옙-------- */
 #agree-con {
   width: 100vw;
   height: 100%
