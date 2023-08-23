@@ -43,210 +43,18 @@
 <head>
 <meta charset="${encoding}">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap">
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="/resources/css/post.css">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script src="${CP}/resources/js/jquery-3.7.0.js"></script>
 <script src="${CP}/resources/js/util.js"></script>
 
 <title>${title}</title>
-<style>
-
-.body2 {
-  background-image: linear-gradient(180deg,#000000 10%,#001a65 100%);
-    font-family: 'omyu_pretty';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-section{
-  margin: 50px;
-}
-
-.page-header h2 {
-  color: #f8f9fa; /* 밝은 글자색 */
-  font-size: 24px;
-  font-weight: bold;
-}
-
-#boardTable table {
-  width: 800px;
-  border-collapse: collapse;
-  overflow: hidden;
-  box-shadow: 0 0 20px rgba(0,0,0,0.1);
-}
-
-#boardTable th,
-#boardTable td {
-  padding: 15px;
-  background-color: rgba(255,255,255,0.2);
-  color: #fff;
-}
-
-#boardTable th {
-  text-align: left;
-}
-#boardTable thead th {
-    background-color: #55608f;
-}
-
-#boardTable tbody {
-  tr {
-    &:hover {
-      background-color: rgba(255,255,255,0.3);
-    }
-  }
-#boardTable td {
-    position: relative;
-    &:hover {
-      &:before {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: -9999px;
-        bottom: -9999px;
-        background-color: rgba(255,255,255,0.2);
-        z-index: -1;
-      }
-    }
-  }
-
-#boardTable {
-  border-collapse: collapse;
-  width: 100%;
-  border-radius: 50px;
-  overflow: hidden;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  background-color: transparent; /* 테이블 배경색 투명하게 설정 */
-}
-
-#boardTable th,
-#boardTable td {
-  padding: 12px;
-  text-align: center;
-background-color: transparent; /* 테이블 배경색 투명하게 설정 */
-}
-
-#boardTable th {
-
-  color: #f8f9fa; /* 밝은 글자색 */
-}
-
-#boardTable tbody tr {
-  background-color: #f5f5f5; /* Even lighter gray background */
-
-}
-
-
-.admin-post td {
-    font-weight: bold;
-}
-/* 추가한 스타일 */
-.notice-text {
-  display: inline-block;
-  background-color: #9addff; /* New notice color */
-  color: white;
-  padding: 0px 10px; /* Slightly smaller padding */
-  border-radius: 15px;
-  font-weight: bold;
-  font-size: 13px;
-  text-align: center;
-  width: auto; /* Adjust width to fit content */
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-}
-.admin-post td .gaesi {
-    color: black !important;
-}
-
-.truncate-text {
-    max-height: 60px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.noWidth {
-    width: 5%;
-}
-
-.table-row {
-    height: 90px;
-}
-
-
-
-.text-center {
-    text-align: center;
-}
-
-.text-left {
-    text-align: left;
-}
-
-.albumCover {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 50%;
-}
-
-.postDt {
-    width: 12%;
-}
-
-.readCntWidth {
-    width: 8%;
-}
-
-.d-flex.justify-content-center {
-    justify-content: center;
-}
-
-.form-control {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: auto;
-}
-
-.form-select {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-
-.row.g-1 {
-    margin-top: 10px;
-}
-
-.btn-primary {
-  padding: 10px 20px;
-  background-color: #9addff; /* New primary color */
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.btn-primary:hover {
-  background-color: #6db1e0; /* Darker color on hover */
-}
-
-form {
-    margin-bottom: 20px;
-}
-
-.admin-post {
-    position: relative;
-}
-
-
-
-
-</style>
 </head>
 
-<body class="body2">
+<body>
 <div class="container">
   <!-- Content here -->
   <!-- 제목 -->
@@ -254,9 +62,9 @@ form {
     <h2><c:out value='${title}' /></h2>
   </div>
   <!--// 제목 ------------------------------------------------------------------->
-   <table id="boardTable">
-      <thead>
-        <tr>
+   <table id="boardTable" class="table table-hover table-striped table-sm table-borderless" style="table-layout: fixed">
+      <thead class="table-light">
+        <tr class="text-center table-Secondary didi">
    <th class="text-center noWidth" style="width: 5%;">번호</th>
    <th class="text-center" style="width: 25%;">제목</th>
    <th class="text-center" style="width: 15%;">앨범</th> 
@@ -267,29 +75,29 @@ form {
    <th style="display:none;">SEQ</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="table-group-divider">
        <c:choose>
          <%-- 조회 데이터가 있는 경우--%>
          <c:when test="${not empty list }">
             <c:forEach var="vo" items="${list}">
 <tr class="table-row <c:if test='${vo.userId eq "어드민"}'>admin-post</c:if>">
     <td style="display:none;"><c:out value="${vo.postSeq}" /></td>
-    <td style="vertical-align: middle;">
+    <td class="text-center col-sm" style="vertical-align: middle;">
         <c:choose>
             <c:when test='${vo.userId eq "어드민"}'>
-
-            <span class="notice-text">공지</span>
-
+        <div class="admin-notice">
+            <span style="color: red;">공지</span>
+        </div>
             </c:when>
             <c:otherwise>
                 <c:out value="${vo.postSeq}" />
             </c:otherwise>
         </c:choose>
     </td>
-    <td class="text-center" style="vertical-align: middle;"><c:out value="${vo.postTitle}"/></td>
+    <td class="text-center col-sm" style="vertical-align: middle;"><c:out value="${vo.postTitle}"/></td>
     <c:if test="${not empty vo.musicId}">
-        <td class="text-center" style="vertical-align: middle;"><img class="album-cover" src="${vo.albumPath }" alt="앨범커버" width="60px" height="60px"></td>
-        <td class="text-left" style="vertical-align: middle;">
+        <td class="text-center  col-sm" style="vertical-align: middle;"><img class="album-cover" src="${vo.albumPath }" alt="앨범커버" width="60px" height="60px"></td>
+        <td class="text-left col-sm" style="vertical-align: middle;">
             <div class="truncate-text">
                 <span style="font-weight: bold; font-size: 13px;"><c:out value="${vo.title}" /></span><br />
                 <span style="font-size: 13px; color: #a1a1a1;"><c:out value="${vo.artist}" /></span>
@@ -297,18 +105,18 @@ form {
         </td>
     </c:if>
     <c:if test="${empty vo.musicId}">
-        <td class="text-center" style="vertical-align: middle;"></td>
-        <td class="text-center" style="vertical-align: middle;"></td>
+        <td class="text-center col-sm" style="vertical-align: middle;"></td>
+        <td class="text-center col-sm" style="vertical-align: middle;"></td>
     </c:if>
-    <td class="text-center" style="vertical-align: middle;">
+    <td class="text-center  col-sm" style="vertical-align: middle;">
         <c:set var="email" value="${vo.userId}" />
         <c:set var="username" value="${email.split('@')[0]}" />
         <span class="gaesi" style="color: gray; font-size: 13px;"><c:out value="${username}" /></span>
     </td>
-    <td class="text-center" style="vertical-align: middle;">
+    <td class="text-center  col-sm" style="vertical-align: middle;">
         <span class="gaesi" style="color: gray; font-size: 13px;"><c:out value="${vo.readCnt}" /></span>
     </td>
-    <td class="text-center" style="vertical-align: middle;">
+    <td class="text-center  col-sm" style="vertical-align: middle;">
         <span class="gaesi" style="color: gray; font-size: 13px;"><c:out value="${vo.postDt}" /></span>
     </td>
 </tr>     
@@ -317,14 +125,14 @@ form {
          <%-- 조회 데이터가 없는 경우--%>
          <c:otherwise>
            <tr>
-              <td colspan="99">검색결과가 없습니다.</td>
+              <td  class="text-center col-sm-12  col-md-12  col-lg-12" colspan="99">검색결과가 없습니다.</td>
            </tr>
          </c:otherwise>
        </c:choose>
       </tbody>
 </table>
 <!-- 페이징 -->
-    <div>
+    <div class="d-flex justify-content-center">
       <%=StringUtil.renderPaging(totalCnt, pageNo, pageSize, bottomCount, cPath+"/post", "select") %>
     </div>
     
@@ -335,8 +143,8 @@ form {
   <form action="/post" name="boardFrm">
     <input type="hidden" name="pageNo" id="pageNo">
     <input type="hidden" name="div"    id="div" value='${inVO.getPostDiv()}'>
-    <div class="row g-1">
-      <div>
+    <div class="row g-1 d-flex justify-content-end ">
+      <div class="col-auto">
         <select class="form-select" name="searchDiv" id="searchDiv"> <!-- code table -->
           <option value="">전체</option>
           <c:forEach var="vo" items="${searchList }">
@@ -346,10 +154,10 @@ form {
           </c:forEach>  
         </select>
       </div>  
-      <div>
+      <div class="col-auto">
         <input type="text" name="searchWord" id="searchWord" value="<c:out value='${inVO.searchWord }'/>" placeholder="검색어를 입력 하세요" class="form-control">
       </div>
-      <div>  
+      <div class="col-auto">  
         <select class="form-select" name="pageSize" id="pageSize">
           <c:forEach var="vo" items="${pageSizeList }">
             <option <c:if test="${vo.code == inVO.pageSize }">selected</c:if> value="<c:out value='${vo.code }'/>">
@@ -358,9 +166,9 @@ form {
           </c:forEach>
         </select>
       </div>  
-      <div>  
-        <a href="#" id="doRetrieve" class="btn-primary">조회</a>
-        <a href="/post/post_reg" class="btn-primary">등록</a>  
+      <div class="col-auto">  
+        <a href="#" class="btn btn-primary" id="doRetrieve" >조회</a>
+        <a href="/post/post_reg" class="btn btn-primary" >등록</a>  
       </div>      
     </div>
   </form>
