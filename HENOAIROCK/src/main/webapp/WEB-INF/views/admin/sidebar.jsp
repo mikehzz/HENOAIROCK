@@ -165,7 +165,7 @@
     padding: 10px;
     font-size: 16px;
     cursor: pointer;
-}
+} 
 
     .sidebar-open {
         position: fixed; /* "absolute" 대신 "fixed"로 변경합니다 */
