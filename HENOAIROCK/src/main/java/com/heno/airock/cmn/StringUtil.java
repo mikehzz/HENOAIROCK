@@ -9,7 +9,7 @@ import com.google.gson.Gson;
 public class StringUtil {
 
 	/**
-	 * Backand메세지 처리
+	 * Backend메세지 처리
 	 * @param msgId
 	 * @param msgContents
 	 * @return Gson
