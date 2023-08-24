@@ -29,11 +29,11 @@
 		from member where user_id=#{userId} and password=#{password}
 	</select>
 
-	<!-- 회원가입 DB -->
+		<!-- 회원가입 DB -->
 	<insert id="save" parameterType="member">
 		INSERT INTO MEMBER (user_id, profile_img, name, password, nickname, birth,
 		member_dt)
-		VALUES (#{userId}, '이미지 경로', #{name}, #{password},'새나라 어린이', #{birth},
+		VALUES (#{test@email.com}, '/resources/images/KaKao.png', #{테스터훈}, #{12345678},'유튜브', #{92/10/20},
 		SYSDATE)
 	</insert>
 
