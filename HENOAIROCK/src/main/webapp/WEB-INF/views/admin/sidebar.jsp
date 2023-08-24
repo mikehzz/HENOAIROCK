@@ -20,229 +20,175 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap" rel="stylesheet">
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-
-            
-        }
-
-        .sidebar {
-            width: 200px;
-            position: fixed;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            top: 0;
-            left: 0;
-            height: 100%;
-            background-color: #343a40;
-            padding-top: 20px;
-            transition: width 0.3s ease-in-out;
-            z-index: 1;
-                background-image: linear-gradient(180deg,#000000 10%,#001a65 100%)
-        }
-
-        .user-profile {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 10px;
-            background-color: #4e73df;
-            width: 100%;
-        }
-
-        .user-profile img {
-            width: 50px;
-            height: 50px;
-            border-radius: 10px;
-            margin-bottom: 5px;
-        }
-
-        .user-profile span {
-            color: #f8f9fa;
-            font-size: 14px;
-        }
-
-        .content {
-
-            padding: 20px;
-            margin-left: 250px;
-            transition: margin-left 0.3s ease-in-out;
-        }
-
-        /* 작은 화면에서의 스타일 조정 */
-        @media screen and (max-width: 767px) {
-            .sidebar {
-                width: 60px;
-            }
-
-            .content {
-                margin-left: 60px;
-            }
-        }
-
-
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-            
-        }
-
-        .sidebar li {
-            margin-bottom: 10px;
-        }
-
-.sidebar a {
-    font-size: 14px; /* Adjust the font size as needed */
-    color: #f8f9fa;
-    text-decoration: none;
-    padding: 8px 10px; /* Adjust the padding as needed */
-    display: block;
-    transition: background-color 0.2s ease;
+body {
+	margin: 0;
+	padding: 0;
+	display: flex;
 }
 
-        .sidebar a:hover {
-            background-color: #4e73df;
-        }
+.sidebar {
+	width: 232px;
+	position: fixed;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	top: 0;
+	left: 0;
+	height: 100%;
+	background-color: #343a40;
+	padding-top: 20px;
+	transition: width 0.3s ease-in-out;
+	z-index: 1;
+	background-image: linear-gradient(180deg, #0d101a 10%, #1a1515 100%)
+}
 
-        .sidebar .material-icons {
-            font-size: 16px;
-            vertical-align: middle;
-            margin-right: 8px;
-        }
+.user-profile {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 10px;
+	background-color: #000000;
+	width: 100%;
+}
+
+.user-profile img {
+	width: 50px;
+	height: 50px;
+	border-radius: 10px;
+	margin-bottom: 5px;
+}
+
+.user-profile span {
+	color: #f8f9fa;
+	font-size: 14px;
+}
+
+.content {
+	padding: 20px;
+	margin-left: 250px;
+	transition: margin-left 0.3s ease-in-out;
+}
+
+.sidebar ul {
+	list-style: none;
+	padding: 0;
+}
+
+.sidebar li {
+	margin-bottom: 10px;
+}
+
+.sidebar a {
+	font-size: 14px; /* Adjust the font size as needed */
+	color: #f8f9fa;
+	text-decoration: none;
+	padding: 8px 10px; /* Adjust the padding as needed */
+	display: block;
+	transition: background-color 0.2s ease;
+}
+
+.sidebar a:hover {
+	background-color: #4e73df;
+}
+
+.sidebar .material-icons {
+	font-size: 16px;
+	vertical-align: middle;
+	margin-right: 8px;
+}
 
 .logout-button {
-    padding: 8px 16px;
-    background-color: #dc3545;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    transition: background-color 0.2s ease;
-    cursor: pointer;
-    text-decoration: none;
+	padding: 8px 16px;
+	background-color: #dc3545;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	transition: background-color 0.2s ease;
+	cursor: pointer;
+	text-decoration: none;
 }
 
 .logout-button:hover {
-    background-color: #c82333;
+	background-color: #c82333;
 }
 
-    .sidebar-closed {
-        width: 0;
-    }
-
-    .content-expanded {
-        margin-left: 60px;
-    }
+.content-expanded {
+	margin-left: 60px;
+}
 
 .menu-items {
-    margin-top: 0px; /* Adjust the margin-top value as needed */
-    padding-left: 0; /* Reset the default padding for the list */
+	margin-top: 0px;
+	padding-left: 0;
 }
 
-.sidebar-closed .menu-items {
-    display: none; /* Hide menu items when sidebar is closed */
-}
-    .menu-items li {
-        margin-bottom: 10px;
-    }
-
-    .menu-items a {
-        padding: 10px;
-        display: block;
-        transition: background-color 0.2s ease;
-    }
-    /* Styling for the close sidebar button */
-.toggle-btn-close {
-    position: absolute;
-    top: 50%; /* 위치 중앙에 맞추기 위해 top 값을 조정 */
-    left: 50%; /* 위치 중앙에 맞추기 위해 left 값을 조정 */
-    transform: translate(-50%, -50%); /* 중앙 정렬 */
-    border: 0px solid #f8f9fa; /* 테두리 추가 */
-    
-    border-radius: 50%; /* 원 모양의 버튼을 위한 테두리 반경 설정 */
-        background-color: rgba(255,255,255,.2);
-    color: #f8f9fa;
-    padding: 10px;
-    font-size: 16px;
-    cursor: pointer;
-} 
-
-    .sidebar-open {
-        position: fixed; /* "absolute" 대신 "fixed"로 변경합니다 */
-
-    }
-
-    .toggle-btn-open {
-        background-color: #fff0;
-        border: none;
-        color: #black;
-        padding: 10px;
-        font-size: 16px;
-        cursor: pointer;
-
-    }
-    .sidebar-content-wrapper {
-    display: flex;
-    transition: margin-left 0.3s ease-in-out;
-    font-family: 'Bagel Fat One', cursive;
+.menu-items li {
+	margin-bottom: 10px;
 }
 
-.sidebar-closed .sidebar {
-    width: 0;
+.menu-items a {
+	padding: 10px;
+	display: block;
+	transition: background-color 0.2s ease;
 }
 
-.sidebar-closed .content {
-    margin-left: 0;
+.sidebar-content-wrapper {
+	display: flex;
+	transition: margin-left 0.3s ease-in-out;
+	font-family: 'Bagel Fat One', cursive;
 }
-/* Styling for separator lines */
+
 .menu-items .separator {
-  border: 0;
-
-    border-top: 1px solid rgba(255,255,255,.15);
-  /* background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)); */
+	border: 0;
+	border-top: 1px solid rgba(255, 255, 255, .15);
 }
-.separator{
-  border: 0;
 
-    border-top: 1px solid rgba(255,255,255,.15);
-  /* background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)); */
+.separator {
+	border: 0;
+	border-top: 1px solid rgba(255, 255, 255, .15);
 }
+
 .sidebar-brand {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px 15px; /* Adjust the padding as needed */
-
-    color: #f8f9fa;
-    text-decoration: none;
-    font-weight: bold;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 20px 15px;
+	color: #f8f9fa;
+	text-decoration: none;
+	font-weight: bold;
 }
+
 .sidebar .sidebar-heading {
-    text-align: left;
-    padding: 0 1rem;
-    font-weight: 800;
-    font-size: .65rem;
-    color: #ffffff9e;
-    font-family: 'Nunito', sans-serif;
+	text-align: left;
+	padding: 0 1rem;
+	font-weight: 800;
+	font-size: .65rem;
+	color: #ffffff9e;
+	font-family: 'Nunito', sans-serif;
 }
-.logout{
-font-family: 'Nunito', sans-serif;
+
+.logout {
+	font-family: 'Nunito', sans-serif;
 }
-/* Styling for the logo emoji */
+
 .logo-emoji {
-    font-size: 24px; /* Adjust the font size as needed */
-    margin-right: 10px; /* Adjust the margin as needed */
+	font-size: 24px;
+	margin-right: 10px;
 }
 
-/* Adjusted font size for the logo text */
 .sidebar-brand div:nth-child(2) {
-    font-size: 18px; /* Adjust the font size as needed */
-                font-family: 'Nunito', sans-serif;
+	font-size: 18px;
+	font-family: 'Nunito', sans-serif;
 }
+@media (max-width: 768px) {
+  .sidebar {
+    width: 105px;
+    }
+    .sidebar-content-wrapper{
+margin-bottom: 100px;
+  }
 
-    </style>
+}
+</style>
 </head>
 
 <body class="body2">
@@ -274,13 +220,6 @@ font-family: 'Nunito', sans-serif;
     <li><a href="/setting"><i class="material-icons">&#xE8B8;</i> 설정</a></li>
     <!-- Additional menu items can be added here -->
 
-    <li>
-    <button class="toggle-btn toggle-btn-close" onclick="toggleSidebar()">
-        <i class="material-icons" id="toggleIconClose">chevron_left</i>
-    </button>
-</li>
-
-    
 </ul>
 
     <!-- User profile section -->
@@ -303,12 +242,6 @@ font-family: 'Nunito', sans-serif;
     
   </div>
 </div>
-<div class="sidebar-open">
-    <button class="toggle-btn toggle-btn-open" onclick="toggleSidebar()">
-        <i class="material-icons" id="toggleIconOpen">arrow_forward_ios</i>
-    </button>
-</div>
-
 
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -329,61 +262,6 @@ font-family: 'Nunito', sans-serif;
         </div>
     </div>
 </div>
-
-<script>
-    const sidebar = document.querySelector('.sidebar');
-    const content = document.querySelector('.content');
-    const menuItems = document.querySelector('.menu-items');
-    const userProfileSection = document.getElementById('userProfileSection');
-    const toggleIconClose = document.getElementById('toggleIconClose');
-    const toggleIconOpen = document.getElementById('toggleIconOpen');
-
-    function openSidebar() {
-        sidebar.classList.remove('sidebar-closed');
-        content.classList.remove('content-expanded');
-        userProfileSection.style.display = 'block';
-        menuItems.style.display = 'block';
-        toggleIconClose.textContent = 'arrow_back_ios';
-        sidebar.style.width = '223px';
-        toggleIconOpen.style.display = 'none';
-
-        sidebar.classList.add('sidebar-open');
-
-        document.body.style.overflow = 'auto';
-    }
-
-    function closeSidebar() {
-        sidebar.classList.add('sidebar-closed');
-        content.classList.add('content-expanded');
-        userProfileSection.style.display = 'none';
-        menuItems.style.display = 'none';
-        toggleIconClose.textContent = '';
-        sidebar.style.width = '0';
-        toggleIconOpen.style.display = 'block';
-
-        document.body.style.overflow = 'auto';
-    }
-
-    function toggleSidebar() {
-        if (sidebar.classList.contains('sidebar-closed')) {
-            openSidebar();
-        } else {
-            closeSidebar();
-        }
-    }
-    
-    function checkScreenWidth() {
-        if (window.innerWidth <= 767) {
-            closeSidebar();
-        } else {
-            openSidebar();
-        }
-    }
-    
-    checkScreenWidth();
-
-    window.addEventListener('resize', checkScreenWidth);
-</script>
 
 <script src="/resources/js/jquery-3.7.0.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

@@ -51,7 +51,7 @@
 <style>
 
 .body2 {
-  background-image: linear-gradient(180deg,#000000 10%,#001a65 100%);
+/*   background-image: linear-gradient(180deg,#000000 10%,#001a65 100%); */
     font-family: 'omyu_pretty';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
     font-weight: normal;
@@ -67,73 +67,34 @@ section{
   font-weight: bold;
 }
 
-#boardTable table {
-  width: 800px;
-  border-collapse: collapse;
-  overflow: hidden;
-  box-shadow: 0 0 20px rgba(0,0,0,0.1);
-}
 
-#boardTable th,
-#boardTable td {
-  padding: 15px;
-  background-color: rgba(255,255,255,0.2);
-  color: #fff;
-}
 
-#boardTable th {
-  text-align: left;
-}
-#boardTable thead th {
-    background-color: #55608f;
-}
-
-#boardTable tbody {
-  tr {
-    &:hover {
-      background-color: rgba(255,255,255,0.3);
-    }
-  }
-#boardTable td {
-    position: relative;
-    &:hover {
-      &:before {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: -9999px;
-        bottom: -9999px;
-        background-color: rgba(255,255,255,0.2);
-        z-index: -1;
-      }
-    }
-  }
 
 #boardTable {
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   width: 100%;
-  border-radius: 50px;
+  border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  background-color: transparent; /* 테이블 배경색 투명하게 설정 */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  background-color: transparent;
 }
 
 #boardTable th,
 #boardTable td {
   padding: 12px;
   text-align: center;
-background-color: transparent; /* 테이블 배경색 투명하게 설정 */
+  background-color: rgba(255, 255, 255, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 #boardTable th {
-
-  color: #f8f9fa; /* 밝은 글자색 */
+  color: #f8f9fa;
 }
 
 #boardTable tbody tr {
-  background-color: #f5f5f5; /* Even lighter gray background */
-
+  background-color: #f5f5f5;
 }
 
 
@@ -247,7 +208,6 @@ form {
 </head>
 
 <body class="body2">
-<%@ include file="/WEB-INF/views/admin/top.jsp" %>
 <div class="container">
   <!-- Content here -->
   <!-- 제목 -->
