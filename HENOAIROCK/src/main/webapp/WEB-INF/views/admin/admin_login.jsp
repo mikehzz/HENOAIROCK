@@ -248,14 +248,14 @@ input {
 }
 
 .social-container a {
-  border: 1px solid #DDDDDD;
-  border-radius: 50%;
+
   display: inline-flex;
   justify-content: center;
   align-items: center;
   margin: 0 5px;
-  height: 40px;
-  width: 40px;
+  height: 60px;
+  width: 60px;
+  font-size: 30px;
 }
 
 footer {
@@ -282,46 +282,22 @@ footer a {
     color: #3c97bf;
     text-decoration: none;
 }
-    @keyframes bounce {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-20px);
-      }
-    }
 
-    .animated-icons {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
 
     .animated-icon {
       animation: bounce 1s infinite;
-      margin: 0 20px;
+
     }
 
-    .animated-icon:nth-child(1) {
-      animation-delay: 0.1s;
-    }
-
-    .animated-icon:nth-child(2) {
-      animation-delay: 0.2s;
-    }
-
-    .animated-icon:nth-child(3) {
-      animation-delay: 0.3s;
-    }
-
-    .animated-icon:nth-child(4) {
-      animation-delay: 0.4s;
-    }
-
-    .animated-icon:nth-child(5) {
+    .animated-icon1:nth-child(1) {
       animation-delay: 0.5s;
     }
+
+    .animated-icon1:nth-child(2) {
+      animation-delay: 0.5s;
+    }
+
+    
 </style>
 </head>
 <body>
@@ -332,9 +308,9 @@ footer a {
     <form action="#">
       <h1>Create Account</h1>
       <div class="social-container">
-        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" class="social"><i class="fa-solid fa-ghost fa-bounce" style="color: #ff6161;"></i></a>
+        <a href="#" class="social"><i class="fa-solid fa-ghost fa-bounce" style="color: #61baff;"></i></a>
+        <a href="#" class="social"><i class="fa-solid fa-ghost fa-bounce" style="color: #71f4a3;"></i></a>
       </div>
       <span>or use your email for registration</span>
       <input type="text" placeholder="Name" />
@@ -345,18 +321,18 @@ footer a {
   </div>
   <div class="form-container sign-in-container">
     <form action="/admin/login" method="post">
-      <h1 class="animated-icons">
-    <i class="fas fa-a fa-bounce animated-icon"></i>
-    <i class="fas fa-d fa-bounce animated-icon"></i>
-    <i class="fas fa-m fa-bounce animated-icon"></i>
-    <i class="fas fa-i fa-bounce animated-icon"></i>
-    <i class="fas fa-n fa-bounce animated-icon"></i>
+      <h1>
+    <i class="fas fa-a  animated-icon"></i>
+    <i class="fas fa-d  animated-icon"></i>
+    <i class="fas fa-m  animated-icon"></i>
+    <i class="fas fa-i fa-bounce animated-icon1"></i>
+    <i class="fas fa-n  animated-icon"></i>
       </br>
-      <i class="fa-solid fa-l"></i>
-      <i class="fa-solid fa-o"></i>
-      <i class="fa-solid fa-g"></i>
-      <i class="fa-solid fa-i"></i>
-      <i class="fa-solid fa-n"></i>
+      <i class="fa-solid fa-l  animated-icon"></i>
+      <i class="fa-solid fa-o  animated-icon"></i>
+      <i class="fa-solid fa-g  animated-icon"></i>
+      <i class="fa-solid fa-i fa-bounce animated-icon1"></i>
+      <i class="fa-solid fa-n  animated-icon"></i>
       </h1>
       <div class="social-container">
         <a href="#" class="social"><i class="fa-solid fa-ghost fa-bounce" style="color: #ff6161;"></i></a>

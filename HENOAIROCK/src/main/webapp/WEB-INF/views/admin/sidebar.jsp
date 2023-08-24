@@ -26,6 +26,12 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'TheJamsil5Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
 body {
 	margin: 0;
 	padding: 0;
@@ -122,10 +128,19 @@ body {
 .content-expanded {
 	margin-left: 60px;
 }
-
+@font-face {
+    font-family: 'LINESeedKR-Bd';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
 .menu-items {
 	margin-top: 0px;
 	padding-left: 0;
+    font-family: 'LINESeedKR-Bd';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
 }
 
 .menu-items li {
@@ -235,7 +250,12 @@ margin-bottom: 100px;
         <div>HeNoAIRock</div>
     </a>
     </li>
-    <li class="separator"><a href="/main"><i class="material-icons">home</i> 홈</a></li>
+    <li class="separator"></li>
+                    <div class="sidebar-heading">
+                INTRO
+            </div>
+    <li><a href="/main"><i class="material-icons">home</i> 메인</a></li>
+
     <li></li> <!-- Separator line -->
     <li><a href="/mypage"><i class="material-icons">person</i> 마이페이지</a></li>
     <li></li> <!-- Separator line -->
