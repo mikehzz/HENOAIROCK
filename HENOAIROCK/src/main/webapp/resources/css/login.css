@@ -1,451 +1,141 @@
-/* -------濡쒓렇�씤-------- */
 body {
-  background-color: #000000;
-}
-
-a {
-  text-decoration: none;
-  color: #333;
-}
-
-
-h2 {
-  text-align: left; /* Align the heading to the left */
-  margin-left: 0; /* Remove the default margin */
-}
-
-
-.background-link {
-    position: absolute;
-    top: 50px; /* 議곗젅�븯�뿬 �썝�븯�뒗 �쐞移섎줈 議곗젙 */
-    left: 25%; /* 媛��슫�뜲 �젙�젹�쓣 �쐞�빐 �쇊履쎌쑝濡� 50% �씠�룞 */
-    transform: translateX(-50%); /* 媛��슫�뜲 �젙�젹 議곗젙 */
-    background-color: #fff0;
-    padding: 10px 20px;
-    border-radius: 20px;
-    text-decoration: none;
-    color: #fff0;
-    font-weight: bold;
-}
-#con {
-  width: 100%;
-  height: 100vh;
-  background-color: rgb(235, 235, 223);
-  background-image: url('https://plus.unsplash.com/premium_photo-1682125768864-c80b650614f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80');
-  background-size: cover; 
-  background-position: center center; /* Center the background image */
-  padding: 0;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-    position: relative; /* Add this line to make the container a positioning context */
-}
-
-
-#con h1 {
-  position: absolute; /* Position the heading absolutely within the container */
-  bottom: 0; /* Place the heading at the bottom */
-  left: 0; /* Place the heading at the left */
-  margin: 58px; /* Remove any default margin */
-  margin-left: 241px;
-   /* Add some padding for spacing */
-  font-size: 24px; /* Adjust the font size if needed */
-  color: #fff; /* Adjust the text color if needed */
-}
-
-
-
-#login {
-  width: 540px; /* 원래 크기의 90% */
-  height: 540px; /* 원래 크기의 90% */
-  transform: translateX(-255px);
-  transform: scale(0.9);
-}
-
-#login_form {
-  transform: scale(0.9);
-  border-radius: 37px;
-  padding: 30px 50px;
-  background: #fff;
-  text-align: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-95%, -61%);
-}
-
-.hr-sect {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
     display: flex;
-    flex-basis: 100%;
+    justify-content: center;
     align-items: center;
-    color: #00000059;
-    font-size: 12px;
-    margin: 50px -14px;
-}
-.hr-sect::before,
-.hr-sect::after {
-  content: "";
-  flex-grow: 1;
-  background: #00000059;
-  height: 1px;
-  font-size: 0px;
-  line-height: 0px;
-  margin: 0px 16px;
+    height: 100vh;
 }
 
-hr:not(.hr-sect) {
-  display: none;
+.container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    transition: transform 0.5s ease-in-out;
 }
 
-
-.login {
-  font-size: 25px;
-  font-weight: 900;
-  color: #333;
+h1 {
+    text-align: center;
 }
 
-.input-title {
-  text-align: left;
-  font-size: 12px;
-  color: black;
-  font-weight: 600;
-}
-
-.input-chek {
-  text-align: left;
-  font-size: 12px;
-  color: #808080;
-  font-weight: lighter;
-}
-
-.line-input {
-  width: 300px;
-  border: none;
-  border-bottom: 1px solid #ccc;
-  padding: 5px;
-  margin: 5px;
-}
-
-.btn {
-    width: 80px;
-    height: 30px;
-    font-size: 13px;
-    background-color: #e54d4d;
-    color: #ffffff;
-    border: none;
-    cursor: pointer;
-    border-radius: 15px;
-    font-weight: 600;
-    transition: 0.5s;
-    float: right;
-    margin: 8px;
-}
-
-
-.btn01 {
-  width: 250px;
-  height: 40px;
-  font-size: 13px;
-  background-color: #cdcdcd;
-  color: #ffffff;
-  border: none;
-  cursor: pointer;
-  border-radius: 15px;
-  font-weight: 600;
-  transition: 0.5s;
-}
-
-.btnRe {
-  width: 100px;
-  height: 30px;
-  font-size: 13px;
-  background-color: #9599af;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  font-weight: 600;
-  transition: 0.5s;
-  float: right;
-/*       margin: -5; */
-  margin-top: -7px; /* �쐞濡� 10px留뚰겮 �씠�룞 */
-  margin-left: 10px; /* �쇊履쎌쑝濡� 20px留뚰겮 �씠�룞 */
-}
-
-.btnRe.w100 {
-  width: 100%
-}
-
-.btn.w100 {
-  width: 100%
-}
-
-.btn:hover {
-  background: #948cb3;
-}
-
-.google-login {
-  position: relative;
-  padding-left: 10px; /* �씠誘몄��쓽 �꼫鍮꾨쭔�겮 �쇊履� �뿬諛� �꽕�젙 */
-}
-
-.google-login span {
-margin-left: 20px; /* �뀓�뒪�듃�� �븘�씠肄� �궗�씠�쓽 媛꾧꺽 �꽕�젙 */
-}
-
-.google-icon {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  width: 25px; /* �씠誘몄��쓽 �꼫鍮� */
-  height: 25px; /* �씠誘몄��쓽 �넂�씠 */
-  background-image: url('../images/googleLogo.png'); /* �씠誘몄� 寃쎈줈�� �뙆�씪紐� �꽕�젙 */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-
-hr {
-  margin-top: 20px;
-  background: #eee;
-}
-
-.find {
-  text-align: right;
-  color: #ddd;  
-  font-size: 12px;
-}
-
-.find span {
-  padding-left: 10px;
-}
-
-.find span::before {
-  content: '|';
-  color: #333;
-  padding-right: 10px;
-}
-
-.find span:nth-child(1):before {
-  content: none;
-}
-
-.find span:nth-child(1) {
-  padding-left: 0px;
-}
-
-.find a:hover {
-  color: #707070;
-}
-
-.num1 {
-  width: 60px;
-  text-align: left;
-}
-
-.num2 {
-  width: 235px;
-}
-
-.wide {
-  width: 420px;
+form {
+    display: flex;
+    flex-direction: column;
 }
 
 label {
-  width: 300px;
-  height: 10px;
-  margin: 0;
+    margin-top: 10px;
+}
+
+input {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 279px;
 }
 
 
-/* -------회占쏙옙占쏙옙占쏙옙-------- */
-.h-zero {
-  margin: 0;
-  padding-top: 20px;
-}
 
-.h-zero span{
-  font-weight: normal;
-  color: #808080;
-}
-
-/* -------占쏙옙橘占싫� 찾占쏙옙-------- */
-.error-message {
-  display: block;
-}
-
-.find_pw #login_form {
-  width: 400px;
-  height: 550px;
-  border-radius: 10px;
-  padding: 30px 50px;
-  background: #fff;
-  text-align: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin: auto 0;
-}
-
-.find_pw .login {
-  font-size: 25px;
-  font-weight: 900;
-  color: #333;
-}
-
-.find_pw .size {
-/*   width: 280px;
-  height: 30px;
-  background-color: #eeeff5;
-  border: none;
-  border-radius: 5px; */
-    width: 300px;
-  border: none;
-  border-bottom: 1px solid #ccc;
-  padding: 5px;
-  margin: 5px;
-}
-
-
-.find_pw .wide {
-  width: 100%;
-}
-
-/* -------占싱울옙占쏙옙-------- */
-#agree-con {
-  width: 100vw;
-  height: 100%
-}
-
-#agree-con p {
-  text-align: center;
-}
-
-.agree {
-  width: 50%;
-  height: 35vh;
-  margin: 10px auto;
-  overflow: scroll;
-  background-color: #fff;
-}
-
-#agree-con .back-btn {
-  text-align: center;
-  margin: 30px 0;
-}
-
-#agree-con a {
-  font-weight: 600;
-  text-decoration: none;
-  background-color: #9599af;
-  color: #ffffff;
-  padding: 10px 20px;
-  border-radius: 20px;
-}
-
-.top{
-  text-align: left;
-  font-size: 13px;
-}
-
-
-#google-connect {
-    background: rgb(255, 255, 255) url('https://cdn-icons-png.flaticon.com/512/281/281781.png') no-repeat scroll 15px 10px / 30px 30px padding-box border-box;
-    border: 1px solid rgb(0 0 0 / 25%);
-    display: inline-block;
-}
-
-#google-connect span.connect {
-    color: #f14336;
-}
-
-#google-connect span.with {
-    color: #fbbb00;
-}
-
-#google-connect span.google {
-    color: #28b446;
-}
-
-
-#google-connect:hover {
-    border-color: rgb(0, 0, 0);  
-    background: rgb(255, 255, 255) url('https://cdn-icons-png.flaticon.com/512/281/281747.png') no-repeat scroll 15px 10px / 30px 30px padding-box border-box;
-    -webkit-transition: all .8s ease-out;
-    -moz-transition: all .3s ease;
-    -ms-transition: all .3s ease;
-    -o-transition: all .3s ease;
-    transition: all .3s ease-out;
-}
-
-#google-connect span {
-    box-sizing: border-box;
-    color: rgb(85, 172, 238);
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
     cursor: pointer;
-    text-align: center;
-    text-transform: uppercase;
-    border: 0px none rgb(220, 74, 61);
-    outline: rgb(255, 255, 255) none 0px;
-    -webkit-transition: all .3s ease;
-    -moz-transition: all .3s ease;
-    -ms-transition: all .3s ease;
-    -o-transition: all .3s ease;
-    transition: all .3s ease;
+    margin-top: 10px;
 }
 
-#google-connect:hover span {
-    color: black;
-    -webkit-transition: all .3s ease;
-    -moz-transition: all .3s ease;
-    -ms-transition: all .3s ease;
-    -o-transition: all .3s ease;
-    transition: all .3s ease;
+button:hover {
+    background-color: #0056b3;
 }
-.login-box {
-    background: #fff;
-    padding: 20px;
-    max-width: 480px;
-    margin: 25vh auto;
+
+.text-center {
     text-align: center;
-    letter-spacing: 1px;
+    margin-top: 10px;
+}
+
+.links {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.forgot-password {
+    float: right;
+}
+
+.password-container {
     position: relative;
 }
 
-.login-box:hover {
-    box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-}
-
-.login-box h2 {
-    margin: 20px 0 20px;
-    padding: 0;
-    text-transform: uppercase;
-    color: #4688F1;
-}
-
-.social-button {
-    background-position: 25px 0px;
-    box-sizing: border-box;
-    color: rgb(255, 255, 255);
+.password-container i {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
     cursor: pointer;
-    display: inline-block;
-    height: 50px;
-    line-height: 50px;
-    text-align: left;
-    text-decoration: none;
-    text-transform: uppercase;
-    vertical-align: middle;
-    width: 100%;
-    border-radius: 3px;
-    margin: 10px auto;
-    outline: rgb(255, 255, 255) none 0px;
-    padding-left: 20%;
-    transition: all 0.2s cubic-bezier(0.72, 0.01, 0.56, 1) 0s;
-    -webkit-transition: all .3s ease;
-    -moz-transition: all .3s ease;
-    -ms-transition: all .3s ease;
-    -o-transition: all .3s ease;
-    transition: all .3s ease;
 }
+
+.password-input {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 10px;
+    /* Remove the margin-bottom property */
+}
+
+.password-input input[type="password"] {
+    flex: 1;
+    border: none;
+    padding: 0;
+    margin: 0;
+    outline: none;
+}
+
+.password-input i {
+    /* Remove the margin-left property */
+    cursor: pointer;
+    /* Adjust the positioning of the eye icon */
+    margin-right: 5px;
+}
+
+
+ .transition-link {
+        cursor: pointer;
+        color: #007bff;
+        text-decoration: none;
+        transition: color 0.3s ease-in-out;
+    }
+
+    .transition-link:hover {
+        color: #0056b3;
+    }
+
+    .container.transition {
+        transform: translateX(-100%);
+    }
+    
+    
+    
+    /* 책넘기기 */
+    
+    .flip-page {
+        animation: flipPage 0.5s forwards;
+    }
+
+    @keyframes flipPage {
+        from {
+            transform: rotateY(0);
+        }
+        to {
+            transform: rotateY(180deg);
+        }
+    }

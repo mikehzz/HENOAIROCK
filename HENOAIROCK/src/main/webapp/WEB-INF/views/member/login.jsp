@@ -2,57 +2,46 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="author" content="User">
-    <title>로그인</title>
-    <link rel="stylesheet" type="text/css" href="/resources/css/login.css">
- <script src="/resources/js/jquery-3.7.0.js"></script>
+<meta charset="UTF-8">
+<meta name="author" content="User">
+<title>로그인</title>
+<link rel="stylesheet" type="text/css" href="/resources/css/login.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<script src="/resources/js/jquery-3.7.0.js"></script>
 </head>
 <body>
-    <a href="/admin/login" class="background-link">
-        <span>??</span>
-    </a>
-	<div id="con">
-	<h1>HENOAIROCK</h1>
-	    <div id="login">
-	        <div id="login_form">
-	            <!--로그인 폼-->
-	            <form action="/member/login" method="post">
-	                <h2>로그인</h2>
+    <!-- 관리자 로그인 -->
+	<a href="/admin/login" class="background-link"> <span>??</span></a>
+	<!-- //관리자 로그인// -->
 	
-	                <p class="find">
-						<span><a href="/member/passwd">비밀번호 찾기</a></span> 
-						<span><a href="/member/register">회원가입</a></span>
-					       </p>
+	<!-- 배경 삽입
+	<video id="background-video" autoplay loop muted>
+   		<source src="/resources/video/login.mp4" type="video/mp4">
+	</video> -->
 	
-	                <!-- Email -->
-	                <p class="input-title">Email</p>
-	                <label>
-	                    <input type="text" placeholder="아이디" class="size line-input" id="userId" name="userId">
-	                </label>
-	
-	                <!-- Password -->
-	                <p class="input-title">Password</p>
-	                <label>
-	                    <input type="password" placeholder="비밀번호" class="size line-input" id="password">
-	                </label>
-	
-	                <!-- Changed input type from text to password for password field -->
-	
-	                <input type="submit" value="로그인" class="btn" id="fn_email" name="fn_email">
-	                <div class="hr-sect">또는</div>
-	                <hr>
-	
-	                <!-- Connect with Google -->
-<a href="#" class="social-button" id="google-connect"> 
-    <span class="connect">Connect</span>
-    <span class="with">with</span>
-    <span class="google">Google</span>
-</a>
-	            </form>
-	        </div>
-	    </div>
-</div>
-  <script src="/resources/js/login.js"></script>
+	<!-- 로그인 시작 -->
+    <div class="container">
+        <h1>Login</h1>
+        <form action="/member/login" method="post">
+            <label for="Email">Email:</label>
+            <input type="text" id="userId" name="userId" required>
+             <div class="form-group">
+                <label for="login_password">Password</label>
+                <div class="password-container">
+                    <input type="password" name="password" id="password" class="form-control" required />
+                    <i class="fa fa-eye-slash" id="eye_icon_login"></i>
+                </div>
+            </div>
+            <button type="submit" id="fn_email"name="fn_email">LOGIN</button>
+			
+		
+        </form>
+        <div class="links">
+            <span id="to_signup" class="transition-link"><a href="/member/register">Create an account?</a></span>
+            <span id="to_passup" class="forgot-password"><a href="/member/passwd">Forgot password</a></span>
+        </div>
+    </div>
+    <!-- 로그인 끝 -->
+<script src="/resources/js/login.js"></script>
 </body>
 </html>
