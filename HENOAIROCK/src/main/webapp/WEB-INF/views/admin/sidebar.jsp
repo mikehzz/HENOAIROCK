@@ -20,6 +20,12 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap" rel="stylesheet">
     <style>
+@font-face {
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 body {
 	margin: 0;
 	padding: 0;
@@ -39,7 +45,8 @@ body {
 	padding-top: 20px;
 	transition: width 0.3s ease-in-out;
 	z-index: 1;
-	background-image: linear-gradient(180deg, #0d101a 10%, #1a1515 100%)
+	background-image: linear-gradient(180deg, #0d101a 10%, #1a1515 100%);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 1);
 }
 
 .user-profile {
@@ -132,9 +139,12 @@ body {
 }
 
 .sidebar-content-wrapper {
-	display: flex;
-	transition: margin-left 0.3s ease-in-out;
-	font-family: 'Bagel Fat One', cursive;
+  display: flex;
+  transition: margin-left 0.3s ease-in-out;
+  font-family: 'Cafe24SsurroundAir';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
 }
 
 .menu-items .separator {
@@ -188,6 +198,25 @@ margin-bottom: 100px;
   }
 
 }
+  /* 전체 페이지에 적용되는 스크롤바 스타일 */
+  body::-webkit-scrollbar {
+    width: 12px; /* 스크롤바 너비 설정 */
+  }
+
+  body::-webkit-scrollbar-thumb {
+    background-color: #555; /* 스크롤바 색상 */
+    border-radius: 5px; /* 스크롤바 모서리의 둥글기 설정 */
+  }
+
+  body::-webkit-scrollbar-thumb:hover {
+    background-color: #888; /* 스크롤바 호버 시 색상 */
+  }
+
+  body::-webkit-scrollbar-track {
+    background-color: white; /* 스크롤바 트랙 배경색 */
+    border-radius: 5px; /* 스크롤바 트랙 모서리의 둥글기 설정 */
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2); /* 스크롤바 트랙 그림자 효과 */
+  }
 </style>
 </head>
 

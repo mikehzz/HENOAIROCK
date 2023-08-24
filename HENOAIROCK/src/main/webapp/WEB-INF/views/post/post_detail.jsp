@@ -35,10 +35,19 @@ request.setAttribute("title", title);
 <script src="${CP}/resources/js/util.js"></script>
 <script src="/resources/js/post_detail.js"></script>
 <title>${title}</title>
+<style>
+.rounded-container {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+</style>
 </head>
 <body>
   <!-- contents  -->
-  <div class="container">
+  <div class="container rounded-container">
     <!-- 소 제목 -->
     <div class="page-title">
       <h2>${title}</h2>

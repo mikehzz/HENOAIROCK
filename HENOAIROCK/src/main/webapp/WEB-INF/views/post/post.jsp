@@ -43,17 +43,24 @@
 <head>
 <meta charset="${encoding}">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap">
 <script src="${CP}/resources/js/jquery-3.7.0.js"></script>
 <script src="${CP}/resources/js/util.js"></script>
 
 <title>${title}</title>
 <style>
-
+@font-face {
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 .body2 {
 /*   background-image: linear-gradient(180deg,#000000 10%,#001a65 100%); */
-    font-family: 'omyu_pretty';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -62,19 +69,17 @@ section{
 }
 
 .page-header h2 {
-  color: #f8f9fa; /* 밝은 글자색 */
+  color: #ff8585; /* 밝은 글자색 */
   font-size: 24px;
   font-weight: bold;
+  text-align: center;
 }
-
-
-
 
 #boardTable {
   border-collapse: separate;
   border-spacing: 0;
   width: 100%;
-  border-radius: 15px;
+  border-radius: 10px;
   overflow: hidden;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   background-color: transparent;
@@ -82,15 +87,16 @@ section{
 
 #boardTable th,
 #boardTable td {
-  padding: 12px;
+  padding: 10px;
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 #boardTable th {
-  color: #f8f9fa;
+  color: #ffffff;
+  background-color: #2a2c33;
 }
 
 #boardTable tbody tr {
@@ -104,15 +110,15 @@ section{
 /* 추가한 스타일 */
 .notice-text {
   display: inline-block;
-  background-color: #9addff; /* New notice color */
+  background-color: #ff5858; /* New notice color */
   color: white;
-  padding: 0px 10px; /* Slightly smaller padding */
-  border-radius: 15px;
+  padding: 5px 10px; /* Adjusted padding for a more compact look */
+  border-radius: 20px; /* Increased border radius for a rounded appearance */
   font-weight: bold;
-  font-size: 13px;
+  font-size: 13px; /* Slightly reduced font size */
   text-align: center;
-  width: auto; /* Adjust width to fit content */
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  white-space: nowrap; /* Prevents the label from breaking into multiple lines */
 }
 .admin-post td .gaesi {
     color: black !important;
@@ -125,15 +131,9 @@ section{
     white-space: nowrap;
 }
 
-.noWidth {
-    width: 5%;
-}
-
 .table-row {
-    height: 90px;
+    height: 76px;
 }
-
-
 
 .text-center {
     text-align: center;
@@ -141,25 +141,6 @@ section{
 
 .text-left {
     text-align: left;
-}
-
-.albumCover {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 50%;
-}
-
-.postDt {
-    width: 12%;
-}
-
-.readCntWidth {
-    width: 8%;
-}
-
-.d-flex.justify-content-center {
-    justify-content: center;
 }
 
 .form-control {
@@ -175,22 +156,21 @@ section{
   border-radius: 4px;
 }
 
-
 .row.g-1 {
     margin-top: 10px;
 }
 
 .btn-primary {
-  padding: 10px 20px;
-  background-color: #9addff; /* New primary color */
+  padding: 5px 20px;
+  background-color: #2a2c33; /* New primary color */
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 25px;
   cursor: pointer;
 }
 
 .btn-primary:hover {
-  background-color: #6db1e0; /* Darker color on hover */
+  background-color: #757677; /* Darker color on hover */
 }
 
 form {
@@ -201,8 +181,20 @@ form {
     position: relative;
 }
 
+  .custom-selects {
+    background-color: #f2f2f2;
+    border: 1px solid #ced4da;
 
+    font-size: 14px;
+    color: #333;
 
+    /* 추가적인 스타일을 원하는 대로 설정하세요 */
+  }
+
+.mt-4{
+margin-top: -1.5rem !important;
+margin-right: 1rem !important;
+}
 
 </style>
 </head>
@@ -211,20 +203,51 @@ form {
 <div class="container">
   <!-- Content here -->
   <!-- 제목 -->
+  </br>
   <div class="page-header">
     <h2><c:out value='${title}' /></h2>
   </div>
+  
+      <!-- 검색 form -->
+<div class="d-flex justify-content-end mt-4">
+  <form action="/post" name="boardFrm" class="d-none d-sm-inline-block form-inline navbar-search">
+    <input type="hidden" name="pageNo" id="pageNo">
+    <input type="hidden" name="div"    id="div" value='${inVO.getPostDiv()}'>
+    <div class="row g-1">
+      <div>
+        <select class="form-select custom-selects" name="searchDiv" id="searchDiv"> <!-- code table -->
+          <option value="">전체</option>
+          <c:forEach var="vo" items="${searchList }">
+            <option <c:if test="${vo.code == inVO.searchDiv }">selected</c:if> value="<c:out value='${vo.code }'/>"  >
+               <c:out value='${vo.codeNm }'/>
+            </option>
+          </c:forEach>  
+        </select>
+      </div>  
+      <div class="input-group">
+        <input type="text" aria-label="Search" aria-describedby="basic-addon2" name="searchWord" id="searchWord" value="<c:out value='${inVO.searchWord }'/>" placeholder="Search for..." class="form-control bg-light border-0 small">
+      </div>
+                            <div class="input-group-append">
+                                <button id="doRetrieve" class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+      </div>
+    </div>
+  </form>
+  </div>
+  </br>
+  
   <!--// 제목 ------------------------------------------------------------------->
    <table id="boardTable">
       <thead>
         <tr>
-   <th class="text-center noWidth" style="width: 5%;">번호</th>
+   <th class="text-center" style="width: 5%;">번호</th>
    <th class="text-center" style="width: 25%;">제목</th>
    <th class="text-center" style="width: 15%;">앨범</th> 
    <th class="text-center" style="width: 15%;">음악 정보</th>
    <th class="text-center" style="width: 10%;">작성자</th>
-   <th class="text-center readCntWidth" style="width: 5%;">조회수</th>
-   <th class="text-center postDt" style="width: 10%;">작성일</th>
+   <th class="text-center" style="width: 10%;">조회수</th>
+   <th class="text-center" style="width: 10%;">작성일</th>
    <th style="display:none;">SEQ</th>
         </tr>
       </thead>
@@ -249,7 +272,7 @@ form {
     </td>
     <td class="text-center" style="vertical-align: middle;"><c:out value="${vo.postTitle}"/></td>
     <c:if test="${not empty vo.musicId}">
-        <td class="text-center" style="vertical-align: middle;"><img class="album-cover" src="${vo.albumPath }" alt="앨범커버" width="60px" height="60px"></td>
+        <td class="text-center" style="vertical-align: middle;"><img class="album-cover" src="${vo.albumPath }" alt="앨범커버" width="50px" height="50px"></td>
         <td class="text-left" style="vertical-align: middle;">
             <div class="truncate-text">
                 <span style="font-weight: bold; font-size: 13px;"><c:out value="${vo.title}" /></span><br />
@@ -285,47 +308,12 @@ form {
       </tbody>
 </table>
 <!-- 페이징 -->
-    <div>
+</br>
+    <div class="d-flex justify-content-center">
       <%=StringUtil.renderPaging(totalCnt, pageNo, pageSize, bottomCount, cPath+"/post", "select") %>
     </div>
-    
   
-  
-    <!-- 검색 form -->
-<div class="d-flex justify-content-center">
-  <form action="/post" name="boardFrm">
-    <input type="hidden" name="pageNo" id="pageNo">
-    <input type="hidden" name="div"    id="div" value='${inVO.getPostDiv()}'>
-    <div class="row g-1">
-      <div>
-        <select class="form-select" name="searchDiv" id="searchDiv"> <!-- code table -->
-          <option value="">전체</option>
-          <c:forEach var="vo" items="${searchList }">
-            <option <c:if test="${vo.code == inVO.searchDiv }">selected</c:if> value="<c:out value='${vo.code }'/>"  >
-               <c:out value='${vo.codeNm }'/>
-            </option>
-          </c:forEach>  
-        </select>
-      </div>  
-      <div>
-        <input type="text" name="searchWord" id="searchWord" value="<c:out value='${inVO.searchWord }'/>" placeholder="검색어를 입력 하세요" class="form-control">
-      </div>
-      <div>  
-        <select class="form-select" name="pageSize" id="pageSize">
-          <c:forEach var="vo" items="${pageSizeList }">
-            <option <c:if test="${vo.code == inVO.pageSize }">selected</c:if> value="<c:out value='${vo.code }'/>">
-               <c:out value='${vo.codeNm }'/>
-            </option>
-          </c:forEach>
-        </select>
-      </div>  
-      <div>  
-        <a href="#" id="doRetrieve" class="btn-primary">조회</a>
-        <a href="/post/post_reg" class="btn-primary">등록</a>  
-      </div>      
-    </div>
-  </form>
-  </div>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="/resources/js/post.js"></script>
 </div>
 </body>
