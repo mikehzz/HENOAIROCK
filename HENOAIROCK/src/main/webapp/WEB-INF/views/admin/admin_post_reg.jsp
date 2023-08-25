@@ -110,7 +110,7 @@ body {
         
         <div class="mb-3">
             <label for="regId" class="form-label">등록자ID</label>
-            <input type="text" class="form-control" id="regId" name="regId" value="${sessionScope.user.userId}"
+            <input type="text" class="form-control" id="regId" name="regId" value="${loggedInAdmin.userId}"
                    placeholder="아이디를 입력하세요." readonly="readonly">
         </div>
         
