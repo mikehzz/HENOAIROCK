@@ -53,11 +53,11 @@ out.println("<script>const isAdminLoggedIn = " + isAdminLoggedIn + ";</script>")
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap">
 <script src="${CP}/resources/js/jquery-3.7.0.js"></script>
 <script src="${CP}/resources/js/util.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
 
 <title>${title}</title>
 <style>
@@ -97,7 +97,7 @@ section {
 }
 
 #boardTable th, #boardTable td {
-  padding: 10px;
+  padding: 12px;
   text-align: center;
   background-color: rgba(255, 255, 255);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -220,6 +220,33 @@ form {
   width: 110px;
   flex: 1;
 }
+
+.custom-detail-button {
+  background-color: #60b5ff; /* Change the background color */
+  color: white; /* Change the text color */
+  border-color: #60b5ff; /* Change the border color */
+  border-radius: 15px;
+}
+
+/* Custom styling for delete button */
+.custom-delete-button {
+  background-color: #ff6271; /* Change the background color */
+  color: white; /* Change the text color */
+  border-color: #ff6271; /* Change the border color */
+  border-radius: 15px;
+}
+
+/* Additional styling */
+.custom-detail-button:hover{
+  background-color: #339df9;
+  border-color: #339df9;
+  opacity: 0.8;
+}
+.custom-delete-button:hover {
+  background-color: red;
+  border-color: red;
+  opacity: 0.8;
+}
 </style>
 </head>
 
@@ -336,11 +363,11 @@ form {
                 <td class="text-center col-1"><c:if
                     test="${loggedInAdmin != null}">
                     <div class="btn-group">
-                      <button class="btn btn-info btn-sm detail-button"
+                      <button class="btn btn-info btn-sm detail-button custom-detail-button"
                         data-post-seq="<c:out value='${vo.postSeq}'></c:out>">
-                        <i class="fas fa-info-circle"></i> 조회
+                        <i class="fa-solid fa-check"></i> 조회
                       </button>
-                      <button class="btn btn-danger btn-sm delete-button"
+                      <button class="btn btn-danger btn-sm delete-button custom-delete-button"
                         data-post-seq="<c:out value='${vo.postSeq}'></c:out>">
                         <i class="fas fa-trash"></i> 삭제
                       </button>
