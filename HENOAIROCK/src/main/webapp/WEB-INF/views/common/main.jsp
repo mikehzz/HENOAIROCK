@@ -247,6 +247,8 @@
                                       },
                                       success: function(response) {
                                           console.log("Processing result: " + response);
+                                          const newURL = "${CP}/main/selectOne?chatSeq=" + chatSeq;
+                                          window.location.href = newURL;
                                       },
                                       error: function(error) {
                                           console.log("Error processing data: " + error);
@@ -257,11 +259,7 @@
                                     console.log("error:"+data);
                                   }
                             });
-                          const newURL = "${CP}/main/selectOne?chatSeq=" + chatSeq;
-                          location.reload();
-                          window.location.href = newURL;
-                          location.reload();
-                		  
+                          
 					          } else {
 					        	   alert("알 수 없는 오류 발생 재접속 바랍니다.")
 	                     window.location.href= '/main';
