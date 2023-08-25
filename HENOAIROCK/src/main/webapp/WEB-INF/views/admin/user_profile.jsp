@@ -32,7 +32,7 @@
         <div class="col-md-6">
             <div class="user-image-box p-4 bg-light border rounded text-center">
                 <p><strong>Profile Image:</strong></p>
-                <img src="${user.profileImg}" alt="Profile Image" width="100" />
+                <img src="${user.profileImg}" alt="Profile Image" class="img-fluid rounded-circle" style="max-width: 200px; height: auto;" />
             </div>
         </div>
     </div>
