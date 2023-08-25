@@ -41,7 +41,6 @@ String cPath = request.getContextPath();
   // 어드민으로 로그인되었는지 확인
 boolean isAdminLoggedIn = session.getAttribute("loggedInAdmin") != null;
 
-// isAdminLoggedIn 값을 JavaScript 변수로 넘겨주기
 out.println("<script>const isAdminLoggedIn = " + isAdminLoggedIn + ";</script>");
 %>
 

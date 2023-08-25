@@ -35,7 +35,7 @@
         }
         
         String cPath  = request.getContextPath(); 
-         
+
 %>
 <c:set var="CP" value="${pageContext.request.contextPath }"/>  
 <!DOCTYPE html>
