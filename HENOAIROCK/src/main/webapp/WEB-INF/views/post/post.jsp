@@ -235,6 +235,10 @@ margin-right: 1rem !important;
     </div>
   </form>
   </div>
+      </br>
+<div class="d-flex justify-content-end mt-4">
+  <a href="/post/post_reg" class="btn btn-primary ml-auto">등록</a>
+</div>
   </br>
   
   <!--// 제목 ------------------------------------------------------------------->

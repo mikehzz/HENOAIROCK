@@ -17,6 +17,7 @@
 <script src="/resources/js/util.js"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/admin_login.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap">
 
 <style>
 @font-face {
@@ -247,7 +248,7 @@ input {
   margin: 20px 0;
 }
 
-.social-container a {
+.social {
 
   display: inline-flex;
   justify-content: center;
@@ -299,7 +300,21 @@ footer a {
     ::-webkit-scrollbar-thumb:hover {
         background-color: #495057;
 }
-    
+
+.animated-icon1 {
+animation: rainbowText 5s infinite;
+}
+
+@keyframes rainbowText {
+  0% { color: #ff8d8d; }
+  14% { color: #ffd28d; }
+  28% { color: #fff78d; }
+  42% { color: #a8ff8d; }
+  57% { color: #8deeff; }
+  71% { color: #8db4ff; }
+  85% { color: #958dff; }
+  100% { color: #ff8d8d; }
+}
 </style>
 </head>
 <body>
@@ -314,7 +329,7 @@ footer a {
         <a href="#" class="social"><i class="fa-solid fa-ghost fa-bounce" style="color: #61baff;"></i></a>
         <a href="#" class="social"><i class="fa-solid fa-ghost fa-bounce" style="color: #71f4a3;"></i></a>
       </div>
-      <span>or use your email for registration</span>
+
       <input type="text" placeholder="Name" />
       <input type="email" placeholder="Email" />
       <input type="password" placeholder="Password" />
@@ -324,24 +339,23 @@ footer a {
   <div class="form-container sign-in-container">
     <form action="/admin/login" method="post">
       <h1>
-    <i class="fas fa-a  animated-icon"></i>
-    <i class="fas fa-d  animated-icon"></i>
-    <i class="fas fa-m  animated-icon"></i>
-    <i class="fas fa-i fa-bounce animated-icon1"></i>
-    <i class="fas fa-n  animated-icon"></i>
+    <i class="fas fa-a  animated-icon animated-icon1"></i>
+    <i class="fas fa-d  animated-icon animated-icon1"></i>
+    <i class="fas fa-m  animated-icon animated-icon1"></i>
+    <i class="fas fa-i fa-bounce animated-icon animated-icon1"></i>
+    <i class="fas fa-n  animated-icon animated-icon1"></i>
       </br>
       <i class="fa-solid fa-l  animated-icon"></i>
       <i class="fa-solid fa-o  animated-icon"></i>
       <i class="fa-solid fa-g  animated-icon"></i>
-      <i class="fa-solid fa-i fa-bounce animated-icon1"></i>
+      <i class="fa-solid fa-i fa-bounce animated-icon"></i>
       <i class="fa-solid fa-n  animated-icon"></i>
       </h1>
       <div class="social-container">
-        <a href="#" class="social"><i class="fa-solid fa-ghost fa-bounce" style="color: #ff6161;"></i></a>
-        <a href="#" class="social"><i class="fa-solid fa-ghost fa-bounce" style="color: #61baff;"></i></a>
-        <a href="#" class="social"><i class="fa-solid fa-ghost fa-bounce" style="color: #71f4a3;"></i></a>
+        <i class="fa-solid fa-ghost fa-bounce social" style="color: #ff6161;"></i>
+        <i class="fa-solid fa-ghost fa-bounce social" style="color: #61baff;"></i>
+        <i class="fa-solid fa-ghost fa-bounce social" style="color: #71f4a3;"></i>
       </div>
-      <span>or use your account</span>
 
       <input type="text" placeholder="Admin" class="size line-input" id="userId" name="userId">
       <input type="password" placeholder="1" class="size line-input" id="password">
@@ -367,34 +381,6 @@ footer a {
   </div>
 </div>
 
-<!-- 
-	<div id="con">
-	    <div id="login">
-	        <div id="login_form">
-	            로그인 폼
-	            <form action="/admin/login" method="post">
-	                <h2>관리자 로그인</h2>
-	                
-	                Email
-	                <p class="input-title">Email</p>
-	                <label>
-	                    <input type="text" placeholder="아이디" class="size line-input" id="userId" name="userId">
-	                </label>
-	
-	                Password
-	                <p class="input-title">Password</p>
-	                <label>
-	                    <input type="password" placeholder="비밀번호" class="size line-input" id="password">
-	                </label>
-	
-	                Changed input type from text to password for password field
-	
-	                <input type="submit" value="로그인" class="btn" id="fn_email" name="fn_email">
-
-	            </form>
-	        </div>
-	    </div>
-</div> -->
 <script>
 const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');

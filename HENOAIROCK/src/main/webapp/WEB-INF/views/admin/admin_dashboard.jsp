@@ -43,7 +43,7 @@ body {
 }
 
 .navbar-dark.bg-dark {
-    background-color: #343a40 !important;
+    background-color: #2a2c33 !important;
     font-family: 'Nunito', sans-serif;
 }
 
@@ -74,11 +74,27 @@ body {
         background-color: #495057;
 }
 
-.kor{
-    font-family: 'Cafe24SsurroundAir';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+.kor {
+  font-family: 'Cafe24SsurroundAir', sans-serif;
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  animation: rainbowText 1s infinite;
+}
+
+.navbar-brand {
+animation: rainbowText 1s infinite;
+}
+
+@keyframes rainbowText {
+  0% { color: #ff8d8d; }
+  14% { color: #ffd28d; }
+  28% { color: #fff78d; }
+  42% { color: #a8ff8d; }
+  57% { color: #8deeff; }
+  71% { color: #8db4ff; }
+  85% { color: #958dff; }
+  100% { color: #ff8d8d; }
 }
     </style>
 </head>

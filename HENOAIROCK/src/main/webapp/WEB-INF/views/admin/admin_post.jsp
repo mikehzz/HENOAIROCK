@@ -197,7 +197,6 @@ form {
   font-size: 14px;
   color: #72a9fb;
   font-weight: bold;
-
 }
 
 .mt-4 {
@@ -222,21 +221,19 @@ form {
 }
 
 .custom-detail-button {
-  background-color: #60b5ff; /* Change the background color */
-  color: white; /* Change the text color */
-  border-color: #60b5ff; /* Change the border color */
+  background-color: #60b5ff;
+  color: white;
+  border-color: #60b5ff;
   border-radius: 15px;
 }
 
-/* Custom styling for delete button */
 .custom-delete-button {
-  background-color: #ff6271; /* Change the background color */
-  color: white; /* Change the text color */
-  border-color: #ff6271; /* Change the border color */
+  background-color: #ff6271;
+  color: white;
+  border-color: #ff6271;
   border-radius: 15px;
 }
 
-/* Additional styling */
 .custom-detail-button:hover{
   background-color: #339df9;
   border-color: #339df9;
@@ -255,9 +252,7 @@ form {
     </br>
 
     <div class="page-header">
-      <h2>
-        <c:out value='${title}' />
-      </h2>
+      <h2>게시판 관리</h2>
     </div>
 
     <div class="d-flex justify-content-end mt-4">
