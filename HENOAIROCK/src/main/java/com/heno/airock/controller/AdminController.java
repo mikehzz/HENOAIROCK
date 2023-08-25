@@ -1,6 +1,7 @@
 package com.heno.airock.controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,23 +23,28 @@ import com.google.gson.Gson;
 import com.heno.airock.cmn.PcwkLoger;
 import com.heno.airock.cmn.StringUtil;
 import com.heno.airock.dto.CodeVO;
+import com.heno.airock.dto.CommentVO;
 import com.heno.airock.dto.MemberDTO;
 import com.heno.airock.dto.MessageDTO;
 import com.heno.airock.dto.PostVO;
 import com.heno.airock.service.CodeService;
+import com.heno.airock.service.CommentService;
 import com.heno.airock.service.MemberService;
 import com.heno.airock.service.PostService;
 
 @Controller
 @RequestMapping("/admin")
-public class AdminController implements PcwkLoger{
-	
+public class AdminController implements PcwkLoger {
+
 	@Autowired
 	private final MemberService memberService;
-	
+
+	@Autowired
+	CommentService commentService;
+
 	@Autowired
 	PostService postService;
-	
+
 	@Autowired
 	CodeService codeService;
 
@@ -46,7 +52,6 @@ public class AdminController implements PcwkLoger{
 		this.memberService = memberService;
 	}
 
-	// Administrator login page
 	@GetMapping("/login")
 	public String adminLoginForm(HttpSession session) {
 		// 이미 로그인된 관리자인 경우 로그인 페이지로 리다이렉트
@@ -99,18 +104,18 @@ public class AdminController implements PcwkLoger{
 		return "redirect:/admin/login";
 	}
 
-    @GetMapping("/users")
-    public ModelAndView userListPage(HttpSession session) {
-        MemberDTO loggedInAdmin = (MemberDTO) session.getAttribute("loggedInAdmin");
-        if (loggedInAdmin == null) {
-            return new ModelAndView("redirect:/admin/login"); // Redirect to login page if not logged in
-        }
+	@GetMapping("/users")
+	public ModelAndView userListPage(HttpSession session) {
+		MemberDTO loggedInAdmin = (MemberDTO) session.getAttribute("loggedInAdmin");
+		if (loggedInAdmin == null) {
+			return new ModelAndView("redirect:/admin/login"); // Redirect to login page if not logged in
+		}
 
-        ModelAndView modelAndView = new ModelAndView("admin/user_list");
-        List<MemberDTO> userList = memberService.getAllUsers(); // 사용자 목록 조회
-        modelAndView.addObject("userList", userList); // 사용자 목록을 modelAndView에 추가
-        return modelAndView;
-    }
+		ModelAndView modelAndView = new ModelAndView("admin/user_list");
+		List<MemberDTO> userList = memberService.getAllUsers(); // 사용자 목록 조회
+		modelAndView.addObject("userList", userList); // 사용자 목록을 modelAndView에 추가
+		return modelAndView;
+	}
 
 	// 사용자 삭제 기능
 	@PostMapping("/users/{userId}/delete")
@@ -132,14 +137,14 @@ public class AdminController implements PcwkLoger{
 		modelAndView.addObject("user", user);
 		return modelAndView;
 	}
-    
-	@RequestMapping(value="/post")
+
+	@RequestMapping(value = "/post")
 	public String select(PostVO inVO, Model model, HttpSession session) throws SQLException {
-	    MemberDTO loggedInAdmin = (MemberDTO) session.getAttribute("loggedInAdmin");
-	    if (loggedInAdmin == null) {
-	        return "redirect:/admin/login"; // Redirect to login page if not logged in
-	    }
-		
+		MemberDTO loggedInAdmin = (MemberDTO) session.getAttribute("loggedInAdmin");
+		if (loggedInAdmin == null) {
+			return "redirect:/admin/login"; // Redirect to login page if not logged in
+		}
+
 		String viewPage = "/admin/admin_post";
 		// page번호
 		if (null != inVO && inVO.getPageNo() == 0) {
@@ -160,41 +165,52 @@ public class AdminController implements PcwkLoger{
 		if (null != inVO && null == inVO.getSearchDiv()) {
 			inVO.setSearchDiv("");
 		}
-		
+
 		// postDiv
 		if (null != inVO && null == inVO.getPostDiv()) {
 			inVO.setPostDiv("10");
 		}
-		
+
 		LOG.debug("inVO:" + inVO);
 		// 코드조회: 검색코드
 		CodeVO codeVO = new CodeVO();
 		codeVO.setCodeId("BOARD_SEARCH");
 		List<CodeVO> searchList = codeService.select(codeVO);
 		model.addAttribute("searchList", searchList);
-		
-		//코드조회: 페이지 사이즈
+
+		// 코드조회: 페이지 사이즈
 		codeVO.setCodeId("CMN_PAGE_SIZE");
 		List<CodeVO> pageSizeList = codeService.select(codeVO);
 		model.addAttribute("pageSizeList", pageSizeList);
-		
-		List<PostVO> list = postService.select(inVO);
-		LOG.debug("list:" + list);
-		model.addAttribute("list", list);
-		
-		//총글수
-		int totalCnt = 0;
-		if(null !=list && list.size() >0 ) {
-			totalCnt = list.get(0).getTotalCnt();
+
+		List<PostVO> allPosts = postService.select(inVO);
+		List<PostVO> adminPosts = new ArrayList<>();
+		List<PostVO> otherPosts = new ArrayList<>();
+
+		for (PostVO post : allPosts) {
+			if ("어드민".equals(post.getUserId())) {
+				adminPosts.add(post);
+			} else {
+				otherPosts.add(post);
+			}
 		}
-		
+
+		adminPosts.addAll(otherPosts);
+		List<PostVO> sortedPosts = adminPosts;
+
+		// 총글수
+		int totalCnt = 0;
+		if (null != sortedPosts && sortedPosts.size() > 0) {
+			totalCnt = sortedPosts.get(0).getTotalCnt();
+		}
+
 		model.addAttribute("totalCnt", totalCnt);
+		model.addAttribute("list", sortedPosts);
 		model.addAttribute("inVO", inVO);
 		return viewPage;
 	}
-	
-	@RequestMapping(value = "delete", method = RequestMethod.GET
-			, produces = "application/json;charset=UTF-8")
+
+	@RequestMapping(value = "delete", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String delete(PostVO inVO) throws SQLException {
 		String jsonString = "";
@@ -202,10 +218,9 @@ public class AdminController implements PcwkLoger{
 		LOG.debug("│doDelete                      │");
 		LOG.debug("│inVO                          │" + inVO);
 		LOG.debug("└──────────────────────────────┘");
-		
-		
+
 		int flag = postService.admindelete(inVO);
-		
+
 		String message = "";
 		if (1 == flag) {// 삭제 성공
 			message = "게시글이 삭제되었습니다";
@@ -215,9 +230,10 @@ public class AdminController implements PcwkLoger{
 
 		jsonString = StringUtil.validMessageTOJson(flag + "", message);
 		LOG.debug("│jsonString                          │" + jsonString);
-		
-	    return 	jsonString;
+
+		return jsonString;
 	}
+
 	@GetMapping("/select")
 	public String select(@ModelAttribute PostVO inVO, Model model, HttpServletRequest reqeust, HttpSession session)
 			throws SQLException {
@@ -227,16 +243,20 @@ public class AdminController implements PcwkLoger{
 		LOG.debug("│doSelectOne                   │");
 		LOG.debug("│inVO                          │" + inVO);
 		LOG.debug("└──────────────────────────────┘");
-		MemberDTO memberDTO = (MemberDTO) session.getAttribute("user");
+		MemberDTO loggedInAdmin = (MemberDTO) session.getAttribute("loggedInAdmin");
 
-		if (memberDTO != null) {
-			LOG.debug("│userVO                          │" + memberDTO);
+		if (loggedInAdmin != null) {
+			LOG.debug("│userVO                          │" + loggedInAdmin);
 			inVO.setPostSeq(reqeust.getParameter("seq"));
-			inVO.setUserId(memberDTO.getUserId());
+			inVO.setUserId(loggedInAdmin.getUserId());
 			PostVO outVO = postService.selectOne(inVO);
 
+			List<CommentVO> comments = commentService.getCommentsForPost(reqeust.getParameter("seq"));
+			LOG.debug("│outVO                          │" + outVO);
+			LOG.debug("│comments                          │" + comments);
 			model.addAttribute("outVO", outVO);
 			model.addAttribute("inVO", inVO);
+			model.addAttribute("comments", comments);
 
 			return view;
 		} else {
@@ -244,6 +264,7 @@ public class AdminController implements PcwkLoger{
 		}
 
 	}
+
 	@RequestMapping("admin_post_reg")
 	public String moveReg(PostVO inVO, Model model, HttpSession session) {
 		String view = "/admin/admin_post_reg";
@@ -251,9 +272,9 @@ public class AdminController implements PcwkLoger{
 		LOG.debug("│doMoveToReg                   │");
 		LOG.debug("│inVO                          │" + inVO);
 		LOG.debug("└──────────────────────────────┘");
-		MemberDTO memberDTO = (MemberDTO) session.getAttribute("user");
-		
-		if(memberDTO != null) {
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("loggedInAdmin");
+
+		if (memberDTO != null) {
 			LOG.debug("│userVO                          │" + memberDTO);
 			inVO.setUserId(memberDTO.getUserId());
 			model.addAttribute("inVO", inVO);

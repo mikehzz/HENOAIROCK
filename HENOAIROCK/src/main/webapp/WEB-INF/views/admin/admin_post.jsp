@@ -405,7 +405,7 @@ $(".detail-button").on("click", function () {
     var seq = $(this).data("post-seq"); // 조회할 게시물의 번호 가져오기
     // div, seq
     // http://localhost:8080/ehr/board/doSelectOne.do?div=10&seq=393
-    window.location.href = "${CP}/admin/select?div=" + $("#div").val() + "&seq=" + seq;
+    window.location.href = "/admin/select?div=" + $("#div").val() + "&seq=" + seq;
 });
    // 삭제 버튼 클릭 시 실행되는 함수
    $(".delete-button").on("click", function () {

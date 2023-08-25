@@ -142,12 +142,56 @@ body {
             <label for="contents">내용</label>
             <p>${outVO.postContents}</p>
         </div>
+<c:forEach var="comment" items="${comments}">
+    <div class="comment mb-3 p-3 border rounded">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="comment-user">${comment.userId}</div>
 
+                <div class="comment-actions">
+                    <button class="btn btn-secondary btn-sm delete-comment-button" data-comment-id="${comment.cmtSeq}">삭제</button>
+                </div>
+
+        </div>
+        <div class="comment-text mt-2">${comment.cmtContents}</div>
+        <c:if test="${not empty comment.cmtUpdateDt}">
+          <div class="comment-time text-muted mt-2">수정됨: ${comment.cmtUpdateDt}</div>
+        </c:if>
+        <c:if test="${empty comment.cmtUpdateDt}">
+          <div class="comment-time text-muted mt-2">${comment.cmtDt}</div>
+        </c:if>
+        </div>
+        </c:forEach>
+       
     </form>
     </div>
   </div>
-
+  
   <script>
+  $(document).on("click", ".delete-comment-button", function() {
+	  console.log('버튼클릭');
+	    var commentId = $(this).data("comment-id");
+
+	    $.ajax({
+	        type: "POST",
+	        url: "/post/deleteComment",
+	        data: {
+	            cmtSeq: commentId
+	        },
+	        success: function(response) {
+	            if (response.success) {
+	                // 삭제 성공 시에 필요한 로직을 추가하세요.
+	                alert("댓글이 삭제되었습니다.");
+	                location.reload(); // 댓글 삭제 후 페이지 리로드
+	            } else {
+	                alert("댓글 삭제에 실패했습니다.");
+	            }
+	        },
+	        error: function() {
+	            alert("댓글 삭제에 실패했습니다.");
+	        }
+	    });
+	});
+  
   // 삭제 버튼 클릭 시 실행되는 함수
   $(".delete-button").on("click", function () {
       console.log("doDelete");
