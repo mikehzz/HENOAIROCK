@@ -59,6 +59,7 @@ out.println("<script>const isAdminLoggedIn = " + isAdminLoggedIn + ";</script>")
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
 
 <title>${title}</title>
+
 <style>
 @font-face {
   font-family: 'Cafe24SsurroundAir';
@@ -248,7 +249,6 @@ form {
 }
 </style>
 </head>
-
 <body class="body2">
   <div class="container">
 
@@ -359,8 +359,8 @@ form {
                 <td class="text-center" style="vertical-align: middle;"><span
                   class="gaesi" style="color: gray; font-size: 13px;"><c:out
                       value="${vo.postDt}" /></span></td>
-                <td class="text-center col-1"><c:if
-                    test="${loggedInAdmin != null}">
+                <td class="text-center col-1">
+                  <c:if test="${loggedInAdmin != null}">
                     <div class="btn-group">
                       <button class="btn btn-info btn-sm detail-button custom-detail-button"
                         data-post-seq="<c:out value='${vo.postSeq}'></c:out>">
@@ -371,7 +371,8 @@ form {
                         <i class="fas fa-trash"></i> 삭제
                       </button>
                     </div>
-                  </c:if></td>
+                  </c:if>
+                  </td>
               </tr>
             </c:forEach>
           </c:when>
@@ -392,87 +393,75 @@ form {
     </div>
   </div>
 
-  <script>
-    function select(url, pageNo) {
-      console.log("url:" + url);
-      console.log("pageNo:" + pageNo);
-
-      let frm = document.boardFrm;
-      //$("#pageNo").val(1); //jquery
-      frm.action = url;
-      frm.pageNo.value = pageNo;//javascript
-      frm.submit();//controller call  
-    }
-
-    //상세조회 버튼 클릭 시 실행되는 함수
-    $(".detail-button").on(
-        "click",
-        function() {
-          console.log("doDetail");
-          var seq = $(this).data("post-seq"); // 조회할 게시물의 번호 가져오기
-          // div, seq
-          // http://localhost:8080/ehr/board/doSelectOne.do?div=10&seq=393
-          window.location.href = "${CP}/admin/select?div="
-              + $("#div").val() + "&seq=" + seq;
-
-        });
-    // 삭제 버튼 클릭 시 실행되는 함수
-    $(".delete-button").on("click", function() {
-      console.log("doDelete");
-      var seq = $(this).data("post-seq"); // 삭제할 게시물의 번호 가져오기
-      if (confirm('삭제 하시겠습니까') == false)
-        return;
-
-      $.ajax({
-        type : "GET",
-        url : "/admin/delete", // 삭제를 처리하는 서버 URL
-        async : true, // 비동기 처리
-        dataType : "html", // 응답 데이터 형식은 HTML로 설정
-        data : {
-          postDiv : $("#div").val(), // 게시물 구분 값
-          postSeq : seq
-        // 게시물 번호
-        },
-        success : function(data) { // 서버 응답 성공 시 실행되는 함수
-          console.log("success data:", data);
-          var result = JSON.parse(data); // JSON 데이터로 변환
-          if ("1" === result.msgId) { // 성공적으로 삭제되었을 경우
-            alert(result.msgContents);
-            location.reload(); // 삭제 후 페이지 새로고침
-          } else {
-            alert(result.msgContents);
-          }
-        },
-        error : function(data) { // 서버 응답 실패 시 실행되는 함수
-          console.log("error:", data);
-        }
-      });
-    });
-
-    // 조회 버튼 클릭 시 실행되는 함수
-    $("#doRetrieve").on("click", function() {
-      console.log("doRetrieve");
-      doRetrieveCall(1); // 페이지 번호 1로 조회 호출
-    });
-
-    // 검색어 입력란에서 Enter 키를 누를 때 실행되는 함수
-    $("#searchWord").on("keypress", function(e) {
-      console.log("searchWord");
-      if (13 === e.which) { // Enter 키의 키코드
-        e.preventDefault();
-        doRetrieveCall(1); // 페이지 번호 1로 조회 호출
-      }
-    });
-
-    // 게시물 목록 조회 함수
-    function doRetrieveCall(pageNo) {
-      var frm = document.boardFrm;
-      frm.pageNo.value = pageNo;
-      frm.submit();
-    }
-  </script>
-  <script
-    src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+function select(url, pageNo){
+    console.log("url:"+url);
+    console.log("pageNo:"+pageNo);
+    
+    let frm = document.boardFrm;
+    //$("#pageNo").val(1); //jquery
+    frm.action = url;
+    frm.pageNo.value=pageNo;//javascript
+    frm.submit();//controller call
+  }
+//조회 버튼 클릭 시 실행되는 함수
+$(".detail-button").on("click", function () {
+    console.log("doDetail");
+    var seq = $(this).data("post-seq"); // 조회할 게시물의 번호 가져오기
+    // div, seq
+    // http://localhost:8080/ehr/board/doSelectOne.do?div=10&seq=393
+    window.location.href = "${CP}/admin/select?div=" + $("#div").val() + "&seq=" + seq;
+});
+   // 삭제 버튼 클릭 시 실행되는 함수
+   $(".delete-button").on("click", function () {
+       console.log("doDelete");
+       var seq = $(this).data("post-seq"); // 삭제할 게시물의 번호 가져오기
+       if (confirm('삭제 하시겠습니까') == false) return;
+       $.ajax({
+           type: "GET",
+           url: "/admin/delete", // 삭제를 처리하는 서버 URL
+           async: true, // 비동기 처리
+           dataType: "html", // 응답 데이터 형식은 HTML로 설정
+           data: {
+               postDiv: $("#div").val(), // 게시물 구분 값
+               postSeq: seq // 게시물 번호
+           },
+           success: function (data) { // 서버 응답 성공 시 실행되는 함수
+               console.log("success data:", data);
+               var result = JSON.parse(data); // JSON 데이터로 변환
+               if ("1" === result.msgId) { // 성공적으로 삭제되었을 경우
+                   alert(result.msgContents);
+                   location.reload(); // 삭제 후 페이지 새로고침
+               } else {
+                   alert(result.msgContents);
+               }
+           },
+           error: function (data) { // 서버 응답 실패 시 실행되는 함수
+               console.log("error:", data);
+           }
+       });
+   });
+   // 조회 버튼 클릭 시 실행되는 함수
+   $("#doRetrieve").on("click", function () {
+       console.log("doRetrieve");
+       doRetrieveCall(1); // 페이지 번호 1로 조회 호출
+   });
+   // 검색어 입력란에서 Enter 키를 누를 때 실행되는 함수
+   $("#searchWord").on("keypress", function (e) {
+       console.log("searchWord");
+       if (13 === e.which) { // Enter 키의 키코드
+           e.preventDefault();
+           doRetrieveCall(1); // 페이지 번호 1로 조회 호출
+       }
+   });
+   // 게시물 목록 조회 함수
+   function doRetrieveCall(pageNo) {
+       var frm = document.boardFrm;
+       frm.pageNo.value = pageNo;
+       frm.submit();
+   }
+</script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
