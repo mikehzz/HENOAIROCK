@@ -8,6 +8,7 @@ public class CommentVO extends DTO{
 	public String userId;
 	public String cmtDt;
 	public String cmtContents;
+	public String cmtUpdateDt;
 	
 	
 	public CommentVO() {}
@@ -52,22 +53,35 @@ public class CommentVO extends DTO{
 		this.cmtContents = cmtContents;
 	}
 	
+	
 
+
+	public String getCmtUpdateDt() {
+		return cmtUpdateDt;
+	}
+
+	public void setCmtUpdateDt(String cmtUpdateDt) {
+		this.cmtUpdateDt = cmtUpdateDt;
+	}
 
 	@Override
 	public String toString() {
 		return "CommentVO [cmtSeq=" + cmtSeq + ", postSeq=" + postSeq + ", userId=" + userId + ", cmtDt=" + cmtDt
-				+ ", cmtContents=" + cmtContents + "]";
+				+ ", cmtContents=" + cmtContents + ", cmtUpdateDt=" + cmtUpdateDt + "]";
 	}
 
-	public CommentVO(String cmtSeq, String postSeq, String userId, String cmtDt, String cmtContents) {
+	public CommentVO(String cmtSeq, String postSeq, String userId, String cmtDt, String cmtContents,
+			String cmtUpdateDt) {
 		super();
 		this.cmtSeq = cmtSeq;
 		this.postSeq = postSeq;
 		this.userId = userId;
 		this.cmtDt = cmtDt;
 		this.cmtContents = cmtContents;
+		this.cmtUpdateDt = cmtUpdateDt;
 	}
+
+	
 	
 	
 }

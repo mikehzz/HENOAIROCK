@@ -147,6 +147,7 @@ public class PostController implements PcwkLoger {
 			
 			List<CommentVO> comments = commentService.getCommentsForPost(reqeust.getParameter("seq"));
 			LOG.debug("│outVO                          │" + outVO);
+			LOG.debug("│comments                          │" + comments);
 			model.addAttribute("outVO", outVO);
 			model.addAttribute("inVO", inVO);
 			model.addAttribute("comments",comments);
@@ -176,6 +177,7 @@ public class PostController implements PcwkLoger {
 			
 			List<CommentVO> comments = commentService.getCommentsForPost(reqeust.getParameter("seq"));
 			LOG.debug("│outVO                          │" + outVO);
+			LOG.debug("│comments                          │" + comments);
 			model.addAttribute("outVO", outVO);
 			model.addAttribute("inVO", inVO);
 			model.addAttribute("comments",comments);

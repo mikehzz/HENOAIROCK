@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -64,6 +65,28 @@ public class SettingController implements PcwkLoger{
 
 		return "/setting/setting_service";
 	}
+	
+	
+	
+	
+	/* @PostMapping("/checkPassword")
+	    @ResponseBody
+	    public String checkPassword(@RequestParam("password") String inputPassword, HttpSession session) {
+	        MemberDTO member = (MemberDTO) session.getAttribute("user");
+	        
+	        if (member != null && member.checkPassword(inputPassword)) {
+	            return "success"; // 인증 성공
+	        } else {
+	            return "failure"; // 인증 실패
+	        }
+	    }
+	    
+	    @GetMapping("/deleteProcess")
+	    public String deleteProcess(HttpSession session) {
+	        // 회원탈퇴 처리 로직 추가 (DB에서 회원 삭제 등)
+	        session.invalidate(); // 세션 무효화
+	        return "redirect:/"; // 메인 페이지로 리다이렉트
+	    } */
 	
   /*  @RequestMapping("")
     public String logout(HttpServletRequest request) {

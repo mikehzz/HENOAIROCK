@@ -1,6 +1,7 @@
 <%@page import="com.heno.airock.dto.PostVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/admin/sidebar.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
   PostVO vo = (PostVO) request.getAttribute("inVO");
@@ -36,103 +37,131 @@ request.setAttribute("title", title);
 <script src="/resources/js/post_detail.js"></script>
 <title>${title}</title>
 <style>
-.rounded-container {
+
+
+
+/*.container {
   background-color: #fff;
   border-radius: 10px;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3); /* 연하게 수정 */
+  padding: 30px;
   margin-bottom: 20px;
+  margin-top: 15px;
+  
+}*/
+
+@font-face {
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.body {
+/*   background-image: linear-gradient(180deg,#000000 10%,#001a65 100%); */
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 </style>
 </head>
 <body>
+
+
   <!-- contents  -->
-  <div class="container rounded-container">
+  <div class="container">
     <!-- 소 제목 -->
-    <div class="page-title">
-      <h2>${title}</h2>
-    </div>
-    <input type="hidden" name="div" id="div" value="${inVO.getPostDiv()}">
-    <input type="hidden" name="seq" id="seq" value="${inVO.getPostSeq()}">
-    <input type="hidden" name="userId" id="userId" value="${sessionScope.user.userId}">
-    <input type="hidden" name="musicId" id="musicId" value="${outVO.musicId}">
-    <div class="content">
+
+    
+   <!-- 간격을 위한 빈 div -->
+  <div style="margin-top: 25px;"></div>
+  
+    
+   <!-- 목록 버튼 추가 -->
+	  <div style="text-align: right;">
+	   <input type="button" class="btn btn-secondary" value="목록" id="moveToList">
+	  </div>
+	  </br>
+  
+		<div class="container">
+		    <div class="page-title">
+		        <div class="d-flex justify-content-between align-items-center">
+		            <h2><c:out value='${outVO.postTitle}' /></h2>
+		            <div class="text-muted small">
+		                작성자: ${outVO.userId}
+		                <c:choose>
+		                    <c:when test="${not empty outVO.updateDt}">
+		                        <br>등록일: ${outVO.postDt} / 수정일: ${outVO.updateDt}
+		                    </c:when>
+		                    <c:otherwise>
+		                        <br>등록일: ${outVO.postDt}
+		                    </c:otherwise>
+		                </c:choose>
+		            </div>
+		        </div>
+		    </div>
+  
+
+	 <div>
+		  
+		    <div style="margin-top: 40px;"></div>
+		    <input type="hidden" name="div" id="div" value="${inVO.getPostDiv()}">
+		    <input type="hidden" name="seq" id="seq" value="${inVO.getPostSeq()}">
+		    <input type="hidden" name="userId" id="userId" value="${sessionScope.user.userId}">
+		    <input type="hidden" name="musicId" id="musicId" value="${outVO.musicId}">
+		    <div class="content">
       <section>
-        <table class="table table-striped table-hover">
-          <colgroup>
-            <col style="width: 10%;" />
-            <col style="width: 23%;" />
-            <col style="width: 10%;" />
-            <col style="width: 23%;" />
-          </colgroup>
-          <tbody>
-            <tr>
-              <c:if test="${not empty outVO.musicId}">
-                <th scope="row">음악 정보</th>
-                <td><img class="album-cover" src="${outVO.albumPath }"
-                  alt="앨범커버" width="60px" height="60px" id=musicClick name=musicClick></td>
-                <th scope="row">곡이름</th>
-                <td>${outVO.title} - ${outVO.artist }</td>
-                <c:if test="${not empty outVO.updateDt }">
-                <th scope="row">등록일</th>
-                <td>${outVO.postDt}</td>
-                <th scope="row">수정일</th>
-                <td>${outVO.updateDt }</td>
-                </c:if>
-                <c:if test="${empty outVO.updateDt }">
-                <th scope="row">등록일</th>
-                <td>${outVO.postDt}</td>
-                </c:if>
-              </c:if>
-              <c:if test="${empty outVO.musicId}">
-                <th scope="row">음악 정보</th>
-                <td>음악 정보가 없습니다.</td>
-                <th scope="row">등록일</th>
-                <td colspan="2">${outVO.postDt}</td>
-              </c:if>
-            </tr>
-            <tr>
-              <th scope="row">제목</th>
-              <td>${outVO.postTitle}</td>
+				<table class="table custom-table">
+				    <colgroup>
+				        <col style="width: 10%;" />
+				        <col style="width: 23%;" />
+				        <col style="width: 10%;" />
+				        <col style="width: 23%;" />
+				    </colgroup>
+	    <tbody>
+			        <tr>
+			            <th scope="row">음악 정보</th>
+			            <td><img class="album-cover" src="${outVO.albumPath}" alt="앨범커버" width="60px" height="60px" id="musicClick" name="musicClick"></td>
+			            <th scope="row">곡이름</th>
+			            <td>${outVO.title} - ${outVO.artist}</td>
+			            <th scope="row">조회수</th>
+			            <td colspan="6">${outVO.readCnt}</td>
+			             <th scope="row" style="color: white;">내용</th>
+			        </tr>
 
-              <th scope="row">조회</th>
-              <td colspan="6">${outVO.readCnt}</td>
-            </tr>
-            <tr>
-              <th scope="row">글쓴이</th>
-              <td colspan="7">${outVO.userId}</td>
-            </tr>
-            <tr>
-              <th scope="row">내용</th>
-              <td colspan="7"></td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="content">
-          <p>${outVO.postContents}</p>
-        </div>
-        <hr class="my-2">
-        <p class="btn_set">
-          <c:set var="writer" value="${outVO.userId }" />
-          <c:set var="currentUser" value="${sessionScope.user.userId}" />
-
-          <c:if test="${writer eq currentUser}">
-          <input type="button" class="btn btn-primary" value="수정"
-            id="doUpdate"> <input type="button"
-            class="btn btn-primary" value="삭제" id="doDelete">
-          </c:if>
-            <input type="button" class="btn btn-primary" value="목록" id="moveToList">
-        </p>
+			    </tbody>
+			</table>
+	      <table class="table table-striped">
+	          <tr>
+	            <th scope="row" style="color: white;">내용</th>
+	            <td colspan="7"></td>
+	          </tr>
+	          </table>
+	      <div class="content">
+	          <p>${outVO.postContents}</p>
+	        </div> 
+		        
+			<p class="btn_set">
+			    <c:set var="writer" value="${outVO.userId }" />
+			    <c:set var="currentUser" value="${sessionScope.user.userId}" />
+			
+			    <c:if test="${writer eq currentUser}">
+			        <input type="button" class="btn btn-secondary" value="수정" id="doUpdate">
+			        <input type="button" class="btn btn-secondary" value="삭제" id="doDelete">
+			    </c:if>
+			</p>
       </section>
     </div>
-
-<div class="comment-input">
-    <textarea class="form-control" id="comments" name="comments" rows="4"></textarea>
-    <button class="btn btn-primary btn-lg" type="button" id="doAddComment">댓글 추가</button>
 </div>
-
-<br/>
-<h5>댓글</h5>
+    </div>
+    <div style="margin-top: 0px;">
+    <div class="comment-input">
+        <textarea class="form-control" id="comments" name="comments" rows="4"></textarea>
+        <button class="btn btn-secondary btn-lg" type="button" id="doAddComment">댓글 추가</button>
+    </div>
+    <div style="margin-top: 10px;">
+    <br/>
+    <h5>댓글</h5>
 
 
     <div id="commentList">
@@ -146,17 +175,23 @@ request.setAttribute("title", title);
             <div class="comment-user">${comment.userId}</div>
             <c:if test="${comment.userId eq currentUser}">
                 <div class="comment-actions">
-                    <button class="btn btn-primary btn-sm edit-comment-button" data-comment-id="${comment.cmtSeq}">수정</button>
-                    <button class="btn btn-danger btn-sm delete-comment-button" data-comment-id="${comment.cmtSeq}">삭제</button>
+                    <button class="btn btn-secondary btn-sm edit-comment-button" data-comment-id="${comment.cmtSeq}">수정</button>
+                    <button class="btn btn-secondary btn-sm delete-comment-button" data-comment-id="${comment.cmtSeq}">삭제</button>
                 </div>
             </c:if>
         </div>
         <div class="comment-text mt-2">${comment.cmtContents}</div>
-        <div class="comment-time text-muted mt-2">${comment.cmtDt}</div>
+        <c:if test="${not empty comment.cmtUpdateDt}">
+          <div class="comment-time text-muted mt-2">수정됨: ${comment.cmtUpdateDt}</div>
+        </c:if>
+        <c:if test="${empty comment.cmtUpdateDt}">
+          <div class="comment-time text-muted mt-2">${comment.cmtDt}</div>
+        </c:if>
+        
         <div class="comment-edit-form mt-2" style="display: none;">
             <textarea class="form-control editedComment comment-input" rows="4"></textarea>
             <input type="hidden" class="commentId" value="${comment.cmtSeq}">
-            <button type="button" class="btn btn-primary btn-sm submitEdit mt-2">수정 완료</button>
+            <button type="button" class="btn btn-secondary btn-sm submitEdit mt-2">수정 완료</button>
             <button type="button" class="btn btn-secondary btn-sm cancelEdit mt-2">취소</button>
         </div>
 

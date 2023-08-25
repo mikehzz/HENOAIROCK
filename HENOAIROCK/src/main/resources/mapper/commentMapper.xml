@@ -5,7 +5,8 @@
     <update id="update" parameterType="comment">
         UPDATE comments
         SET
-            cmt_contents = #{cmtContents}
+            cmt_contents = #{cmtContents},
+            cmt_update_dt = SYSDATE
         WHERE cmt_seq = #{cmtSeq}
     </update>
 
@@ -15,7 +16,8 @@
         post_seq,
         user_id,
         cmt_dt,
-        cmt_contents
+        cmt_contents,
+        cmt_update_dt
     FROM comments
     WHERE post_seq = #{postSeq}
     ORDER BY cmt_dt ASC
@@ -51,7 +53,8 @@
             post_seq,
             user_id,
             cmt_dt,
-            cmt_contents
+            cmt_contents,
+            cmt_update_dt
         FROM comments
         WHERE cmt_seq = #{cmtSeq}
     </select>
