@@ -1,6 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="chat">
+<select id="responseList" parameterType="chatRes" resultType="chatRes">
+  SELECT
+    chat_res_seq,
+    chat_seq,
+    feeling,
+    chat_res_dt,
+    chat_res_contents,
+    hurt,
+    happy,
+    embarrassed,
+    anger,
+    unrest,
+    sad,
+    chat_contents_id
+  FROM RESPOND_MSG
+  WHERE CHAT_SEQ = #{chatSeq}
+  ORDER BY chat_contents_id DESC
+</select>
+
+<select id="responseSelect" parameterType="chatRes">
+  SELECT
+    *
+  FROM RESPOND_MSG
+  WHERE chat_res_seq = #{chatResSeq} AND CHAT_SEQ = #{chatSeq}
+  ORDER BY CHAT_CONTENTS_ID
+</select>
+
+<insert id="responseInsert" parameterType="chatRes">
+<selectKey keyProperty="chatResSeq" resultType="string" order="BEFORE">
+  SELECT CHAT_RES_SEQ.NEXTVAL FROM DUAL
+</selectKey>
+  INSERT INTO RESPOND_MSG (
+    chat_res_seq,
+    chat_seq,
+    chat_res_dt,
+    chat_res_contents,
+    hurt,
+    happy,
+    embarrassed,
+    anger,
+    unrest,
+    sad,
+    feeling,
+    chat_contents_id
+  ) VALUES (
+    #{chatResSeq},
+    #{chatSeq},
+    SYSDATE,
+    #{chatResContents},
+    #{hurt},
+    #{happy},
+    #{embarrassed},
+    #{anger},
+    #{unrest},
+    #{sad},
+    #{feeling},
+    #{chatContentsId}
+    
+  )
+</insert>
+
+
 
 <insert id="start" parameterType="chat">
 <selectKey keyProperty="chatSeq" resultType="string" order="BEFORE">
@@ -20,15 +82,20 @@
 
 <insert id="message" parameterType="chat">
 INSERT INTO MSG_DETAIL (
+<selectKey keyProperty="chatContentsId" resultType="string" order="BEFORE">
+  SELECT CHAT_CONTENTS_ID.NEXTVAL FROM DUAL
+</selectKey>
   chat_seq,
   chat_div,
   chat_dt,
-  chat_contents
+  chat_contents,
+  chat_contents_id
 ) VALUES (
   #{chatSeq},
   #{chatDiv},
   SYSDATE,
-  #{chatContents}
+  #{chatContents},
+  #{chatContentsId}
 )
 </insert>
 
@@ -50,6 +117,7 @@ INSERT INTO MSG_DETAIL (
         M.USER_ID = #{userId}
 		) numbered
 		WHERE row_num = 1
+		ORDER BY chat_dt desc
 </select>
 
 <select id="contentSelect" parameterType="chat" resultType="chatDetail">

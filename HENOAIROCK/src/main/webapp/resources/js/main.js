@@ -32,6 +32,30 @@ function chatContents(element){
 	 window.location.href = "/main/selectOne?chatSeq=" + chatSeqValue;
 
 }*/
+$(".restclass").on('click', function(){
+    console.log('restCall');
+    console.log("#rest")
+    let url = 'http://127.0.0.1:8000/pybo/boot/rest/';
+    $.ajax({
+        type: "POST",
+        url:url,
+        asyn:"true",
+        dataType:"html",
+        data:{
+            rest: message
+        },
+        success:function(data){//통신 성공
+            console.log("success data:"+data);
+            var decodedData = data.replace(/\\u[\dA-F]{4}/gi, function(match) {
+                return String.fromCharCode(parseInt(match.replace(/\\u/g, ''), 16));
+            });
+          console.log("decoded data:" + decodedData);
+          },
+          error:function(data){//실패시 처리
+            console.log("error:"+data);
+          }
+      });
+  });
 
 
 

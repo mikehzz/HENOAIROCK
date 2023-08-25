@@ -57,6 +57,8 @@ body {
 
 h1 {
     text-align: center;
+    margin-top: 34px;
+    margin-bottom: 34px;
 }
 
 form {
@@ -114,6 +116,24 @@ button:hover {
 
 .background-link a:hover {
     background-color: #808080;
+}
+
+
+.top_link {
+    margin-top: 0; /* À§ÂÊ ¿©¹é Á¦°Å */
+    font-size: 12px; /* ±Û²Ã Å©±â ÁÙÀÌ±â */
+}
+
+.top_link a {
+    display: inline-block;
+    vertical-align: middle; /* ÄÜÅÙÃ÷ ¼öÁ÷ Á¤·Ä */
+}
+
+.top_link img {
+    width: 15px;
+    padding-right: 7px;
+    margin-top: -3px;
+    vertical-align: middle; /* ÀÌ¹ÌÁö ¼öÁ÷ Á¤·Ä */
 }
 
 

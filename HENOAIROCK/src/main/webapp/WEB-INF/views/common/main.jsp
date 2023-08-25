@@ -1,3 +1,4 @@
+<%@page import="com.heno.airock.dto.ChatMessageDetailVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/admin/sidebar.jsp" %>
@@ -14,65 +15,116 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script src="${CP}/resources/js/jquery-3.7.0.js"></script>
 <script src="${CP}/resources/js/util.js"></script>
-<script src="${CP}/resources/js/main.js"></script>
+<!-- 차트그리기 -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <title>음악 사이트</title>
 </head>
 <body>
-    <div class="chat-container">
-        <div class="chat-logs" id="chatLogs">
-            <div class="bot-message">싸그리싺싺AI: 안녕하세요! 무엇을 도와드릴까요?</div>
-        </div>
-    </div>
-   
-    <input type="hidden" id= "userId" value="${sessionScope.userId}" name="userId" >
+<input type="hidden" id= "userId" value="${sessionScope.userId}" name="userId" >
     
+<div class="container">
+  <div>감정을 담은 메세지를 전송해주세요 알맞은 노래를 추천해드려요!</div>
+  <div class="chat-container">
+     <!-- ... 이하 채팅 로그 등의 내용 ... -->
      <table id="boardTable">
-      <thead>
-        <tr>
-          <th></th>
-          <th style="display:none;">SEQ</th>
-        </tr>
-       </thead>
-       <tbody class="table-group-divider">
-       <c:choose>
-          <c:when test="${not empty MsgList }">
-            <c:forEach var="vo" items="${MsgList}">
-                <tr>
-                  <td style="display:none;">${vo.chatSeq}</td>
-                  <td>${vo.chatDt} ${vo.chatContents}</td>
-                </tr>                  
-            </c:forEach>
-           </c:when>
-          </c:choose>
-        </tbody>
-     </table>
-
+       <thead>
+         <tr>
+           <th></th>
+           <th style="display:none;">SEQ</th>
+         </tr>
+        </thead>
+        <tbody class="table-group-divider">
+        <c:choose>
+           <c:when test="${not empty MsgList }">
+             <c:forEach var="vo" items="${MsgList}">
+                 <tr>
+                   <td style="display:none;">${vo.chatSeq}</td>
+                   <td>${vo.chatDt} ${vo.chatContents}</td>
+                 </tr>          
+             </c:forEach>
+            </c:when>
+           </c:choose>
+         </tbody>
+      </table>
+ </div>
+   <div class="row">
+        <div class="col-md-6">
       <table>
-      <thead>
-        <tr>
-          <th></th>
-        </tr>
-       </thead>
        <tbody class="table-group-divider">
             <c:choose>
           <c:when test="${not empty contentsList }">
             <c:forEach var="conVO" items="${contentsList}">
                 <tr>
-                  <td><c:out value="${conVO.chatSeq }"/></td>
-                  <td><c:out value="${conVO.chatContents }"/></td>                  
-                </tr>                  
+                  <td><c:out value="${conVO.chatContents }"/></td>      
+                </tr>
+                <c:forEach var="resVO" items="${respondList}">
+                    <c:if test="${resVO.chatContentsId == conVO.chatContentsId}">
+                        <td><c:out value="${resVO.chatResContents}"/></td>
+                        <tr>
+			                     <td>저희가 분석한 결과는 아래와 같아요</td>
+			                  </tr>
+			                  <tr>
+                           <td><div class="graphBox"><canvas id="myChart_${conVO.chatContentsId}" width="300" height="250"></canvas></div></td>
+                        </tr>
+                        <tr>
+							            <td>
+							                <script>
+							                    var ctx = document.getElementById('myChart_${conVO.chatContentsId}').getContext('2d');
+							                    var hurt = ${resVO.hurt};
+							                    var happy = ${resVO.happy};
+							                    var embarrassed = ${resVO.embarrassed};
+							                    var anger = ${resVO.anger};
+							                    var unrest = ${resVO.unrest};
+							                    var sad = ${resVO.sad};
+							                    var data = {
+							                        labels: ['상처', '기쁨', '당황', '분노', '불안', '슬픔'],
+							                        datasets: [{
+							                            label: '감정 수치',
+							                            data: [hurt, happy, embarrassed, anger, unrest, sad], // 여기에 감정 수치 데이터를 넣으세요
+							                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+							                            borderColor: 'rgba(75, 192, 192, 1)',
+							                            borderWidth: 1
+							                        }]
+							                    };
+							                    
+							                    var options = {
+							                        scales: {
+							                            y: {
+							                                beginAtZero: true
+							                            }
+							                        }
+							                    };
+							                    
+							                    var myChart = new Chart(ctx, {
+							                        type: 'line',
+							                        data: data,
+							                        options: options
+							                    });
+							                </script>
+							            </td>
+							        </tr>
+                    </c:if> 
+                </c:forEach>    
             </c:forEach>
            </c:when>
            </c:choose>
       </tbody>
      </table>
+        </div>
+        <div class="col-md-6">
+            
+            <div id="messageContainer" class="message-container">
+					    <input type="text" id="userInput" placeholder="첫 대화를 입력하세요.">
+					    <button onclick="sendMessage()">보내기</button>
+					  </div>
+        </div>
+    </div>
+</div>
+     
   
-    <div id="messageContainer" class="message-container"></div>
-      <input type="text" id="userInput" placeholder="대화를 입력하세요.">
-      <button onclick="sendMessage()">보내기</button>
+    
+      
 
- 
-   
   <script>
   function sendMessage() {
       const userInput = document.getElementById("userInput").value.trim();
@@ -93,11 +145,7 @@
           // Clear the input field using jQuery
           $("#userInput").val("");
 
-          // Scroll to the bottom of the chatLogs to show the latest message
-          const chatLogs = document.getElementById("chatLogs");
-          chatLogs.scrollTop = chatLogs.scrollHeight;
-
-          // Send the message to the server
+          
           if (!chatSeq) {
               // Create a new chat sequence and send the message
               $.ajax({
@@ -111,8 +159,6 @@
                       if (parsedJSON.msgId === "1") {
                           const newChatSeq = parsedJSON.msgContents;
                           sendChatMessage(newChatSeq, userInput); // Send the message after creating a new chat sequence
-                          const newURL = "${CP}/main/selectOne?chatSeq=" + newChatSeq;
-                          window.location.href = newURL;
                       } else if (parsedJSON.msgId === "2") {
                           alert(parsedJSON.msgContents);
                           location.reload();
@@ -134,22 +180,63 @@
               $.ajax({
                   url: "${CP}/main/chat",
                   type: "POST",
+                  dataType : "html",
                   data: {
                       chatSeq: chatSeq,
                       chatContents: message
                   },
-                  success: function() {
-                      console.log("Message sent!");
-                      // Clear the input field
-                      document.getElementById("userInput").value = "";
-                      // Refresh the chat logs using JQuery
-                      $.get(window.location.href, function(data) {
-                          const chatLogs = document.getElementById("chatLogs");
-                          chatLogs.innerHTML = $(data).find("#chatLogs").html();
-                      });
+                  success: function(data) {
+                	  let parsedJSON = JSON.parse(data)
+                	  const chatContentsId = parsedJSON.msgContents;
+                	  if ("1" == parsedJSON.msgId) {
+                		  let url = 'http://127.0.0.1:8000/pybo/boot/rest/';
+                          $.ajax({
+                              type: "POST",
+                              url:url,
+                              asyn:"true",
+                              dataType:"html",
+                              data:{
+                                  rest: userInput
+                              },
+                              success:function(data){//통신 성공
+                                  console.log("success data:"+data);
+                                  var decodedData = data.replace(/\\u[\dA-F]{4}/gi, function(match) {
+                                      return String.fromCharCode(parseInt(match.replace(/\\u/g, ''), 16));
+                                  });
+                                  console.log("decoded data:" + decodedData);
+                                  // Spring 컨트롤러에 decodedData 전송
+                                  $.ajax({
+                                      type: "POST",
+                                      url: "/main/decode", // Spring 컨트롤러의 엔드포인트 URL
+                                      data: {
+                                         chatSeq: chatSeq,
+                                         encodedData: decodedData,
+                                         chatContentsId: chatContentsId
+                                      },
+                                      success: function(response) {
+                                          console.log("Processing result: " + response);
+                                      },
+                                      error: function(error) {
+                                          console.log("Error processing data: " + error);
+                                      }
+                                  });
+                                  },
+                                  error:function(data){//실패시 처리
+                                    console.log("error:"+data);
+                                  }
+                            });
+                          const newURL = "${CP}/main/selectOne?chatSeq=" + chatSeq;
+                          location.reload();
+                          window.location.href = newURL;
+                		  
+					          } else {
+					        	   alert("알 수 없는 오류 발생 재접속 바랍니다.")
+	                     window.location.href= '/main';
+					          }
                   },
                   error: function() {
-                      console.log("Error sending the message");
+                      alert("알 수 없는 오류 발생 재접속 바랍니다.")
+                      window.location.href= '/main';
                   }
               });
           }
@@ -166,8 +253,9 @@
       const newURL = "${CP}/main/selectOne?chatSeq=" + chatSeqValue;
       window.location.href = newURL;
   });
-
-      
+  
   </script>
+  <script src="${CP}/resources/js/main.js"></script>
 </body>
+
 </html>
