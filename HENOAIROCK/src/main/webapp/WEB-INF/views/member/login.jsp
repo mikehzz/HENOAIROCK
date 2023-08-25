@@ -10,18 +10,21 @@
 <script src="/resources/js/jquery-3.7.0.js"></script>
 </head>
 <body>
-    <!-- 관리자 로그인 -->
-	<a href="/admin/login" class="background-link"> <span>??</span></a>
-	<!-- //관리자 로그인// -->
 	
-	<!-- 배경 삽입
+	<!-- 배경 삽입 
 	<video id="background-video" autoplay loop muted>
    		<source src="/resources/video/login.mp4" type="video/mp4">
 	</video> -->
 	
 	<!-- 로그인 시작 -->
     <div class="container">
-        <h1>Login</h1>
+    
+		<!-- 관리자 로그인 -->
+		<div class="background-link">
+	        <a href="/admin/login"><span>?</span></a>
+	    </div>
+		<!-- //관리자 로그인// -->
+        <h1>HENOAIROCK</h1>
         <form action="/member/login" method="post">
             <label for="Email">Email:</label>
             <input type="text" id="userId" name="userId" required>

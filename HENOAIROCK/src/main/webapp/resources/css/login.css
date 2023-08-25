@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
+    background-color: beige;
     margin: 0;
     padding: 0;
     display: flex;
@@ -8,6 +8,43 @@ body {
     align-items: center;
     height: 100vh;
 }
+
+#Email {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 100%;
+    font-size: 16px;
+    width: 279px
+}
+
+#password {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 100%; /* Make the input full width */
+    font-size: 16px; /* Adjust font size */
+    position: relative;
+    width: 279px
+}
+
+
+#eye_icon_login {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #aaa;
+    transition: color 0.3s ease-in-out;
+}
+
+#eye_icon_login:hover {
+    color: #000;
+}
+
 
 .container {
     background-color: #ffffff;
@@ -42,7 +79,7 @@ input {
 
 
 button {
-    background-color: #007bff;
+    background-color: black;
     color: white;
     padding: 10px;
     border: none;
@@ -52,8 +89,34 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #808080;
 }
+
+.background-link {
+    position: absolute;
+    bottom: 10px; /* Adjust the distance from the bottom as needed */
+    right: 10px; /* Adjust the distance from the right as needed */
+}
+
+.background-link a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-color: #000000;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    font-size: 20px;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.background-link a:hover {
+    background-color: #808080;
+}
+
+
 
 .text-center {
     text-align: center;
@@ -110,7 +173,7 @@ button:hover {
 
  .transition-link {
         cursor: pointer;
-        color: #007bff;
+        color: #808080;
         text-decoration: none;
         transition: color 0.3s ease-in-out;
     }
@@ -125,7 +188,7 @@ button:hover {
     
     
     
-    /* 책넘기기 */
+    /* page css */
     
     .flip-page {
         animation: flipPage 0.5s forwards;
