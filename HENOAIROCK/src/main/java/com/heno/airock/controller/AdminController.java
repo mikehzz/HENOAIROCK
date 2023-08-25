@@ -237,7 +237,7 @@ public class AdminController implements PcwkLoger {
 	@GetMapping("/select")
 	public String select(@ModelAttribute PostVO inVO, Model model, HttpServletRequest reqeust, HttpSession session)
 			throws SQLException {
-		String view = "/admin/admin_post_mng";
+		String view = "/admin/admin_post_detail";
 
 		LOG.debug("┌──────────────────────────────┐");
 		LOG.debug("│doSelectOne                   │");
