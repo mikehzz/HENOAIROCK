@@ -15,7 +15,7 @@
     font-style: normal;
 }
 
-.btn-primary {
+.btn-black {
   padding: 5px 20px;
   background-color: #2a2c33; /* New primary color */
   color: white;
@@ -24,7 +24,7 @@
   cursor: pointer;
 }
 
-.btn-primary:hover {
+.btn-black:hover {
   background-color: #757677; /* Darker color on hover */
 }
 
@@ -135,8 +135,8 @@ animation: rainbowText 1s infinite;
             <div class="card">
                 <div class="card-body text-center">
                     <h5 class="card-title"><i class="fas fa-users"></i> 회원 관리</h5>
-                    <p class="card-text"> 정보 조회/밴</p>
-                    <a href="/admin/users" class="btn btn-primary" onclick="return checkAdminLogin()">회원정보</a>
+                    <p class="card-text"> 정보 조회/추방</p>
+                    <a href="/admin/users" class="btn btn-primary btn-black" onclick="return checkAdminLogin()">회원정보</a>
                 </div>
             </div>
         </div>
@@ -145,7 +145,7 @@ animation: rainbowText 1s infinite;
                 <div class="card-body text-center">
                     <h5 class="card-title"><i class="fas fa-newspaper"></i> 게시판 관리</h5>
                     <p class="card-text">게시판 조회/삭제</p>
-                    <a href="/admin/post" class="btn btn-primary" onclick="return checkAdminLogin()">게시판</a>
+                    <a href="/admin/post" class="btn btn-primary btn-black" onclick="return checkAdminLogin()">게시판</a>
                 </div>
             </div>
         </div>

@@ -225,6 +225,7 @@ form {
   color: white;
   border-color: #60b5ff;
   border-radius: 15px;
+  font-size: 14px;
 }
 
 .custom-delete-button {
@@ -232,6 +233,7 @@ form {
   color: white;
   border-color: #ff6271;
   border-radius: 15px;
+  font-size: 14px;
 }
 
 .custom-detail-button:hover{
@@ -240,8 +242,9 @@ form {
   opacity: 0.8;
 }
 .custom-delete-button:hover {
-  background-color: red;
-  border-color: red;
+  background-color: #ff3347;
+  border-color: #ff3347;
+  color: black;
   opacity: 0.8;
 }
 </style>
@@ -359,11 +362,13 @@ form {
                     <div class="btn-group">
                       <button class="btn btn-info btn-sm detail-button custom-detail-button"
                         data-post-seq="<c:out value='${vo.postSeq}'></c:out>">
-                        <i class="fa-solid fa-check"></i> 조회
+                        <i class="fa-solid fa-check"></i>
+                        <div class="button-text">조회</div>
                       </button>
                       <button class="btn btn-danger btn-sm delete-button custom-delete-button"
                         data-post-seq="<c:out value='${vo.postSeq}'></c:out>">
-                        <i class="fas fa-trash"></i> 삭제
+                        <i class="fas fa-trash"></i>
+                        <div class="button-text">삭제</div>
                       </button>
                     </div>
                   </c:if>

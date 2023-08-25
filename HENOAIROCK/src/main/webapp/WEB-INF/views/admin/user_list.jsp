@@ -25,6 +25,7 @@ body {
   font-weight: normal;
   font-style: normal;
 }
+
 .btn-primary {
     padding: 5px 20px;
     background-color: #2a2c33;
@@ -36,6 +37,8 @@ body {
 .btn-primary:hover {
   background-color: #757677;
 }
+
+
 </style>
 </head>
 <body>

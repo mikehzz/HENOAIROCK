@@ -1,3 +1,4 @@
+
 <%@page import="com.heno.airock.dto.PostVO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -38,60 +39,135 @@
 <style>
 @font-face {
   font-family: 'Cafe24SsurroundAir';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+  src:
+    url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff')
+    format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 body {
   font-family: 'Cafe24SsurroundAir';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+  src:
+    url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff')
+    format('woff');
   font-weight: normal;
   font-style: normal;
 }
+
 .btn-primary {
-    padding: 5px 20px;
-    background-color: #2a2c33;
-    color: white;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
+  padding: 5px 20px;
+  background-color: #2a2c33;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
 }
+
 .btn-primary:hover {
   background-color: #757677;
 }
-    .containerbox {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: white;
-        border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    }
 
-    .page-title {
-        margin-bottom: 20px;
-        text-align: center;
-    }
+.containerbox {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
 
-    .form-group {
-        margin-bottom: 20px;
-    }
+.page-title {
+  text-align: center;
+  margin-bottom: 30px;
+}
 
-    .form-check-label {
-        font-weight: bold;
-    }
+.post-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 10px 0;
+  border-bottom: 3px solid #e5e5e5;
+}
+
+.post-content {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 15px;
+}
+
+.comment {
+  padding: 10px;
+  margin-top: 15px;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.btn-primary {
+  padding: 8px 20px;
+  background-color: #2a2c33;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #757677;
+}
+
+.music-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  margin-bottom: 15px;
+  margin-top: -15px;
+  border-bottom: 3px solid #e5e5e5;
+}
+
+.album-cover {
+  width: 60px;
+  height: 60px;
+  margin-right: 15px;
+  object-fit: cover;
+}
+
+.music-details {
+  flex: 1;
+}
+
+.music-details h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.music-details p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #555;
+}
+.comment-count {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #888;
+}
 </style>
 </head>
 <body>
 
-  <div class="container">
+<div class="container">
 
     <div class="containerbox">
 
   <div class="page-title">
     <h2>${title}</h2>
   </div>
+
 
     <div class="row g-1 d-flex justify-content-end">
       <div class="col-auto">
@@ -107,41 +183,38 @@ body {
 
     <form action="#" name="reg_frm" id="reg_frm">
         <input type="hidden" name="div" id="div" value="${inVO.getPostDiv()}">
+        <input type="hidden" name="musicId" id="musicId" value="${outVO.musicId}">
 
-        <div class="form-group">
-            <label for="title">제목</label>
-            <p>${outVO.postTitle}</p>
-        </div>
-
-        <div class="form-group">
-            <label for="seq">SEQ</label>
-            <p>${outVO.postSeq}</p>
-        </div>
-
-        <div class="form-group">
-            <label for="readCnt">읽은 횟수</label>
-            <p>${outVO.readCnt}</p>
-        </div>
-                
-        <div class="form-group">
-            <label for="regId">작성자</label>
-            <p>${outVO.userId}</p>
-        </div>
-        
-        <div class="form-group">
-            <label for="regDt">등록일</label>
-            <p>${outVO.postDt}</p>
-        </div>
-        
-        <div class="form-group">
-            <label for="modDt">수정일</label>
-            <p>${outVO.updateDt}</p>
+        <div class="post-info">
+            <div>
+                <p><strong>제목:</strong> ${outVO.postTitle}</p>
+                <p><strong>작성자:</strong> ${outVO.userId}</p>
+            </div>
+            <div>
+                <p><strong>등록일:</strong> ${outVO.postDt}
+                    <c:if test="${not empty outVO.updateDt}">
+                <strong>수정일:</strong> ${outVO.updateDt}
+                </c:if></p>
+                <p><strong>조회:</strong> ${outVO.readCnt}</p>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label for="contents">내용</label>
+    <c:if test="${not empty outVO.musicId}">
+        <div class="music-info">
+            <img class="album-cover" src="${outVO.albumPath}" alt="앨범커버">
+            <div class="music-details">
+                <h3>${outVO.title} - ${outVO.artist}</h3>
+            </div>
+        </div>
+      </c:if>
+    
+        <div class="post-content">
             <p>${outVO.postContents}</p>
         </div>
+
+        <div class="comments">
+            <h3>댓글 ${comments.size()}개</h3>
+        
 <c:forEach var="comment" items="${comments}">
     <div class="comment mb-3 p-3 border rounded">
         <div class="d-flex justify-content-between align-items-center">
@@ -161,11 +234,13 @@ body {
         </c:if>
         </div>
         </c:forEach>
-       
+
+       </div>
     </form>
     </div>
   </div>
-  
+  </br>
+  </br>
   <script>
   $(document).on("click", ".delete-comment-button", function() {
 	  console.log('버튼클릭');
