@@ -26,6 +26,8 @@
      alias="chat"/>
      <typeAlias type="com.heno.airock.dto.ChatMessageDetailVO" 
      alias="chatDetail"/>
+     <typeAlias type="com.heno.airock.dto.ChatRespondVO"
+     alias="chatRes"/>
 	</typeAliases>
 	
 </configuration>

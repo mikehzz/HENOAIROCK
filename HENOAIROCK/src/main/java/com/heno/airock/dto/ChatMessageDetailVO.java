@@ -4,6 +4,7 @@ public class ChatMessageDetailVO extends ChatMessageVO{
 	
 	private String chatContents; // 채팅 내용
 	private String chatDt; //채팅 시간
+	private String chatContentsId; //채팅 개별 ID
 	
 	public ChatMessageDetailVO() {}
 	
@@ -39,21 +40,33 @@ public class ChatMessageDetailVO extends ChatMessageVO{
 	public void setChatDt(String chatDt) {
 		this.chatDt = chatDt;
 	}
-
 	
+	public String getChatContentsId() {
+		return chatContentsId;
+	}
+
+
+	public void setChatContentsId(String chatContentsId) {
+		this.chatContentsId = chatContentsId;
+	}
+
 
 	@Override
 	public String toString() {
-		return "ChatMessageDetailVO [chatContents=" + chatContents + ", chatDt=" + chatDt + ", getChatSeq()="
-				+ getChatSeq() + "]";
+		return "ChatMessageDetailVO [chatContents=" + chatContents + ", chatDt=" + chatDt + ", chatContentsId="
+				+ chatContentsId + ", getChatSeq()=" + getChatSeq() + ", getChatDiv()=" + getChatDiv() + "]";
 	}
 
 
-	public ChatMessageDetailVO(String chatContents, String chatDt) {
+	public ChatMessageDetailVO(String chatContents, String chatDt, String chatContentsId) {
 		super();
 		this.chatContents = chatContents;
 		this.chatDt = chatDt;
+		this.chatContentsId = chatContentsId;
 	}
+
+
+	
 
 	
 	
