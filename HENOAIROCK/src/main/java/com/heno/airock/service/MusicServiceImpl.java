@@ -51,4 +51,9 @@ public class MusicServiceImpl implements MusicService {
 		return dao.selectFeeling(inVO);
 	}
 
+	@Override
+	public MusicVO selectChatRec(MusicVO inVO) {
+		return dao.selectChatRec(inVO);
+	}
+
 }

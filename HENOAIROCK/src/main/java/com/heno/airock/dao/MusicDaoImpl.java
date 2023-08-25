@@ -50,4 +50,9 @@ public class MusicDaoImpl implements MusicDao {
 		return sqlSessionTemplate.selectList("Music.feeling", inVO);
 	}
 
+	@Override
+	public MusicVO selectChatRec(MusicVO inVO) {
+		return sqlSessionTemplate.selectOne("Music.chatRec", inVO);
+	}
+
 }

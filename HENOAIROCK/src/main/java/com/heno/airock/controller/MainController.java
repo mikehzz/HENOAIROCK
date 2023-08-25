@@ -2,6 +2,7 @@ package com.heno.airock.controller;
 
 import java.net.URLDecoder;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,8 +29,10 @@ import com.heno.airock.dto.ChatMessageVO;
 import com.heno.airock.dto.ChatRespondVO;
 import com.heno.airock.dto.MemberDTO;
 import com.heno.airock.dto.MessageDTO;
+import com.heno.airock.dto.MusicVO;
 import com.heno.airock.service.ChatResService;
 import com.heno.airock.service.ChatService;
+import com.heno.airock.service.MusicService;
 
 @Controller
 @RequestMapping("/main")
@@ -41,11 +44,30 @@ public class MainController implements PcwkLoger{
 	@Autowired
 	ChatResService chatResService;
 	
+	@Autowired
+	MusicService musicService;
+	
 	
 	//클릭시 상세 채팅 내용 조회
 	@GetMapping(value = "/selectOne")
-	public String selectOne(ChatRespondVO resVO, ChatMessageDetailVO inVO,Model model, HttpSession session, HttpServletRequest request) throws SQLException {
+	public String selectOne(
+			MusicVO musicVO, 
+			ChatRespondVO resVO, 
+			ChatMessageDetailVO inVO, 
+			Model model, HttpSession session, 
+			HttpServletRequest request) throws SQLException {
+		
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("user");
 		String viewPage = "/common/main";
+		
+		if (memberDTO != null) {
+		
+		inVO.setUserId(memberDTO.getUserId());
+		List<ChatMessageDetailVO> Msglist = chatService.select(inVO);
+		LOG.debug("list:" + Msglist);
+		model.addAttribute("MsgList", Msglist);
+		
+		
 		LOG.debug("request.getParameter(\"chatSeq\"):" + request.getParameter("chatSeq"));
 		inVO.setChatSeq(request.getParameter("chatSeq"));
 		LOG.debug("inVO:" + inVO);
@@ -54,14 +76,16 @@ public class MainController implements PcwkLoger{
 		resVO.setChatSeq(request.getParameter("chatSeq"));
 		LOG.debug("resVO:" + resVO);
 		List<ChatRespondVO> resList = chatResService.select(resVO);
-		
+
 		LOG.debug("list:" + list);
 		LOG.debug("resList:" + resList);
 		model.addAttribute("contentsList", list);
 		model.addAttribute("respondList", resList);
-		
-		
-		return viewPage;
+
+			return viewPage;
+		} else {
+			return "redirect:/member/login";
+		}
 	}
 	
 	//채팅방 리스트 뿌리기
@@ -85,7 +109,13 @@ public class MainController implements PcwkLoger{
 	
 	//decode 및 응답 메세지 작성
 	@PostMapping("/decode")
-	public String decode(@RequestParam String encodedData,@RequestParam String chatSeq,@RequestParam String chatContentsId, ChatRespondVO inVO) {
+	public String decode(
+			@RequestParam String encodedData,
+			@RequestParam String chatSeq,
+			@RequestParam String chatContentsId, 
+			ChatRespondVO inVO,
+			MusicVO musicVO
+			) {
 		String viewPage = "/common/main";
         try {
         	// URL 디코딩
@@ -149,6 +179,15 @@ public class MainController implements PcwkLoger{
             inVO.setChatResContents("저희가 추론한 가장 높은 감정은:  " + selectedEmotion + "입니다");
             inVO.setFeeling(selectedEmotion);
             inVO.setChatContentsId(chatContentsId);
+            
+            String feeling = selectedEmotion;
+		    LOG.debug("feeling:" + feeling);
+		    musicVO.setFeeling(feeling);
+		    LOG.debug("musicVO:" + musicVO);
+       
+            MusicVO musicList = musicService.selectChatRec(musicVO);
+            inVO.setMusicId(musicList.getMusicId());
+    		
             int flag = chatResService.save(inVO);
             LOG.debug("│flag                          │" + flag);
             
