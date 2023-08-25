@@ -101,7 +101,7 @@
       </div></td>
       <td><div class="row g-1 d-flex justify-content-end">
         <div class="col-auto">
-          <input type="button" class="btn btn-primary" value="음악 선택"
+          <input type="button" class="btn btn-secondary" value="음악 선택"
             id="openPopupBtn">
         </div>
       </div></td>
@@ -114,10 +114,10 @@
           <c:set var="currentUser" value="${sessionScope.user.userId}" />
           
           <c:if test="${writer eq currentUser}">
-          <input type="button" class="btn btn-primary" value="수정하기"
+          <input type="button" class="btn btn-secondary" value="수정하기"
             id="doUpdate">
           </c:if>
-            <input type="button" class="btn btn-primary" value="돌아가기" id="moveToList">
+            <input type="button" class="btn btn-secondary" value="돌아가기" id="moveToList">
         </p>
       </section> 
       </form>  
@@ -193,6 +193,7 @@
           moveToListView();
       });//--moveToList
       
+
   </script>  
 </body>
 </html>

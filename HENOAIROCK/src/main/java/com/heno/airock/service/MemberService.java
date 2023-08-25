@@ -54,4 +54,7 @@ public class MemberService {
 		return memberRepository.getAllUsers();
 	}
 
-}
+
+	}
+
+
