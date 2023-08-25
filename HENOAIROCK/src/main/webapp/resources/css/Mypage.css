@@ -1,9 +1,46 @@
-/* ��ü ������ ��Ÿ�� */
+/* 占쏙옙체 占쏙옙占쏙옙占쏙옙 占쏙옙타占쏙옙 */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f8f8f8;
+}
+
+
+
+.additional-content {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.additional-content .fs {
+    display: flex;
+    align-items: center;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+/* edit */
+
+.btn-basic {
+    display: inline-block;
+    padding: 5px 10px;
+    text-align: center;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-edit {
+    background-color: #c0c0c0;
+}
+
+.btn-edit:hover {
+    background-color: #808080;
 }
 
 
@@ -17,22 +54,23 @@ body {
 }
 
 
-/* �� �޴� ���� */
+/* 占쏙옙 占쌨댐옙 占쏙옙占쏙옙 */
 .tab_menu {
-    position: relative; /* ��� �ڱ� �ڽ��� �������� ��ġ */
+    position: relative;
     margin-top: 30px;
     margin-bottom: 0px;
-  }
+    left: -12px;
+}
   .tab_list {
     list-style-type: none;
-    overflow: hidden; /* �θ����� ������ �Ѿ�� �ڽĿ���� �κ��� ������ �ʵ��� ó�� */
+    overflow: hidden; /* 占싸몌옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占싼어가占쏙옙 占쌘식울옙占쏙옙占� 占싸븝옙占쏙옙 占쏙옙占쏙옙占쏙옙 占십듸옙占쏙옙 처占쏙옙 */
   }
   .tab_list li {
-    float: left; /* ���� ���� */
-    margin-right: 12px; /* �ǳ��� ���� */
+    float: left; /* 占쏙옙占쏙옙 占쏙옙占쏙옙 */
+    margin-right: 12px; /* 占실놂옙占쏙옙 占쏙옙占쏙옙 */
     border: solid #f8f8f8;
   }
-  /* ��ü �� */
+  /* 占쏙옙체 占쏙옙 */
   .tab_btn {
 	  text-decoration: none;
 	  padding: 50px;
@@ -41,7 +79,7 @@ body {
 	  color: #333;
 	  font-family: 'NanumSquareNeoExtraBold';
   }
-  /* Ȱ��ȭ�� �� */
+  /* 활占쏙옙화占쏙옙 占쏙옙 */
   .tab_btn:hover {
     padding: 50px;
     background-color: #a3a7ad;
@@ -53,20 +91,21 @@ body {
 	  color: white;
 }
 
-/* �÷��̸���Ʈ ���� ��Ÿ�� */
+/* 占시뤄옙占싱몌옙占쏙옙트 占쏙옙占쏙옙 占쏙옙타占쏙옙 */
 #musicList {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #707070;
+  background-color: #ddd;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 .meta_info {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    color: #333;
 }
 
 .meta_info_img {
@@ -78,21 +117,44 @@ body {
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+.meta_info_content {
+    flex: 1;
+}
+
+
 .meta_info_text {
   flex: 1;
 }
 
-.meta_info_text h1 {
-  font-size: 28px;
+.meta_info_title {
+  font-size: 17px;
   margin: 0;
-  color: #b0abab;
+  color: #333;
 }
+
+.meta_info_text h1 {
+    font-size: 28px;
+    margin: 0;
+    color: #b0abab;
+    text-align: left;
+}
+
 
 .meta_info_text p{
   font-size: 16px;
   color: #888;
-  padding: 4px;
 }
+
+
+
+.meta_info_desc {
+  font-size: 12px;
+  color: #888;
+  display: block;
+  text-align: left;
+  padding: 3px;
+}
+
 
 .tag_list {
   margin-top: 10px;
@@ -107,20 +169,20 @@ body {
   font-size: 12px;
 }
 
-/* �뷡 ���� ��Ÿ�� */
+/* 占쎈래 占쏙옙占쏙옙 占쏙옙타占쏙옙 */
 
 .user-nickName {
-  width: calc(88% - 10px);
-  margin-top: 20px;
-  display: flex;
-  align-items: center;
-  background-color: #f8f8f8;
-  padding: 15px;
-  border-radius: 25px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
-  position: relative;
-   z-index: 1; /* ��Ҹ� ������ �����ɴϴ� */
+    width: calc(97% - 7px);
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    background-color: #f8f8f8;
+    padding: 15px;
+    border-radius: 25px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    z-index: 1;
 }
 
 .user-nickName::before {
@@ -132,7 +194,7 @@ body {
   border-width: 10px 10px 0;
   border-style: solid;
   border-color: transparent transparent transparent #f8f8f8;
-  z-index: -1; /* ��� �ﰢ���� �ڷ� �����ϴ� */
+  z-index: -1; /* 占쏙옙占� 占쏙각占쏙옙占쏙옙 占쌘뤄옙 占쏙옙占쏙옙占싹댐옙 */
 }
 
 
@@ -163,12 +225,11 @@ body {
 }
 
 .horizen_mmimg {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-right: 15px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 10px;
 }
 
 .horizen_img {
@@ -180,21 +241,7 @@ body {
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.meta_info_title {
-  font-size: 17px;
-  margin: 0;
-  color: #333;
-}
-
-.meta_info_desc {
-  font-size: 12px;
-  color: #888;
-  display: block;
-  text-align: left;
-  padding: 3px;
-}
-
-/* ���� �� ��Ÿ�� */
+/* 占쏙옙占쏙옙 占쏙옙 占쏙옙타占쏙옙 */
 hr {
   border: none;
   border-top: 1px solid #ddd;
@@ -203,7 +250,7 @@ hr {
 
 
 
-/* �߰� ��Ÿ�� */
+/* 占쌩곤옙 占쏙옙타占쏙옙 */
 .tag_list .text96 {
   margin: 2px 4px;meta_info_title
   padding: 4px 8px;
@@ -223,7 +270,7 @@ hr {
   
 }
 
-/* �뷡 ����� �׻� 3���� ǥ���ϴ� ��Ÿ�� */
+/* 占쎈래 占쏙옙占쏙옙占� 占쌓삼옙 3占쏙옙占쏙옙 표占쏙옙占싹댐옙 占쏙옙타占쏙옙 */
 .music_list {
   display: flex;
   flex-wrap: wrap;
@@ -241,9 +288,9 @@ hr {
 }
 
 .truncate-text {
-  white-space: nowrap;       /* 줄바꿈 금지 */
-  overflow: hidden;          /* 내용 넘치는 부분 숨김 */
-  text-overflow: ellipsis;   /* 넘치는 부분 "..."으로 표시 */
+  white-space: nowrap;       /* 以꾨컮轅� 湲덉� */
+  overflow: hidden;          /* �궡�슜 �꽆移섎뒗 遺�遺� �닲源� */
+  text-overflow: ellipsis;   /* �꽆移섎뒗 遺�遺� "..."�쑝濡� �몴�떆 */
 }
 
 .limit {
