@@ -12,6 +12,11 @@ public class ChatRespondVO extends ChatMessageDetailVO{
 	private String unrest;
 	private String sad;
 	private String chatContentsId;
+	private String musicId;
+	private String title;
+	private String album;
+	private String artist;
+	private String albumPath;
 	
 	
 	public ChatRespondVO() {}
@@ -112,17 +117,60 @@ public class ChatRespondVO extends ChatMessageDetailVO{
 	public void setChatContentsId(String chatContentsId) {
 		this.chatContentsId = chatContentsId;
 	}
+	
+	public String getMusicId() {
+		return musicId;
+	}
+
+	public void setMusicId(String musicId) {
+		this.musicId = musicId;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getAlbum() {
+		return album;
+	}
+
+	public void setAlbum(String album) {
+		this.album = album;
+	}
+
+	public String getArtist() {
+		return artist;
+	}
+
+	public void setArtist(String artist) {
+		this.artist = artist;
+	}
+	
+	
+	public String getAlbumPath() {
+		return albumPath;
+	}
+
+	public void setAlbumPath(String albumPath) {
+		this.albumPath = albumPath;
+	}
 
 	@Override
 	public String toString() {
 		return "ChatRespondVO [chatResSeq=" + chatResSeq + ", feeling=" + feeling + ", chatResDt=" + chatResDt
 				+ ", chatResContents=" + chatResContents + ", hurt=" + hurt + ", happy=" + happy + ", embarrassed="
 				+ embarrassed + ", anger=" + anger + ", unrest=" + unrest + ", sad=" + sad + ", chatContentsId="
-				+ chatContentsId + ", getChatSeq()=" + getChatSeq() + "]";
+				+ chatContentsId + ", musicId=" + musicId + ", title=" + title + ", album=" + album + ", artist="
+				+ artist + ", albumPath=" + albumPath + ", getChatSeq()=" + getChatSeq() + "]";
 	}
 
 	public ChatRespondVO(String chatResSeq, String feeling, String chatResDt, String chatResContents, String hurt,
-			String happy, String embarrassed, String anger, String unrest, String sad, String chatContentsId) {
+			String happy, String embarrassed, String anger, String unrest, String sad, String chatContentsId,
+			String musicId, String title, String album, String artist, String albumPath) {
 		super();
 		this.chatResSeq = chatResSeq;
 		this.feeling = feeling;
@@ -135,7 +183,18 @@ public class ChatRespondVO extends ChatMessageDetailVO{
 		this.unrest = unrest;
 		this.sad = sad;
 		this.chatContentsId = chatContentsId;
+		this.musicId = musicId;
+		this.title = title;
+		this.album = album;
+		this.artist = artist;
+		this.albumPath = albumPath;
 	}
+
+	
+
+	
+
+	
 
 	
 	

@@ -23,7 +23,6 @@
 <input type="hidden" id= "userId" value="${sessionScope.userId}" name="userId" >
     
 <div class="container">
-  <div>감정을 담은 메세지를 전송해주세요 알맞은 노래를 추천해드려요!</div>
   <div class="chat-container">
      <!-- ... 이하 채팅 로그 등의 내용 ... -->
      <table id="boardTable">
@@ -59,17 +58,19 @@
                 </tr>
                 <c:forEach var="resVO" items="${respondList}">
                     <c:if test="${resVO.chatContentsId == conVO.chatContentsId}">
-                        <td><c:out value="${resVO.chatResContents}"/></td>
-                        <tr>
-			                     <td>저희가 분석한 결과는 아래와 같아요</td>
+                        <tr> 
+                          <td><c:out value="${resVO.chatResContents}"/></td>  
 			                  </tr>
 			                  <tr>
-                           <td><div class="graphBox"><canvas id="myChart_${conVO.chatContentsId}" width="300" height="250"></canvas></div></td>
+			                   <td>저희가 분석한 결과는 아래와 같아요</td>
+			                  </tr>
+			                  <tr>
+                           <td><div class="graphBox"><canvas id="myRadarChart_${conVO.chatContentsId}" width="300" height="250"></canvas></div></td>
                         </tr>
                         <tr>
 							            <td>
 							                <script>
-							                    var ctx = document.getElementById('myChart_${conVO.chatContentsId}').getContext('2d');
+							                    var ctx = document.getElementById('myRadarChart_${conVO.chatContentsId}').getContext('2d');
 							                    var hurt = ${resVO.hurt};
 							                    var happy = ${resVO.happy};
 							                    var embarrassed = ${resVO.embarrassed};
@@ -77,33 +78,52 @@
 							                    var unrest = ${resVO.unrest};
 							                    var sad = ${resVO.sad};
 							                    var data = {
-							                        labels: ['상처', '기쁨', '당황', '분노', '불안', '슬픔'],
-							                        datasets: [{
-							                            label: '감정 수치',
-							                            data: [hurt, happy, embarrassed, anger, unrest, sad], // 여기에 감정 수치 데이터를 넣으세요
-							                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-							                            borderColor: 'rgba(75, 192, 192, 1)',
-							                            borderWidth: 1
-							                        }]
-							                    };
-							                    
-							                    var options = {
-							                        scales: {
-							                            y: {
-							                                beginAtZero: true
-							                            }
-							                        }
-							                    };
-							                    
-							                    var myChart = new Chart(ctx, {
-							                        type: 'line',
-							                        data: data,
-							                        options: options
-							                    });
+							                    	    labels: ['상처', '기쁨', '당황', '분노', '불안', '슬픔'],
+							                    	    datasets: [{
+							                    	        label: '감정 수치',
+							                    	        data: [hurt, happy, embarrassed, anger, unrest, sad],
+							                    	        backgroundColor: [
+							                    	            'rgba(255, 99, 132, 0.2)', // 상처
+							                    	            'rgba(75, 192, 192, 0.2)', // 기쁨
+							                    	            'rgba(255, 205, 86, 0.2)', // 당황
+							                    	            'rgba(255, 159, 64, 0.2)', // 분노
+							                    	            'rgba(54, 162, 235, 0.2)', // 불안
+							                    	            'rgba(153, 102, 255, 0.2)' // 슬픔
+							                    	        ],
+							                    	        borderColor: [
+							                    	            'rgba(255, 99, 132, 1)', // 상처
+							                    	            'rgba(75, 192, 192, 1)', // 기쁨
+							                    	            'rgba(255, 205, 86, 1)', // 당황
+							                    	            'rgba(255, 159, 64, 1)', // 분노
+							                    	            'rgba(54, 162, 235, 1)', // 불안
+							                    	            'rgba(153, 102, 255, 1)' // 슬픔
+							                    	        ],
+							                    	        borderWidth: 1
+							                    	    }]
+							                    	};
+
+							                    	var options = {
+							                    	    // 옵션 설정
+							                    	};
+
+							                    	var myDoughnutChart = new Chart(ctx, {
+							                    	    type: 'doughnut',
+							                    	    data: data,
+							                    	    options: options
+							                    	});
 							                </script>
 							            </td>
 							        </tr>
-                    </c:if> 
+								        <tr onclick="musicClick(this);">
+								          <td>따라서  이 노래를 추천드려요!</td>
+								          <td>${resVO.artist}에 ${resVO.title}</td>
+								          <td><img src = "${resVO.albumPath}" width="60px" height="60px"></td>
+								          <td style="display:none;" data-musicid="<c:out value="${resVO.musicId}" />"></td>
+								        </tr>
+								        <tr>
+								           <td><hr></td>
+								        </tr>
+                    </c:if>
                 </c:forEach>    
             </c:forEach>
            </c:when>
@@ -111,13 +131,13 @@
       </tbody>
      </table>
         </div>
-        <div class="col-md-6">
-            
-            <div id="messageContainer" class="message-container">
-					    <input type="text" id="userInput" placeholder="첫 대화를 입력하세요.">
-					    <button onclick="sendMessage()">보내기</button>
-					  </div>
-        </div>
+    </div>
+      <div class="col-md-6">
+           <div>감정을 담은 메세지를 전송해주세요 알맞은 노래를 추천해드려요!</div>
+           <div id="messageContainer" class="message-container">
+             <input type="text" id="userInput" placeholder="첫 대화를 입력하세요.">
+             <button onclick="sendMessage()">보내기</button>
+           </div>
     </div>
 </div>
      
@@ -126,6 +146,18 @@
       
 
   <script>
+//이미지 클릭스 음악 상세 페이지 출력
+  function musicClick(row) {
+    var musicId = $(row).find("[data-musicid]").data("musicid");
+    console.log("Clicked Music ID:", musicId);
+    // 팝업 창 열기
+    let popupUrl = "/music/music_detail/?musicId=" + musicId;
+    let popupName = "MusicDetailPopup";
+    let popupOptions = "width=800,height=600,resizable=yes,scrollbars=yes";
+    window.open(popupUrl, popupName, popupOptions);
+    }
+  
+  
   function sendMessage() {
       const userInput = document.getElementById("userInput").value.trim();
       console.log("user-message")
@@ -228,6 +260,7 @@
                           const newURL = "${CP}/main/selectOne?chatSeq=" + chatSeq;
                           location.reload();
                           window.location.href = newURL;
+                          location.reload();
                 		  
 					          } else {
 					        	   alert("알 수 없는 오류 발생 재접속 바랍니다.")

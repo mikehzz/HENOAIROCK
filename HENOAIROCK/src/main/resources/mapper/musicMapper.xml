@@ -57,10 +57,16 @@
     <when test=' "" != feeling and "편안" == feeling'>
        AND feeling LIKE '%편안%'
     </when>
+    <when test=' "" != feeling and "당황" == feeling'>
+       AND feeling LIKE '%편안%'
+    </when>
     <when test=' "" != feeling and "불안" == feeling'>
        AND feeling LIKE '%불안%'
     </when>
     <when test=' "" != feeling and "화" == feeling'>
+       AND feeling LIKE '%화%'
+    </when>
+    <when test=' "" != feeling and "분노" == feeling'>
        AND feeling LIKE '%화%'
     </when>
     <when test=' "" != feeling and "신남" == feeling'>
@@ -69,8 +75,22 @@
     <when test=' "" != feeling and "자신감" == feeling'>
        AND feeling LIKE '%자신감%'
     </when>
+    <when test=' "" != feeling and "기쁨" == feeling'>
+       AND feeling LIKE '%설렘%' OR feeling LIKE '%신남%'
+    </when>
+    <when test=' "" != feeling and "상처" == feeling'>
+       AND feeling LIKE '%편안%'
+    </when>
    </choose>
 </sql>
+<select id="chatRec" parameterType="music" resultType="music">
+  SELECT * FROM (
+    SELECT * FROM music 
+    WHERE 1 = 1
+    <include refid="searchFeeling"></include>
+    ORDER BY DBMS_RANDOM.VALUE
+) WHERE ROWNUM = 1
+</select>
 
 <select id="genre" parameterType="music" resultType="music">
   SELECT A.*,B.*
