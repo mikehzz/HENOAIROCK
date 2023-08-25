@@ -35,17 +35,64 @@
 <script src="${CP}/resources/js/jquery-3.7.0.js"></script>
 <script src="${CP}/resources/js/util.js"></script>
 <title>${title}</title>
+<style>
+@font-face {
+  font-family: 'Cafe24SsurroundAir';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Cafe24SsurroundAir';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+.btn-primary {
+    padding: 5px 20px;
+    background-color: #2a2c33;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+.btn-primary:hover {
+  background-color: #757677;
+}
+    .containerbox {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .page-title {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-check-label {
+        font-weight: bold;
+    }
+</style>
 </head>
 <body>
-  <!-- contents  -->  
+
   <div class="container">
-  <!-- 소 제목 -->
+
+    <div class="containerbox">
+
   <div class="page-title">
     <h2>${title}</h2>
   </div>
-  
-  <!--// 소 제목 end ------------------------------------------------------------->
-    <!-- 버튼 -->
+
     <div class="row g-1 d-flex justify-content-end">
       <div class="col-auto">
         <input type="button" class="btn btn-primary" value="목록" id="moveToList">
@@ -56,55 +103,50 @@
            </c:if>
     >
       </div>
-    </div>
-    <!--// 버튼 ----------------------------------------------------------------->
-    <form action="#"  name="reg_frm" id="reg_frm">
-       <input type="hidden" name="div" id="div" value="${inVO.getPostDiv()}">
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">SEQ</label>
-          <input type="text" class="form-control title_cls" id="seq"  name="seq"
-             placeholder="제목을 입력 하세요." required="required" readonly="readonly" value="${outVO.postSeq}">
-        </div>       
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">제목</label>
-          <input type="text" class="form-control title_cls" id="title"  name="title"
-             placeholder="제목을 입력 하세요." required="required" readonly="readonly" maxlength="66"  value="${outVO.postTitle}">
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">읽은 횟수</label>
-          <input type="text" class="form-control title_cls" id="readCnt"  name="readCnt"
-             placeholder="읽은 횟수" required="required"  readonly="readonly"   value="${outVO.readCnt}">
-        </div>
-                
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">등록자ID</label>
-          <input type="text" class="form-control" id="regId" name="regId" value="${outVO.userId}"
-          placeholder="아이디를 입력 하세요." readonly="readonly">
-        </div>
-        
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">등록일</label>
-          <input type="text" class="form-control" id="regDt" name="regDt" value="${outVO.postDt}" readonly="readonly">
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">수정자</label>
-          <input type="text" class="form-control" id="modId" name="modId" value="${outVO.userId}"
-          placeholder="수정자 아이디를 입력 하세요." readonly="readonly">
-        </div>
-        
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">수정일</label>
-          <input type="text" class="form-control" id="modDt" name="modDt" value="${outVO.updateDt}" readonly="readonly">
+    </div>  
+
+    <form action="#" name="reg_frm" id="reg_frm">
+        <input type="hidden" name="div" id="div" value="${inVO.getPostDiv()}">
+
+        <div class="form-group">
+            <label for="title">제목</label>
+            <p>${outVO.postTitle}</p>
         </div>
 
-        <div class="mb-3">
-          <label for="exampleFormControlTextarea1" class="form-label">내용</label>
-          <textarea class="form-control" id="contents" name="contents" rows="3" readonly="readonly" required="required">${outVO.postContents}</textarea>
+        <div class="form-group">
+            <label for="seq">SEQ</label>
+            <p>${outVO.postSeq}</p>
+        </div>
+
+        <div class="form-group">
+            <label for="readCnt">읽은 횟수</label>
+            <p>${outVO.readCnt}</p>
         </div>
                 
+        <div class="form-group">
+            <label for="regId">작성자</label>
+            <p>${outVO.userId}</p>
+        </div>
+        
+        <div class="form-group">
+            <label for="regDt">등록일</label>
+            <p>${outVO.postDt}</p>
+        </div>
+        
+        <div class="form-group">
+            <label for="modDt">수정일</label>
+            <p>${outVO.updateDt}</p>
+        </div>
+
+        <div class="form-group">
+            <label for="contents">내용</label>
+            <p>${outVO.postContents}</p>
+        </div>
+
     </form>
+    </div>
   </div>
-  <!--// contents  ------------------------------------------------------------>
+
   <script>
   // 삭제 버튼 클릭 시 실행되는 함수
   $(".delete-button").on("click", function () {

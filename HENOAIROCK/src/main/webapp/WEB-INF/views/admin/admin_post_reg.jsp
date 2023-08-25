@@ -34,46 +34,98 @@
 <script src="/resources/js/jquery-3.7.0.js"></script>
 <script src="/resources/js/util.js"></script>
 <title>${title}</title>
+<style>
+@font-face {
+  font-family: 'Cafe24SsurroundAir';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Cafe24SsurroundAir';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+.btn-primary {
+    padding: 5px 20px;
+    background-color: #2a2c33;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+.btn-primary:hover {
+  background-color: #757677;
+}
+
+    .containerbox {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .page-title {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-check-label {
+        font-weight: bold;
+    }
+</style>
 </head>
 <body>
-  <!-- contents  -->  
+
   <div class="container">
-  <!-- 소 제목 -->
-  <div class="page-title">
-    <h2>${title}</h2>
-  </div>
-  
-  <!--// 소 제목 end ------------------------------------------------------------->
+
+    <div class="containerbox">
     
-    <!-- 버튼 -->
-    <div class="row g-1 d-flex justify-content-end">
-      <div class="col-auto">
-        <input type="button" class="btn btn-primary" value="목록" id="moveToAdminList">
-        <input type="button" class="btn btn-primary" value="등록" id="doSave">
-      </div>
-    </div>
-    <!--// 버튼 ----------------------------------------------------------------->
-<form action="#" name="reg_frm" id="reg_frm">
-    <input type="hidden" name="div" id="div" value="${inVO.getPostDiv()}">
-    <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">제목</label>
-        <input type="text" class="form-control title_cls" id="title" name="title"
-            placeholder="(공지) 제목을 입력하세요." required="required" maxlength="66">
-    </div>
-        
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">등록자ID</label>
-          <input type="text" class="form-control" id="regId" name="regId" value="${sessionScope.user.userId }"
-          placeholder="아이디를 입력 하세요." readonly="readonly">
-        </div>
-        
-        <div class="mb-3">
-          <label for="exampleFormControlTextarea1" class="form-label">내용</label>
-          <textarea class="form-control" id="contents" name="contents" rows="3" required="required"></textarea>
-        </div>
-                <input type="checkbox" id="adminPost" name="adminPost"> 어드민 글로 설정
-    </form>
+  <div class="page-title">
+    <h2>공지사항 작성</h2>
   </div>
+
+    <div class="row g-1 d-flex justify-content-end">
+        <div class="col-auto">
+            <input type="button" class="btn btn-primary" value="목록" id="moveToAdminList">
+            <input type="button" class="btn btn-primary" value="등록" id="doSave">
+        </div>
+    </div>
+
+    <form action="#" name="reg_frm" id="reg_frm">
+        <input type="hidden" name="div" id="div" value="${inVO.getPostDiv()}">
+        <div class="mb-3">
+            <label for="title" class="form-label">제목</label>
+            <input type="text" class="form-control title_cls" id="title" name="title"
+                   placeholder="(공지) 제목을 입력하세요." required="required" maxlength="66">
+        </div>
+        
+        <div class="mb-3">
+            <label for="regId" class="form-label">등록자ID</label>
+            <input type="text" class="form-control" id="regId" name="regId" value="${sessionScope.user.userId}"
+                   placeholder="아이디를 입력하세요." readonly="readonly">
+        </div>
+        
+        <div class="mb-3">
+            <label for="contents" class="form-label">내용</label>
+            <textarea class="form-control" id="contents" name="contents" rows="3" required="required"></textarea>
+        </div>
+        
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="adminPost" name="adminPost">
+            <label class="form-check-label" for="adminPost">어드민 글로 설정</label>
+        </div>
+    </form>
+</div>
+</div>
   <!--// contents  ------------------------------------------------------------>
  <script src="/resources/js/admin_post_reg.js"></script>
 </body>
