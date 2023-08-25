@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
+    background-color: beige;
     margin: 0;
     padding: 0;
     display: flex;
@@ -40,7 +40,7 @@ input {
 
 
 button {
-    background-color: #007bff;
+    background-color: #000000;
     color: white;
     padding: 10px;
     border: none;
@@ -112,7 +112,7 @@ button:hover {
   height: 30px;
   font-size: 13px;
   background-color: transparent;
-  color: #00aaff;
+  color: blue;
   border: none;
   cursor: pointer;
   border-radius: 5px;
@@ -153,7 +153,7 @@ button:hover {
 }
 
 
-/* 책 넘기기 */
+/* 梨� �섍린湲� */
 .flip-page {
         animation: flipPage 0.5s forwards;
     }

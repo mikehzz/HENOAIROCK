@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
+    background-color: beige;
     margin: 0;
     padding: 0;
     display: flex;
@@ -40,7 +40,7 @@ input {
 
 
 button {
-    background-color: #007bff;
+    background-color: black;
     color: white;
     padding: 10px;
     border: none;
@@ -51,7 +51,7 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #808080;
 }
 
 .text-center {
@@ -88,7 +88,6 @@ button:hover {
     border: 1px solid #ccc;
     border-radius: 3px;
     padding: 10px;
-    /* Remove the margin-bottom property */
 }
 
 .password-input input[type="password"] {
@@ -100,9 +99,7 @@ button:hover {
 }
 
 .password-input i {
-    /* Remove the margin-left property */
     cursor: pointer;
-    /* Adjust the positioning of the eye icon */
     margin-right: 5px;
 }
 
@@ -112,7 +109,7 @@ button:hover {
   height: 30px;
   font-size: 13px;
   background-color: transparent;
-  color: #00aaff;
+  color: blue;
   border: none;
   cursor: pointer;
   border-radius: 5px;
@@ -153,7 +150,7 @@ button:hover {
 }
 
 
-/* 책 넘기기 */
+/* page css */
 .flip-page {
         animation: flipPage 0.5s forwards;
     }

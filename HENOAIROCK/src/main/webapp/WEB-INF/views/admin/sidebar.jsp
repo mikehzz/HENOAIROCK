@@ -101,7 +101,8 @@ body {
 }
 
 .sidebar a:hover {
-	background-color: #4e73df;
+	background-color: white;
+	color: #000;
 }
 
 .sidebar .material-icons {
