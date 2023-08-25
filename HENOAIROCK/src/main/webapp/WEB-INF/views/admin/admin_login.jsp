@@ -78,8 +78,8 @@ a {
 
 button {
   border-radius: 20px;
-  border: 1px solid #FF4B2B;
-  background-color: #FF4B2B;
+  border: 1px solid #ff4360;
+  background-color: #ff4360;
   color: #FFFFFF;
   font-size: 12px;
   font-weight: bold;
@@ -283,20 +283,22 @@ footer a {
     text-decoration: none;
 }
 
+    ::-webkit-scrollbar {
+        width: 12px;
+}
 
-    .animated-icon {
-      animation: bounce 1s infinite;
+    ::-webkit-scrollbar-track {
+        background-color: #f8f9fa;
+}
 
-    }
+    ::-webkit-scrollbar-thumb {
+        background-color: #343a40;
+        border-radius: 10px;
+}
 
-    .animated-icon1:nth-child(1) {
-      animation-delay: 0.5s;
-    }
-
-    .animated-icon1:nth-child(2) {
-      animation-delay: 0.5s;
-    }
-
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #495057;
+}
     
 </style>
 </head>

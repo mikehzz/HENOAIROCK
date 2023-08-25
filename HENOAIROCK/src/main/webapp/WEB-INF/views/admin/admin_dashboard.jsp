@@ -6,23 +6,49 @@
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap">
     <style>
+@font-face {
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.btn-primary {
+  padding: 5px 20px;
+  background-color: #2a2c33; /* New primary color */
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #757677; /* Darker color on hover */
+}
+
 header{
     position: sticky;
     top: 0;
-    z-index: 1000; /* Ensure the header is above other elements */
+    z-index: 1000;
 }
 
 body {
     background-color: #f8f9fa;
+        font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
 .navbar-dark.bg-dark {
     background-color: #343a40 !important;
+    font-family: 'Nunito', sans-serif;
 }
 
 .card {
-     margin-bottom: 20px;
+     margin-bottom: 50px;
      border-radius: 10px;
      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -47,6 +73,13 @@ body {
     ::-webkit-scrollbar-thumb:hover {
         background-color: #495057;
 }
+
+.kor{
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
     </style>
 </head>
 <body>
@@ -67,7 +100,7 @@ body {
                     </c:when>
                     <c:otherwise>
                         <li class="nav-item active">
-                            <span class="nav-link">Welcome, ${loggedInAdmin.userId}!</span>
+                            <span class="nav-link kor">${loggedInAdmin.userId}</span>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/admin/logout">Logout</a>
@@ -80,14 +113,14 @@ body {
 </nav>
 </header>
 
-<div class="container mt-4">
-    <div class="row">
+<div class="container mt-5">
+    <div class="row mt-5">
         <div class="col-md-4">
             <div class="card">
                 <div class="card-body text-center">
-                    <h5 class="card-title"><i class="fas fa-users"></i> User Management</h5>
-                    <p class="card-text">Manage and ban users.</p>
-                    <a href="/admin/users" class="btn btn-primary" onclick="return checkAdminLogin()">Go to User List</a>
+                    <h5 class="card-title"><i class="fas fa-users"></i> 회원 관리</h5>
+                    <p class="card-text"> 정보 조회/밴</p>
+                    <a href="/admin/users" class="btn btn-primary" onclick="return checkAdminLogin()">회원정보</a>
                 </div>
             </div>
         </div>
@@ -95,8 +128,8 @@ body {
             <div class="card">
                 <div class="card-body text-center">
                     <h5 class="card-title"><i class="fas fa-newspaper"></i> 게시판 관리</h5>
-                    <p class="card-text">게시판</p>
-                    <a href="/admin/post" class="btn btn-primary" onclick="return checkAdminLogin()">Go to GaeSiPan</a>
+                    <p class="card-text">게시판 조회/삭제</p>
+                    <a href="/admin/post" class="btn btn-primary" onclick="return checkAdminLogin()">게시판</a>
                 </div>
             </div>
         </div>
