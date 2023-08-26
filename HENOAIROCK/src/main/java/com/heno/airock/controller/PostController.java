@@ -54,7 +54,7 @@ public class PostController implements PcwkLoger {
 	public ResponseEntity<Map<String, Object>> deleteComment(@RequestParam String cmtSeq) throws SQLException {
 	    Map<String, Object> response = new HashMap<>();
 
-	    // 입력 값 유효성 검사 등 필요한 로직을 추가하세요.
+	    
 	    CommentVO inVO = new CommentVO();
 	    inVO.setCmtSeq(cmtSeq);
 	    
@@ -96,7 +96,7 @@ public class PostController implements PcwkLoger {
 
     
 	@PostMapping("/create")
-	@ResponseBody // 이 어노테이션을 추가하여 JSON 응답을 반환하도록 설정합니다.
+	@ResponseBody
 	public Map<String, Object> addComment(@ModelAttribute CommentVO comment,
 	                                      HttpServletRequest request,
 	                                      HttpSession session) throws SQLException {

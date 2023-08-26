@@ -39,34 +39,46 @@ request.setAttribute("title", title);
 <style>
 
 
-
-/*.container {
+/*큰 외부 테두리 안에 작은 컨테이너 박스 박스*/
+.container {
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3); /* 연하게 수정 */
   padding: 30px;
   margin-bottom: 20px;
   margin-top: 15px;
-  
-}*/
+}
 
-@font-face {
+font-face {
     font-family: 'Cafe24SsurroundAir';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
-.body {
+body {
 /*   background-image: linear-gradient(180deg,#000000 10%,#001a65 100%); */
     font-family: 'Cafe24SsurroundAir';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
+
+/*가장 큰 테두리 여백 이동*/
+body {
+    margin-left: -60px; /* 원하는 만큼 왼쪽으로 이동 */
+  }
+
+.custom-table {
+  
+  border-collapse: separate;
+  border-spacing: 0;
+  /*background-color: #f5f5f5;  옅은 회색 배경색 */
+}
+      
 </style>
 </head>
-<body>
 
+<body>
 
   <!-- contents  -->
   <div class="container">
@@ -88,7 +100,7 @@ request.setAttribute("title", title);
 		        <div class="d-flex justify-content-between align-items-center">
 		            <h2><c:out value='${outVO.postTitle}' /></h2>
 		            <div class="text-muted small">
-		                작성자: ${outVO.userId}
+		                            작성자: ${outVO.userId}
 		                <c:choose>
 		                    <c:when test="${not empty outVO.updateDt}">
 		                        <br>등록일: ${outVO.postDt} / 수정일: ${outVO.updateDt}
@@ -118,28 +130,33 @@ request.setAttribute("title", title);
 				        <col style="width: 10%;" />
 				        <col style="width: 23%;" />
 				    </colgroup>
-	    <tbody>
-			        <tr>
-			            <th scope="row">음악 정보</th>
-			            <td><img class="album-cover" src="${outVO.albumPath}" alt="앨범커버" width="60px" height="60px" id="musicClick" name="musicClick"></td>
-			            <th scope="row">곡이름</th>
-			            <td>${outVO.title} - ${outVO.artist}</td>
-			            <th scope="row">조회수</th>
-			            <td colspan="6">${outVO.readCnt}</td>
-			             <th scope="row" style="color: white;">내용</th>
-			        </tr>
-
-			    </tbody>
+				<tbody>
+				    <tr>
+				        <th scope="row">음악 정보</th>
+				        <td><img class="album-cover" src="${outVO.albumPath}" alt="앨범커버" width="60px" height="60px" id="musicClick" name="musicClick"></td>
+				        <th scope="row">곡이름</th>
+				        <td>${outVO.title} - ${outVO.artist}</td>
+				    </tr>
+				    <tr>
+				        <th scope="row">조회수</th>
+				        <td colspan="6">${outVO.readCnt}</td>
+				    </tr>
+				</tbody>
 			</table>
-	      <table class="table table-striped">
+			
+	     <table class="table custom-table">
 	          <tr>
-	            <th scope="row" style="color: white;">내용</th>
+	            <th scope="row" style="color: black;">내용</th>
 	            <td colspan="7"></td>
-	          </tr>
-	          </table>
-	      <div class="content">
+	         </tr>
+	         <tr>
+	         <td colspan="7">${outVO.postContents}</td>
+	         </tr>
+       </table>
+      
+	    <!--   <table class="table custom-table">
 	          <p>${outVO.postContents}</p>
-	        </div> 
+	        </table>  -->
 		        
 			<p class="btn_set">
 			    <c:set var="writer" value="${outVO.userId }" />
@@ -150,11 +167,12 @@ request.setAttribute("title", title);
 			        <input type="button" class="btn btn-secondary" value="삭제" id="doDelete">
 			    </c:if>
 			</p>
+			
       </section>
     </div>
-</div>
-    </div>
-    <div style="margin-top: 0px;">
+   </div>
+  </div>
+    
     <div class="comment-input">
         <textarea class="form-control" id="comments" name="comments" rows="4"></textarea>
         <button class="btn btn-secondary btn-lg" type="button" id="doAddComment">댓글 추가</button>

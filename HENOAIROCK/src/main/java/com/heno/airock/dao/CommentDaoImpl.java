@@ -50,6 +50,9 @@ public class CommentDaoImpl implements CommentDao {
         return sqlSessionTemplate.selectList("comment.getCommentsForPost", postSeq);
     }
 
+    
+    
+    
 
 }
 
