@@ -27,6 +27,37 @@ request.setAttribute("title", title);
 <link rel="stylesheet" type="text/css"
   href="/resources/css/post_reg.css">
 <!-- JavaScript Bundle with Popper -->
+
+
+<style>
+	/*큰 외부 테두리 안에 작은 컨테이너 박스 박스*/
+	.container {
+	  background-color: #fff;
+	  border-radius: 10px;
+	  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3); /* 연하게 수정 */
+	  padding: 30px;
+	  margin-bottom: 20px;
+	  margin-top: 15px;
+	}
+	
+   .btn-primary {
+	  padding: 5px 20px;
+	  background-color: #2a2c33; /* New primary color */
+	  color: white;
+	  border: none;
+	  border-radius: 25px;
+	  cursor: pointer;
+   }
+
+
+		.btn-primary:hover {
+		  background-color: #757677; /* Darker color on hover */
+		}
+
+  
+
+</style>
+
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
