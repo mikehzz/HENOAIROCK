@@ -235,7 +235,7 @@ body {
         </div>
         
     </br>
-    
+
         <div class="comments">
             <h3>댓글 ${comments.size()}개</h3>
         
