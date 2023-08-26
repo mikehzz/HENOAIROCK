@@ -66,6 +66,7 @@ to {
           <i id="LikeBtn" class="far fa-heart" style="color: #ff4360;" onclick="toggleLikeIcon(); fn_like();"></i>
         </div>
       </div>
+      
       <div class="col-md-8">
         <div class="song-details">
           <p class="song-title">${musicDetail.title}</p>

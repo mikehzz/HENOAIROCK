@@ -69,6 +69,7 @@ function fn_like() {
 					location.reload();
 				}
 			},
+			
 			error : function(data) {// 실패시 처리
 				console.log("통신 오류");
 			}
