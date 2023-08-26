@@ -229,7 +229,7 @@ body {
             </div>
         </div>
       </c:if>
-    
+
         <div class="post-content">
             <p>${outVO.postContents}</p>
         </div>
