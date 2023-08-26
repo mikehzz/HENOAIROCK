@@ -194,7 +194,7 @@ color: #a1a1a1;
     <div class="col-sm emotion-button laugh" id="feeling" onclick="redirectToMusicRegEmo('신남')"><i class="fa-solid fa-face-laugh-squint"></i> 신남</div>
     <div class="col-sm emotion-button thumbs" id="feeling" onclick="redirectToMusicRegEmo('자신감')"><i class="fas fa-thumbs-up"></i> 자신감</div>
   </div>
-  
+
     <hr class="my-2">
    <table id="boardTable" class="table table-striped table-hover table-bordered" style="table-layout: fixed">
       <thead>
