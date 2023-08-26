@@ -63,7 +63,7 @@ function fn_like() {
 				let paredJSON = JSON.parse(data)
 				if ("1" == paredJSON.msgId) {
 					alert(paredJSON.msgContents);
-					location.reload();
+					location.reload(); 
 				} else if("2" == paredJSON.msgId){
 					alert(paredJSON.msgContents);
 					location.reload();

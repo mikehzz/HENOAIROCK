@@ -65,7 +65,7 @@ to {
           <img class="album-cover" src="${musicDetail.albumPath}" alt="앨범 커버">
           <i id="LikeBtn" class="far fa-heart" style="color: #ff4360;" onclick="toggleLikeIcon(); fn_like();"></i>
         </div>
-      </div>
+      </div> 
       
       <div class="col-md-8">
         <div class="song-details">
