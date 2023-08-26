@@ -11,7 +11,6 @@ public class MyPlayListVO extends MemberDTO{
 	private String albumPath;
 	private String ytLink;
 	private int myListDiv;
-	
 	private String musicId;
 	
 	public MyPlayListVO() {}

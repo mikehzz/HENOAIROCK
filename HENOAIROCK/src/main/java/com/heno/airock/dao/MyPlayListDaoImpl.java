@@ -131,7 +131,13 @@ public class MyPlayListDaoImpl implements MyPlaylistDao {
 	@Override
 	public int addCustom(MyPlayListVO inVO) throws SQLException {
 		// TODO Auto-generated method stub
-		return sqlSessionTemplate.insert("MyPlayList.addCustom");
+		return sqlSessionTemplate.insert("MyPlayList.addCustom", inVO);
+	}
+
+	@Override
+	public MemberDTO selMypageProfile(MemberDTO inVO) throws SQLException {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("MyPlayList.selMypageProfile", inVO);
 	}
 	
 

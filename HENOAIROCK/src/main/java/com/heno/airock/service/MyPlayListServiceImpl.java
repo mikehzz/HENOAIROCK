@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.heno.airock.dao.MyPlaylistDao;
+import com.heno.airock.dto.MemberDTO;
 import com.heno.airock.dto.MusicVO;
 import com.heno.airock.dto.MyPlayListVO;
 
@@ -117,6 +118,12 @@ public class MyPlayListServiceImpl implements MyPlayListService {
 	public int addCustom(MyPlayListVO inVO) throws SQLException {
 		// TODO Auto-generated method stub
 		return dao.addCustom(inVO);
+	}
+
+	@Override
+	public MemberDTO selMypageProfile(MemberDTO inVO) throws SQLException {
+		// TODO Auto-generated method stub
+		return dao.selMypageProfile(inVO);
 	}
 	
 
