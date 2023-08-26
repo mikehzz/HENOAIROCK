@@ -15,7 +15,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@ include file="/WEB-INF/views/admin/top.jsp" %>
 <!-- 제목 및 닉네임 사진 변경  -->
 <div id="musicList" class="mw">
   <div class="meta_info">

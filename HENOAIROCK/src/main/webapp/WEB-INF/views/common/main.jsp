@@ -25,7 +25,23 @@
     font-weight: normal;
     font-style: normal;
 }
+.truncate-text {
+  white-space: nowrap;       /* 줄바꿈 금지 */
+  overflow: hidden;          /* 내용 넘치는 부분 숨김 */
+  text-overflow: ellipsis;   /* 넘치는 부분 "..."으로 표시 */
+}
+.chat-container {
+  bottom: 60px; /* .message-container의 높이 + 여백 */
+  right: 232px;
+  overflow-y: auto;
+  max-height: calc(100vh - 60px); /* 화면 높이에서 .message-container 높이와 여백을 뺀 값 */
+}
 
+  .message-container {
+    background-color: white;
+    padding: 10px;
+    margin-top: auto;
+  }
 .sidebar.sidebar-right {
     left: auto;
     right: 0;
@@ -33,7 +49,10 @@
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+    height: 100%;
+    overflow-y: auto; /* Y축 스크롤 활성화 */
 }
+
              .message-container {
             position: fixed;
             bottom: 0;
@@ -77,16 +96,23 @@
         #sendMessageBtn:hover {
             background-color: #cc4400; /* 배경색 변경 */
         }
+        .chatTable {
+  width: 1600px;
+  table-layout: fixed;
+}
+
+.chatTable td {
+  word-wrap: break-word;
+}
+</style>
+        
 </style>
 </head>
 <body>
 <input type="hidden" id= "userId" value="${sessionScope.userId}" name="userId" >
 
-
-<div class="sidebar-content-wrapper">
 <div class="sidebar sidebar-right">
-<div class="container">
-  <div class="chat-container">
+  <div>
      <!-- ... 이하 채팅 로그 등의 내용 ... -->
      <table id="boardTable">
        <thead>
@@ -101,39 +127,42 @@
              <c:forEach var="vo" items="${MsgList}">
                  <tr>
                    <td style="display:none;">${vo.chatSeq}</td>
-                   <td>${vo.chatDt} ${vo.chatContents}</td>
-                 </tr>          
+                   <td>${vo.chatDt}</td>
+                 </tr>
+                 <tr>
+                    <td style="display:none;">${vo.chatSeq}</td>
+                   <td> ${vo.chatContents}</td>
+                 </tr>
+                 <tr>
+                    <td style="display:none;">${vo.chatSeq}</td>
+                    <td><hr></td>
+                 </tr>
              </c:forEach>
             </c:when>
            </c:choose>
          </tbody>
       </table>
- </div>
- </div>
- </div>
- 
- 
- 
-   <div class="row">
-        <div class="col-md-6">
-      <table>
+      </div> <!-- chat-container -->
+    </div>
+   <div class="chat-container">
+      <table class="chatTable">
        <tbody class="table-group-divider">
             <c:choose>
           <c:when test="${not empty contentsList }">
             <c:forEach var="conVO" items="${contentsList}">
                 <tr>
-                  <td><c:out value="${conVO.chatContents }"/></td>      
+                  <td class="text-right">${sessionScope.user.userId}: <c:out value="${conVO.chatContents }"/></td>      
                 </tr>
                 <c:forEach var="resVO" items="${respondList}">
                     <c:if test="${resVO.chatContentsId == conVO.chatContentsId}">
                         <tr> 
-                          <td><c:out value="${resVO.chatResContents}"/></td>  
+                          <td class="text-left"><c:out value="${resVO.chatResContents}"/></td>  
 			                  </tr>
 			                  <tr>
 			                   <td>저희가 분석한 결과는 아래와 같아요</td>
 			                  </tr>
 			                  <tr>
-                           <td><div class="graphBox"><canvas id="myRadarChart_${conVO.chatContentsId}" width="300" height="250"></canvas></div></td>
+                           <td class="text-left"><div class="graphBox"><canvas id="myRadarChart_${conVO.chatContentsId}" width="300" height="250"></canvas></div></td>
                         </tr>
                         <tr>
 							            <td>
@@ -183,9 +212,9 @@
 							            </td>
 							        </tr>
 								        <tr onclick="musicClick(this);">
-								          <td>따라서  이 노래를 추천드려요!</td>
-								          <td>${resVO.artist}에 ${resVO.title}</td>
-								          <td><img src = "${resVO.albumPath}" width="60px" height="60px"></td>
+								          <td class="text-left">따라서  이 노래를 추천드려요!</td>
+								          <td class="text-left">${resVO.artist}에 ${resVO.title}</td>
+								          <td class="text-left"><img src = "${resVO.albumPath}" width="60px" height="60px"></td>
 								          <td style="display:none;" data-musicid="<c:out value="${resVO.musicId}" />"></td>
 								        </tr>
 								        <tr>
@@ -199,16 +228,12 @@
       </tbody>
      </table>
         </div>
-    </div>
-
-  </div>
-                             <div class="message-container" id="messageContainer">
-                    <input type="text" id="userInput" class="form-control" placeholder="메세지를 입력하세요.">
-                    <button id="sendMessageBtn" class="btn btn-primary" onclick="sendMessage()">보내기</button>
-                </div>
     
-      
 
+          <div class="message-container" id="messageContainer">
+            <input maxlength="80" type="text" id="userInput" class="form-control" placeholder="메세지를 입력하세요.">
+            <button id="sendMessageBtn" class="btn btn-primary" onclick="sendMessage()">보내기</button>
+          </div>
   <script>
 //이미지 클릭스 음악 상세 페이지 출력
   function musicClick(row) {
@@ -348,6 +373,7 @@
       const newURL = "${CP}/main/selectOne?chatSeq=" + chatSeqValue;
       window.location.href = newURL;
   });
+  
   
   </script>
   <script src="${CP}/resources/js/main.js"></script>

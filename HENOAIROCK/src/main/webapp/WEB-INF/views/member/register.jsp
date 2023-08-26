@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="author" content="User">
-<link rel="stylesheet" type="text/css" href="../resources/css/register.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/register.css">
 <script src="/resources/js/jquery-3.7.0.js"></script>
 <title>회원가입</title>
 </head>
