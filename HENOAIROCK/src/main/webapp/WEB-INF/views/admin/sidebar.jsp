@@ -50,7 +50,7 @@ body {
 	background-color: #343a40;
 	padding-top: 20px;
 	transition: width 0.3s ease-in-out;
-	z-index: 1;
+	z-index: 2;
 	background-image: linear-gradient(180deg, #0d101a 10%, #1a1515 100%);
   box-shadow: 0 0 10px rgba(0, 0, 0, 1);
 }

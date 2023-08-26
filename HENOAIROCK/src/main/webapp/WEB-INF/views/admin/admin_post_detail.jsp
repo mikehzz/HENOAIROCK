@@ -233,7 +233,7 @@ body {
         <div class="post-content">
             <p>${outVO.postContents}</p>
         </div>
-        
+
     </br>
 
         <div class="comments">

@@ -108,7 +108,9 @@ INSERT INTO MSG_DETAIL (
 <select id="selectMsgList" parameterType="chatDetail" resultType="chatDetail">
     SELECT
 		    chat_seq,
-		    chat_dt,
+		    DECODE( TO_CHAR(chat_dt,'YYYYMMDD'),TO_CHAR(sysdate,'YYYYMMDD')
+                      ,TO_CHAR(chat_dt,'HH24:MI')
+                      ,TO_CHAR(chat_dt,'YYYY/MM/DD') )chat_dt,
 		    chat_contents
     FROM (
     SELECT

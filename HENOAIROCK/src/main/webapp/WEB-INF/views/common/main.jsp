@@ -18,10 +18,73 @@
 <!-- 차트그리기 -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <title>음악 사이트</title>
+<style>
+@font-face {
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.sidebar.sidebar-right {
+    left: auto;
+    right: 0;
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+             .message-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333; /* 배경색 변경 */
+            padding: 15px 260px; /* 패딩 조정 */
+            box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1; /* 다른 내용 위에 나타나게 설정 */
+            text-align: center; /* 가운데 정렬 */
+            color: white; /* 텍스트 색상 변경 */
+            display: flex;
+            justify-content: space-between; /* 입력창과 버튼 간 여백 유지 */
+            align-items: center; /* 수직 가운데 정렬 */
+        }
+
+        /* 입력창 스타일 */
+        #userInput {
+            flex: 1; /* 남은 공간을 차지하도록 설정 */
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #444; /* 배경색 변경 */
+            color: white; /* 텍스트 색상 변경 */
+            margin-right: 10px; /* 오른쪽 여백 추가 */
+            font-size: 14px;
+        }
+
+        /* 보내기 버튼 스타일 */
+        #sendMessageBtn {
+            padding: 10px 20px;
+            background-color: #ff5500; /* 배경색 변경 */
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 14px;
+        }
+
+        #sendMessageBtn:hover {
+            background-color: #cc4400; /* 배경색 변경 */
+        }
+</style>
 </head>
 <body>
 <input type="hidden" id= "userId" value="${sessionScope.userId}" name="userId" >
-    
+
+
+<div class="sidebar-content-wrapper">
+<div class="sidebar sidebar-right">
 <div class="container">
   <div class="chat-container">
      <!-- ... 이하 채팅 로그 등의 내용 ... -->
@@ -46,6 +109,11 @@
          </tbody>
       </table>
  </div>
+ </div>
+ </div>
+ 
+ 
+ 
    <div class="row">
         <div class="col-md-6">
       <table>
@@ -132,16 +200,12 @@
      </table>
         </div>
     </div>
-      <div class="col-md-6">
-           <div>감정을 담은 메세지를 전송해주세요 알맞은 노래를 추천해드려요!</div>
-           <div id="messageContainer" class="message-container">
-             <input type="text" id="userInput" placeholder="첫 대화를 입력하세요.">
-             <button onclick="sendMessage()">보내기</button>
-           </div>
-    </div>
-</div>
-     
-  
+
+  </div>
+                             <div class="message-container" id="messageContainer">
+                    <input type="text" id="userInput" class="form-control" placeholder="메세지를 입력하세요.">
+                    <button id="sendMessageBtn" class="btn btn-primary" onclick="sendMessage()">보내기</button>
+                </div>
     
       
 

@@ -302,7 +302,7 @@ footer a {
 }
 
 .animated-icon1 {
-animation: rainbowText 5s infinite;
+  animation: rainbowText 5s infinite;
 }
 
 @keyframes rainbowText {
@@ -315,6 +315,14 @@ animation: rainbowText 5s infinite;
   85% { color: #958dff; }
   100% { color: #ff8d8d; }
 }
+
+.iknow {
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 </style>
 </head>
 <body>
@@ -357,8 +365,8 @@ animation: rainbowText 5s infinite;
         <i class="fa-solid fa-ghost fa-bounce social" style="color: #71f4a3;"></i>
       </div>
 
-      <input type="text" placeholder="Admin" class="size line-input" id="userId" name="userId">
-      <input type="password" placeholder="1" class="size line-input" id="password">
+      <input type="text" placeholder="어드민" class="size line-input iknow" id="userId" name="userId">
+      <input type="password" placeholder="1" class="size line-input iknow" id="password">
 
       <a href="#">Forgot your password?</a>
       <button type="submit" id="fn_email" name="fn_email">Sign In</button>
