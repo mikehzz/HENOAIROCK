@@ -50,6 +50,7 @@ public class MyPageController implements PcwkLoger {
 			//좋아요 리스트
 			MyPlayListVO outVO = myPlayListService.selectLikeSeq(inVO);
 			List<MyPlayListVO> list2 = myPlayListService.selectCustomSeq(inVO);
+			MemberDTO outVO3 = myPlayListService.selMypageProfile(inVO);
 			LOG.debug("│outVO                          │" + outVO);
 			LOG.debug("│outVO2                          │" + list2);
 
@@ -62,6 +63,8 @@ public class MyPageController implements PcwkLoger {
 				LOG.debug("list2:" + list2);
 				model.addAttribute("list", list);
 				model.addAttribute("list2", list2);
+				model.addAttribute("outVO3", outVO3);
+
 			}
  			
 			
@@ -139,9 +142,9 @@ public class MyPageController implements PcwkLoger {
 
 	}
 	
-	@RequestMapping(value="add")
+	@RequestMapping(value="list_reg")
 	public String viewList(MyPlayListVO inVO, Model model, HttpServletRequest request, HttpSession httpSession) throws SQLException {
-		String viewPage = "/member/addList";
+		String viewPage = "/member/list_add";
 		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("user");
 		
 		if (memberDTO != null) {
@@ -152,6 +155,36 @@ public class MyPageController implements PcwkLoger {
 		}
 		
 	}
+	
+	@RequestMapping(value = "save", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String addList(MyPlayListVO inVO, Model model, HttpServletRequest request, HttpSession session) throws SQLException {
+
+		String jsonString = "";
+		LOG.debug("┌──────────────────────────────┐");
+		LOG.debug("│delCustomList                      │");
+		LOG.debug("│inVO                          │" + inVO);
+		LOG.debug("└──────────────────────────────┘");
+
+		int flag = myPlayListService.addCustomList(inVO);
+
+		MessageDTO message = new MessageDTO();
+		if (1 == flag) {// 삭제 성공
+			message.setMsgId("1");
+			message.setMsgContents("등록되었습니다!");
+			jsonString = new Gson().toJson(message);
+			
+			return jsonString;
+		} else {// 등록실패
+			message.setMsgId("2");
+			message.setMsgContents("등록실패했습니다!");
+			jsonString = new Gson().toJson(message);
+			
+			return jsonString;
+		}
+		
+	}
+	
 	
 	@RequestMapping(value = "delCustomList", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
@@ -255,6 +288,7 @@ public class MyPageController implements PcwkLoger {
 		LOG.debug("musicIds : " + musicIds);
 	    for (String musicId : musicIds) {
 	        // 데이터베이스에 레코드 추가
+	        inVO = new MyPlayListVO(); // 새로운 객체 생성
 	        inVO.setUserId(memberDTO.getUserId());
 	        inVO.setMyListSeq(myListSeq);
 	        inVO.setMusicId(musicId);
@@ -281,36 +315,8 @@ public class MyPageController implements PcwkLoger {
 	    }
 	}	
 	
+
 	
-	/*
-	 * @GetMapping("/listAdd") public String select_reg(@RequestParam(value =
-	 * "music_reg/genre", required = false) String genre, MusicVO inVO, Model model)
-	 * throws SQLException { String viewPage = "/music/music_reg"; // page번호 if
-	 * (null != inVO && inVO.getPageNo() == 0) { inVO.setPageNo(1); }
-	 * 
-	 * // pageSize if (null != inVO && inVO.getPageSize() == 0) {
-	 * inVO.setPageSize(50); }
-	 * 
-	 * // searchWord if (null != inVO && null == inVO.getSearchWord()) {
-	 * inVO.setSearchWord(""); }
-	 * 
-	 * // searchDiv if (null != inVO && null == inVO.getSearchDiv()) {
-	 * inVO.setSearchDiv(""); }
-	 * 
-	 * // genre if (null != inVO && null != genre) { inVO.setGenre(genre); }
-	 * LOG.debug("inVO:" + inVO); // 코드조회: 검색코드 CodeVO codeVO = new CodeVO();
-	 * codeVO.setCodeId("MUSIC_SEARCH"); List<CodeVO> searchList =
-	 * codeService.select(codeVO); model.addAttribute("searchList", searchList);
-	 * 
-	 * List<MusicVO> musicList = this.musicService.select(inVO);
-	 * model.addAttribute("musicList", musicList);
-	 * 
-	 * // 총글수 int totalCnt = 0; if (null != musicList && musicList.size() > 0) {
-	 * totalCnt = musicList.get(0).getTotalCnt(); }
-	 * 
-	 * model.addAttribute("totalCnt", totalCnt); model.addAttribute("inVO", inVO);
-	 * return viewPage; }
-	 */
 	
 	
 }

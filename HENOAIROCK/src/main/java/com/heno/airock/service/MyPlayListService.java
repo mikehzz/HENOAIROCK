@@ -6,6 +6,8 @@ import java.util.List;
 import com.heno.airock.cmn.WorkDiv;
 import com.heno.airock.dto.MusicVO;
 import com.heno.airock.dto.MyPlayListVO;
+import com.heno.airock.dto.MemberDTO;
+
 
 public interface MyPlayListService extends WorkDiv<MyPlayListVO>{
 
@@ -35,4 +37,6 @@ public interface MyPlayListService extends WorkDiv<MyPlayListVO>{
 	
 	public int addCustom(MyPlayListVO inVO) throws SQLException;
 
+	public MemberDTO selMypageProfile(MemberDTO inVO) throws SQLException;
+ 
 }

@@ -80,15 +80,12 @@
   
   <select id="selectCustomSeq" parameterType="member" resultType="MyPlayList">
     SELECT
-        p.mylist_seq,
-        MAX(p.mylist_title) AS title,
-        MAX(d.music_id) AS music_id,
-        MAX(m.album_path) AS album_path
-    FROM myplaylist_detail d
-    JOIN myplaylist p ON d.mylist_seq = p.mylist_seq
-    JOIN music m ON d.music_id = m.music_id
-    WHERE p.user_id = #{userId} AND p.mylist_div = 20
-    GROUP BY p.mylist_seq
+        mylist_seq,
+        mylist_title as title,
+        mylist_img as albumImg
+        
+    FROM myplaylist
+    WHERE user_id = #{userId} AND mylist_div = 20
   </select>
   
   <select id="selectCustom" parameterType="MyPlayList" resultType="MyPlayList">
@@ -125,17 +122,19 @@
   
   
   <insert id="addCustomList" parameterType="MyPlayList">
-    INSERT INTO myplaylist (
-        mylist_seq,
-        user_id,
-        mylist_div,
-        mylist_title
-    ) VALUES (
-        #{myListSeq},
-        #{userId},
-        #{myListDiv},
-        #{title}
-    )
+  INSERT INTO myplaylist (
+    mylist_seq,
+    user_id,
+    mylist_div,
+    mylist_title,
+    mylist_img
+) VALUES (
+    #{myListSeq},
+    #{userId},
+    20,
+    #{title},
+    '/resources/images/KaKao4.jpg'
+)  
   </insert>
   
   
@@ -185,8 +184,14 @@
     )  
   </insert>
   
-  
-  
+  <select id="selMypageProfile" parameterType="member" resultType="member">
+		SELECT  nickname,
+		        name,
+		        profile_img
+		
+		FROM member
+		WHERE user_id = #{userId}  
+  </select>
   
   
   

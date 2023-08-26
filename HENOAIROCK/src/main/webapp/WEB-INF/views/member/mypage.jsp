@@ -19,22 +19,15 @@
 <!-- 제목 및 닉네임 사진 변경  -->
 <div id="musicList" class="mw">
   <div class="meta_info">
-    <img class="meta_info_img" alt="" src="https://api1.indj.club/api/v3/channel/image/thumbnail/CHThumbnail_2022-06-23-15-08-35_51532.jpg">
+    <img class="meta_info_img" alt="" src="${outVO3.profileImg}">
   <div class="meta_info_text absolute p-16">
-    <h1>혼술할때 들어봐요</h1>
-    <span class="text96">13곡 · 01시간 01분</span>
-  <div class="tag_list">
-    <span class="text96"> #휴식 </span>
-    <span class="text96"> #혼술/혼밥 </span>
-    <span class="text96"> #슬퍼요 </span>
-  </div>
-  
+
   <!-- 노래 모음 -->
   <article class="horizen_zzz">
   <button class="fs">
-    <img class="horizen_mmimg" src="https://api1.indj.club/api/v3/channel/image/profile/profile_51532_340788244122.jpg" alt="이미지" style="width: 48px;">
   <div id="meta_info" class="ell">
-    <p class="meta_info_title ell">어깨가 넓은 김형준</p>
+    <p class="meta_info_title ell">${outVO3.nickname}</p>
+    <p class="meta_info_title ell">${outVO3.name}</p>
   </div>
    </button>
   </article>
@@ -48,7 +41,7 @@
     <div class="button_container">
 <!--         <button class="button_class" id="listAddButton">리스트 추가</button>
         <button class="button_class" id="listDelButton">리스트 삭제</button> -->
-        <a href="javascript:void(0);" class="btn button_class" onclick="handleListAddClick()">리스트등록</a>
+        <a href="/mypage/list_reg" class="btn button_class" onclick="handleListAddClick()">리스트등록</a>
         <a href="javascript:void(0);" class="btn button_class" onclick="handleListDeleteClick()">리스트삭제</a>
     </div>
     </ul>
@@ -90,12 +83,12 @@
        <c:forEach var="vo" items="${list2}">
        <article class="horizen_station cursor">
           <button class="fs myListSeq" id="myListSeq" name="myListSeq">
-              <img class="horizen_img station" src="${vo.albumPath }" alt="이미지" style="width: 80px;">
+              <img class="horizen_img station" src="${vo.albumImg }" alt="이미지" style="width: 80px;">
             <div id="meta_info" class="ell">
               <p class="meta_info_title ell">${vo.title}</p>
             </div>
            </button>
-           <input type="hidden" value="${vo.myListSeq }" id="myListSeq" name="myListSeq">
+           <input type="hidden" value="${vo.myListSeq}" id="myListSeq" name="myListSeq">
        </article>
        </c:forEach>
     </c:when>
@@ -138,15 +131,20 @@ $(".music").on("click", function (e) {
     let popupOptions = "width=800,height=600,resizable=yes,scrollbars=yes";
     window.open(popupUrl, popupName, popupOptions);
 });
+let isButtonEnabled = true;
 
 $(".myListSeq").on("click", function (e) {
+    if (isButtonEnabled) {
+
     let myListSeq = $(this).siblings("input[type='hidden']").val();
     console.log('myListSeq:' + myListSeq);
     // 팝업 창 열기
-    let popupUrl = "mypage/list_detail/?myListSeq=" + myListSeq;
+    let popupUrl = "http://localhost:8080/mypage/list_detail/?myListSeq=" + myListSeq;
     let popupName = "ListDetailPopup";
     let popupOptions = "width=800,height=600,resizable=yes,scrollbars=yes";
     window.open(popupUrl, popupName, popupOptions);
+    
+    }
   });
 
 
@@ -184,7 +182,6 @@ function showButtons() {
 function handleListAddClick() {
     console.log("리스트등록을 클릭했습니다.");
     
-    
 
     
 }
@@ -196,10 +193,13 @@ function handleListDeleteClick() {
     let confirmDeleteGo = confirm("삭제할 리스트를 선택하세요.");
     
     if (confirmDeleteGo) {
+        isButtonEnabled = false;
+
         // 예를 클릭했을 때, myListSeq 요소 클릭 이벤트 핸들링
         $(document).on("click", ".horizen_station", function () {
             console.log('list click.');
             let myListSeq = $(this).find("input[type='hidden']").val();
+            $(".myListSeq").prop("disabled", true);
 
             // 진짜로 리스트를 삭제하시겠습니까? 문구 표시
             let confirmDelete = confirm("진짜로 리스트를 삭제 하시겠습니까?");

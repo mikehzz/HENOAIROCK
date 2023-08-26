@@ -164,6 +164,8 @@ $(".btn-add").on("click", function (e) {
                 location.reload();
             } else {
                 alert(parsedJson.msgContents);
+                location.reload();
+
             }
         },
         error: function(data) {
