@@ -156,6 +156,24 @@ body {
     font-size: 14px;
     color: #888;
 }
+
+.ariana {
+  font-size: 14px;
+  color: gray;
+  float: right;
+}
+
+.grande{
+  font-size: 14px;
+  color: gray;
+  float: right;
+}
+
+.butera{
+  font-size: 14px;
+  color: gray;
+  float: right;
+}
 </style>
 </head>
 <body>
@@ -188,14 +206,18 @@ body {
         <div class="post-info">
             <div>
                 <p><strong>제목:</strong> ${outVO.postTitle}</p>
-                <p><strong>작성자:</strong> ${outVO.userId}</p>
+                
             </div>
             <div>
-                <p><strong>등록일:</strong> ${outVO.postDt}
+            <p class="ariana"><strong>작성자:</strong> ${outVO.userId}</p>
+            <div>
+                <p class="butera"><strong>등록일:</strong> ${outVO.postDt}
                     <c:if test="${not empty outVO.updateDt}">
-                <strong>수정일:</strong> ${outVO.updateDt}
-                </c:if></p>
-                <p><strong>조회:</strong> ${outVO.readCnt}</p>
+                <strong> / 수정일:</strong> ${outVO.updateDt}
+                </c:if></p></div>
+                <div>
+                <p class="grande"><strong>조회:</strong> ${outVO.readCnt}</p>
+            </div>
             </div>
         </div>
 
@@ -211,7 +233,9 @@ body {
         <div class="post-content">
             <p>${outVO.postContents}</p>
         </div>
-
+        
+    </br>
+    
         <div class="comments">
             <h3>댓글 ${comments.size()}개</h3>
         
