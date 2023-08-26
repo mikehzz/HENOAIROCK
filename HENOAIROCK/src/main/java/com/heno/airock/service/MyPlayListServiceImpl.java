@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.heno.airock.dao.MyPlaylistDao;
+import com.heno.airock.dto.MusicVO;
 import com.heno.airock.dto.MyPlayListVO;
 
 @Service
@@ -62,6 +63,60 @@ public class MyPlayListServiceImpl implements MyPlayListService {
 	@Override
 	public int deleteMusic(MyPlayListVO inVO) throws SQLException {
 		return dao.deleteMusic(inVO);
+	}
+
+	@Override
+	public List<MyPlayListVO> selectCustomSeq(MyPlayListVO inVO) throws SQLException {
+		// TODO Auto-generated method stub
+		return dao.selectCustomList(inVO);
+	}
+	
+	@Override
+	public List<MusicVO> selectCustomListMusic(MyPlayListVO inVO) throws SQLException {
+		// TODO Auto-generated method stub
+		return dao.selectCustomListMusic(inVO);
+	}
+
+	@Override
+	public int addCustomList(MyPlayListVO inVO) throws SQLException {
+		// TODO Auto-generated method stub
+		return dao.addCustomList(inVO);
+	}
+
+	@Override
+	public int delCustomList(MyPlayListVO inVO) throws SQLException {
+		// TODO Auto-generated method stub
+		return dao.delCustomList(inVO);
+	}
+
+	@Override
+	public MyPlayListVO selectCustom(MyPlayListVO inVO) throws SQLException {
+		// TODO Auto-generated method stub
+		return dao.selectCustom(inVO);
+	}
+
+	@Override
+	public int delCustomListMusic(MyPlayListVO inVO) throws SQLException {
+		// TODO Auto-generated method stub
+		return dao.delCustomListMusic(inVO);
+	}
+
+	@Override
+	public int modCustomTitle(MyPlayListVO inVO) throws SQLException {
+		// TODO Auto-generated method stub
+		return dao.modCustomTitle(inVO);
+	}
+
+	@Override
+	public List<MusicVO> selmusic() throws SQLException {
+		// TODO Auto-generated method stub
+		return dao.selmusic();
+	}
+
+	@Override
+	public int addCustom(MyPlayListVO inVO) throws SQLException {
+		// TODO Auto-generated method stub
+		return dao.addCustom(inVO);
 	}
 	
 

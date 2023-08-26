@@ -3,26 +3,26 @@
 <mapper namespace="MyPlayList">
   
   <select id="selectList" parameterType="MyPlayList" resultType="MyPlayList">
-		SELECT  TT1.rnum as num,
-		        TT1.album_path as albumImg,
-		        TT1.title,
-		        TT1.album,
-		        TT1.artist,
-		        TT1.feeling,
-		        TT1.yt_link
-		FROM(
-		    SELECT ROWNUM as rnum, T1.*
-		    FROM(
-		        SELECT *
-		        FROM music a
-		        JOIN myplaylist b ON a.music_id = b.music_id
-		        WHERE user_id = #{userId}
-		        AND feeling = #{feeling}
-		        AND mylist_div = #{myListDiv}
-		        ORDER BY public_dt DESC
-		    )T1
+    SELECT  TT1.rnum as num,
+            TT1.album_path as albumImg,
+            TT1.title,
+            TT1.album,
+            TT1.artist,
+            TT1.feeling,
+            TT1.yt_link
+    FROM(
+        SELECT ROWNUM as rnum, T1.*
+        FROM(
+            SELECT *
+            FROM music a
+            JOIN myplaylist b ON a.music_id = b.music_id
+            WHERE user_id = #{userId}
+            AND feeling = #{feeling}
+            AND mylist_div = #{myListDiv}
+            ORDER BY public_dt DESC
+        )T1
           <![CDATA[     WHERE ROWNUM <= #{pageSize} * (#{pageNo}-1)+#{pageSize}   ]]>
-		)TT1
+    )TT1
        <![CDATA[   WHERE rnum >=#{pageSize} * (#{pageNo}-1)+ 1 ]]>
   </select>
   
@@ -30,8 +30,8 @@
   <selectKey keyProperty="myListSeq" resultType="string" order="BEFORE">
          SELECT MY_LIST_SEQ.NEXTVAL FROM DUAL
   </selectKey>
-    INSERT INTO MYPLAYLIST (mylist_seq, user_id, mylist_div) 
-    VALUES (#{myListSeq} , #{userId}, 10)   
+    INSERT INTO MYPLAYLIST (mylist_seq, user_id, mylist_div)
+    VALUES (#{myListSeq} , #{userId}, 10)
   </insert>
   
   <insert id="saveLikeMusic" parameterType="MyPlayList">
@@ -40,15 +40,27 @@
   </insert>
   
   <select id="selectLikeSeq" parameterType="member" resultType="MyPlayList">
-    SELECT 
+    SELECT
       mylist_seq
     FROM myplaylist
     WHERE user_id = #{userId} AND mylist_div = 10
   </select>
   
+
+  
+  
+  <update id="renameTitle" parameterType="MyPlayList">
+    UPDATE myplaylist
+    SET
+        mylist_title = #{title}
+    WHERE
+            mylist_seq = #{myListSeq}
+  </update>
+
+   
   <select id="likeList" parameterType="MyPlayList" resultType="MyPlayList">
     SELECT 
-      A.*, 
+      A.*,
       M.title,
       M.artist,
       M.album_path
@@ -65,5 +77,118 @@
     DELETE FROM MYPLAYLIST_DETAIL
     WHERE music_id = #{musicId} AND mylist_seq = #{myListSeq}
   </delete>
+  
+  <select id="selectCustomSeq" parameterType="member" resultType="MyPlayList">
+    SELECT
+        p.mylist_seq,
+        MAX(p.mylist_title) AS title,
+        MAX(d.music_id) AS music_id,
+        MAX(m.album_path) AS album_path
+    FROM myplaylist_detail d
+    JOIN myplaylist p ON d.mylist_seq = p.mylist_seq
+    JOIN music m ON d.music_id = m.music_id
+    WHERE p.user_id = #{userId} AND p.mylist_div = 20
+    GROUP BY p.mylist_seq
+  </select>
+  
+  <select id="selectCustom" parameterType="MyPlayList" resultType="MyPlayList">
+    SELECT
+        a.mylist_title AS title,
+        MAX(b.nickname) AS nickname,
+        MAX(b.profile_img) AS profile_img,
+        MAX(d.album_path) AS album_path
+    FROM myplaylist a
+    JOIN member b ON a.user_id = b.user_id
+    JOIN myplaylist_detail c ON a.mylist_seq = c.mylist_seq
+    JOIN music d ON c.music_id = d.music_id
+    
+    WHERE a.user_id = #{userId} AND a.mylist_seq = #{myListSeq}
+    GROUP BY a.mylist_title
+  </select>
+  
+  
+  <select id="selectCustomListMusic" parameterType="MyPlayList" resultType="music">
+    SELECT a.music_id,
+           b.title,
+           b.album,
+           b.artist,
+           b.album_path,
+           b.genre,
+           b.feeling,
+           b.embed_link
+    FROM myplaylist_detail a, music b
+    WHERE a.music_id = b.music_id
+    AND a.mylist_seq = #{myListSeq}
+    AND a.user_id = #{userId}
+    
+  </select>
+  
+  
+  <insert id="addCustomList" parameterType="MyPlayList">
+    INSERT INTO myplaylist (
+        mylist_seq,
+        user_id,
+        mylist_div,
+        mylist_title
+    ) VALUES (
+        #{myListSeq},
+        #{userId},
+        #{myListDiv},
+        #{title}
+    )
+  </insert>
+  
+  
+  <delete id="delCustomList" parameterType="MyPlayList">
+    DELETE FROM myplaylist
+    WHERE
+      mylist_seq = #{myListSeq}
+  </delete>
+  
+   <delete id="delCustomListMusic" parameterType="MyPlayList">
+    DELETE FROM myplaylist_detail
+    WHERE
+            mylist_seq = #{myListSeq}
+        AND music_id = #{musicId}
+  </delete> 
+  
+  <update id="modCustomTitle" parameterType="MyPlayList">
+    UPDATE myplaylist
+    SET
+        mylist_title = #{title}
+    WHERE
+        mylist_seq = #{myListSeq}  
+  </update>
+  
+  <select id="selmusic" resultType="music">
+    select  music_id,
+            album_path,
+            artist,
+            title,
+            genre,
+            feeling,
+            embed_link
+    from music
+  </select>
+  
+  <insert id="addCustom" parameterType="MyPlayList">
+    INSERT INTO myplaylist_detail (
+        mylist_seq,
+        user_id,
+        music_id,
+        mylist_div
+    ) VALUES (
+        #{myListSeq},
+        #{userId},
+        #{musicId},
+        20
+    )  
+  </insert>
+  
+  
+  
+  
+  
+  
   
 </mapper>

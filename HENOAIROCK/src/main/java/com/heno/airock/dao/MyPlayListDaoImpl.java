@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.heno.airock.dto.MemberDTO;
+import com.heno.airock.dto.MusicVO;
 import com.heno.airock.dto.MyPlayListVO;
+import com.heno.airock.cmn.StringUtil;
 
 @Repository
 public class MyPlayListDaoImpl implements MyPlaylistDao {
@@ -73,6 +75,72 @@ public class MyPlayListDaoImpl implements MyPlaylistDao {
 		
 		return sqlSessionTemplate.delete("MyPlayList.deleteLikeMusic", inVO);
 	}
+
+	@Override
+	public List<MyPlayListVO> selectCustomList(MyPlayListVO inVO) throws SQLException {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectList("MyPlayList.selectCustomSeq", inVO);
+	}
+
+	@Override
+	public List<MusicVO> selectCustomListMusic(MyPlayListVO inVO) throws SQLException {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectList("MyPlayList.selectCustomListMusic", inVO);
+	}
+
+	@Override
+	public int addCustomList(MyPlayListVO inVO) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		String seq = StringUtil.getPK();
+		inVO.setMyListSeq(seq);
+		
+		return sqlSessionTemplate.insert("MyPlayList.addCustomList", inVO);
+	}
+
+	@Override
+	public int delCustomList(MyPlayListVO inVO) throws SQLException {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.delete("MyPlayList.delCustomList", inVO);
+	}
+
+	@Override
+	public MyPlayListVO selectCustom(MyPlayListVO inVO) throws SQLException {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("MyPlayList.selectCustom", inVO);
+	}
+
+	@Override
+	public int delCustomListMusic(MyPlayListVO inVO) throws SQLException {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.delete("MyPlayList.delCustomListMusic", inVO);
+	}
+
+	@Override
+	public int modCustomTitle(MyPlayListVO inVO) throws SQLException {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.update("MyPlayList.modCustomTitle", inVO);
+	}
+
+	@Override
+	public List<MusicVO> selmusic() throws SQLException {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectList("MyPlayList.selmusic");
+	}
+
+	@Override
+	public int addCustom(MyPlayListVO inVO) throws SQLException {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.insert("MyPlayList.addCustom");
+	}
 	
 
 }
+
+
+
+
+
+
+
+
