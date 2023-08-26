@@ -245,7 +245,7 @@ margin-right: 1rem !important;
    <table id="boardTable">
       <thead>
         <tr>
-   <th class="text-center" style="width: 5%;">번호</th>
+   <th class="text-center" style="width: 5%;">No</th>
    <th class="text-center" style="width: 25%;">제목</th>
    <th class="text-center" style="width: 15%;">앨범</th> 
    <th class="text-center" style="width: 15%;">음악 정보</th>
