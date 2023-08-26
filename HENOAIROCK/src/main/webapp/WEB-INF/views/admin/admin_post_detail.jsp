@@ -238,7 +238,7 @@ body {
 
         <div class="comments">
             <h3>댓글 ${comments.size()}개</h3>
-        
+
 <c:forEach var="comment" items="${comments}">
     <div class="comment mb-3 p-3 border rounded">
         <div class="d-flex justify-content-between align-items-center">
