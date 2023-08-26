@@ -84,8 +84,25 @@ function toggleLikeIcon() {
 	if (likeIcon.classList.contains("far")) {
 		likeIcon.classList.remove("far");
 		likeIcon.classList.add("fas");
+		// 좋아요 상태를 세션 스토리지에 저장
+        sessionStorage.setItem("likeStatus", "liked");
 	} else {
 		likeIcon.classList.remove("fas");
 		likeIcon.classList.add("far");
+		 // 좋아요 상태를 세션 스토리지에 저장
+        sessionStorage.setItem("likeStatus", "notLiked");
 	}
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    var likeIcon = document.getElementById("LikeBtn");
+    var likeStatus = sessionStorage.getItem("likeStatus");
+    
+    if (likeStatus === "liked") {
+        likeIcon.classList.remove("far");
+        likeIcon.classList.add("fas");
+    } else if (likeStatus === "notLiked") {
+        likeIcon.classList.remove("fas");
+        likeIcon.classList.add("far");
+    }
+});
