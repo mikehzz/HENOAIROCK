@@ -74,4 +74,17 @@ function fn_like() {
 			}
 		});
 	}
+	
+}
+
+// 아이콘 클래스 토글 함수
+function toggleLikeIcon() {
+	var likeIcon = document.getElementById("LikeBtn");
+	if (likeIcon.classList.contains("far")) {
+		likeIcon.classList.remove("far");
+		likeIcon.classList.add("fas");
+	} else {
+		likeIcon.classList.remove("fas");
+		likeIcon.classList.add("far");
+	}
 }
