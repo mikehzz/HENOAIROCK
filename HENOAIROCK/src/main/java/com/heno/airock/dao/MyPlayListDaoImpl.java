@@ -123,9 +123,9 @@ public class MyPlayListDaoImpl implements MyPlaylistDao {
 	}
 
 	@Override
-	public List<MusicVO> selmusic() throws SQLException {
+	public List<MusicVO> selmusic(MyPlayListVO inVO) throws SQLException {
 		// TODO Auto-generated method stub
-		return sqlSessionTemplate.selectList("MyPlayList.selmusic");
+		return sqlSessionTemplate.selectList("MyPlayList.selmusic", inVO);
 	}
 
 	@Override

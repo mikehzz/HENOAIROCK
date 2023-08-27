@@ -109,9 +109,9 @@ public class MyPlayListServiceImpl implements MyPlayListService {
 	}
 
 	@Override
-	public List<MusicVO> selmusic() throws SQLException {
+	public List<MusicVO> selmusic(MyPlayListVO inVO) throws SQLException {
 		// TODO Auto-generated method stub
-		return dao.selmusic();
+		return dao.selmusic(inVO);
 	}
 
 	@Override

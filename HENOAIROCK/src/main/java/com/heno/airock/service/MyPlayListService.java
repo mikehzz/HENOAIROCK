@@ -33,7 +33,7 @@ public interface MyPlayListService extends WorkDiv<MyPlayListVO>{
 
 	public int modCustomTitle(MyPlayListVO inVO) throws SQLException;
 
-	public List<MusicVO> selmusic() throws SQLException;
+	public List<MusicVO> selmusic(MyPlayListVO inVO) throws SQLException;
 	
 	public int addCustom(MyPlayListVO inVO) throws SQLException;
 

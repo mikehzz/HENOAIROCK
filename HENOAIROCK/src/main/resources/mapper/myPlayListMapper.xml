@@ -157,15 +157,20 @@
         mylist_seq = #{myListSeq}  
   </update>
   
-  <select id="selmusic" resultType="music">
-    select  music_id,
+  <select id="selmusic" parameterType="MyPlayList" resultType="music">
+    SELECT  music_id,
             album_path,
             artist,
             title,
             genre,
             feeling,
             embed_link
-    from music
+    FROM music
+    WHERE music_id NOT IN (
+        SELECT music_id
+        FROM myplaylist_detail
+        WHERE mylist_seq = #{myListSeq}
+    )
   </select>
   
   <insert id="addCustom" parameterType="MyPlayList">

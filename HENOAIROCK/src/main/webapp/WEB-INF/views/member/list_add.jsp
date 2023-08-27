@@ -1,3 +1,4 @@
+
 <%@page import="com.heno.airock.dto.PostVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
@@ -70,8 +71,7 @@
     <!-- 버튼 -->
     <div class="row g-1 d-flex justify-content-end">
       <div class="col-auto">
-        <input type="button" class="btn btn-primary" value="목록"
-          id="moveToList"> <input type="button"
+           <input type="button"
           class="btn btn-primary" value="등록" id="doSave">
       </div>
     </div>

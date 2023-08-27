@@ -34,7 +34,7 @@ public interface MyPlaylistDao extends WorkDiv<MyPlayListVO> {
 
 	public int modCustomTitle (MyPlayListVO myPlayListVO) throws SQLException;
 	
-	public List<MusicVO> selmusic() throws SQLException;
+	public List<MusicVO> selmusic(MyPlayListVO myPlayListVO) throws SQLException;
 	
 	public int addCustom (MyPlayListVO myPlayListVO) throws SQLException;
 	
