@@ -37,8 +37,8 @@ public class MemberRepository {
     public MemberDTO adminLogin(MemberDTO memberDTO) {
         return sql.selectOne("Member.adminLogin", memberDTO);
     }
-    public void deleteUser(String userId) {
-        sql.update("Member.deleteUser", userId);
+    public int deleteUser(String userId) {
+        return sql.update("Member.deleteUser", userId);
     }
     public MemberDTO getUserById(String userId) {
         return sql.selectOne("Member.getUserById", userId);

@@ -45,6 +45,7 @@ function fn_idChk() {
 					console.log("data : " + data);
 					alert("HENOAIROCK의 회원이십니다");
 					email_Check = true;
+					document.getElementById("password-birth-section").style.display = "block";
 				} else if (data == 0) {
 					$('#mail-Check-Btn').attr('disabled', false);
 					console.log("data : " + data);

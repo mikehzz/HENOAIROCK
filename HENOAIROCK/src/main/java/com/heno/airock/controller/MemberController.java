@@ -73,10 +73,27 @@ public class MemberController implements PcwkLoger {
 		return "/member/passwd";
 	}
 
-	@GetMapping("/delete")
-	public String delete() {
-		return "/member/delete";
-	}
+	//회원 탈퇴
+		@GetMapping("/delete")
+		public String delete(MemberDTO inDTO, HttpSession session) {
+			
+			MemberDTO memberDTO = (MemberDTO) session.getAttribute("user");
+			
+			if(memberDTO != null) {
+				String userId = memberDTO.getUserId();
+				LOG.debug("└userId┘" + userId);
+				int deleteResult = memberService.deleteUser(userId);
+				if (deleteResult == 1) {
+					return "redirect:/member/login";
+				} else {
+					return "redirect:/member/login";
+				}
+			} else {
+				return "redirect:/member/login";
+			}
+			
+			
+		}
 
 	// 회원가입 이메일 인증
 	@GetMapping("/**/mailCheck")

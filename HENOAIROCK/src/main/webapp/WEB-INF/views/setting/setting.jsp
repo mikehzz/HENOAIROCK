@@ -19,7 +19,7 @@
 		 &nbsp;&nbsp;<h2>설정</h2>
 		<div class="separator"></div>
 		<div class="setting_account">
-		  <a href="/member/login" id="logoutBtn">
+		  <a href="/member/logout" id="logoutBtn">
 		    &nbsp;&nbsp;<div class="setting_itmes curent">로그아웃</div>
 		  </a>
 		  
@@ -27,7 +27,7 @@
 		    &nbsp;&nbsp;<div class="setting_itmes curent">비밀번호 변경</div>
 		  </a>
 		  
-		  <a href="/member/login" id="deleteAccountBtn"> <!-- 비밀번호 변경 공지 링크 추가 -->
+		  <a href="/member/delete" id="deleteAccountBtn"> <!-- 비밀번호 변경 공지 링크 추가 -->
 		    &nbsp;&nbsp;<div class="setting_itmes curent">회원탈퇴</div>
 		  </a>
 		</div>
@@ -61,7 +61,7 @@
 
 		        if (confirm('로그아웃 하시겠습니까?')) {
 		            alert('로그아웃이 완료되었습니다.');
-		            window.location.href = '/member/login'; // 로그아웃 처리 후 페이지 이동
+		            window.location.href = '/member/logout'; // 로그아웃 처리 후 페이지 이동
 		        }
 		    }); 
 		    
@@ -70,7 +70,7 @@
 		    
 		        if (confirm('정말로 회원탈퇴를 하시겠습니까?')) {
 		            alert('회원탈퇴가 완료되었습니다.');
-		            window.location.href = '/member/login'; // 회원탈퇴 처리 후 페이지 이동
+		            window.location.href = '/member/delete'; // 회원탈퇴 처리 후 페이지 이동
 		        }
 		    }); 
 		</script>

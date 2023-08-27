@@ -15,7 +15,7 @@
 <title>Insert title here</title>
 </head>
 
-<body>
+<body class="body2">
 <!-- 제목 및 닉네임 사진 변경  -->
 <div id="musicList" class="mw">
   <div class="meta_info">
@@ -26,8 +26,7 @@
   <article class="horizen_zzz">
   <button class="fs">
   <div id="meta_info" class="ell">
-    <p class="meta_info_title ell">${outVO3.nickname}</p>
-    <p class="meta_info_title ell">${outVO3.name}</p>
+    <p class="meta_info_title ell">${outVO3.name}님의 플레이리스트 입니다</p>
   </div>
    </button>
   </article>

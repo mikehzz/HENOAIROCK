@@ -105,8 +105,6 @@
   word-wrap: break-word;
 }
 </style>
-        
-</style>
 </head>
 <body>
 <input type="hidden" id= "userId" value="${sessionScope.userId}" name="userId" >

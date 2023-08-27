@@ -47,8 +47,8 @@ public class MemberService {
 	public MemberDTO getUserById(String userId) {
 		return memberRepository.getUserById(userId);
 	}
-	public void deleteUser(String userId) {
-		memberRepository.deleteUser(userId);
+	public int deleteUser(String userId) {
+		return memberRepository.deleteUser(userId);
 	}
 	public List<MemberDTO> getAllUsers() {
 		return memberRepository.getAllUsers();
