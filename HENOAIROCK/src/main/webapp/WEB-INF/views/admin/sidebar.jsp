@@ -33,106 +33,106 @@
     font-style: normal;
 }
 body {
-	margin: 0;
-	padding: 0;
-	display: flex;
+  margin: 0;
+  padding: 0;
+  display: flex;
 }
 
 .sidebar {
-	width: 232px;
-	position: fixed;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	top: 0;
-	left: 0;
-	height: 100%;
-	background-color: #343a40;
-	padding-top: 20px;
-	transition: width 0.3s ease-in-out;
-	z-index: 2;
-	background-image: linear-gradient(180deg, #0d101a 10%, #1a1515 100%);
+  width: 232px;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #343a40;
+  padding-top: 20px;
+  transition: width 0.3s ease-in-out;
+  z-index: 2;
+  background-image: linear-gradient(180deg, #0d101a 10%, #1a1515 100%);
   box-shadow: 0 0 10px rgba(0, 0, 0, 1);
 }
 
 .user-profile {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding: 10px;
-	background-color: #000000;
-	width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  background-color: #000000;
+  width: 100%;
 }
 
 .user-profile img {
-	width: 50px;
-	height: 50px;
-	border-radius: 10px;
-	margin-bottom: 5px;
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  margin-bottom: 5px;
 }
 
 .user-profile span {
-	color: #f8f9fa;
-	font-size: 14px;
+  color: #f8f9fa;
+  font-size: 14px;
 }
 
 .content {
-	padding: 20px;
-	margin-left: 250px;
-	transition: margin-left 0.3s ease-in-out;
+  padding: 20px;
+  margin-left: 250px;
+  transition: margin-left 0.3s ease-in-out;
 }
 
 .sidebar ul {
-	list-style: none;
-	padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .sidebar li {
-	margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .sidebar a {
-	font-size: 14px; /* Adjust the font size as needed */
-	color: #f8f9fa;
-	text-decoration: none;
-	padding: 8px 10px; /* Adjust the padding as needed */
-	display: block;
-	transition: background-color 0.2s ease;
+  font-size: 14px;
+  color: #f8f9fa;
+  text-decoration: none;
+  padding: 8px 10px;
+  display: block;
+  transition: background-color 0.2s ease;
 }
 
 .sidebar a:hover {
-	background-color: white;
-	color: #000;
+  background-color: white;
+  color: #000;
 }
 
 .sidebar .material-icons {
-	font-size: 16px;
-	vertical-align: middle;
-	margin-right: 8px;
+  font-size: 16px;
+  vertical-align: middle;
+  margin-right: 8px;
 }
 
 .logout-button {
-	padding: 8px 16px;
-	background-color: #dc3545;
-	color: #fff;
-	border: none;
-	border-radius: 5px;
-	transition: background-color 0.2s ease;
-	cursor: pointer;
-	text-decoration: none;
+  padding: 8px 16px;
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .logout-button:hover {
-	background-color: #c82333;
+  background-color: #c82333;
 }
 
 .content-expanded {
-	margin-left: 60px;
+  margin-left: 60px;
 }
 
 .menu-items {
-	margin-top: 0px;
-	padding-left: 0;
+  margin-top: 0px;
+  padding-left: 0;
     font-family: 'Cafe24SsurroundAir';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
     font-weight: normal;
@@ -140,13 +140,13 @@ body {
 }
 
 .menu-items li {
-	margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .menu-items a {
-	padding: 10px;
-	display: block;
-	transition: background-color 0.2s ease;
+  padding: 10px;
+  display: block;
+  transition: background-color 0.2s ease;
 }
 
 .sidebar-content-wrapper {
@@ -159,75 +159,117 @@ body {
 }
 
 .menu-items .separator {
-	border: 0;
-	border-top: 1px solid rgba(255, 255, 255, .15);
-}
-
-.separator {
-	border: 0;
-	border-top: 1px solid rgba(255, 255, 255, .15);
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, .15);
 }
 
 .sidebar-brand {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 20px 15px;
-	color: #f8f9fa;
-	text-decoration: none;
-	font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 15px;
+  color: #f8f9fa;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .sidebar .sidebar-heading {
-	text-align: left;
-	padding: 0 1rem;
-	font-weight: 800;
-	font-size: .65rem;
-	color: #ffffff9e;
-	font-family: 'Nunito', sans-serif;
+  text-align: left;
+  padding: 0 1rem;
+  font-weight: 800;
+  font-size: .65rem;
+  color: #ffffff9e;
+  font-family: 'Nunito', sans-serif;
 }
 
 .logout {
-	font-family: 'Nunito', sans-serif;
+  font-family: 'Nunito', sans-serif;
+}
+
+.sidebar-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 15px;
+  color: #f8f9fa;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .logo-emoji {
-	font-size: 24px;
-	margin-right: 10px;
+  font-size: 24px;
+  margin-right: 10px;
 }
 
 .sidebar-brand div:nth-child(2) {
-	font-size: 18px;
-	font-family: 'Nunito', sans-serif;
+  font-size: 18px;
+  font-family: 'Nunito', sans-serif;
 }
+
 @media (max-width: 768px) {
   .sidebar {
-    width: 105px;
-    }
-    .sidebar-content-wrapper{
-margin-bottom: 100px;
+    width: 115px;
+  }
+  
+.content {
+  margin-left: 130px;
   }
 
+.menu-items a {
+  text-align: center;
+  padding: 5px 10px;
+  }
+  
+.sidebar .material-icons {
+  display: block;
+  margin: 0 auto 5px;
+  text-align: center;
+  }
+
+.menu-items li {
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  margin-bottom: 10px;
+  }
+  
+.sidebar-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 15px;
+  color: #f8f9fa;
+  text-decoration: none;
+  font-weight: bold;
+  }
+
+.logo-emoji {
+  font-size: 24px;
+  margin-bottom: 5px;
+  }
 }
-  /* 전체 페이지에 적용되는 스크롤바 스타일 */
-  body::-webkit-scrollbar {
-    width: 12px; /* 스크롤바 너비 설정 */
-  }
 
-  body::-webkit-scrollbar-thumb {
-    background-color: #555; /* 스크롤바 색상 */
-    border-radius: 5px; /* 스크롤바 모서리의 둥글기 설정 */
-  }
+body::-webkit-scrollbar {
+  width: 12px;
+}
 
-  body::-webkit-scrollbar-thumb:hover {
-    background-color: #888; /* 스크롤바 호버 시 색상 */
-  }
+body::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 5px;
+}
 
-  body::-webkit-scrollbar-track {
-    background-color: white; /* 스크롤바 트랙 배경색 */
-    border-radius: 5px; /* 스크롤바 트랙 모서리의 둥글기 설정 */
-    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2); /* 스크롤바 트랙 그림자 효과 */
-  }
+body::-webkit-scrollbar-thumb:hover {
+  background-color: #888;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+}
 </style>
 </head>
 
@@ -241,29 +283,31 @@ margin-bottom: 100px;
 <li>
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/main">
         <div>
-            <span class="logo-emoji">👻</span> <!-- Replace with the emoji you want to use -->
+            <span class="logo-emoji">👻</span>
         </div>
         <div>HeNoAIRock</div>
     </a>
     </li>
     <li class="separator"></li>
                     <div class="sidebar-heading">
-                INTRO
+                CHAT
             </div>
-    <li><a href="/main"><i class="material-icons">home</i> 메인</a></li>
-
-    <li></li> <!-- Separator line -->
+    <li><a href="/main"><i class="material-icons">home</i> 감정분석??</a></li>
+    <li class="separator"></li>
+                    <div class="sidebar-heading">
+                MAIN
+            </div>
     <li><a href="/mypage"><i class="material-icons">person</i> 마이페이지</a></li>
-    <li></li> <!-- Separator line -->
+    <li></li>
     <li><a href="/music/music_rank"><i class="material-icons">&#xE01D;</i> 음악 순위</a></li>
-    <li></li> <!-- Separator line -->
+    <li></li>
     <li><a href="/post"><i class="material-icons">forum</i> 게시판</a></li>
-    <li class="separator"></li> <!-- Separator line -->
+    <li class="separator"></li>
                 <div class="sidebar-heading">
                 SETTING
             </div>
     <li><a href="/setting"><i class="material-icons">&#xE8B8;</i> 설정</a></li>
-    <!-- Additional menu items can be added here -->
+
 
 </ul>
 
@@ -272,7 +316,6 @@ margin-bottom: 100px;
     <% if (userLoggedIn) { %>
         <img src="<%= userImageUrl %>" alt="User Profile Image">
         <span>${sessionScope.user.userId}</span>
-        <!-- Show Logout button when user is logged in -->
         <a class="nav-link separator logout" data-toggle="modal" data-target="#logoutModal" style="cursor: pointer;">Logout
         <i class="material-icons">logout</i>
         </a>

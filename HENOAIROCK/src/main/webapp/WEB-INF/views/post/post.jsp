@@ -66,10 +66,7 @@
 }
 
 .container {
-  margin-left: 190px;
-
-  
-  
+  margin-left: 100px;
 }
 
 section{
@@ -77,7 +74,7 @@ section{
 }
 
 .page-header h2 {
-  color: #ff8585; /* 밝은 글자색 */
+  color: #ff8585;
   font-size: 24px;
   font-weight: bold;
   text-align: center;
@@ -90,6 +87,7 @@ section{
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+/*     box-shadow: 0 0px 10px rgb(71 69 69); */
   background-color: transparent;
 }
 
@@ -115,19 +113,20 @@ section{
 .admin-post td {
     font-weight: bold;
 }
-/* 추가한 스타일 */
+
 .notice-text {
   display: inline-block;
-  background-color: #ff5858; /* New notice color */
+  background-color: #ff5858;
   color: white;
-  padding: 5px 10px; /* Adjusted padding for a more compact look */
-  border-radius: 20px; /* Increased border radius for a rounded appearance */
+  padding: 5px 10px;
+  border-radius: 20px;
   font-weight: bold;
-  font-size: 13px; /* Slightly reduced font size */
+  font-size: 13px;
   text-align: center;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-  white-space: nowrap; /* Prevents the label from breaking into multiple lines */
+  white-space: nowrap;
 }
+
 .admin-post td .gaesi {
     color: black !important;
 }
@@ -170,7 +169,7 @@ section{
 
 .btn-primary {
   padding: 5px 20px;
-  background-color: #2a2c33; /* New primary color */
+  background-color: #2a2c33;
   color: white;
   border: none;
   border-radius: 25px;
@@ -178,7 +177,7 @@ section{
 }
 
 .btn-primary:hover {
-  background-color: #757677; /* Darker color on hover */
+  background-color: #757677;
 }
 
 form {
@@ -189,14 +188,11 @@ form {
     position: relative;
 }
 
-  .custom-selects {
-    background-color: #f2f2f2;
-    border: 1px solid #ced4da;
-
-    font-size: 14px;
-    color: #333;
-
-    /* 추가적인 스타일을 원하는 대로 설정하세요 */
+.custom-selects {
+  background-color: #f2f2f2;
+  border: 1px solid #ced4da;
+  font-size: 14px;
+  color: #333;
   }
 
 .mt-4{

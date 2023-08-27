@@ -20,8 +20,8 @@ request.setAttribute("title", title);
 <meta charset="${encoding}">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- CSS only -->
-<link rel="stylesheet" type="text/css"
-  href="/resources/css/post_detail.css">
+<!-- <link rel="stylesheet" type="text/css"
+  href="/resources/css/post_detail.css"> -->
 <link
   href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
   rel="stylesheet"
@@ -39,42 +39,143 @@ request.setAttribute("title", title);
 <style>
 
 
-/*큰 외부 테두리 안에 작은 컨테이너 박스 박스*/
-.container {
+@font-face {
+  font-family: 'Cafe24SsurroundAir';
+  src:
+    url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Cafe24SsurroundAir';
+  src:
+    url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.btn-primary {
+  padding: 5px 20px;
+  background-color: #2a2c33;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #757677;
+}
+
+.containerbox {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0px 10px rgb(71 69 69);
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.post-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 10px 0;
+  border-bottom: 3px solid #e5e5e5;
+}
+
+.post-content {
+  padding: 20px;
   background-color: #fff;
   border-radius: 10px;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3); /* 연하게 수정 */
-  padding: 30px;
-  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-top: 15px;
 }
 
-font-face {
-    font-family: 'Cafe24SsurroundAir';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-body {
-/*   background-image: linear-gradient(180deg,#000000 10%,#001a65 100%); */
-    font-family: 'Cafe24SsurroundAir';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+.comment {
+  padding: 10px;
+  margin-top: 15px;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+  background-color: #f9f9f9;
 }
 
-/*가장 큰 테두리 여백 이동*/
-body {
-    margin-left: -60px; /* 원하는 만큼 왼쪽으로 이동 */
-  }
-
-.custom-table {
-  
-  border-collapse: separate;
-  border-spacing: 0;
-  /*background-color: #f5f5f5;  옅은 회색 배경색 */
+.btn-primary {
+  padding: 8px 20px;
+  background-color: #2a2c33;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
 }
-      
+
+.btn-primary:hover {
+  background-color: #757677;
+}
+
+.music-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  margin-bottom: 15px;
+  margin-top: -15px;
+  border-bottom: 3px solid #e5e5e5;
+}
+
+.album-cover {
+  width: 60px;
+  height: 60px;
+  margin-right: 15px;
+  object-fit: cover;
+}
+
+.music-details {
+  flex: 1;
+}
+
+.music-details h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.music-details p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #555;
+}
+.comment-count {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #888;
+}
+
+.ariana {
+  font-size: 14px;
+  color: gray;
+  float: right;
+}
+
+.grande{
+  font-size: 14px;
+  color: gray;
+  float: right;
+}
+
+.butera{
+  font-size: 14px;
+  color: gray;
+  float: right;
+}
 </style>
 </head>
 
@@ -82,111 +183,83 @@ body {
 
   <!-- contents  -->
   <div class="container">
-    <!-- 소 제목 -->
-
     
-   <!-- 간격을 위한 빈 div -->
-  <div style="margin-top: 25px;"></div>
-  
+    </br>
+    
+      <div class="containerbox">
+
+  <div class="page-title">
+    <h2>${title}</h2>
+  </div>
     
    <!-- 목록 버튼 추가 -->
-	  <div style="text-align: right;">
-	   <input type="button" class="btn btn-secondary" value="목록" id="moveToList">
-	  </div>
-	  </br>
-  
-		<div class="container">
-		    <div class="page-title">
-		        <div class="d-flex justify-content-between align-items-center">
-		            <h2><c:out value='${outVO.postTitle}' /></h2>
-		            <div class="text-muted small">
-		                            작성자: ${outVO.userId}
-		                <c:choose>
-		                    <c:when test="${not empty outVO.updateDt}">
-		                        <br>등록일: ${outVO.postDt} / 수정일: ${outVO.updateDt}
-		                    </c:when>
-		                    <c:otherwise>
-		                        <br>등록일: ${outVO.postDt}
-		                    </c:otherwise>
-		                </c:choose>
-		            </div>
-		        </div>
-		    </div>
-  
+    <div class="row g-1 d-flex justify-content-end">
+      <div class="col-auto">
+        <input type="button" class="btn btn-primary" value="목록" id="moveToList">
+      </div>
+    </div>  
 
-	 <div>
-		  
-		    <div style="margin-top: 40px;"></div>
-		    <input type="hidden" name="div" id="div" value="${inVO.getPostDiv()}">
-		    <input type="hidden" name="seq" id="seq" value="${inVO.getPostSeq()}">
-		    <input type="hidden" name="userId" id="userId" value="${sessionScope.user.userId}">
-		    <input type="hidden" name="musicId" id="musicId" value="${outVO.musicId}">
-		    <div class="content">
-      <section>
-				<table class="table custom-table">
-				    <colgroup>
-				        <col style="width: 10%;" />
-				        <col style="width: 23%;" />
-				        <col style="width: 10%;" />
-				        <col style="width: 23%;" />
-				    </colgroup>
-				<tbody>
-				    <tr>
-				        <th scope="row">음악 정보</th>
-				        <td><img class="album-cover" src="${outVO.albumPath}" alt="앨범커버" width="60px" height="60px" id="musicClick" name="musicClick"></td>
-				        <th scope="row">곡이름</th>
-				        <td>${outVO.title} - ${outVO.artist}</td>
-				    </tr>
-				    <tr>
-				        <th scope="row">조회수</th>
-				        <td colspan="6">${outVO.readCnt}</td>
-				    </tr>
-				</tbody>
-			</table>
-			
-	     <table class="table custom-table">
-	          <tr>
-	            <th scope="row" style="color: black;">내용</th>
-	            <td colspan="7"></td>
-	         </tr>
-	         <tr>
-	         <td colspan="7">${outVO.postContents}</td>
-	         </tr>
-       </table>
-      
-	    <!--   <table class="table custom-table">
-	          <p>${outVO.postContents}</p>
-	        </table>  -->
-		        
+    <form action="#" name="reg_frm" id="reg_frm">
+        <input type="hidden" name="div" id="div" value="${inVO.getPostDiv()}">
+        <input type="hidden" name="musicId" id="musicId" value="${outVO.musicId}">
+        <input type="hidden" name="seq" id="seq" value="${inVO.getPostSeq()}">
+        <input type="hidden" name="userId" id="userId" value="${sessionScope.user.userId}">
+        <input type="hidden" name="musicId" id="musicId" value="${outVO.musicId}">
+
+        <div class="post-info">
+            <div>
+                <p><strong>제목:</strong> ${outVO.postTitle}</p>
+                
+            </div>
+            <div>
+            <p class="ariana"><strong>작성자:</strong> ${outVO.userId}</p>
+            <div>
+                <p class="butera"><strong>등록일:</strong> ${outVO.postDt}
+                    <c:if test="${not empty outVO.updateDt}">
+                <strong> / 수정일:</strong> ${outVO.updateDt}
+                </c:if></p></div>
+                <div>
+                <p class="grande"><strong>조회:</strong> ${outVO.readCnt}</p>
+            </div>
+            </div>
+        </div>
+		      <c:if test="${not empty outVO.musicId}">
+        <div class="music-info">
+            <img class="album-cover" src="${outVO.albumPath}" alt="앨범커버">
+            <div class="music-details">
+                <h3>${outVO.title} - ${outVO.artist}</h3>
+            </div>
+        </div>
+      </c:if>
+
+        <div class="post-content">
+            <p>${outVO.postContents}</p>
+        </div>
+    </br>
+
+
 			<p class="btn_set">
 			    <c:set var="writer" value="${outVO.userId }" />
 			    <c:set var="currentUser" value="${sessionScope.user.userId}" />
-			
+    </br>
 			    <c:if test="${writer eq currentUser}">
 			        <input type="button" class="btn btn-secondary" value="수정" id="doUpdate">
 			        <input type="button" class="btn btn-secondary" value="삭제" id="doDelete">
 			    </c:if>
 			</p>
-			
-      </section>
-    </div>
-   </div>
-  </div>
-    
+    </br>
     <div class="comment-input">
         <textarea class="form-control" id="comments" name="comments" rows="4"></textarea>
+        </br>
         <button class="btn btn-secondary btn-lg" type="button" id="doAddComment">댓글 추가</button>
     </div>
-    <div style="margin-top: 10px;">
-    <br/>
-    <h5>댓글</h5>
-
 
     <div id="commentList">
       <!-- 여기에 댓글이 추가될 것입니다 -->
     </div>
-
-
+</br>
+        <div class="comments">
+            <h5>댓글 ${comments.size()}개</h5>
 <c:forEach var="comment" items="${comments}">
     <div class="comment mb-3 p-3 border rounded">
         <div class="d-flex justify-content-between align-items-center">
@@ -200,7 +273,7 @@ body {
         </div>
         <div class="comment-text mt-2">${comment.cmtContents}</div>
         <c:if test="${not empty comment.cmtUpdateDt}">
-          <div class="comment-time text-muted mt-2">수정됨: ${comment.cmtUpdateDt}</div>
+          <div class="comment-time text-muted mt-2">${comment.cmtUpdateDt} (수정됨)</div>
         </c:if>
         <c:if test="${empty comment.cmtUpdateDt}">
           <div class="comment-time text-muted mt-2">${comment.cmtDt}</div>
@@ -215,7 +288,11 @@ body {
 
     </div>
 </c:forEach>
-
+</div>
+</form>
+</div>
   </div>
+  </br>
+  </br>
 </body>
 </html>
