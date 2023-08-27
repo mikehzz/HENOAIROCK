@@ -64,6 +64,14 @@
     font-weight: normal;
     font-style: normal;
 }
+
+.container {
+  margin-left: 190px;
+
+  
+  
+}
+
 section{
   margin: 50px;
 }

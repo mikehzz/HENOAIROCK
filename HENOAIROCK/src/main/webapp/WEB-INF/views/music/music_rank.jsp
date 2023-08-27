@@ -25,6 +25,10 @@
   font-style: normal;
 }
 
+.container {
+margin-left: 110px;
+}
+
 .body2 {
   font-family: 'Cafe24SsurroundAir';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
@@ -33,7 +37,7 @@
 }
 
 .page-header h2 {
-  color: #72a9fb;
+  color: #2a2c33;
   font-size: 24px;
   font-weight: bold;
   text-align: center;
@@ -102,26 +106,28 @@ form {
 }
 
 .genre-button {
-  background-color: #2a2c33;
-  color: white;
-  border: none;
-  padding: 10px 15px;
+  background-color: #ffffff;
+  color: #8195df;
+    border: 1px solid #8195df;
+  padding: 5px 15px;
   margin: 5px;
   cursor: pointer;
   border-radius: 5px;
   transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: 0px 0px 10px #8195df;
   font-weight: bold;
 }
 
 .emotion-button {
- background-color: #2a2c33;
-  color: white;
-  border: none;
-  padding: 10px 15px;
+ background-color: #ffffff;
+  color: #a1a1a1;
+    border: 1px solid #a1a1a1;
+  padding: 5px 15px;
   margin: 5px;
   cursor: pointer;
   border-radius: 30px;
   transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: 0px 0px 10px #a1a1a1;
   font-weight: bold;
 }
 
@@ -168,13 +174,14 @@ color: #a1a1a1;
 </head>
 <body class="body2">
 <div class="container">
-  <!-- 제목 -->
+
+  </br>
   <div class="page-header text-center">
-    <h2><c:out value='음악 순위 페이지' /></h2>
+    <h2><c:out value='Popular Chart Top100' /></h2>
   </div>
-  <hr class="my-2">
+  <hr class="my-3">
   <div class="row g-1 d-flex justify-content-end text-center">
-  <h2>장르</h2>
+  <h2 class="text-left">장르별 인기곡</h2>
     <div class="col-sm genre-button" id="genre" onclick="redirectToMusicReg('발라드')">발라드</div>
     <div class="col-sm genre-button" id="genre" onclick="redirectToMusicReg('댄스')">댄스</div>
     <div class="col-sm genre-button" id="genre" onclick="redirectToMusicReg('랩/힙합')">랩/힙합</div>
@@ -185,7 +192,7 @@ color: #a1a1a1;
     <div class="col-sm genre-button" id="genre" onclick="redirectToMusicReg('포크/블루스')">포크/블루스</div>
   </div>
   <div class="row g-1 d-flex justify-content-end text-center">
-  <h2>감정</h2>
+  <h2 class="text-left">감정별 인기곡</h2>
     <div class="col-sm emotion-button heart" id="feeling" onclick="redirectToMusicRegEmo('설렘')"><i class="fas fa-heart"></i> 설렘</div>
     <div class="col-sm emotion-button sad" id="feeling" onclick="redirectToMusicRegEmo('슬픔')"><i class="fa-solid fa-face-sad-tear"></i> 슬픔</div>
     <div class="col-sm emotion-button smile" id="feeling" onclick="redirectToMusicRegEmo('편안')"><i class="fas fa-smile"></i> 편안함</div>
@@ -195,7 +202,7 @@ color: #a1a1a1;
     <div class="col-sm emotion-button thumbs" id="feeling" onclick="redirectToMusicRegEmo('자신감')"><i class="fas fa-thumbs-up"></i> 자신감</div>
   </div>
 
-    <hr class="my-2">
+    <hr class="my-3">
    <table id="boardTable" class="table table-striped table-hover table-bordered" style="table-layout: fixed">
       <thead>
         <tr class="table-info" style="height: 49px;">

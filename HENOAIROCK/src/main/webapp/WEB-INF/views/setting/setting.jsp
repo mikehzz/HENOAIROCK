@@ -75,9 +75,6 @@
 		    }); 
 		</script>
 
-		 
-			</script>
-
 <footer class="footer">
     <p>Copyright ⓒ 2023 싸그리싺싺. All rights reserved</p>
     <p>상호명 : (주)싸그리싺싺 | 대표 : 구자민 | 개인정보보호책임자 : 구자민 </p>
