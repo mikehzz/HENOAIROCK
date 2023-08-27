@@ -33,7 +33,7 @@
 	<insert id="save" parameterType="member">
 		INSERT INTO MEMBER (user_id, profile_img, name, password, nickname, birth,
 		member_dt)
-		VALUES (#{test@email.com}, '/resources/images/KaKao.png', #{테스터훈}, #{12345678},'유튜브', #{92/10/20},
+		VALUES (#{userId}, '/resources/images/KaKao.png', #{name}, #{password},'새나라어린이', #{birth},
 		SYSDATE)
 	</insert>
 
