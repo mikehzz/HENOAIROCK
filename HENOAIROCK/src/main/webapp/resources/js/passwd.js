@@ -185,3 +185,35 @@ function clearPasswordError() {
 	password_error.innerHTML = "";
 	confirm_password_error.innerHTML = "";
 }
+
+
+/* 비밀번호 제약사항 및 이용약관에서 비동의 눌렀을때만 회원가입 x 작동 */
+const passwordInput = document.getElementById("password");
+const confirmPasswordInput = document.getElementById("confirm_password");
+const passwordMatchMessage = document.getElementById("password-match-message");
+
+
+confirmPasswordInput.addEventListener("input", function() {
+    if (confirmPasswordInput.value === "") {
+        passwordMatchMessage.style.display = "none"; // 입력 없을 시 메시지 숨김
+    } else {
+        passwordMatchMessage.style.display = "block"; // 입력이 시작되면 메시지 보이도록
+        if (passwordInput.value === confirmPasswordInput.value) {
+            passwordMatchMessage.textContent = "비밀번호가 일치합니다.";
+            passwordMatchMessage.style.color = "blue";
+        } else {
+            passwordMatchMessage.textContent = "비밀번호가 다릅니다!";
+            passwordMatchMessage.style.color = "black";
+        }
+    }
+});;
+
+// 페이지 이동 및 페이지 넘김 효과 적용
+document.getElementById('go_back').addEventListener('click', function() {
+    const container = document.querySelector('.container');
+    container.classList.add('flip-page');
+    setTimeout(() => {
+        history.back();
+        container.classList.remove('flip-page'); // 페이지 돌아올 때 효과 제거
+    }, 500);
+});
