@@ -11,15 +11,15 @@
 <meta charset="${encoding}">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="/resources/css/LIST.css">
-<link
+<!-- <link
   href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
   rel="stylesheet"
   integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-  crossorigin="anonymous">
-<script
+  crossorigin="anonymous"> -->
+<!-- <script
   src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-  crossorigin="anonymous"></script>
+  crossorigin="anonymous"></script> -->
 <script src="${CP}/resources/js/jquery-3.7.0.js"></script>
 <script src="${CP}/resources/js/util.js"></script>
 <title>곡 정보</title>
@@ -36,16 +36,14 @@
     <img class="meta_info_img" alt=""
         src="${outVO.albumImg}">
     <div class="meta_info_text absolute p-16">
+        
         <h1 id="title" class="editable" onclick="makeEditable(this)">${outVO.title}</h1>
-        <button class="titleMod" onclick="showInputBox()">제목 수정</button>
         <!-- 노래 모음 -->
         <div class="user-nickName">
-            <button class="fs">
                 <img class="horizen_mmimg" src="${outVO.profileImg}" alt="이미지" style="width: 48px;">
                   <div id="meta_info" class="ell">
                       <p class="meta_info_title ell">${outVO.nickname}</p>
                   </div>
-            </button>
         </div>
    </div>
 </div>
@@ -55,16 +53,16 @@
     <button class="btn-basic btn-reset">선택 초기화</button>
     <button class="btn-basic btn-del">음악삭제하기</button>
     <button class="btn-basic btn-delList">앨범아트 삭제</button>
-    
+    <button class="titleMod" onclick="showInputBox()">제목 수정</button>
 </div>
 
 <table class="list-wrap">
   <thead>
     <tr>
       <th scope="col" class="hd-check">선택</th>
-      <th scope="col" class="hd-album">앨범이미지</th>
-      <th scope="col" class="hd-info">가수</th>
-      <th scope="col" class="hd-btns">제목</th>
+      <th scope="col" class="hd-album" width="80">앨범</th>
+      <th scope="col" class="hd-info narrow-column">가수</th>
+      <th scope="col" class="hd-btns" width="400">제목</th>
       <th scope="col" class="hd-btns">장르</th>
       <th scope="col" class="hd-btns">감정</th>
       <th scope="col" class="hd-btns">뮤비</th>
@@ -100,7 +98,7 @@
           <!-- 뮤비 -->
           <td class="btns">
               <div class="toggle-button-box lyr-mv" id="list-mv_102563175">
-                  <a href="${vo.embedLink}" class="btn btn-basic btn-mv" title="뮤비">유튜브로보기</a>
+                  <a href="${vo.embedLink}" class="btn btn-basic btn-mv" title="뮤비">링크</a>
               </div>
           </td>
       </tr> 

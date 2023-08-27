@@ -106,6 +106,10 @@ body {
     margin: 0;
 }
 
+ .narrow-column {
+    width: 80px; /* Adjust the width as needed */
+  }
+
 
 .tag_list .text96 {
     margin-right: 5px;
@@ -123,7 +127,7 @@ body {
     margin-top: 20px;
     display: flex;
     align-items: center;
-    background-color: #f8f8f8;
+    background-color: #ddd;
     padding: 15px;
     border-radius: 25px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
@@ -140,7 +144,7 @@ body {
     transform: translateX(-50%);
     border-width: 10px 10px 0;
     border-style: solid;
-    border-color: transparent transparent transparent #f8f8f8;
+    border-color: #ddd;
     z-index: -1;
 }
 
@@ -186,25 +190,32 @@ body {
 /* Button Container */
 .button-container {
     display: flex;
-    justify-content: right;
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
-    flex-direction: row;
 }
 
 .btn-basic {
-    display: inline-block;
-    padding: 5px 10px;
-    text-align: center;
-    color: #fff;
+    color: black;
     border: none;
-    cursor: pointer;
+    padding: 5px 10px;
     border-radius: 3px;
+    cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-right: 5px;
+}
+
+.btn-basic:hover {
+    background-color: #808080; /* 호버 시 살짝 더 밝은 배경색으로 변경 */
+}
+
+.btn-basic:last-child {
+    margin-right: 0; 
 }
 
 .btn-reset {
-    background-color: #f44336;
+    background-color: #808080; /* 배경색을 #808080으로 변경 */
+    color: white; /* 텍스트 색상을 흰색으로 변경 */
 }
 
 .btn-reset:hover {
@@ -212,7 +223,7 @@ body {
 }
 
 .btn-basic:hover {
-    background-color: #ddd;
+    background-color: #f0f0f0;
 }
 
 
@@ -240,6 +251,21 @@ body {
     font-weight: bold;
 }
 
+.titleMod {
+    margin-left: auto; /* Pushes the button to the right by taking up available space */
+    background-color: #4caf50; /* Change the background color */
+    color: white; /* Change the text color */
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.titleMod:hover {
+    background-color: #808040; /* Darker color on hover */
+}
+
 .artist {
     color: #555;
 }
@@ -255,6 +281,8 @@ body {
 .btn-add,
 .btn-album,
 .btn-down,
+.btn-del
+.btn-delList
 .btn-mv,
 .item {
     color: #000000;
