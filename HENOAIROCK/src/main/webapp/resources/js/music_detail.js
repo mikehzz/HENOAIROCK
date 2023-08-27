@@ -11,13 +11,15 @@ var music_Id = $('#musicId').val();
 var user_Id = $('#userId').val();
 
 if(like > 0) {
-	document.getElementById("LikeBtn").value  = "좋아요 취소";
+	document.getElementById("LikeBtn").value = "좋아요 취소";
 } else {
 	document.getElementById("LikeBtn").value = "좋아요";
 }
 
 function fn_like() {
+	var likeBtn = $("#LikeBtn");
 	if(like > 0) {
+		$('#LikeBtn').attr('src','/resources/images/heart_line.png');
 		document.getElementById("LikeBtn").value  = "좋아요 취소";
 		console.log(like);
 		console.log(music_Id);
@@ -46,6 +48,7 @@ function fn_like() {
 			}
 		});
 	} else {
+		$('#LikeBtn').attr('src','/resources/images/heart_full.png');		
 		document.getElementById("LikeBtn").value = "좋아요";
 		console.log(like);
 		console.log(music_Id);
@@ -63,46 +66,15 @@ function fn_like() {
 				let paredJSON = JSON.parse(data)
 				if ("1" == paredJSON.msgId) {
 					alert(paredJSON.msgContents);
-					location.reload(); 
+					location.reload();
 				} else if("2" == paredJSON.msgId){
 					alert(paredJSON.msgContents);
 					location.reload();
 				}
 			},
-			
 			error : function(data) {// 실패시 처리
 				console.log("통신 오류");
 			}
 		});
 	}
-	
 }
-
-// 아이콘 클래스 토글 함수
-function toggleLikeIcon() {
-	var likeIcon = document.getElementById("LikeBtn");
-	if (likeIcon.classList.contains("far")) {
-		likeIcon.classList.remove("far");
-		likeIcon.classList.add("fas");
-		// 좋아요 상태를 세션 스토리지에 저장
-        sessionStorage.setItem("likeStatus", "liked");
-	} else {
-		likeIcon.classList.remove("fas");
-		likeIcon.classList.add("far");
-		 // 좋아요 상태를 세션 스토리지에 저장
-        sessionStorage.setItem("likeStatus", "notLiked");
-	}
-}
-
-document.addEventListener("DOMContentLoaded", function() {
-    var likeIcon = document.getElementById("LikeBtn");
-    var likeStatus = sessionStorage.getItem("likeStatus");
-    
-    if (likeStatus === "liked") {
-        likeIcon.classList.remove("far");
-        likeIcon.classList.add("fas");
-    } else if (likeStatus === "notLiked") {
-        likeIcon.classList.remove("fas");
-        likeIcon.classList.add("far");
-    }
-});

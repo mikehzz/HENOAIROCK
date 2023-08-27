@@ -178,7 +178,9 @@ public class MusicController implements PcwkLoger {
 			jsonString = new Gson().toJson(message);
 			return jsonString;
 		}
-	}
+	}	
+
+
 
 	@GetMapping("/music_detail")
 	public String selectOne(@RequestParam(value = "musicId") String musicId, @ModelAttribute MusicVO inVO, Model model,

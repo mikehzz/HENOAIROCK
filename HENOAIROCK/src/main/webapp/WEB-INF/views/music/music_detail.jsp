@@ -13,7 +13,6 @@
   integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
   crossorigin="anonymous">
 <link rel="stylesheet" href="${CP}/resources/css/music_detail.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
 <script
   src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
@@ -47,7 +46,6 @@ to {
   display: none;
   animation: fadeIn 0.5s ease-out;
 }
-
 </style>
 </head>
 <body>
@@ -63,10 +61,17 @@ to {
       <div class="col-md-4">
         <div class="form-group">
           <img class="album-cover" src="${musicDetail.albumPath}" alt="앨범 커버">
-          <i id="LikeBtn" class="far fa-heart" style="color: #ff4360;" onclick="toggleLikeIcon(); fn_like();"></i>
+          <c:choose>
+            <c:when test="${1 eq like}">
+                <img id="LikeBtn" src="/resources/images/heart_full.png" width = 30 height = 30 name="LikeBtn" onclick="fn_like()">  
+            </c:when>
+            <c:otherwise>
+                <img id="LikeBtn" src="/resources/images/heart_line.png" width = 30 height = 30 name="LikeBtn" onclick="fn_like()"> 
+            </c:otherwise>
+          </c:choose>
+          <!--<input type="button" id="LikeBtn" name="LikeBtn" onclick= "fn_like()">  -->
         </div>
-      </div> 
-      
+      </div>
       <div class="col-md-8">
         <div class="song-details">
           <p class="song-title">${musicDetail.title}</p>
