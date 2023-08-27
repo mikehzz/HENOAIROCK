@@ -34,7 +34,7 @@
 <div class="meta_info">
 
     <img class="meta_info_img" alt=""
-        src="${outVO.albumPath}">
+        src="${outVO.albumImg}">
     <div class="meta_info_text absolute p-16">
         <h1 id="title" class="editable" onclick="makeEditable(this)">${outVO.title}</h1>
         <button class="titleMod" onclick="showInputBox()">제목 수정</button>
@@ -162,10 +162,13 @@ $(".btn-add").on("click", function (e) {
                 alert(parsedJson.msgContents);
 
                 location.reload();
+                
+                
             } else {
                 alert(parsedJson.msgContents);
-                location.reload();
+                let popupUrl = "http://localhost:8080/mypage/list_detail/?myListSeq=" + myListSeq;
 
+                window.location.href = popupUrl;
             }
         },
         error: function(data) {

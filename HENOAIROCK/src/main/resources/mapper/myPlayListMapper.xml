@@ -89,18 +89,16 @@
   </select>
   
   <select id="selectCustom" parameterType="MyPlayList" resultType="MyPlayList">
-    SELECT
-        a.mylist_title AS title,
-        MAX(b.nickname) AS nickname,
-        MAX(b.profile_img) AS profile_img,
-        MAX(d.album_path) AS album_path
+    SELECT 
+      a.mylist_title AS title,
+      b.nickname,
+      a.mylist_img as albumImg,
+      b.profile_img,
+      a.mylist_contents
     FROM myplaylist a
     JOIN member b ON a.user_id = b.user_id
-    JOIN myplaylist_detail c ON a.mylist_seq = c.mylist_seq
-    JOIN music d ON c.music_id = d.music_id
     
     WHERE a.user_id = #{userId} AND a.mylist_seq = #{myListSeq}
-    GROUP BY a.mylist_title
   </select>
   
   
@@ -185,12 +183,12 @@
   </insert>
   
   <select id="selMypageProfile" parameterType="member" resultType="member">
-		SELECT  nickname,
-		        name,
-		        profile_img
-		
-		FROM member
-		WHERE user_id = #{userId}  
+    SELECT  nickname,
+            name,
+            profile_img
+    
+    FROM member
+    WHERE user_id = #{userId}  
   </select>
   
   

@@ -15,7 +15,7 @@
 <title>Insert title here</title>
 </head>
 
-<body class="body2">
+<body>
 <!-- 제목 및 닉네임 사진 변경  -->
 <div id="musicList" class="mw">
   <div class="meta_info">
@@ -26,7 +26,8 @@
   <article class="horizen_zzz">
   <button class="fs">
   <div id="meta_info" class="ell">
-    <p class="meta_info_title ell">${outVO3.name}님의 플레이리스트 입니다</p>
+    <p class="meta_info_title ell">${outVO3.nickname}</p>
+    <p class="meta_info_title ell">${outVO3.name}</p>
   </div>
    </button>
   </article>
@@ -41,7 +42,7 @@
 <!--         <button class="button_class" id="listAddButton">리스트 추가</button>
         <button class="button_class" id="listDelButton">리스트 삭제</button> -->
         <a href="/mypage/list_reg" class="btn button_class" onclick="handleListAddClick()">리스트등록</a>
-        <a href="javascript:void(0);" class="btn button_class" onclick="handleListDeleteClick()">리스트삭제</a>
+        
     </div>
     </ul>
   </div>
@@ -81,7 +82,7 @@
     <c:when test="${not empty list2 }">
        <c:forEach var="vo" items="${list2}">
        <article class="horizen_station cursor">
-          <button class="fs myListSeq" id="myListSeq" name="myListSeq">
+          <button class="fs myListSeq" id="myListSeq2" name="myListSeq">
               <img class="horizen_img station" src="${vo.albumImg }" alt="이미지" style="width: 80px;">
             <div id="meta_info" class="ell">
               <p class="meta_info_title ell">${vo.title}</p>
@@ -178,70 +179,7 @@ function showButtons() {
   });
 }
 
-function handleListAddClick() {
-    console.log("리스트등록을 클릭했습니다.");
-    
 
-    
-}
-
-function handleListDeleteClick() {
-    console.log("리스트삭제를 클릭했습니다.");
-
-    // 삭제할 리스트를 선택하세요 라는 문구 표시
-    let confirmDeleteGo = confirm("삭제할 리스트를 선택하세요.");
-    
-    if (confirmDeleteGo) {
-        isButtonEnabled = false;
-
-        // 예를 클릭했을 때, myListSeq 요소 클릭 이벤트 핸들링
-        $(document).on("click", ".horizen_station", function () {
-            console.log('list click.');
-            let myListSeq = $(this).find("input[type='hidden']").val();
-            $(".myListSeq").prop("disabled", true);
-
-            // 진짜로 리스트를 삭제하시겠습니까? 문구 표시
-            let confirmDelete = confirm("진짜로 리스트를 삭제 하시겠습니까?");
-            if (confirmDelete) {
-                console.log("리스트를 삭제합니다.");
-                $.ajax({
-                    type: "POST",
-                    url:"/mypage/delCustomList",
-                    asyn:"true",
-                    dataType:"html",
-                    data:{
-                      myListSeq: $("#myListSeq").val()
-                    },
-                    success:function(data){//통신 성공
-                        let parsedJson = JSON.parse(data);
-                                   
-                        if("1" == parsedJson.msgId) {
-                            alert(parsedJson.msgContents);
-                            
-                            location.reload();
-
-                          } else {
-                            alert(parsedJson.msgContents);
-                          }
-                      },
-                      error:function(data){//실패시 처리
-                        console.log("error:"+data);
-                      }
-                  });
-                // 여기에 실제 삭제 코드를 추가하세요.
-            } else {
-                alert("취소 되었습니다.");
-                location.reload();
-
-            }
-        });
-    } else {
-      alert("취소 되었습니다.")
-      location.reload();
-
-    }
-    
-}
 
 
 </script>

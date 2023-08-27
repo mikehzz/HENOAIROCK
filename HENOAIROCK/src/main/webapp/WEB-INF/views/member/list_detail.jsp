@@ -34,7 +34,7 @@
 <div class="meta_info">
 
     <img class="meta_info_img" alt=""
-        src="${outVO.albumPath}">
+        src="${outVO.albumImg}">
     <div class="meta_info_text absolute p-16">
         <h1 id="title" class="editable" onclick="makeEditable(this)">${outVO.title}</h1>
         <button class="titleMod" onclick="showInputBox()">제목 수정</button>
@@ -54,6 +54,8 @@
     <button class="btn-basic btn-add">추가하기</button>
     <button class="btn-basic btn-reset">선택 초기화</button>
     <button class="btn-basic btn-del">음악삭제하기</button>
+    <button class="btn-basic btn-delList">앨범아트 삭제</button>
+    
 </div>
 
 <table class="list-wrap">
@@ -169,7 +171,49 @@ $(".btn-reset").on("click", function (e) {
     // 모든 체크박스를 언체크
     $(".select-check").prop("checked", false);
 });
+$(".btn-delList").on("click", function (e) {
+    console.log("리스트삭제를 클릭했습니다.");
+    let myListSeq = "<%= myListSeq %>";
 
+    // 삭제할 리스트를 선택하세요 라는 문구 표시
+    let confirmDeleteGo = confirm("리스트를 진짜 삭제하시겠습니까?");
+    
+    if (confirmDeleteGo) {
+
+        // 예를 클릭했을 때, myListSeq 요소 클릭 이벤트 핸들링
+       console.log("리스트를 삭제합니다.");
+       $.ajax({
+           type: "POST",
+           url:"/mypage/delCustomList",
+           asyn:"true",
+           dataType:"html",
+           data:{
+             myListSeq: myListSeq
+           },
+           success:function(data){//통신 성공
+               let parsedJson = JSON.parse(data);
+                          
+               if("1" == parsedJson.msgId) {
+                   alert(parsedJson.msgContents);
+                   window.close();
+                   window.opener.location.reload();
+
+
+                 } else {
+                   alert(parsedJson.msgContents);
+                 }
+             },
+             error:function(data){//실패시 처리
+               console.log("error:"+data);
+             }
+         });
+       // 여기에 실제 삭제 코드를 추가하세요.
+   } else {
+       alert("취소 되었습니다.");
+       location.reload();
+   }
+
+});
 $(".btn-add").on("click", function (e) {
     console.log("add click");
     

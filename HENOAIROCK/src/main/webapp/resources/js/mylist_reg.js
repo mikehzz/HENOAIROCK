@@ -28,6 +28,8 @@ $("#doSave").on("click", function() {
 
 			if ("1" == parsedJson.msgId) {
 				alert(parsedJson.msgContents);
+				window.location.href = '/mypage';
+
 				
 			} else {
 				alert(parsedJson.msgContents);
