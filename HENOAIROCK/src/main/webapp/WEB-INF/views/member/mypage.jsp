@@ -180,7 +180,7 @@
 									let popupUrl = "http://localhost:8080/mypage/list_detail/?myListSeq="
 											+ myListSeq;
 									let popupName = "ListDetailPopup";
-									let popupOptions = "width=800,height=600,resizable=yes,scrollbars=yes";
+									let popupOptions = "width=1300,height=600,resizable=yes,scrollbars=yes";
 									window.open(popupUrl, popupName,
 											popupOptions);
 

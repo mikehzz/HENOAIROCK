@@ -40,7 +40,7 @@
     <when test=" '' != genre and '트로트' == genre">
        AND genre LIKE '%트로트%'
     </when>
-    <when test=" '' != genre and '포크/블루' == genre">
+    <when test=" '' != genre and '포크/블루스' == genre">
        AND genre LIKE '%포크%'
     </when>
    </choose>

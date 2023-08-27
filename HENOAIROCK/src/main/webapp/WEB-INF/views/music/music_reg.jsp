@@ -50,9 +50,31 @@
 <script src="${CP}/resources/js/jquery-3.7.0.js"></script>
 <script src="${CP}/resources/js/util.js"></script>
 <title>${title}</title>
-
+<style>
+@font-face {
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.body2 {
+/*   background-image: linear-gradient(180deg,#000000 10%,#001a65 100%); */
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.btn-primary {
+    padding: 5px 20px;
+    background-color: #2a2c33; /* New primary color */
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+   }
+</style>
 </head>
-<body>
+<body class="body2">
 
 <div class="container">
   <!-- Content here -->

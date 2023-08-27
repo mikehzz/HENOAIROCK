@@ -21,6 +21,19 @@
 <script src="${CP}/resources/js/util.js"></script>
 <title>곡 정보</title>
 <style>
+@font-face {
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.body2 {
+/*   background-image: linear-gradient(180deg,#000000 10%,#001a65 100%); */
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 /* 애니메이션 스타일링 */
 @
 keyframes fadeIn {from { opacity:0;
@@ -46,9 +59,17 @@ to {
   display: none;
   animation: fadeIn 0.5s ease-out;
 }
+.btn-primary {
+    padding: 5px 20px;
+    background-color: #2a2c33; /* New primary color */
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+   }
 </style>
 </head>
-<body>
+<body class="body2">
   <header class="text-center py-3">
     <a class="header-logo" href="#">HENOAIROCK</a>
     <input type="hidden" id= "like" value="${like}" name="like" >
@@ -86,14 +107,14 @@ to {
       </div>
       <div class="row">
         <div class="col-md-12">
-          <button class="btn-lyrics my-3" onclick="toggleLyrics()">가사
+          <button class="btn-lyrics my-3 btn-primary" onclick="toggleLyrics()">가사
             보기</button>
           <div class="lyrics-box" id="lyricsBox">
             <h3>가사</h3>
             <div class="lyrics-content">
               <!-- 가사를 스타일링하여 표시 -->
               <%-- <pre>${musicDetail.lyrics}</pre> --%>
-              <p style="white-space: pre-line; font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5; text-align: center;">${musicDetail.lyrics}</p>
+              <p style="white-space: pre-line; font-family: Cafe24SsurroundAir; font-size: 16px; line-height: 1.5; text-align: center;">${musicDetail.lyrics}</p>
                 
             </div>
           </div>
