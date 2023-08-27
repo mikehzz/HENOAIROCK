@@ -6,8 +6,6 @@ var email_Check = false;
 var certified_Email = false;
 var password_Check = false;
 var password_Confirm_Check = false;
-
-
 // 숫자만 입력되도록 처리
 $(".numberOnly").on("keyup", function(e) {
 	console.log('numberOnly keyup' + $(this).val());
@@ -19,15 +17,12 @@ $(".numberOnly").on("keyup", function(e) {
 eUtil.ISEmpty = function(str) {
 	if (str != null && undefined != str) {
 		str = str.toString();
-
 		// 공백 제거: " james " -> "james"
 		if (str.replace(/ /gi, "").length == 0) {
 			return true;
 		}
 	}
-
 	return false;
-
 }
 
 //회원여부 확인 체크
@@ -48,7 +43,7 @@ function fn_idChk() {
 			success : function(data) {
 				if (data == 1) {
 					console.log("data : " + data);
-					alert("HenoAiRock의 회원이십니다");
+					alert("HENOAIROCK의 회원이십니다");
 					email_Check = true;
 				} else if (data == 0) {
 					$('#mail-Check-Btn').attr('disabled', false);
@@ -57,11 +52,9 @@ function fn_idChk() {
 					email_Check = false;
 				}
 			}
-
 		})
 	}
 }
-
 //인증번호 확인 버튼
 $('#mail-Confirm-Btn').click(function() {
 	const inputCode = $('#checkInput').val();
@@ -82,7 +75,7 @@ $('#mail-Confirm-Btn').click(function() {
 	}
 });
 
-// 이메일 인증 버튼
+//이메일 인증 버튼
 $('#mail-Check-Btn').click(function() {
 	const email = $('#userId').val(); // 이메일 주소값 얻어오기!
 	console.log('완성된 이메일 : ' + email); // 이메일 오는지 확인
@@ -99,19 +92,13 @@ $('#mail-Check-Btn').click(function() {
 		}
 	}); // end ajax
 }); // end send eamil
-
-
-
-
 //비밀번호 변경 폼 유효성 검사
 const form = document.getElementById('find-form');
-
 form.addEventListener('submit', function(event) {
 	event.preventDefault(); // 전송 안되게 처리
 	$('#register').on("click", function() {
 		console.log(email_Check);
 		console.log(certified_Email);
-
 		if ((email_Check == true) && (certified_Email == true)) {
 			form.submit();
 			alert("비밀번호 변경에 성공하였습니다. 변경하신 비밀번호로 재 로그인 해주세요.");
@@ -119,12 +106,9 @@ form.addEventListener('submit', function(event) {
 		} else {
 			alert("인증번호를 재확인 해주십시오.");
 			$("#register").off("click");
-
 		}
-
 	});
 });
-
 // 비밀번호 관련 로직 처리
 function validateForm() {
 	var password = document.getElementById("password").value;
@@ -132,7 +116,6 @@ function validateForm() {
 	var password_error = document.getElementById("password_error");
 	var confirm_password_error = document
 			.getElementById("confirm_password_error");
-
 	if (password.trim().length === 0) {
 		password_error.innerHTML = "";
 	} else if (password.length < 8 || password.length > 12) {
@@ -143,7 +126,6 @@ function validateForm() {
 		password_error.innerHTML = "사용가능한 비밀번호 입니다!";
 		$('.error-message').css('color', 'green');
 		$('#register').attr('disabled', true);
-
 		if (confirm_password.trim().length === 0) {
 			confirm_password_error.innerHTML = "";
 		} else if (password !== confirm_password) {
@@ -156,7 +138,6 @@ function validateForm() {
 			$('.error-message').css('color', 'green');
 		}
 	}
-
 	if (password_error.innerHTML === ""
 			&& confirm_password_error.innerHTML === "") {
 		return true;
@@ -164,7 +145,6 @@ function validateForm() {
 		return false;
 	}
 }
-
 $('#register').on("click", function() {
 	console.log(email_Check);
 	console.log(certified_Email);
@@ -176,20 +156,19 @@ $('#register').on("click", function() {
 		}
 	}
 });
-
 function clearPasswordError() {
 	var password_error = document.getElementById("password_error");
 	var confirm_password_error = document
 			.getElementById("confirm_password_error");
-
 	password_error.innerHTML = "";
 	confirm_password_error.innerHTML = "";
 }
 
 
+
 /* 비밀번호 제약사항 및 이용약관에서 비동의 눌렀을때만 회원가입 x 작동 */
 const passwordInput = document.getElementById("password");
-const confirmPasswordInput = document.getElementById("confirm_password");
+const confirmPasswordInput = document.getElementById("cpass");
 const passwordMatchMessage = document.getElementById("password-match-message");
 
 
@@ -216,4 +195,21 @@ document.getElementById('go_back').addEventListener('click', function() {
         history.back();
         container.classList.remove('flip-page'); // 페이지 돌아올 때 효과 제거
     }, 500);
+});
+
+
+$('#register').on("click", function() {
+    console.log(email_Check);
+    console.log(certified_Email);
+    
+    if ((email_Check == false) || (certified_Email == false)) {
+        alert("이메일 회원인증 및 인증번호를 입력해주세요");
+    } else if ((email_Check == true) && (certified_Email == true)) {
+        if ((password_Check == true) && (password_Confirm_Check == true)) {
+            alert("비밀번호 변경이 완료되었습니다.");
+            
+            // Redirect to the login page after successful password change
+            window.location.href = "/member/login"; // Replace "/login" with your actual login page URL
+        }
+    }
 });
