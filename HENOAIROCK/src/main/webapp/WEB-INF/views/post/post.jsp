@@ -205,7 +205,7 @@ margin-right: 1rem !important;
 
 <body class="body2">
 <div class="container">
-  <!-- Content here -->
+
   <!-- 제목 -->
   </br>
   <div class="page-header">
