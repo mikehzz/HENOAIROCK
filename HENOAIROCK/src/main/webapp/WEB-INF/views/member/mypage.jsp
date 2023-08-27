@@ -50,10 +50,9 @@
  		<div class="additional-content">
             <button class="fs" style="border: none;">
                 <img class="horizen_mmimg" src="https://api1.indj.club/api/v3/channel/image/profile/profile_51532_340788244122.jpg" alt="이미지">
-                <div id="meta_info" class="ell">
+
                     <p class="meta_info_title ell">일해 김형준</p>
                     <br/>
-                </div>
             </button>
         </div>  
 
