@@ -13,6 +13,8 @@
 <script src="${CP}/resources/js/util.js"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/intro.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/intro2.css">
+<link rel="shortcut icon" href="<c:url value='/resources/favicon.ico'/>" type="image/x-icon"/>
+<link rel="icon" href="<c:url value='/resources/favicon.ico'/>" type="image/x-icon"/>
 <title>Intro</title>
 </head>
 

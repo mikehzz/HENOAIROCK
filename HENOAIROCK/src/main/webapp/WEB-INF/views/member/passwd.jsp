@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -8,6 +9,8 @@
 <title>비밀번호 변경 또는 찾기</title>
 <link rel="stylesheet" type="text/css"
 	href="../resources/css/passwd.css">
+	<link rel="shortcut icon" href="<c:url value='/resources/favicon.ico'/>" type="image/x-icon"/>
+<link rel="icon" href="<c:url value='/resources/favicon.ico'/>" type="image/x-icon"/>
 <script src="/resources/js/jquery-3.7.0.js"></script>
 </head>
 <body>

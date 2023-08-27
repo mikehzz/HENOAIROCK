@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="<c:url value='/resources/favicon.ico'/>" type="image/x-icon"/>
+    <link rel="icon" href="<c:url value='/resources/favicon.ico'/>" type="image/x-icon"/>
     <style>
 @font-face {
     font-family: 'Cafe24SsurroundAir';
