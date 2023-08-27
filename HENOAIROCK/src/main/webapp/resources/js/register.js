@@ -198,7 +198,7 @@ function validateForm() {
 
 	} else {
 		password_error.innerHTML = "사용가능한 비밀번호 입니다!";
-		$('.error-message').css('color', 'green');
+		$('.error-message').css('color', 'blue');
 		$('#register').attr('disabled', true);
 
 		if (confirm_password.trim().length === 0) {
@@ -210,7 +210,7 @@ function validateForm() {
 		} else {
 			confirm_password_error.innerHTML = "비밀번호가 일치합니다!";
 			$('#register').attr('disabled', false);
-			$('.error-message').css('color', 'green');
+			$('.error-message').css('color', 'blue');
 		}
 	}
 
@@ -230,3 +230,4 @@ function clearPasswordError() {
 	password_error.innerHTML = "";
 	confirm_password_error.innerHTML = "";
 }
+

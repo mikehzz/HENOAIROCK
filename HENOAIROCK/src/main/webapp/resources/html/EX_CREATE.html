@@ -6,11 +6,11 @@
 </head>
 <body>
     <div class="container">
+    <form action="/member/register" method="post" id="register-form">
         <h1>REGISTER</h1>
-        <form>
         
-            <label for="Email">Email  <!-- onclick = "fn_idChk();" -->
-            	<input type="button" value="중복확인" class="btnRe" >
+            <label for="Email">Email
+            	<input type="button" value="중복확인" class="btnRe" onclick = "fn_idChk();" >
             </label>
             	<input type="text" id="userId" name="userId" required>
             
@@ -23,15 +23,15 @@
             
             <label for="password">Password</label>
             <input placeholder="비밀번호는 8이상 12자 이하로 설정바랍니다." type="password" name="password" id="password" required />
-
+			<span class="error-message" id="password_error"></span>
 
             <label for="cpass">Confirm Password</label>
             <input type="password" id="confirm_password" name="confirm_password" required oninput="validateForm()" />
-            <p id="password-match-message" style="font-size: 8px;color: black; display: none;">비밀번호가 일치합니다.</p>
+            <span class="error-message" id="confirm_password_error"></span>
 
     
             <label for="name">Name</label>
-            <input type="name" name="name" id="name" required />
+            <input type="text" name="name" id="name" required />
             
             
             <label for="birth">birth</label>
@@ -56,7 +56,7 @@
          </form>
 
 
-            <button type="submit">CREATE</button>
+            <button type="submit" id="register">CREATE</button>
 
     </div>
 <script>

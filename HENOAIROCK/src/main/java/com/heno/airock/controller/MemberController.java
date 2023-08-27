@@ -153,7 +153,7 @@ public class MemberController implements PcwkLoger {
 			if(myResult == 1) {
 				inVO.setUserId(memberDTO.getUserId());
 				myPlayListService.save(inVO);
-				return "redirect:/";
+				return "redirect:/member/login";
 			}
 			
 			return "/register";
