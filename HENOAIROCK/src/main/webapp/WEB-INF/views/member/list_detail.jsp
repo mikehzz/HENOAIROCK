@@ -212,7 +212,7 @@ $(".btn-delList").on("click", function (e) {
        alert("취소 되었습니다.");
        location.reload();
    }
-
+ 
 });
 $(".btn-add").on("click", function (e) {
     console.log("add click");
