@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -7,6 +8,8 @@
 <title>로그인</title>
 <link rel="stylesheet" type="text/css" href="/resources/css/login.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="shortcut icon" href="<c:url value='/resources/favicon.ico'/>" type="image/x-icon"/>
+<link rel="icon" href="<c:url value='/resources/favicon.ico'/>" type="image/x-icon"/>
 <script src="/resources/js/jquery-3.7.0.js"></script>
 </head>
 <body>

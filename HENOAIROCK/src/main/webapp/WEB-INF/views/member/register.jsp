@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="author" content="User">
 <link rel="stylesheet" type="text/css" href="/resources/css/register.css">
+<link rel="shortcut icon" href="<c:url value='/resources/favicon.ico'/>" type="image/x-icon"/>
+<link rel="icon" href="<c:url value='/resources/favicon.ico'/>" type="image/x-icon"/>
 <script src="/resources/js/jquery-3.7.0.js"></script>
 <title>회원가입</title>
 </head>
