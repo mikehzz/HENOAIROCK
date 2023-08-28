@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="author" content="User">
-<title>로그인</title>
+<title>HeNoAIRock</title>
 <link rel="stylesheet" type="text/css" href="/resources/css/login.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link rel="shortcut icon" href="<c:url value='/resources/favicon.ico'/>" type="image/x-icon"/>

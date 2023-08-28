@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="author" content="User">
-<title>비밀번호 변경 또는 찾기</title>
+<title>HeNoAIRock</title>
 <link rel="stylesheet" type="text/css"
 	href="../resources/css/passwd.css">
 	<link rel="shortcut icon" href="<c:url value='/resources/favicon.ico'/>" type="image/x-icon"/>

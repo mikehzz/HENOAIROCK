@@ -285,16 +285,17 @@ body::-webkit-scrollbar-track {
 <li>
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/main">
         <div>
-            <span class="logo-emoji">👻</span>
+            <span class="logo-emoji"><img src="/resources/images/logo_white.png" width=32px height=32px /></span> <!-- Replace with the emoji you want to use -->
         </div>
-        <div>HeNoAIRock</div>
+        <div>HENOAIROCK&nbsp</div>
+        
     </a>
     </li>
     <li class="separator"></li>
                     <div class="sidebar-heading">
                 CHAT
             </div>
-    <li><a href="/main"><i class="material-icons">home</i> 감정분석??</a></li>
+    <li><a href="/main"><i class="material-icons">home</i> 감정분석</a></li>
     <li class="separator"></li>
                     <div class="sidebar-heading">
                 MAIN
