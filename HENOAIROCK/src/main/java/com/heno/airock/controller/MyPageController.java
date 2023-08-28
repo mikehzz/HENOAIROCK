@@ -122,9 +122,8 @@ public class MyPageController implements PcwkLoger {
 			}
 			inVO.setMyListSeq(myListSeq);
 			List<MusicVO> outVO2 = myPlayListService.selmusic(inVO);
+
 			inVO.setUserId(memberDTO.getUserId());
-			
-			
 			MyPlayListVO outVO = myPlayListService.selectCustom(inVO);
 			
 			httpSession.setAttribute("userId", memberDTO.getUserId());
@@ -173,7 +172,7 @@ public class MyPageController implements PcwkLoger {
 		MessageDTO message = new MessageDTO();
 		if (1 == flag) {// 삭제 성공
 			message.setMsgId("1");
-			message.setMsgContents("리스트가등록되었습니다!");
+			message.setMsgContents("등록되었습니다!");
 			jsonString = new Gson().toJson(message);
 			
 			return jsonString;

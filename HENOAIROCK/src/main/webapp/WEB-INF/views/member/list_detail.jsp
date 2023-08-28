@@ -11,15 +11,15 @@
 <meta charset="${encoding}">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="/resources/css/LIST.css">
-<link
+<!-- <link
   href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
   rel="stylesheet"
   integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-  crossorigin="anonymous">
-<script
+  crossorigin="anonymous"> -->
+<!-- <script
   src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-  crossorigin="anonymous"></script>
+  crossorigin="anonymous"></script> -->
 <script src="${CP}/resources/js/jquery-3.7.0.js"></script>
 <script src="${CP}/resources/js/util.js"></script>
 <title>곡 정보</title>
@@ -36,19 +36,14 @@
     <img class="meta_info_img" alt=""
         src="${outVO.albumImg}">
     <div class="meta_info_text absolute p-16">
-      <h1 id="title" class="editable" >${outVO.title}</h1>
-      <input type="text" class="editable" id="titleInput"
-        name="title" placeholder="제목을 입력하세요." required="required"
-        maxlength="66" style="display: none;">
-      <button id="editButton" onclick="toggleEdit()">수정</button>
+        
+        <h1 id="title" class="editable" onclick="makeEditable(this)">${outVO.title}</h1>
         <!-- 노래 모음 -->
         <div class="user-nickName">
-            <button class="fs">
                 <img class="horizen_mmimg" src="${outVO.profileImg}" alt="이미지" style="width: 48px;">
                   <div id="meta_info" class="ell">
                       <p class="meta_info_title ell">${outVO.nickname}</p>
                   </div>
-            </button>
         </div>
    </div>
 </div>
@@ -58,16 +53,16 @@
     <button class="btn-basic btn-reset">선택 초기화</button>
     <button class="btn-basic btn-del">음악삭제하기</button>
     <button class="btn-basic btn-delList">앨범아트 삭제</button>
-    
+    <button class="titleMod" onclick="showInputBox()">제목 수정</button>
 </div>
 
 <table class="list-wrap">
   <thead>
     <tr>
       <th scope="col" class="hd-check">선택</th>
-      <th scope="col" class="hd-album">앨범이미지</th>
-      <th scope="col" class="hd-info">가수</th>
-      <th scope="col" class="hd-btns">제목</th>
+      <th scope="col" class="hd-album" width="80">앨범</th>
+      <th scope="col" class="hd-info narrow-column">가수</th>
+      <th scope="col" class="hd-btns" width="400">제목</th>
       <th scope="col" class="hd-btns">장르</th>
       <th scope="col" class="hd-btns">감정</th>
       <th scope="col" class="hd-btns">뮤비</th>
@@ -103,7 +98,7 @@
           <!-- 뮤비 -->
           <td class="btns">
               <div class="toggle-button-box lyr-mv" id="list-mv_102563175">
-                  <a href="${vo.embedLink}" class="btn btn-basic btn-mv" title="뮤비">유튜브로보기</a>
+                  <a href="${vo.embedLink}" class="btn btn-basic btn-mv" title="뮤비">링크</a>
               </div>
           </td>
       </tr> 
@@ -115,55 +110,6 @@
 </table>
 </div>
 <script>
-//<h1>를 수정 가능한 input으로 변경하는 함수
-function makeEditable(element) {
-  // <h1> 숨기기
-  element.style.display = 'none';
-
-  // input 보이기
-  var inputElement = document.getElementById('titleInput');
-  inputElement.style.display = 'block';
-  inputElement.value = element.textContent; // 기존 텍스트를 input에 설정
-}
-
-// 수정 상태를 토글하는 함수
-function toggleEdit() {
-  var h1Element = document.getElementById('title');
-  var inputElement = document.getElementById('titleInput');
-  var editButton = document.getElementById('editButton');
-
-  if (editButton.textContent === '수정') {
-    // "수정" 버튼을 클릭한 경우
-    makeEditable(h1Element); // <h1>을 수정 가능한 input으로 변경
-    editButton.textContent = '저장'; // 버튼 텍스트 변경
-  } else {
-    // "저장" 버튼을 클릭한 경우
-    // 수정된 값을 가져오기
-    var updatedTitle = inputElement.value;
-    let myListSeq = "<%= myListSeq %>";
-
-    // Ajax 요청
-    $.ajax({
-      url: '/mypage/modCustomTitle', // 업데이트를 처리할 서버 엔드포인트 URL
-      type: 'POST', // 또는 'PUT' - 데이터 업데이트를 위한 HTTP 메서드 선택
-      data: { 
-        title: updatedTitle,
-        myListSeq : myListSeq
-        }, // 서버로 보낼 데이터
-      success: function(response) {
-        // 업데이트가 성공적으로 처리되었을 때 실행할 코드
-        h1Element.textContent = updatedTitle; // 화면에 수정된 제목 표시
-        h1Element.style.display = 'block'; // <h1> 보이기
-        inputElement.style.display = 'none'; // 입력란 숨기기
-        editButton.textContent = '수정'; // 버튼 텍스트 변경
-      },
-      error: function(error) {
-        // 업데이트 오류 발생 시 실행할 코드
-        console.error('업데이트 오류:', error);
-      }
-    });
-  }
-}
 $(".btn-del").on("click", function (e) {
     console.log("btn-del click");
     
@@ -175,7 +121,7 @@ $(".btn-del").on("click", function (e) {
     selectedCheckboxes.each(function() {
         selectedIds.push($(this).attr("id"));
     });
-    // 선택된 ID 값을 사용하여 해당 항목을 삭제하는 작업을 수행합니다.ㅌ`
+    // 선택된 ID 값을 사용하여 해당 항목을 삭제하는 작업을 수행합니다.
     selectedIds.forEach(function(id) {
         // 여기에서 선택된 ID에 해당하는 항목을 삭제하실 수 있습니다.
         // 예를 들어, 해당 ID를 서버로 전송하여 삭제 작업을 수행하거나,
@@ -279,10 +225,79 @@ $(".btn-add").on("click", function (e) {
     
 });
 
-  
-  
-  
 
+function showInputBox() {
+    // 현재 제목 텍스트 가져오기
+    var currentTitle = document.getElementById("title").textContent;
+
+    // 제목을 표시할 input 요소를 생성
+    var inputElement = document.createElement("input");
+    inputElement.setAttribute("type", "text");
+    inputElement.setAttribute("id", "titleInput");
+    inputElement.setAttribute("value", currentTitle);
+
+    // 원래 제목 요소를 숨깁니다.
+    document.getElementById("title").style.display = "none";
+
+    // 입력 상자를 문서에 추가합니다.
+    document.getElementById("title").parentNode.appendChild(inputElement);
+
+    // 입력 상자에 포커스를 설정합니다.
+    inputElement.focus();
+
+    // 입력 상자에서 엔터 키를 누를 때 saveTitle() 함수를 호출합니다.
+    inputElement.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) { // 엔터 키 코드
+            saveTitle();
+        }
+    });
+}
+
+
+function saveTitle() {
+    // 입력 상자의 값을 가져옵니다.
+    var newTitle = document.getElementById("titleInput").value;
+
+    // AJAX 요청을 보냅니다.
+    var myListSeq = "<%= myListSeq %>"; // myListSeq 값을 JavaScript 변수에 할당합니다.
+    
+    console.log("newTitle :"+newTitle);
+    console.log("myListSeq :"+myListSeq);
+    
+    $.ajax({
+        type: "POST", // 또는 "GET"을 사용할 수 있습니다.
+        url: "/mypage/modCustomTitle", // 실제 업데이트를 처리하는 서버의 엔드포인트 URL을 지정합니다.
+        asyn:"true",
+        dataType:"html",
+        data: {
+            myListSeq: myListSeq,
+            title: newTitle
+        },
+        success:function(data){//통신 성공
+            let parsedJson = JSON.parse(data);
+                       
+            if("1" == parsedJson.msgId) {
+                alert(parsedJson.msgContents);
+                
+                location.reload();
+                
+              } else {
+                alert(parsedJson.msgContents);
+              }
+          },
+          error:function(data){//실패시 처리
+            console.log("error:"+data);
+          }
+    });
+
+    // 입력 상자를 제거합니다.
+    var inputElement = document.getElementById("titleInput");
+    inputElement.parentNode.removeChild(inputElement);
+
+    // <h1> 요소를 다시 표시합니다.
+    document.getElementById("title").style.display = "block";
+
+}
 
 
 
