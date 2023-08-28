@@ -10,6 +10,8 @@ body {
 }
 
 .container {
+	width:310px;
+	height:480px;
     background-color: #ffffff;
     padding: 20px;
     border-radius: 5px;
@@ -27,6 +29,7 @@ form {
 
 label {
     margin-top: 10px;
+    display: block;
 }
 
 input {
