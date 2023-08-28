@@ -29,13 +29,13 @@
 
 </style>
 </head>
-<body>
+<body class="body2">
 <div id="musicList" class="mw">
 <div class="meta_info">
 
     <img class="meta_info_img" alt="" src="${outVO.albumImg}">
     <div class="meta_info_text absolute p-16">
-        <h1 id="title" class="editable" onclick="makeEditable(this)">${outVO.title}</h1>
+        <h1 id="title" class="editable" onclick="makeEditable(this)">${outVO.title}</h1>  
  <!-- 노래 모음 -->
  		<div class="additional-content">
             <button class="fs" style="border: none;">
@@ -50,8 +50,8 @@
 </div>
 
 <div class="button-container">
-    <button class="btn-basic btn-add">추가하기</button>
-    <button class="btn-basic btn-reset">선택 초기화</button>
+    <button class="btn-add">추가하기</button>
+    <button class="btn-reset">선택 초기화</button>
     <button class="titleMod" onclick="showInputBox()">제목 수정</button>
 </div>
 
