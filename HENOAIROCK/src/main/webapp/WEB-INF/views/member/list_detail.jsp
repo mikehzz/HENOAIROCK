@@ -101,7 +101,7 @@
           <!-- 뮤비 -->
           <td class="btns">
               <div class="toggle-button-box lyr-mv" id="list-mv_102563175">
-                  <a href="${vo.embedLink}" class="btn btn-basic btn-mv" title="뮤비">링크</a>
+                  <a href="${vo.embedLink}" target='_blank' class="btn btn-basic btn-mv" title="뮤비">링크</a>
               </div>
           </td>
       </tr> 
