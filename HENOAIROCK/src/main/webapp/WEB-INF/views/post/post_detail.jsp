@@ -302,9 +302,12 @@ font-weight: bold;
 </c:forEach>
 </div>
 </form>
+
 </div>
+</br>
+</br>
+</br>
   </div>
-  </br>
-  </br>
+
 </body>
 </html>
