@@ -50,8 +50,8 @@
 </div>
 
 <div class="button-container">
-    <button class="btn-add">추가하기</button>
-    <button class="btn-reset">선택 초기화</button>
+    <button class="btn-basic btn-add">추가하기</button>
+    <button class="btn-basic btn-reset">선택 초기화</button>
     <button class="titleMod" onclick="showInputBox()">제목 수정</button>
 </div>
 
@@ -98,7 +98,7 @@
           <!-- 뮤비 -->
           <td class="btns">
               <div class="toggle-button-box lyr-mv" id="list-mv_102563175">
-                  <a href="${vo.embedLink}" class="btn btn-basic btn-mv" title="뮤비">링크</a>
+                  <a href="${vo.embedLink}" target='_blank' class="btn btn-basic btn-mv" title="뮤비">링크</a>
               </div>
           </td>
       </tr>
