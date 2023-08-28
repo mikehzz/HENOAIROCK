@@ -188,7 +188,6 @@ font-weight: bold;
 .comment-text{
   font-size: 12px;
 }
-
 </style>
 </head>
 

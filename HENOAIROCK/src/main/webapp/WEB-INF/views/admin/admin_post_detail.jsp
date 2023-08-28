@@ -142,7 +142,6 @@ font-weight: bold;
   font-size: 12px;
 }
 
-
 .album-cover {
   width: 60px;
   height: 60px;
