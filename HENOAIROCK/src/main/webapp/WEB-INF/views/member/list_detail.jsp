@@ -38,13 +38,16 @@
     <div class="meta_info_text absolute p-16">
         
         <h1 id="title" class="editable" onclick="makeEditable(this)">${outVO.title}</h1>
-        <!-- 노래 모음 -->
-        <div class="user-nickName">
-                <img class="horizen_mmimg" src="${outVO.profileImg}" alt="이미지" style="width: 48px;">
-                  <div id="meta_info" class="ell">
-                      <p class="meta_info_title ell">${outVO.nickname}</p>
-                  </div>
-        </div>
+ <!-- 노래 모음 -->
+ 		<div class="additional-content">
+            <button class="fs" style="border: none;">
+                <img class="horizen_mmimg" src="https://api1.indj.club/api/v3/channel/image/profile/profile_51532_340788244122.jpg" alt="이미지">
+                <div id="meta_info" class="ell">
+                    <p class="meta_info_title ell">${outVO3.name}</p>
+                    <br/>
+                </div>
+            </button>
+        </div> 
    </div>
 </div>
 
