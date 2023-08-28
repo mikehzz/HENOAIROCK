@@ -9,7 +9,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- CSS only -->
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+  crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="/resources/css/Mypage.css">
+<!-- <link rel="stylesheet" type="text/css" href="/resources/css/music_rank.css"> -->
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+  integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- JavaScript Bundle with Popper -->
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+  crossorigin="anonymous"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/LIST.css">
 <script src="${CP}/resources/js/jquery-3.7.0.js"></script>
 <script src="${CP}/resources/js/util.js"></script>
@@ -139,7 +156,7 @@ $(".myListSeq").on("click", function (e) {
     // 팝업 창 열기
     let popupUrl = "http://localhost:8080/mypage/list_detail/?myListSeq=" + myListSeq;
     let popupName = "ListDetailPopup";
-    let popupOptions = "width=800,height=600,resizable=yes,scrollbars=yes";
+    let popupOptions = "width=1400,height=600,resizable=yes,scrollbars=yes";
     window.open(popupUrl, popupName, popupOptions);
     
     }
