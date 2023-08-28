@@ -71,12 +71,13 @@ body {
 }
 
 .containerbox {
-  max-width: 800px;
+  max-width: 890px;
   margin: 0 auto;
+  margin-left: 97px;
   padding: 20px;
   background-color: white;
   border-radius: 10px;
-  box-shadow: 0 0px 10px rgb(71 69 69);
+  box-shadow: 0 0px 3px rgb(71 69 69);
 }
 
 .page-title {
@@ -90,14 +91,14 @@ body {
   align-items: center;
   margin-bottom: 15px;
   padding: 10px 0;
-  border-bottom: 3px solid #e5e5e5;
+  border-bottom: 2px solid #e5e5e5;
 }
 
 .post-content {
   padding: 20px;
   background-color: #fff;
   border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0px 4px rgba(0, 0, 0, 0.3);
   margin-top: 15px;
 }
 
@@ -128,7 +129,7 @@ body {
   padding: 10px 0;
   margin-bottom: 15px;
   margin-top: -15px;
-  border-bottom: 3px solid #e5e5e5;
+  border-bottom: 2px solid #e5e5e5;
 }
 
 .album-cover {
@@ -176,6 +177,20 @@ body {
   color: gray;
   float: right;
 }
+
+.comment-user{
+font-size: 13px;
+font-weight: bold;
+}
+
+.comment-time{
+  font-size: 12px;
+}
+
+.comment-text{
+  font-size: 12px;
+}
+
 </style>
 </head>
 

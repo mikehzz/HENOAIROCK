@@ -74,7 +74,7 @@ section{
 }
 
 .page-header h2 {
-  color: #ff8585;
+  color: #2a2c33;
   font-size: 24px;
   font-weight: bold;
   text-align: center;
