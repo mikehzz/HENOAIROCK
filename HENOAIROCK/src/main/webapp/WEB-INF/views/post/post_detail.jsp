@@ -204,7 +204,7 @@ body {
         <input type="hidden" name="musicId" id="musicId" value="${outVO.musicId}">
         <input type="hidden" name="seq" id="seq" value="${inVO.getPostSeq()}">
         <input type="hidden" name="userId" id="userId" value="${sessionScope.user.userId}">
-        <input type="hidden" name="musicId" id="musicId" value="${outVO.musicId}">
+        
 
         <div class="post-info">
             <div>
@@ -224,7 +224,7 @@ body {
             </div>
         </div>
 		      <c:if test="${not empty outVO.musicId}">
-        <div class="music-info">
+        <div class="music-info" onclick="musicClick" id="musicClick">
             <img class="album-cover" src="${outVO.albumPath}" alt="앨범커버">
             <div class="music-details">
                 <h3>${outVO.title} - ${outVO.artist}</h3>
