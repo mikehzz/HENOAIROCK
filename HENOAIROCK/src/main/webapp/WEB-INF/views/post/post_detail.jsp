@@ -193,23 +193,21 @@ font-weight: bold;
 
 <body>
 
-  <!-- contents  -->
   <div class="container">
-    
+
     </br>
-    
+
       <div class="containerbox">
 
   <div class="page-title">
     <h2>${title}</h2>
   </div>
-    
-   <!-- 목록 버튼 추가 -->
+
     <div class="row g-1 d-flex justify-content-end">
       <div class="col-auto">
         <input type="button" class="btn btn-primary" value="목록" id="moveToList">
       </div>
-    </div>  
+    </div>
 
     <form action="#" name="reg_frm" id="reg_frm">
         <input type="hidden" name="div" id="div" value="${inVO.getPostDiv()}">
@@ -217,11 +215,9 @@ font-weight: bold;
         <input type="hidden" name="seq" id="seq" value="${inVO.getPostSeq()}">
         <input type="hidden" name="userId" id="userId" value="${sessionScope.user.userId}">
         
-
         <div class="post-info">
             <div>
                 <p><strong>제목:</strong> ${outVO.postTitle}</p>
-                
             </div>
             <div>
             <p class="ariana"><strong>작성자:</strong> ${outVO.userId}</p>
@@ -247,8 +243,8 @@ font-weight: bold;
         <div class="post-content">
             <p>${outVO.postContents}</p>
         </div>
-    </br>
 
+    </br>
 
 			<p class="btn_set">
 			    <c:set var="writer" value="${outVO.userId }" />
@@ -267,9 +263,11 @@ font-weight: bold;
     </div>
 
     <div id="commentList">
-      <!-- 여기에 댓글이 추가될 것입니다 -->
+
     </div>
+
 </br>
+
         <div class="comments">
             <h5>댓글 ${comments.size()}개</h5>
 <c:forEach var="comment" items="${comments}">
@@ -297,17 +295,17 @@ font-weight: bold;
             <button type="button" class="btn btn-secondary btn-sm submitEdit mt-2">수정 완료</button>
             <button type="button" class="btn btn-secondary btn-sm cancelEdit mt-2">취소</button>
         </div>
-
     </div>
 </c:forEach>
 </div>
 </form>
+</div>
+
+</br>
+</br>
+</br>
 
 </div>
-</br>
-</br>
-</br>
-  </div>
 
 </body>
 </html>
