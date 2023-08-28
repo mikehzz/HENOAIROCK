@@ -102,7 +102,7 @@ body {
 
 .comment {
   padding: 10px;
-  margin-top: 15px;
+  margin-top: 0px;
   border: 1px solid #e5e5e5;
   border-radius: 5px;
   background-color: #f9f9f9;
@@ -118,6 +118,16 @@ body {
 
 .btn-primary:hover {
   background-color: #757677;
+}
+
+.comment-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  margin-bottom: -35px;
+  margin-top: 15px;
+  border-top: 2px solid #e5e5e5;
 }
 
 .music-info {
@@ -168,12 +178,17 @@ body {
   font-size: 14px;
   color: gray;
   float: right;
+  margin-bottom: 10px;
 }
 
 .butera{
   font-size: 14px;
   color: gray;
   float: right;
+}
+
+.text-right{
+  text-align: right;
 }
 
 .comment-user{
@@ -222,10 +237,11 @@ font-weight: bold;
             <div>
             <p class="ariana"><strong>작성자:</strong> ${outVO.userId}</p>
             <div>
-                <p class="butera"><strong>등록일:</strong> ${outVO.postDt}
+                <p class="butera"><strong>&nbsp&nbsp&nbsp등록일:</strong>${outVO.postDt}
                     <c:if test="${not empty outVO.updateDt}">
                 <strong> / 수정일:</strong> ${outVO.updateDt}
                 </c:if></p></div>
+                
                 <div>
                 <p class="grande"><strong>조회:</strong> ${outVO.readCnt}</p>
             </div>
@@ -256,10 +272,14 @@ font-weight: bold;
 			    </c:if>
 			</p>
     </br>
-    <div class="comment-input">
+    <div class="comment-info"></div>
+</br>
+                <h5>댓글 ${comments.size()}개</h5>
+
+    <div class="comment-input text-right">
         <textarea class="form-control" id="comments" name="comments" rows="4"></textarea>
         </br>
-        <button class="btn btn-secondary btn-lg" type="button" id="doAddComment">댓글 추가</button>
+        <button class="btn btn-secondary btn-rg" type="button" id="doAddComment">댓글 추가</button>
     </div>
 
     <div id="commentList">
@@ -269,7 +289,7 @@ font-weight: bold;
 </br>
 
         <div class="comments">
-            <h5>댓글 ${comments.size()}개</h5>
+
 <c:forEach var="comment" items="${comments}">
     <div class="comment mb-3 p-3 border rounded">
         <div class="d-flex justify-content-between align-items-center">
