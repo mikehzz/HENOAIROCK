@@ -37,6 +37,10 @@ request.setAttribute("title", title);
 <script src="/resources/js/post_detail.js"></script>
 <title>${title}</title>
 <style>
+.h5{
+font-weight: bold;
+}
+
 @font-face {
   font-family: 'Cafe24SsurroundAir';
   src:
@@ -126,7 +130,7 @@ body {
   align-items: center;
   padding: 10px 0;
   margin-bottom: -35px;
-  margin-top: 15px;
+  margin-top: -20px;
   border-top: 2px solid #e5e5e5;
 }
 
@@ -274,7 +278,7 @@ font-weight: bold;
     </br>
     <div class="comment-info"></div>
 </br>
-                <h5>댓글 ${comments.size()}개</h5>
+                <h5 class="h5">댓글 작성</h5>
 
     <div class="comment-input text-right">
         <textarea class="form-control" id="comments" name="comments" rows="4"></textarea>
@@ -286,10 +290,10 @@ font-weight: bold;
 
     </div>
 
-</br>
+
 
         <div class="comments">
-
+<h5>댓글 ${comments.size()}개</h5>
 <c:forEach var="comment" items="${comments}">
     <div class="comment mb-3 p-3 border rounded">
         <div class="d-flex justify-content-between align-items-center">
