@@ -69,7 +69,7 @@ body {
 }
 
 .containerbox {
-  max-width: 890px;
+  max-width: 800px;
   margin: 0 auto;
   margin-left: 97px;
   padding: 20px;
