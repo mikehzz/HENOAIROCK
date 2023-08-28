@@ -1,3 +1,33 @@
+body {
+  font-family: 'Cafe24SsurroundAir';
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.body2 {
+  font-family: 'Cafe24SsurroundAir';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.btn-primary {
+    padding: 5px 20px;
+    background-color: #2a2c33; /* New primary color */
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+   }
+
+
+
 /* Reset some default styling */
 body, h1, h2, h3, p, ul, li {
     margin: 0;
@@ -263,7 +293,7 @@ body {
 }
 
 .titleMod:hover {
-    background-color: #808040; /* Darker color on hover */
+    background-color: #4caf50; /* Darker color on hover */
 }
 
 .artist {

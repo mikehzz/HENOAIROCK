@@ -29,7 +29,7 @@
 
 </style>
 </head>
-<body>
+<body class="body2">
 <div id="musicList" class="mw">
 <div class="meta_info">
 
