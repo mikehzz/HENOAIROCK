@@ -157,7 +157,7 @@
         mylist_seq = #{myListSeq}  
   </update>
   
-  <select id="selmusic" parameterType="MyPlayList" resultType="music">
+<select id="selmusic" parameterType="MyPlayList" resultType="music">
     SELECT  music_id,
             album_path,
             artist,
