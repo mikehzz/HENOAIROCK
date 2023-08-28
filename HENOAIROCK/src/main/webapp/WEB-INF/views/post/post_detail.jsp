@@ -37,8 +37,6 @@ request.setAttribute("title", title);
 <script src="/resources/js/post_detail.js"></script>
 <title>${title}</title>
 <style>
-
-
 @font-face {
   font-family: 'Cafe24SsurroundAir';
   src:
