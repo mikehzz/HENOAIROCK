@@ -211,7 +211,7 @@ body {
 
 @media (max-width: 768px) {
   .sidebar {
-    width: 115px;
+    width: 150px;
   }
   
 .content {
