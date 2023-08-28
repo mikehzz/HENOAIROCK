@@ -9,7 +9,7 @@
 <link rel="shortcut icon" href="<c:url value='/resources/favicon.ico'/>" type="image/x-icon"/>
 <link rel="icon" href="<c:url value='/resources/favicon.ico'/>" type="image/x-icon"/>
 <script src="/resources/js/jquery-3.7.0.js"></script>
-<title>회원가입</title>
+<title>HeNoAIRock</title>
 </head>
 <body>
     <div class="container">

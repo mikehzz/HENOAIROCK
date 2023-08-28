@@ -15,7 +15,7 @@
 <script src="${CP}/resources/js/jquery-3.7.0.js"></script>
 <script src="${CP}/resources/js/util.js"></script>
 <script src="/resources/js/setting/setting_service.js"></script>
-<title>${title}</title>
+<title>HeNoAIRock</title>
 </head>
 <body>
 <div class="service_enter" id="content">
