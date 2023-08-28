@@ -14,7 +14,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sidebar</title>
+    <title>HeNoAIRock</title>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap">
@@ -295,7 +295,7 @@ body::-webkit-scrollbar-track {
                     <div class="sidebar-heading">
                 CHAT
             </div>
-    <li><a href="/main"><i class="material-icons">home</i> 감정분석</a></li>
+    <li><a href="/main"><i class="material-icons">music_note</i> 감정분석</a></li>
     <li class="separator"></li>
                     <div class="sidebar-heading">
                 MAIN
@@ -335,7 +335,7 @@ body::-webkit-scrollbar-track {
 </div>
 
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-top" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary text-white">
                 <h5 class="modal-title" id="logoutModalLabel" style="font-family: Arial, sans-serif; font-size: 18px;">로그아웃 확인</h5>
